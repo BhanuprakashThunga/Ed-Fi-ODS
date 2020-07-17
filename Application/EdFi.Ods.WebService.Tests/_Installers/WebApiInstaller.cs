@@ -99,7 +99,7 @@ namespace EdFi.Ods.WebService.Tests._Installers
             // TODO: GKM - IMPORTANT: Review these registrations from Muhammad's pull request
             container.Register(
                 Component.For<ISandboxProvisioner>()
-                         .ImplementedBy<SqlSandboxProvisioner>());
+                         .ImplementedBy<SqlServerSandboxProvisioner>());
 
             container.Register(
                 Component.For<IClaimsIdentityProvider>()
