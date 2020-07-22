@@ -309,7 +309,7 @@ namespace EdFi.Ods.Security.Authorization
                         relevantPrincipalClaim.Type));
             }
 
-            _logger.DebugFormat(
+            _logger.InfoFormat(
                 "Authorization strategy '{0}' selected for request against resource '{1}'.",
                 authorizationStrategyName,
                 authorizationContext.Resource.First()

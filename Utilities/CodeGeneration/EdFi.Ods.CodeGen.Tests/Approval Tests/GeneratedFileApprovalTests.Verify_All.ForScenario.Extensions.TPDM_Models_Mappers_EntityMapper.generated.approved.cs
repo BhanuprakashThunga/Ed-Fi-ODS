@@ -1,199 +1,19 @@
 using System;
-using System.Linq;
 using System.Diagnostics.CodeAnalysis;
-using EdFi.Ods.Api.Dependencies;
-using EdFi.Ods.Api.ETag;
-using EdFi.Ods.Api.Extensions;
+using EdFi.Ods.Api.Common.Dependencies;
+using EdFi.Ods.Api.Common.Extensions;
+using EdFi.Ods.Api.Common.Providers;
 using EdFi.Ods.Common;
 using EdFi.Ods.Common.Constants;
 using EdFi.Ods.Common.Conventions;
 using EdFi.Ods.Common.Extensions;
 using EdFi.Ods.Entities.Common.EdFi;
-// Aggregate: AccreditationStatusDescriptor
-
-namespace EdFi.Ods.Entities.Common.TPDM //.AccreditationStatusDescriptorAggregate
-{ 
-    [ExcludeFromCodeCoverage]
-    public static class AccreditationStatusDescriptorMapper 
-    {
-        public static bool SynchronizeTo(this IAccreditationStatusDescriptor source, IAccreditationStatusDescriptor target)
-        {
-            bool isModified = false;
-
-            var sourceSupport = source as IAccreditationStatusDescriptorSynchronizationSourceSupport;
-
-            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.AccreditationStatusDescriptorId != target.AccreditationStatusDescriptorId)
-            {
-                source.AccreditationStatusDescriptorId = target.AccreditationStatusDescriptorId;
-            }
-
-            // Copy inherited non-PK properties
-
-
-            if ((sourceSupport == null || sourceSupport.IsCodeValueSupported)
-                && target.CodeValue != source.CodeValue)
-            {
-                target.CodeValue = source.CodeValue;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsDescriptionSupported)
-                && target.Description != source.Description)
-            {
-                target.Description = source.Description;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsEffectiveBeginDateSupported)
-                && target.EffectiveBeginDate != source.EffectiveBeginDate)
-            {
-                target.EffectiveBeginDate = source.EffectiveBeginDate;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsEffectiveEndDateSupported)
-                && target.EffectiveEndDate != source.EffectiveEndDate)
-            {
-                target.EffectiveEndDate = source.EffectiveEndDate;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsNamespaceSupported)
-                && target.Namespace != source.Namespace)
-            {
-                target.Namespace = source.Namespace;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsPriorDescriptorIdSupported)
-                && target.PriorDescriptorId != source.PriorDescriptorId)
-            {
-                target.PriorDescriptorId = source.PriorDescriptorId;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsShortDescriptionSupported)
-                && target.ShortDescription != source.ShortDescription)
-            {
-                target.ShortDescription = source.ShortDescription;
-                isModified = true;
-            }
-
-            // Copy non-PK properties
-
-
-            // Synch inherited lists
-
-            // Sync lists
-
-            return isModified;
-        }
-
-
-
-        public static void MapTo(this IAccreditationStatusDescriptor source, IAccreditationStatusDescriptor target, Action<IAccreditationStatusDescriptor, IAccreditationStatusDescriptor> onMapped)
-        {
-            var sourceSynchSupport = source as IAccreditationStatusDescriptorSynchronizationSourceSupport;
-            var targetSynchSupport = target as IAccreditationStatusDescriptorSynchronizationSourceSupport;
-
-            // Copy resource Id
-            target.Id = source.Id;
-
-            // Copy contextual primary key values
-            target.AccreditationStatusDescriptorId = source.AccreditationStatusDescriptorId;
-
-            // Copy inherited non-PK properties
-
-            if (sourceSynchSupport.IsCodeValueSupported)
-                target.CodeValue = source.CodeValue;
-            else
-                targetSynchSupport.IsCodeValueSupported = false;
-
-            if (sourceSynchSupport.IsDescriptionSupported)
-                target.Description = source.Description;
-            else
-                targetSynchSupport.IsDescriptionSupported = false;
-
-            if (sourceSynchSupport.IsEffectiveBeginDateSupported)
-                target.EffectiveBeginDate = source.EffectiveBeginDate;
-            else
-                targetSynchSupport.IsEffectiveBeginDateSupported = false;
-
-            if (sourceSynchSupport.IsEffectiveEndDateSupported)
-                target.EffectiveEndDate = source.EffectiveEndDate;
-            else
-                targetSynchSupport.IsEffectiveEndDateSupported = false;
-
-            if (sourceSynchSupport.IsNamespaceSupported)
-                target.Namespace = source.Namespace;
-            else
-                targetSynchSupport.IsNamespaceSupported = false;
-
-            if (sourceSynchSupport.IsPriorDescriptorIdSupported)
-                target.PriorDescriptorId = source.PriorDescriptorId;
-            else
-                targetSynchSupport.IsPriorDescriptorIdSupported = false;
-
-            if (sourceSynchSupport.IsShortDescriptionSupported)
-                target.ShortDescription = source.ShortDescription;
-            else
-                targetSynchSupport.IsShortDescriptionSupported = false;
-
-            // Copy non-PK properties
-
-            // Copy Aggregate Reference Data
-
-
-            // ----------------------------------
-            //   Map One-to-one relationships
-            // ----------------------------------
-
-            // Map inherited lists
-
-            // Map lists
-
-
-            var eTagProvider = new ETagProvider();
-
-            // Convert value to ETag, if appropriate
-            var entityWithETag = target as IHasETag;
-
-            if (entityWithETag != null)
-                entityWithETag.ETag = eTagProvider.GetETag(source);
-
-            // Convert value to LastModifiedDate, if appropriate
-            var dateVersionedEntity = target as IDateVersionedEntity;
-            var etagSource = source as IHasETag;
-
-            if (dateVersionedEntity != null && etagSource != null)
-                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
-        }
-    }
-
-    /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
-    /// is supported by a model implementation being used as the source in a "synchronization"
-    /// operation.
-    /// </summary>
-    public interface IAccreditationStatusDescriptorSynchronizationSourceSupport 
-    {
-        bool IsCodeValueSupported { get; set; }
-        bool IsDescriptionSupported { get; set; }
-        bool IsEffectiveBeginDateSupported { get; set; }
-        bool IsEffectiveEndDateSupported { get; set; }
-        bool IsNamespaceSupported { get; set; }
-        bool IsPriorDescriptorIdSupported { get; set; }
-        bool IsShortDescriptionSupported { get; set; }
-    }
- 
-}
 // Aggregate: AidTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.AidTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class AidTypeDescriptorMapper 
+    public static class AidTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IAidTypeDescriptor source, IAidTypeDescriptor target)
         {
@@ -351,7 +171,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AidTypeDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -365,14 +185,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AidTypeDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: AnonymizedStudent
 
 namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentMapper 
+    public static class AnonymizedStudentMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudent source, IAnonymizedStudent target)
         {
@@ -484,43 +304,43 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsAnonymizedStudentDisabilitiesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.AnonymizedStudentDisabilities.SynchronizeCollectionTo(
-                        target.AnonymizedStudentDisabilities, 
-                        onChildAdded: child => 
+                        target.AnonymizedStudentDisabilities,
+                        onChildAdded: child =>
                             {
                                 child.AnonymizedStudent = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsAnonymizedStudentDisabilityIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsAnonymizedStudentLanguagesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.AnonymizedStudentLanguages.SynchronizeCollectionTo(
-                        target.AnonymizedStudentLanguages, 
-                        onChildAdded: child => 
+                        target.AnonymizedStudentLanguages,
+                        onChildAdded: child =>
                             {
                                 child.AnonymizedStudent = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsAnonymizedStudentLanguageIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsAnonymizedStudentRacesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.AnonymizedStudentRaces.SynchronizeCollectionTo(
-                        target.AnonymizedStudentRaces, 
-                        onChildAdded: child => 
+                        target.AnonymizedStudentRaces,
+                        onChildAdded: child =>
                             {
                                 child.AnonymizedStudent = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsAnonymizedStudentRaceIncluded);
             }
 
@@ -606,7 +426,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
                 targetSynchSupport.IsValueTypeDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.SchoolYearTypeResourceId = source.SchoolYearTypeResourceId;
@@ -621,7 +441,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
             // Map lists
 
             if (sourceSynchSupport.IsAnonymizedStudentDisabilitiesSupported)
-            {    
+            {
                 targetSynchSupport.IsAnonymizedStudentDisabilityIncluded = sourceSynchSupport.IsAnonymizedStudentDisabilityIncluded;
                 source.AnonymizedStudentDisabilities.MapCollectionTo(target.AnonymizedStudentDisabilities, target);
             }
@@ -631,7 +451,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
             }
 
             if (sourceSynchSupport.IsAnonymizedStudentLanguagesSupported)
-            {    
+            {
                 targetSynchSupport.IsAnonymizedStudentLanguageIncluded = sourceSynchSupport.IsAnonymizedStudentLanguageIncluded;
                 source.AnonymizedStudentLanguages.MapCollectionTo(target.AnonymizedStudentLanguages, target);
             }
@@ -641,7 +461,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
             }
 
             if (sourceSynchSupport.IsAnonymizedStudentRacesSupported)
-            {    
+            {
                 targetSynchSupport.IsAnonymizedStudentRaceIncluded = sourceSynchSupport.IsAnonymizedStudentRaceIncluded;
                 source.AnonymizedStudentRaces.MapCollectionTo(target.AnonymizedStudentRaces, target);
             }
@@ -669,7 +489,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -694,9 +514,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
         Func<IAnonymizedStudentLanguage, bool> IsAnonymizedStudentLanguageIncluded { get; set; }
         Func<IAnonymizedStudentRace, bool> IsAnonymizedStudentRaceIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentDisabilityMapper 
+    public static class AnonymizedStudentDisabilityMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentDisability source, IAnonymizedStudentDisability target)
         {
@@ -737,15 +557,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsAnonymizedStudentDisabilityDesignationsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.AnonymizedStudentDisabilityDesignations.SynchronizeCollectionTo(
-                        target.AnonymizedStudentDisabilityDesignations, 
-                        onChildAdded: child => 
+                        target.AnonymizedStudentDisabilityDesignations,
+                        onChildAdded: child =>
                             {
                                 child.AnonymizedStudentDisability = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsAnonymizedStudentDisabilityDesignationIncluded);
             }
 
@@ -790,7 +610,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
             // Map lists
 
             if (sourceSynchSupport.IsAnonymizedStudentDisabilityDesignationsSupported)
-            {    
+            {
                 targetSynchSupport.IsAnonymizedStudentDisabilityDesignationIncluded = sourceSynchSupport.IsAnonymizedStudentDisabilityDesignationIncluded;
                 source.AnonymizedStudentDisabilityDesignations.MapCollectionTo(target.AnonymizedStudentDisabilityDesignations, target);
             }
@@ -818,7 +638,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -830,9 +650,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
         bool IsOrderOfDisabilitySupported { get; set; }
         Func<IAnonymizedStudentDisabilityDesignation, bool> IsAnonymizedStudentDisabilityDesignationIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentDisabilityDesignationMapper 
+    public static class AnonymizedStudentDisabilityDesignationMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentDisabilityDesignation source, IAnonymizedStudentDisabilityDesignation target)
         {
@@ -894,16 +714,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IAnonymizedStudentDisabilityDesignationSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentLanguageMapper 
+    public static class AnonymizedStudentLanguageMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentLanguage source, IAnonymizedStudentLanguage target)
         {
@@ -923,15 +743,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsAnonymizedStudentLanguageUsesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.AnonymizedStudentLanguageUses.SynchronizeCollectionTo(
-                        target.AnonymizedStudentLanguageUses, 
-                        onChildAdded: child => 
+                        target.AnonymizedStudentLanguageUses,
+                        onChildAdded: child =>
                             {
                                 child.AnonymizedStudentLanguage = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsAnonymizedStudentLanguageUseIncluded);
             }
 
@@ -961,7 +781,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
             // Map lists
 
             if (sourceSynchSupport.IsAnonymizedStudentLanguageUsesSupported)
-            {    
+            {
                 targetSynchSupport.IsAnonymizedStudentLanguageUseIncluded = sourceSynchSupport.IsAnonymizedStudentLanguageUseIncluded;
                 source.AnonymizedStudentLanguageUses.MapCollectionTo(target.AnonymizedStudentLanguageUses, target);
             }
@@ -989,7 +809,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -998,9 +818,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
         bool IsAnonymizedStudentLanguageUsesSupported { get; set; }
         Func<IAnonymizedStudentLanguageUse, bool> IsAnonymizedStudentLanguageUseIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentLanguageUseMapper 
+    public static class AnonymizedStudentLanguageUseMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentLanguageUse source, IAnonymizedStudentLanguageUse target)
         {
@@ -1062,16 +882,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IAnonymizedStudentLanguageUseSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentRaceMapper 
+    public static class AnonymizedStudentRaceMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentRace source, IAnonymizedStudentRace target)
         {
@@ -1133,21 +953,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IAnonymizedStudentRaceSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: AnonymizedStudentAcademicRecord
 
 namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAcademicRecordAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentAcademicRecordMapper 
+    public static class AnonymizedStudentAcademicRecordMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentAcademicRecord source, IAnonymizedStudentAcademicRecord target)
         {
@@ -1246,7 +1066,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAcademicRecordAggreg
                 targetSynchSupport.IsSessionGradePointAverageSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.AnonymizedStudentResourceId = source.AnonymizedStudentResourceId;
@@ -1283,7 +1103,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAcademicRecordAggreg
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -1293,14 +1113,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAcademicRecordAggreg
         bool IsGPAMaxSupported { get; set; }
         bool IsSessionGradePointAverageSupported { get; set; }
     }
- 
+
 }
 // Aggregate: AnonymizedStudentAssessment
 
 namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentAssessmentMapper 
+    public static class AnonymizedStudentAssessmentMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentAssessment source, IAnonymizedStudentAssessment target)
         {
@@ -1371,9 +1191,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
                 isModified = true;
             }
 
-            // ----------------------------------            
+            // ----------------------------------
             //   Synch One-to-one relationships
-            // ----------------------------------            
+            // ----------------------------------
             // AnonymizedStudentAssessmentPerformanceLevel
             if (sourceSupport == null || sourceSupport.IsAnonymizedStudentAssessmentPerformanceLevelSupported)
             {
@@ -1420,7 +1240,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
                     isModified |= source.AnonymizedStudentAssessmentScoreResult.Synchronize(target.AnonymizedStudentAssessmentScoreResult);
                 }
             }
-            
+
             // -------------------------------------------------------------
 
             // Sync lists
@@ -1474,7 +1294,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
                 targetSynchSupport.IsTermDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.AnonymizedStudentResourceId = source.AnonymizedStudentResourceId;
@@ -1491,9 +1311,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
             if (sourceSynchSupport.IsAnonymizedStudentAssessmentPerformanceLevelSupported)
             {
                 var itemProperty = target.GetType().GetProperty("AnonymizedStudentAssessmentPerformanceLevel");
-                
+
                 if (itemProperty != null)
-                {                    
+                {
                     if (source.AnonymizedStudentAssessmentPerformanceLevel == null)
                     {
                         target.AnonymizedStudentAssessmentPerformanceLevel = null;
@@ -1504,7 +1324,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
                         object targetAnonymizedStudentAssessmentPerformanceLevel = Activator.CreateInstance(itemType);
                         (targetAnonymizedStudentAssessmentPerformanceLevel as IChildEntity)?.SetParent(target);
                         source.AnonymizedStudentAssessmentPerformanceLevel.Map(targetAnonymizedStudentAssessmentPerformanceLevel);
-                        
+
                         // Update the target reference appropriately
                         target.AnonymizedStudentAssessmentPerformanceLevel = (IAnonymizedStudentAssessmentPerformanceLevel) targetAnonymizedStudentAssessmentPerformanceLevel;
                     }
@@ -1512,15 +1332,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
             }
             else
             {
-                targetSynchSupport.IsAnonymizedStudentAssessmentPerformanceLevelSupported = false; 
+                targetSynchSupport.IsAnonymizedStudentAssessmentPerformanceLevelSupported = false;
             }
             // AnonymizedStudentAssessmentScoreResult (Source)
             if (sourceSynchSupport.IsAnonymizedStudentAssessmentScoreResultSupported)
             {
                 var itemProperty = target.GetType().GetProperty("AnonymizedStudentAssessmentScoreResult");
-                
+
                 if (itemProperty != null)
-                {                    
+                {
                     if (source.AnonymizedStudentAssessmentScoreResult == null)
                     {
                         target.AnonymizedStudentAssessmentScoreResult = null;
@@ -1531,7 +1351,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
                         object targetAnonymizedStudentAssessmentScoreResult = Activator.CreateInstance(itemType);
                         (targetAnonymizedStudentAssessmentScoreResult as IChildEntity)?.SetParent(target);
                         source.AnonymizedStudentAssessmentScoreResult.Map(targetAnonymizedStudentAssessmentScoreResult);
-                        
+
                         // Update the target reference appropriately
                         target.AnonymizedStudentAssessmentScoreResult = (IAnonymizedStudentAssessmentScoreResult) targetAnonymizedStudentAssessmentScoreResult;
                     }
@@ -1539,7 +1359,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
             }
             else
             {
-                targetSynchSupport.IsAnonymizedStudentAssessmentScoreResultSupported = false; 
+                targetSynchSupport.IsAnonymizedStudentAssessmentScoreResultSupported = false;
             }
             // -------------------------------------------------------------
 
@@ -1564,7 +1384,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -1578,9 +1398,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
         bool IsGradeLevelDescriptorSupported { get; set; }
         bool IsTermDescriptorSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentAssessmentPerformanceLevelMapper 
+    public static class AnonymizedStudentAssessmentPerformanceLevelMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentAssessmentPerformanceLevel source, IAnonymizedStudentAssessmentPerformanceLevel target)
         {
@@ -1673,7 +1493,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -1683,9 +1503,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
         bool IsPerformanceLevelDescriptorSupported { get; set; }
         bool IsPerformanceLevelMetSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentAssessmentScoreResultMapper 
+    public static class AnonymizedStudentAssessmentScoreResultMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentAssessmentScoreResult source, IAnonymizedStudentAssessmentScoreResult target)
         {
@@ -1778,7 +1598,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -1788,14 +1608,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentAggregate
         bool IsResultSupported { get; set; }
         bool IsResultDatatypeTypeDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: AnonymizedStudentAssessmentCourseAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentCourseAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentAssessmentCourseAssociationMapper 
+    public static class AnonymizedStudentAssessmentCourseAssociationMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentAssessmentCourseAssociation source, IAnonymizedStudentAssessmentCourseAssociation target)
         {
@@ -1868,7 +1688,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentCourseAsso
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.AnonymizedStudentAssessmentResourceId = source.AnonymizedStudentAssessmentResourceId;
@@ -1904,21 +1724,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentCourseAsso
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IAnonymizedStudentAssessmentCourseAssociationSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: AnonymizedStudentAssessmentSectionAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentSectionAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentAssessmentSectionAssociationMapper 
+    public static class AnonymizedStudentAssessmentSectionAssociationMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentAssessmentSectionAssociation source, IAnonymizedStudentAssessmentSectionAssociation target)
         {
@@ -2001,7 +1821,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentSectionAss
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.AnonymizedStudentAssessmentResourceId = source.AnonymizedStudentAssessmentResourceId;
@@ -2037,21 +1857,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentAssessmentSectionAss
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IAnonymizedStudentAssessmentSectionAssociationSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: AnonymizedStudentCourseAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentCourseAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentCourseAssociationMapper 
+    public static class AnonymizedStudentCourseAssociationMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentCourseAssociation source, IAnonymizedStudentCourseAssociation target)
         {
@@ -2126,7 +1946,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentCourseAssociationAgg
                 targetSynchSupport.IsEndDateSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.AnonymizedStudentResourceId = source.AnonymizedStudentResourceId;
@@ -2162,7 +1982,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentCourseAssociationAgg
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -2170,14 +1990,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentCourseAssociationAgg
     {
         bool IsEndDateSupported { get; set; }
     }
- 
+
 }
 // Aggregate: AnonymizedStudentCourseTranscript
 
 namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentCourseTranscriptAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentCourseTranscriptMapper 
+    public static class AnonymizedStudentCourseTranscriptMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentCourseTranscript source, IAnonymizedStudentCourseTranscript target)
         {
@@ -2293,7 +2113,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentCourseTranscriptAggr
                 targetSynchSupport.IsFinalNumericGradeEarnedSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.AnonymizedStudentAcademicRecordResourceId = source.AnonymizedStudentAcademicRecordResourceId;
@@ -2329,7 +2149,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentCourseTranscriptAggr
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -2340,14 +2160,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentCourseTranscriptAggr
         bool IsFinalLetterGradeEarnedSupported { get; set; }
         bool IsFinalNumericGradeEarnedSupported { get; set; }
     }
- 
+
 }
 // Aggregate: AnonymizedStudentEducationOrganizationAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentEducationOrganizationAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentEducationOrganizationAssociationMapper 
+    public static class AnonymizedStudentEducationOrganizationAssociationMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentEducationOrganizationAssociation source, IAnonymizedStudentEducationOrganizationAssociation target)
         {
@@ -2417,7 +2237,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentEducationOrganizatio
                 targetSynchSupport.IsEndDateSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.AnonymizedStudentResourceId = source.AnonymizedStudentResourceId;
@@ -2453,7 +2273,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentEducationOrganizatio
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -2461,14 +2281,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentEducationOrganizatio
     {
         bool IsEndDateSupported { get; set; }
     }
- 
+
 }
 // Aggregate: AnonymizedStudentSectionAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentSectionAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class AnonymizedStudentSectionAssociationMapper 
+    public static class AnonymizedStudentSectionAssociationMapper
     {
         public static bool SynchronizeTo(this IAnonymizedStudentSectionAssociation source, IAnonymizedStudentSectionAssociation target)
         {
@@ -2553,7 +2373,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentSectionAssociationAg
                 targetSynchSupport.IsEndDateSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.AnonymizedStudentResourceId = source.AnonymizedStudentResourceId;
@@ -2589,7 +2409,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentSectionAssociationAg
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -2597,14 +2417,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AnonymizedStudentSectionAssociationAg
     {
         bool IsEndDateSupported { get; set; }
     }
- 
+
 }
 // Aggregate: Applicant
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ApplicantMapper 
+    public static class ApplicantMapper
     {
         public static bool SynchronizeTo(this IApplicant source, IApplicant target)
         {
@@ -2616,6 +2436,10 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             if (source.ApplicantIdentifier != target.ApplicantIdentifier)
             {
                 source.ApplicantIdentifier = target.ApplicantIdentifier;
+            }
+            if (source.EducationOrganizationId != target.EducationOrganizationId)
+            {
+                source.EducationOrganizationId = target.EducationOrganizationId;
             }
 
             // Copy non-PK properties
@@ -2666,6 +2490,27 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
                 && target.GenerationCodeSuffix != source.GenerationCodeSuffix)
             {
                 target.GenerationCodeSuffix = source.GenerationCodeSuffix;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsHighestCompletedLevelOfEducationDescriptorSupported)
+                && target.HighestCompletedLevelOfEducationDescriptor != source.HighestCompletedLevelOfEducationDescriptor)
+            {
+                target.HighestCompletedLevelOfEducationDescriptor = source.HighestCompletedLevelOfEducationDescriptor;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsHighlyQualifiedAcademicSubjectDescriptorSupported)
+                && target.HighlyQualifiedAcademicSubjectDescriptor != source.HighlyQualifiedAcademicSubjectDescriptor)
+            {
+                target.HighlyQualifiedAcademicSubjectDescriptor = source.HighlyQualifiedAcademicSubjectDescriptor;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsHighlyQualifiedTeacherSupported)
+                && target.HighlyQualifiedTeacher != source.HighlyQualifiedTeacher)
+            {
+                target.HighlyQualifiedTeacher = source.HighlyQualifiedTeacher;
                 isModified = true;
             }
 
@@ -2739,215 +2584,271 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
                 isModified = true;
             }
 
+            if ((sourceSupport == null || sourceSupport.IsYearsOfPriorProfessionalExperienceSupported)
+                && target.YearsOfPriorProfessionalExperience != source.YearsOfPriorProfessionalExperience)
+            {
+                target.YearsOfPriorProfessionalExperience = source.YearsOfPriorProfessionalExperience;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsYearsOfPriorTeachingExperienceSupported)
+                && target.YearsOfPriorTeachingExperience != source.YearsOfPriorTeachingExperience)
+            {
+                target.YearsOfPriorTeachingExperience = source.YearsOfPriorTeachingExperience;
+                isModified = true;
+            }
+
 
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsApplicantAddressesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantAddresses.SynchronizeCollectionTo(
-                        target.ApplicantAddresses, 
-                        onChildAdded: child => 
+                        target.ApplicantAddresses,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantAddressIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantAidsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantAids.SynchronizeCollectionTo(
-                        target.ApplicantAids, 
-                        onChildAdded: child => 
+                        target.ApplicantAids,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantAidIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantBackgroundChecksSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantBackgroundChecks.SynchronizeCollectionTo(
-                        target.ApplicantBackgroundChecks, 
-                        onChildAdded: child => 
+                        target.ApplicantBackgroundChecks,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantBackgroundCheckIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantCharacteristicsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantCharacteristics.SynchronizeCollectionTo(
-                        target.ApplicantCharacteristics, 
-                        onChildAdded: child => 
+                        target.ApplicantCharacteristics,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantCharacteristicIncluded);
+            }
+
+            if (sourceSupport == null || sourceSupport.IsApplicantCredentialsSupported)
+            {
+                isModified |=
+                    source.ApplicantCredentials.SynchronizeCollectionTo(
+                        target.ApplicantCredentials,
+                        onChildAdded: child =>
+                            {
+                                child.Applicant = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsApplicantCredentialIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantDisabilitiesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantDisabilities.SynchronizeCollectionTo(
-                        target.ApplicantDisabilities, 
-                        onChildAdded: child => 
+                        target.ApplicantDisabilities,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantDisabilityIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantElectronicMailsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantElectronicMails.SynchronizeCollectionTo(
-                        target.ApplicantElectronicMails, 
-                        onChildAdded: child => 
+                        target.ApplicantElectronicMails,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantElectronicMailIncluded);
+            }
+
+            if (sourceSupport == null || sourceSupport.IsApplicantGradePointAveragesSupported)
+            {
+                isModified |=
+                    source.ApplicantGradePointAverages.SynchronizeCollectionTo(
+                        target.ApplicantGradePointAverages,
+                        onChildAdded: child =>
+                            {
+                                child.Applicant = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsApplicantGradePointAverageIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantIdentificationDocumentsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantIdentificationDocuments.SynchronizeCollectionTo(
-                        target.ApplicantIdentificationDocuments, 
-                        onChildAdded: child => 
+                        target.ApplicantIdentificationDocuments,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantIdentificationDocumentIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantInternationalAddressesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantInternationalAddresses.SynchronizeCollectionTo(
-                        target.ApplicantInternationalAddresses, 
-                        onChildAdded: child => 
+                        target.ApplicantInternationalAddresses,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantInternationalAddressIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantLanguagesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantLanguages.SynchronizeCollectionTo(
-                        target.ApplicantLanguages, 
-                        onChildAdded: child => 
+                        target.ApplicantLanguages,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantLanguageIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantPersonalIdentificationDocumentsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantPersonalIdentificationDocuments.SynchronizeCollectionTo(
-                        target.ApplicantPersonalIdentificationDocuments, 
-                        onChildAdded: child => 
+                        target.ApplicantPersonalIdentificationDocuments,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantPersonalIdentificationDocumentIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantRacesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantRaces.SynchronizeCollectionTo(
-                        target.ApplicantRaces, 
-                        onChildAdded: child => 
+                        target.ApplicantRaces,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantRaceIncluded);
+            }
+
+            if (sourceSupport == null || sourceSupport.IsApplicantScoreResultsSupported)
+            {
+                isModified |=
+                    source.ApplicantScoreResults.SynchronizeCollectionTo(
+                        target.ApplicantScoreResults,
+                        onChildAdded: child =>
+                            {
+                                child.Applicant = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsApplicantScoreResultIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantStaffIdentificationCodesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantStaffIdentificationCodes.SynchronizeCollectionTo(
-                        target.ApplicantStaffIdentificationCodes, 
-                        onChildAdded: child => 
+                        target.ApplicantStaffIdentificationCodes,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantStaffIdentificationCodeIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantTeacherPreparationProgramsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantTeacherPreparationPrograms.SynchronizeCollectionTo(
-                        target.ApplicantTeacherPreparationPrograms, 
-                        onChildAdded: child => 
+                        target.ApplicantTeacherPreparationPrograms,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantTeacherPreparationProgramIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantTelephonesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantTelephones.SynchronizeCollectionTo(
-                        target.ApplicantTelephones, 
-                        onChildAdded: child => 
+                        target.ApplicantTelephones,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantTelephoneIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicantVisasSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantVisas.SynchronizeCollectionTo(
-                        target.ApplicantVisas, 
-                        onChildAdded: child => 
+                        target.ApplicantVisas,
+                        onChildAdded: child =>
                             {
                                 child.Applicant = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantVisaIncluded);
             }
 
@@ -2967,6 +2868,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
 
             // Copy contextual primary key values
             target.ApplicantIdentifier = source.ApplicantIdentifier;
+            target.EducationOrganizationId = source.EducationOrganizationId;
 
             // Copy non-PK properties
 
@@ -3004,6 +2906,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
                 target.GenerationCodeSuffix = source.GenerationCodeSuffix;
             else
                 targetSynchSupport.IsGenerationCodeSuffixSupported = false;
+
+            if (sourceSynchSupport.IsHighestCompletedLevelOfEducationDescriptorSupported)
+                target.HighestCompletedLevelOfEducationDescriptor = source.HighestCompletedLevelOfEducationDescriptor;
+            else
+                targetSynchSupport.IsHighestCompletedLevelOfEducationDescriptorSupported = false;
+
+            if (sourceSynchSupport.IsHighlyQualifiedAcademicSubjectDescriptorSupported)
+                target.HighlyQualifiedAcademicSubjectDescriptor = source.HighlyQualifiedAcademicSubjectDescriptor;
+            else
+                targetSynchSupport.IsHighlyQualifiedAcademicSubjectDescriptorSupported = false;
+
+            if (sourceSynchSupport.IsHighlyQualifiedTeacherSupported)
+                target.HighlyQualifiedTeacher = source.HighlyQualifiedTeacher;
+            else
+                targetSynchSupport.IsHighlyQualifiedTeacherSupported = false;
 
             if (sourceSynchSupport.IsHispanicLatinoEthnicitySupported)
                 target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
@@ -3055,10 +2972,22 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             else
                 targetSynchSupport.IsTeacherCandidateIdentifierSupported = false;
 
+            if (sourceSynchSupport.IsYearsOfPriorProfessionalExperienceSupported)
+                target.YearsOfPriorProfessionalExperience = source.YearsOfPriorProfessionalExperience;
+            else
+                targetSynchSupport.IsYearsOfPriorProfessionalExperienceSupported = false;
+
+            if (sourceSynchSupport.IsYearsOfPriorTeachingExperienceSupported)
+                target.YearsOfPriorTeachingExperience = source.YearsOfPriorTeachingExperience;
+            else
+                targetSynchSupport.IsYearsOfPriorTeachingExperienceSupported = false;
+
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
+                target.EducationOrganizationResourceId = source.EducationOrganizationResourceId;
+                target.EducationOrganizationDiscriminator = source.EducationOrganizationDiscriminator;
                 target.PersonResourceId = source.PersonResourceId;
                 target.PersonDiscriminator = source.PersonDiscriminator;
                 target.TeacherCandidateResourceId = source.TeacherCandidateResourceId;
@@ -3074,7 +3003,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             // Map lists
 
             if (sourceSynchSupport.IsApplicantAddressesSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantAddressIncluded = sourceSynchSupport.IsApplicantAddressIncluded;
                 source.ApplicantAddresses.MapCollectionTo(target.ApplicantAddresses, target);
             }
@@ -3084,7 +3013,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             }
 
             if (sourceSynchSupport.IsApplicantAidsSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantAidIncluded = sourceSynchSupport.IsApplicantAidIncluded;
                 source.ApplicantAids.MapCollectionTo(target.ApplicantAids, target);
             }
@@ -3094,7 +3023,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             }
 
             if (sourceSynchSupport.IsApplicantBackgroundChecksSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantBackgroundCheckIncluded = sourceSynchSupport.IsApplicantBackgroundCheckIncluded;
                 source.ApplicantBackgroundChecks.MapCollectionTo(target.ApplicantBackgroundChecks, target);
             }
@@ -3104,7 +3033,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             }
 
             if (sourceSynchSupport.IsApplicantCharacteristicsSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantCharacteristicIncluded = sourceSynchSupport.IsApplicantCharacteristicIncluded;
                 source.ApplicantCharacteristics.MapCollectionTo(target.ApplicantCharacteristics, target);
             }
@@ -3113,8 +3042,18 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
                 targetSynchSupport.IsApplicantCharacteristicsSupported = false;
             }
 
+            if (sourceSynchSupport.IsApplicantCredentialsSupported)
+            {
+                targetSynchSupport.IsApplicantCredentialIncluded = sourceSynchSupport.IsApplicantCredentialIncluded;
+                source.ApplicantCredentials.MapCollectionTo(target.ApplicantCredentials, target);
+            }
+            else
+            {
+                targetSynchSupport.IsApplicantCredentialsSupported = false;
+            }
+
             if (sourceSynchSupport.IsApplicantDisabilitiesSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantDisabilityIncluded = sourceSynchSupport.IsApplicantDisabilityIncluded;
                 source.ApplicantDisabilities.MapCollectionTo(target.ApplicantDisabilities, target);
             }
@@ -3124,7 +3063,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             }
 
             if (sourceSynchSupport.IsApplicantElectronicMailsSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantElectronicMailIncluded = sourceSynchSupport.IsApplicantElectronicMailIncluded;
                 source.ApplicantElectronicMails.MapCollectionTo(target.ApplicantElectronicMails, target);
             }
@@ -3133,8 +3072,18 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
                 targetSynchSupport.IsApplicantElectronicMailsSupported = false;
             }
 
+            if (sourceSynchSupport.IsApplicantGradePointAveragesSupported)
+            {
+                targetSynchSupport.IsApplicantGradePointAverageIncluded = sourceSynchSupport.IsApplicantGradePointAverageIncluded;
+                source.ApplicantGradePointAverages.MapCollectionTo(target.ApplicantGradePointAverages, target);
+            }
+            else
+            {
+                targetSynchSupport.IsApplicantGradePointAveragesSupported = false;
+            }
+
             if (sourceSynchSupport.IsApplicantIdentificationDocumentsSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantIdentificationDocumentIncluded = sourceSynchSupport.IsApplicantIdentificationDocumentIncluded;
                 source.ApplicantIdentificationDocuments.MapCollectionTo(target.ApplicantIdentificationDocuments, target);
             }
@@ -3144,7 +3093,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             }
 
             if (sourceSynchSupport.IsApplicantInternationalAddressesSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantInternationalAddressIncluded = sourceSynchSupport.IsApplicantInternationalAddressIncluded;
                 source.ApplicantInternationalAddresses.MapCollectionTo(target.ApplicantInternationalAddresses, target);
             }
@@ -3154,7 +3103,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             }
 
             if (sourceSynchSupport.IsApplicantLanguagesSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantLanguageIncluded = sourceSynchSupport.IsApplicantLanguageIncluded;
                 source.ApplicantLanguages.MapCollectionTo(target.ApplicantLanguages, target);
             }
@@ -3164,7 +3113,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             }
 
             if (sourceSynchSupport.IsApplicantPersonalIdentificationDocumentsSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantPersonalIdentificationDocumentIncluded = sourceSynchSupport.IsApplicantPersonalIdentificationDocumentIncluded;
                 source.ApplicantPersonalIdentificationDocuments.MapCollectionTo(target.ApplicantPersonalIdentificationDocuments, target);
             }
@@ -3174,7 +3123,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             }
 
             if (sourceSynchSupport.IsApplicantRacesSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantRaceIncluded = sourceSynchSupport.IsApplicantRaceIncluded;
                 source.ApplicantRaces.MapCollectionTo(target.ApplicantRaces, target);
             }
@@ -3183,8 +3132,18 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
                 targetSynchSupport.IsApplicantRacesSupported = false;
             }
 
+            if (sourceSynchSupport.IsApplicantScoreResultsSupported)
+            {
+                targetSynchSupport.IsApplicantScoreResultIncluded = sourceSynchSupport.IsApplicantScoreResultIncluded;
+                source.ApplicantScoreResults.MapCollectionTo(target.ApplicantScoreResults, target);
+            }
+            else
+            {
+                targetSynchSupport.IsApplicantScoreResultsSupported = false;
+            }
+
             if (sourceSynchSupport.IsApplicantStaffIdentificationCodesSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantStaffIdentificationCodeIncluded = sourceSynchSupport.IsApplicantStaffIdentificationCodeIncluded;
                 source.ApplicantStaffIdentificationCodes.MapCollectionTo(target.ApplicantStaffIdentificationCodes, target);
             }
@@ -3194,7 +3153,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             }
 
             if (sourceSynchSupport.IsApplicantTeacherPreparationProgramsSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantTeacherPreparationProgramIncluded = sourceSynchSupport.IsApplicantTeacherPreparationProgramIncluded;
                 source.ApplicantTeacherPreparationPrograms.MapCollectionTo(target.ApplicantTeacherPreparationPrograms, target);
             }
@@ -3204,7 +3163,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             }
 
             if (sourceSynchSupport.IsApplicantTelephonesSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantTelephoneIncluded = sourceSynchSupport.IsApplicantTelephoneIncluded;
                 source.ApplicantTelephones.MapCollectionTo(target.ApplicantTelephones, target);
             }
@@ -3214,7 +3173,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             }
 
             if (sourceSynchSupport.IsApplicantVisasSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantVisaIncluded = sourceSynchSupport.IsApplicantVisaIncluded;
                 source.ApplicantVisas.MapCollectionTo(target.ApplicantVisas, target);
             }
@@ -3242,7 +3201,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -3252,13 +3211,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsApplicantAidsSupported { get; set; }
         bool IsApplicantBackgroundChecksSupported { get; set; }
         bool IsApplicantCharacteristicsSupported { get; set; }
+        bool IsApplicantCredentialsSupported { get; set; }
         bool IsApplicantDisabilitiesSupported { get; set; }
         bool IsApplicantElectronicMailsSupported { get; set; }
+        bool IsApplicantGradePointAveragesSupported { get; set; }
         bool IsApplicantIdentificationDocumentsSupported { get; set; }
         bool IsApplicantInternationalAddressesSupported { get; set; }
         bool IsApplicantLanguagesSupported { get; set; }
         bool IsApplicantPersonalIdentificationDocumentsSupported { get; set; }
         bool IsApplicantRacesSupported { get; set; }
+        bool IsApplicantScoreResultsSupported { get; set; }
         bool IsApplicantStaffIdentificationCodesSupported { get; set; }
         bool IsApplicantTeacherPreparationProgramsSupported { get; set; }
         bool IsApplicantTelephonesSupported { get; set; }
@@ -3270,6 +3232,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsFirstNameSupported { get; set; }
         bool IsGenderDescriptorSupported { get; set; }
         bool IsGenerationCodeSuffixSupported { get; set; }
+        bool IsHighestCompletedLevelOfEducationDescriptorSupported { get; set; }
+        bool IsHighlyQualifiedAcademicSubjectDescriptorSupported { get; set; }
+        bool IsHighlyQualifiedTeacherSupported { get; set; }
         bool IsHispanicLatinoEthnicitySupported { get; set; }
         bool IsLastSurnameSupported { get; set; }
         bool IsLoginIdSupported { get; set; }
@@ -3280,25 +3245,30 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsSexDescriptorSupported { get; set; }
         bool IsSourceSystemDescriptorSupported { get; set; }
         bool IsTeacherCandidateIdentifierSupported { get; set; }
+        bool IsYearsOfPriorProfessionalExperienceSupported { get; set; }
+        bool IsYearsOfPriorTeachingExperienceSupported { get; set; }
         Func<IApplicantAddress, bool> IsApplicantAddressIncluded { get; set; }
         Func<IApplicantAid, bool> IsApplicantAidIncluded { get; set; }
         Func<IApplicantBackgroundCheck, bool> IsApplicantBackgroundCheckIncluded { get; set; }
         Func<IApplicantCharacteristic, bool> IsApplicantCharacteristicIncluded { get; set; }
+        Func<IApplicantCredential, bool> IsApplicantCredentialIncluded { get; set; }
         Func<IApplicantDisability, bool> IsApplicantDisabilityIncluded { get; set; }
         Func<IApplicantElectronicMail, bool> IsApplicantElectronicMailIncluded { get; set; }
+        Func<IApplicantGradePointAverage, bool> IsApplicantGradePointAverageIncluded { get; set; }
         Func<IApplicantIdentificationDocument, bool> IsApplicantIdentificationDocumentIncluded { get; set; }
         Func<IApplicantInternationalAddress, bool> IsApplicantInternationalAddressIncluded { get; set; }
         Func<IApplicantLanguage, bool> IsApplicantLanguageIncluded { get; set; }
         Func<IApplicantPersonalIdentificationDocument, bool> IsApplicantPersonalIdentificationDocumentIncluded { get; set; }
         Func<IApplicantRace, bool> IsApplicantRaceIncluded { get; set; }
+        Func<IApplicantScoreResult, bool> IsApplicantScoreResultIncluded { get; set; }
         Func<IApplicantStaffIdentificationCode, bool> IsApplicantStaffIdentificationCodeIncluded { get; set; }
         Func<IApplicantTeacherPreparationProgram, bool> IsApplicantTeacherPreparationProgramIncluded { get; set; }
         Func<IApplicantTelephone, bool> IsApplicantTelephoneIncluded { get; set; }
         Func<IApplicantVisa, bool> IsApplicantVisaIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantAddressMapper 
+    public static class ApplicantAddressMapper
     {
         public static bool SynchronizeTo(this IApplicantAddress source, IApplicantAddress target)
         {
@@ -3397,15 +3367,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsApplicantAddressPeriodsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantAddressPeriods.SynchronizeCollectionTo(
-                        target.ApplicantAddressPeriods, 
-                        onChildAdded: child => 
+                        target.ApplicantAddressPeriods,
+                        onChildAdded: child =>
                             {
                                 child.ApplicantAddress = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantAddressPeriodIncluded);
             }
 
@@ -3484,7 +3454,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             // Map lists
 
             if (sourceSynchSupport.IsApplicantAddressPeriodsSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantAddressPeriodIncluded = sourceSynchSupport.IsApplicantAddressPeriodIncluded;
                 source.ApplicantAddressPeriods.MapCollectionTo(target.ApplicantAddressPeriods, target);
             }
@@ -3512,7 +3482,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -3530,9 +3500,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsNameOfCountySupported { get; set; }
         Func<IApplicantAddressPeriod, bool> IsApplicantAddressPeriodIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantAddressPeriodMapper 
+    public static class ApplicantAddressPeriodMapper
     {
         public static bool SynchronizeTo(this IApplicantAddressPeriod source, IApplicantAddressPeriod target)
         {
@@ -3606,7 +3576,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -3614,9 +3584,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     {
         bool IsEndDateSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantAidMapper 
+    public static class ApplicantAidMapper
     {
         public static bool SynchronizeTo(this IApplicantAid source, IApplicantAid target)
         {
@@ -3731,7 +3701,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -3742,9 +3712,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsEndDateSupported { get; set; }
         bool IsPellGrantRecipientSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantBackgroundCheckMapper 
+    public static class ApplicantBackgroundCheckMapper
     {
         public static bool SynchronizeTo(this IApplicantBackgroundCheck source, IApplicantBackgroundCheck target)
         {
@@ -3854,7 +3824,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -3865,9 +3835,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsBackgroundCheckStatusDescriptorSupported { get; set; }
         bool IsFingerprintSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantCharacteristicMapper 
+    public static class ApplicantCharacteristicMapper
     {
         public static bool SynchronizeTo(this IApplicantCharacteristic source, IApplicantCharacteristic target)
         {
@@ -3965,7 +3935,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -3975,9 +3945,92 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsDesignatedBySupported { get; set; }
         bool IsEndDateSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantDisabilityMapper 
+    public static class ApplicantCredentialMapper
+    {
+        public static bool SynchronizeTo(this IApplicantCredential source, IApplicantCredential target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IApplicantCredentialSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.CredentialIdentifier != target.CredentialIdentifier)
+            {
+                source.CredentialIdentifier = target.CredentialIdentifier;
+            }
+            if (source.StateOfIssueStateAbbreviationDescriptor != target.StateOfIssueStateAbbreviationDescriptor)
+            {
+                source.StateOfIssueStateAbbreviationDescriptor = target.StateOfIssueStateAbbreviationDescriptor;
+            }
+
+            // Copy non-PK properties
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IApplicantCredential source, IApplicantCredential target, Action<IApplicantCredential, IApplicantCredential> onMapped)
+        {
+            var sourceSynchSupport = source as IApplicantCredentialSynchronizationSourceSupport;
+            var targetSynchSupport = target as IApplicantCredentialSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.CredentialIdentifier = source.CredentialIdentifier;
+            target.StateOfIssueStateAbbreviationDescriptor = source.StateOfIssueStateAbbreviationDescriptor;
+
+            // Copy non-PK properties
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.CredentialResourceId = source.CredentialResourceId;
+                target.CredentialDiscriminator = source.CredentialDiscriminator;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IApplicantCredentialSynchronizationSourceSupport 
+    {
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class ApplicantDisabilityMapper
     {
         public static bool SynchronizeTo(this IApplicantDisability source, IApplicantDisability target)
         {
@@ -4018,15 +4071,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsApplicantDisabilityDesignationsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantDisabilityDesignations.SynchronizeCollectionTo(
-                        target.ApplicantDisabilityDesignations, 
-                        onChildAdded: child => 
+                        target.ApplicantDisabilityDesignations,
+                        onChildAdded: child =>
                             {
                                 child.ApplicantDisability = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantDisabilityDesignationIncluded);
             }
 
@@ -4071,7 +4124,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             // Map lists
 
             if (sourceSynchSupport.IsApplicantDisabilityDesignationsSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantDisabilityDesignationIncluded = sourceSynchSupport.IsApplicantDisabilityDesignationIncluded;
                 source.ApplicantDisabilityDesignations.MapCollectionTo(target.ApplicantDisabilityDesignations, target);
             }
@@ -4099,7 +4152,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -4111,9 +4164,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsOrderOfDisabilitySupported { get; set; }
         Func<IApplicantDisabilityDesignation, bool> IsApplicantDisabilityDesignationIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantDisabilityDesignationMapper 
+    public static class ApplicantDisabilityDesignationMapper
     {
         public static bool SynchronizeTo(this IApplicantDisabilityDesignation source, IApplicantDisabilityDesignation target)
         {
@@ -4175,16 +4228,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IApplicantDisabilityDesignationSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantElectronicMailMapper 
+    public static class ApplicantElectronicMailMapper
     {
         public static bool SynchronizeTo(this IApplicantElectronicMail source, IApplicantElectronicMail target)
         {
@@ -4275,7 +4328,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -4284,9 +4337,119 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsDoNotPublishIndicatorSupported { get; set; }
         bool IsPrimaryEmailAddressIndicatorSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantIdentificationDocumentMapper 
+    public static class ApplicantGradePointAverageMapper
+    {
+        public static bool SynchronizeTo(this IApplicantGradePointAverage source, IApplicantGradePointAverage target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IApplicantGradePointAverageSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.GradePointAverageTypeDescriptor != target.GradePointAverageTypeDescriptor)
+            {
+                source.GradePointAverageTypeDescriptor = target.GradePointAverageTypeDescriptor;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsGradePointAverageValueSupported)
+                && target.GradePointAverageValue != source.GradePointAverageValue)
+            {
+                target.GradePointAverageValue = source.GradePointAverageValue;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsIsCumulativeSupported)
+                && target.IsCumulative != source.IsCumulative)
+            {
+                target.IsCumulative = source.IsCumulative;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsMaxGradePointAverageValueSupported)
+                && target.MaxGradePointAverageValue != source.MaxGradePointAverageValue)
+            {
+                target.MaxGradePointAverageValue = source.MaxGradePointAverageValue;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IApplicantGradePointAverage source, IApplicantGradePointAverage target, Action<IApplicantGradePointAverage, IApplicantGradePointAverage> onMapped)
+        {
+            var sourceSynchSupport = source as IApplicantGradePointAverageSynchronizationSourceSupport;
+            var targetSynchSupport = target as IApplicantGradePointAverageSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.GradePointAverageTypeDescriptor = source.GradePointAverageTypeDescriptor;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsGradePointAverageValueSupported)
+                target.GradePointAverageValue = source.GradePointAverageValue;
+            else
+                targetSynchSupport.IsGradePointAverageValueSupported = false;
+
+            if (sourceSynchSupport.IsIsCumulativeSupported)
+                target.IsCumulative = source.IsCumulative;
+            else
+                targetSynchSupport.IsIsCumulativeSupported = false;
+
+            if (sourceSynchSupport.IsMaxGradePointAverageValueSupported)
+                target.MaxGradePointAverageValue = source.MaxGradePointAverageValue;
+            else
+                targetSynchSupport.IsMaxGradePointAverageValueSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IApplicantGradePointAverageSynchronizationSourceSupport 
+    {
+        bool IsGradePointAverageValueSupported { get; set; }
+        bool IsIsCumulativeSupported { get; set; }
+        bool IsMaxGradePointAverageValueSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class ApplicantIdentificationDocumentMapper
     {
         public static bool SynchronizeTo(this IApplicantIdentificationDocument source, IApplicantIdentificationDocument target)
         {
@@ -4413,7 +4576,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -4425,9 +4588,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsIssuerDocumentIdentificationCodeSupported { get; set; }
         bool IsIssuerNameSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantInternationalAddressMapper 
+    public static class ApplicantInternationalAddressMapper
     {
         public static bool SynchronizeTo(this IApplicantInternationalAddress source, IApplicantInternationalAddress target)
         {
@@ -4597,7 +4760,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -4613,9 +4776,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsLatitudeSupported { get; set; }
         bool IsLongitudeSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantLanguageMapper 
+    public static class ApplicantLanguageMapper
     {
         public static bool SynchronizeTo(this IApplicantLanguage source, IApplicantLanguage target)
         {
@@ -4635,15 +4798,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsApplicantLanguageUsesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicantLanguageUses.SynchronizeCollectionTo(
-                        target.ApplicantLanguageUses, 
-                        onChildAdded: child => 
+                        target.ApplicantLanguageUses,
+                        onChildAdded: child =>
                             {
                                 child.ApplicantLanguage = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicantLanguageUseIncluded);
             }
 
@@ -4673,7 +4836,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
             // Map lists
 
             if (sourceSynchSupport.IsApplicantLanguageUsesSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicantLanguageUseIncluded = sourceSynchSupport.IsApplicantLanguageUseIncluded;
                 source.ApplicantLanguageUses.MapCollectionTo(target.ApplicantLanguageUses, target);
             }
@@ -4701,7 +4864,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -4710,9 +4873,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsApplicantLanguageUsesSupported { get; set; }
         Func<IApplicantLanguageUse, bool> IsApplicantLanguageUseIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantLanguageUseMapper 
+    public static class ApplicantLanguageUseMapper
     {
         public static bool SynchronizeTo(this IApplicantLanguageUse source, IApplicantLanguageUse target)
         {
@@ -4774,16 +4937,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IApplicantLanguageUseSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantPersonalIdentificationDocumentMapper 
+    public static class ApplicantPersonalIdentificationDocumentMapper
     {
         public static bool SynchronizeTo(this IApplicantPersonalIdentificationDocument source, IApplicantPersonalIdentificationDocument target)
         {
@@ -4910,7 +5073,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -4922,9 +5085,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsIssuerDocumentIdentificationCodeSupported { get; set; }
         bool IsIssuerNameSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantRaceMapper 
+    public static class ApplicantRaceMapper
     {
         public static bool SynchronizeTo(this IApplicantRace source, IApplicantRace target)
         {
@@ -4986,16 +5149,113 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IApplicantRaceSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantStaffIdentificationCodeMapper 
+    public static class ApplicantScoreResultMapper
+    {
+        public static bool SynchronizeTo(this IApplicantScoreResult source, IApplicantScoreResult target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IApplicantScoreResultSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.AssessmentReportingMethodDescriptor != target.AssessmentReportingMethodDescriptor)
+            {
+                source.AssessmentReportingMethodDescriptor = target.AssessmentReportingMethodDescriptor;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsResultSupported)
+                && target.Result != source.Result)
+            {
+                target.Result = source.Result;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsResultDatatypeTypeDescriptorSupported)
+                && target.ResultDatatypeTypeDescriptor != source.ResultDatatypeTypeDescriptor)
+            {
+                target.ResultDatatypeTypeDescriptor = source.ResultDatatypeTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IApplicantScoreResult source, IApplicantScoreResult target, Action<IApplicantScoreResult, IApplicantScoreResult> onMapped)
+        {
+            var sourceSynchSupport = source as IApplicantScoreResultSynchronizationSourceSupport;
+            var targetSynchSupport = target as IApplicantScoreResultSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.AssessmentReportingMethodDescriptor = source.AssessmentReportingMethodDescriptor;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsResultSupported)
+                target.Result = source.Result;
+            else
+                targetSynchSupport.IsResultSupported = false;
+
+            if (sourceSynchSupport.IsResultDatatypeTypeDescriptorSupported)
+                target.ResultDatatypeTypeDescriptor = source.ResultDatatypeTypeDescriptor;
+            else
+                targetSynchSupport.IsResultDatatypeTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IApplicantScoreResultSynchronizationSourceSupport 
+    {
+        bool IsResultSupported { get; set; }
+        bool IsResultDatatypeTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class ApplicantStaffIdentificationCodeMapper
     {
         public static bool SynchronizeTo(this IApplicantStaffIdentificationCode source, IApplicantStaffIdentificationCode target)
         {
@@ -5081,7 +5341,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -5090,9 +5350,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsAssigningOrganizationIdentificationCodeSupported { get; set; }
         bool IsIdentificationCodeSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantTeacherPreparationProgramMapper 
+    public static class ApplicantTeacherPreparationProgramMapper
     {
         public static bool SynchronizeTo(this IApplicantTeacherPreparationProgram source, IApplicantTeacherPreparationProgram target)
         {
@@ -5226,7 +5486,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -5239,9 +5499,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsTeacherPreparationProgramIdentifierSupported { get; set; }
         bool IsTeacherPreparationProgramTypeDescriptorSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantTelephoneMapper 
+    public static class ApplicantTelephoneMapper
     {
         public static bool SynchronizeTo(this IApplicantTelephone source, IApplicantTelephone target)
         {
@@ -5344,7 +5604,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -5354,9 +5614,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
         bool IsOrderOfPrioritySupported { get; set; }
         bool IsTextMessageCapabilityIndicatorSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicantVisaMapper 
+    public static class ApplicantVisaMapper
     {
         public static bool SynchronizeTo(this IApplicantVisa source, IApplicantVisa target)
         {
@@ -5418,21 +5678,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IApplicantVisaSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: ApplicantProspectAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantProspectAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ApplicantProspectAssociationMapper 
+    public static class ApplicantProspectAssociationMapper
     {
         public static bool SynchronizeTo(this IApplicantProspectAssociation source, IApplicantProspectAssociation target)
         {
@@ -5480,7 +5740,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantProspectAssociationAggregate
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.ApplicantResourceId = source.ApplicantResourceId;
@@ -5516,21 +5776,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicantProspectAssociationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IApplicantProspectAssociationSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: Application
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ApplicationMapper 
+    public static class ApplicationMapper
     {
         public static bool SynchronizeTo(this IApplication source, IApplication target)
         {
@@ -5603,27 +5863,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationAggregate
                 isModified = true;
             }
 
-            if ((sourceSupport == null || sourceSupport.IsHighestCompletedLevelOfEducationDescriptorSupported)
-                && target.HighestCompletedLevelOfEducationDescriptor != source.HighestCompletedLevelOfEducationDescriptor)
-            {
-                target.HighestCompletedLevelOfEducationDescriptor = source.HighestCompletedLevelOfEducationDescriptor;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsHighlyQualifiedAcademicSubjectDescriptorSupported)
-                && target.HighlyQualifiedAcademicSubjectDescriptor != source.HighlyQualifiedAcademicSubjectDescriptor)
-            {
-                target.HighlyQualifiedAcademicSubjectDescriptor = source.HighlyQualifiedAcademicSubjectDescriptor;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsHighlyQualifiedTeacherSupported)
-                && target.HighlyQualifiedTeacher != source.HighlyQualifiedTeacher)
-            {
-                target.HighlyQualifiedTeacher = source.HighlyQualifiedTeacher;
-                isModified = true;
-            }
-
             if ((sourceSupport == null || sourceSupport.IsHighNeedsAcademicSubjectDescriptorSupported)
                 && target.HighNeedsAcademicSubjectDescriptor != source.HighNeedsAcademicSubjectDescriptor)
             {
@@ -5659,75 +5898,33 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationAggregate
                 isModified = true;
             }
 
-            if ((sourceSupport == null || sourceSupport.IsYearsOfPriorProfessionalExperienceSupported)
-                && target.YearsOfPriorProfessionalExperience != source.YearsOfPriorProfessionalExperience)
-            {
-                target.YearsOfPriorProfessionalExperience = source.YearsOfPriorProfessionalExperience;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsYearsOfPriorTeachingExperienceSupported)
-                && target.YearsOfPriorTeachingExperience != source.YearsOfPriorTeachingExperience)
-            {
-                target.YearsOfPriorTeachingExperience = source.YearsOfPriorTeachingExperience;
-                isModified = true;
-            }
-
 
             // Sync lists
-            if (sourceSupport == null || sourceSupport.IsApplicationGradePointAveragesSupported)
-            {
-                isModified |= 
-                    source.ApplicationGradePointAverages.SynchronizeCollectionTo(
-                        target.ApplicationGradePointAverages, 
-                        onChildAdded: child => 
-                            {
-                                child.Application = target;
-                            },
-                        includeItem: sourceSupport == null 
-                            ? null 
-                            : sourceSupport.IsApplicationGradePointAverageIncluded);
-            }
-
             if (sourceSupport == null || sourceSupport.IsApplicationOpenStaffPositionsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicationOpenStaffPositions.SynchronizeCollectionTo(
-                        target.ApplicationOpenStaffPositions, 
-                        onChildAdded: child => 
+                        target.ApplicationOpenStaffPositions,
+                        onChildAdded: child =>
                             {
                                 child.Application = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicationOpenStaffPositionIncluded);
-            }
-
-            if (sourceSupport == null || sourceSupport.IsApplicationScoreResultsSupported)
-            {
-                isModified |= 
-                    source.ApplicationScoreResults.SynchronizeCollectionTo(
-                        target.ApplicationScoreResults, 
-                        onChildAdded: child => 
-                            {
-                                child.Application = target;
-                            },
-                        includeItem: sourceSupport == null 
-                            ? null 
-                            : sourceSupport.IsApplicationScoreResultIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsApplicationTermsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ApplicationTerms.SynchronizeCollectionTo(
-                        target.ApplicationTerms, 
-                        onChildAdded: child => 
+                        target.ApplicationTerms,
+                        onChildAdded: child =>
                             {
                                 child.Application = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsApplicationTermIncluded);
             }
 
@@ -5787,21 +5984,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationAggregate
             else
                 targetSynchSupport.IsFirstContactDateSupported = false;
 
-            if (sourceSynchSupport.IsHighestCompletedLevelOfEducationDescriptorSupported)
-                target.HighestCompletedLevelOfEducationDescriptor = source.HighestCompletedLevelOfEducationDescriptor;
-            else
-                targetSynchSupport.IsHighestCompletedLevelOfEducationDescriptorSupported = false;
-
-            if (sourceSynchSupport.IsHighlyQualifiedAcademicSubjectDescriptorSupported)
-                target.HighlyQualifiedAcademicSubjectDescriptor = source.HighlyQualifiedAcademicSubjectDescriptor;
-            else
-                targetSynchSupport.IsHighlyQualifiedAcademicSubjectDescriptorSupported = false;
-
-            if (sourceSynchSupport.IsHighlyQualifiedTeacherSupported)
-                target.HighlyQualifiedTeacher = source.HighlyQualifiedTeacher;
-            else
-                targetSynchSupport.IsHighlyQualifiedTeacherSupported = false;
-
             if (sourceSynchSupport.IsHighNeedsAcademicSubjectDescriptorSupported)
                 target.HighNeedsAcademicSubjectDescriptor = source.HighNeedsAcademicSubjectDescriptor;
             else
@@ -5827,18 +6009,8 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationAggregate
             else
                 targetSynchSupport.IsWithdrawReasonDescriptorSupported = false;
 
-            if (sourceSynchSupport.IsYearsOfPriorProfessionalExperienceSupported)
-                target.YearsOfPriorProfessionalExperience = source.YearsOfPriorProfessionalExperience;
-            else
-                targetSynchSupport.IsYearsOfPriorProfessionalExperienceSupported = false;
-
-            if (sourceSynchSupport.IsYearsOfPriorTeachingExperienceSupported)
-                target.YearsOfPriorTeachingExperience = source.YearsOfPriorTeachingExperience;
-            else
-                targetSynchSupport.IsYearsOfPriorTeachingExperienceSupported = false;
-
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.ApplicantResourceId = source.ApplicantResourceId;
@@ -5855,18 +6027,8 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationAggregate
 
             // Map lists
 
-            if (sourceSynchSupport.IsApplicationGradePointAveragesSupported)
-            {    
-                targetSynchSupport.IsApplicationGradePointAverageIncluded = sourceSynchSupport.IsApplicationGradePointAverageIncluded;
-                source.ApplicationGradePointAverages.MapCollectionTo(target.ApplicationGradePointAverages, target);
-            }
-            else
-            {
-                targetSynchSupport.IsApplicationGradePointAveragesSupported = false;
-            }
-
             if (sourceSynchSupport.IsApplicationOpenStaffPositionsSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicationOpenStaffPositionIncluded = sourceSynchSupport.IsApplicationOpenStaffPositionIncluded;
                 source.ApplicationOpenStaffPositions.MapCollectionTo(target.ApplicationOpenStaffPositions, target);
             }
@@ -5875,18 +6037,8 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationAggregate
                 targetSynchSupport.IsApplicationOpenStaffPositionsSupported = false;
             }
 
-            if (sourceSynchSupport.IsApplicationScoreResultsSupported)
-            {    
-                targetSynchSupport.IsApplicationScoreResultIncluded = sourceSynchSupport.IsApplicationScoreResultIncluded;
-                source.ApplicationScoreResults.MapCollectionTo(target.ApplicationScoreResults, target);
-            }
-            else
-            {
-                targetSynchSupport.IsApplicationScoreResultsSupported = false;
-            }
-
             if (sourceSynchSupport.IsApplicationTermsSupported)
-            {    
+            {
                 targetSynchSupport.IsApplicationTermIncluded = sourceSynchSupport.IsApplicationTermIncluded;
                 source.ApplicationTerms.MapCollectionTo(target.ApplicationTerms, target);
             }
@@ -5914,7 +6066,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -5923,142 +6075,23 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationAggregate
         bool IsAcademicSubjectDescriptorSupported { get; set; }
         bool IsAcceptedDateSupported { get; set; }
         bool IsApplicationDateSupported { get; set; }
-        bool IsApplicationGradePointAveragesSupported { get; set; }
         bool IsApplicationOpenStaffPositionsSupported { get; set; }
-        bool IsApplicationScoreResultsSupported { get; set; }
         bool IsApplicationSourceDescriptorSupported { get; set; }
         bool IsApplicationStatusDescriptorSupported { get; set; }
         bool IsApplicationTermsSupported { get; set; }
         bool IsCurrentEmployeeSupported { get; set; }
         bool IsFirstContactDateSupported { get; set; }
-        bool IsHighestCompletedLevelOfEducationDescriptorSupported { get; set; }
-        bool IsHighlyQualifiedAcademicSubjectDescriptorSupported { get; set; }
-        bool IsHighlyQualifiedTeacherSupported { get; set; }
         bool IsHighNeedsAcademicSubjectDescriptorSupported { get; set; }
         bool IsHireStatusDescriptorSupported { get; set; }
         bool IsHiringSourceDescriptorSupported { get; set; }
         bool IsWithdrawDateSupported { get; set; }
         bool IsWithdrawReasonDescriptorSupported { get; set; }
-        bool IsYearsOfPriorProfessionalExperienceSupported { get; set; }
-        bool IsYearsOfPriorTeachingExperienceSupported { get; set; }
-        Func<IApplicationGradePointAverage, bool> IsApplicationGradePointAverageIncluded { get; set; }
         Func<IApplicationOpenStaffPosition, bool> IsApplicationOpenStaffPositionIncluded { get; set; }
-        Func<IApplicationScoreResult, bool> IsApplicationScoreResultIncluded { get; set; }
         Func<IApplicationTerm, bool> IsApplicationTermIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicationGradePointAverageMapper 
-    {
-        public static bool SynchronizeTo(this IApplicationGradePointAverage source, IApplicationGradePointAverage target)
-        {
-            bool isModified = false;
-
-            var sourceSupport = source as IApplicationGradePointAverageSynchronizationSourceSupport;
-
-            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.GradePointAverageTypeDescriptor != target.GradePointAverageTypeDescriptor)
-            {
-                source.GradePointAverageTypeDescriptor = target.GradePointAverageTypeDescriptor;
-            }
-
-            // Copy non-PK properties
-
-            if ((sourceSupport == null || sourceSupport.IsGradePointAverageValueSupported)
-                && target.GradePointAverageValue != source.GradePointAverageValue)
-            {
-                target.GradePointAverageValue = source.GradePointAverageValue;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsIsCumulativeSupported)
-                && target.IsCumulative != source.IsCumulative)
-            {
-                target.IsCumulative = source.IsCumulative;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsMaxGradePointAverageValueSupported)
-                && target.MaxGradePointAverageValue != source.MaxGradePointAverageValue)
-            {
-                target.MaxGradePointAverageValue = source.MaxGradePointAverageValue;
-                isModified = true;
-            }
-
-
-            // Sync lists
-
-            return isModified;
-        }
-
-
-
-        public static void MapTo(this IApplicationGradePointAverage source, IApplicationGradePointAverage target, Action<IApplicationGradePointAverage, IApplicationGradePointAverage> onMapped)
-        {
-            var sourceSynchSupport = source as IApplicationGradePointAverageSynchronizationSourceSupport;
-            var targetSynchSupport = target as IApplicationGradePointAverageSynchronizationSourceSupport;
-
-            // Copy contextual primary key values
-            target.GradePointAverageTypeDescriptor = source.GradePointAverageTypeDescriptor;
-
-            // Copy non-PK properties
-
-            if (sourceSynchSupport.IsGradePointAverageValueSupported)
-                target.GradePointAverageValue = source.GradePointAverageValue;
-            else
-                targetSynchSupport.IsGradePointAverageValueSupported = false;
-
-            if (sourceSynchSupport.IsIsCumulativeSupported)
-                target.IsCumulative = source.IsCumulative;
-            else
-                targetSynchSupport.IsIsCumulativeSupported = false;
-
-            if (sourceSynchSupport.IsMaxGradePointAverageValueSupported)
-                target.MaxGradePointAverageValue = source.MaxGradePointAverageValue;
-            else
-                targetSynchSupport.IsMaxGradePointAverageValueSupported = false;
-
-            // Copy Aggregate Reference Data
-
-
-            // ----------------------------------
-            //   Map One-to-one relationships
-            // ----------------------------------
-
-            // Map lists
-
-
-            var eTagProvider = new ETagProvider();
-
-            // Convert value to ETag, if appropriate
-            var entityWithETag = target as IHasETag;
-
-            if (entityWithETag != null)
-                entityWithETag.ETag = eTagProvider.GetETag(source);
-
-            // Convert value to LastModifiedDate, if appropriate
-            var dateVersionedEntity = target as IDateVersionedEntity;
-            var etagSource = source as IHasETag;
-
-            if (dateVersionedEntity != null && etagSource != null)
-                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
-        }
-    }
-
-    /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
-    /// is supported by a model implementation being used as the source in a "synchronization"
-    /// operation.
-    /// </summary>
-    public interface IApplicationGradePointAverageSynchronizationSourceSupport 
-    {
-        bool IsGradePointAverageValueSupported { get; set; }
-        bool IsIsCumulativeSupported { get; set; }
-        bool IsMaxGradePointAverageValueSupported { get; set; }
-    }
- 
-    [ExcludeFromCodeCoverage]
-    public static class ApplicationOpenStaffPositionMapper 
+    public static class ApplicationOpenStaffPositionMapper
     {
         public static bool SynchronizeTo(this IApplicationOpenStaffPosition source, IApplicationOpenStaffPosition target)
         {
@@ -6093,7 +6126,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationAggregate
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.OpenStaffPositionResourceId = source.OpenStaffPositionResourceId;
@@ -6127,113 +6160,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IApplicationOpenStaffPositionSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ApplicationScoreResultMapper 
-    {
-        public static bool SynchronizeTo(this IApplicationScoreResult source, IApplicationScoreResult target)
-        {
-            bool isModified = false;
-
-            var sourceSupport = source as IApplicationScoreResultSynchronizationSourceSupport;
-
-            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.AssessmentReportingMethodDescriptor != target.AssessmentReportingMethodDescriptor)
-            {
-                source.AssessmentReportingMethodDescriptor = target.AssessmentReportingMethodDescriptor;
-            }
-
-            // Copy non-PK properties
-
-            if ((sourceSupport == null || sourceSupport.IsResultSupported)
-                && target.Result != source.Result)
-            {
-                target.Result = source.Result;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsResultDatatypeTypeDescriptorSupported)
-                && target.ResultDatatypeTypeDescriptor != source.ResultDatatypeTypeDescriptor)
-            {
-                target.ResultDatatypeTypeDescriptor = source.ResultDatatypeTypeDescriptor;
-                isModified = true;
-            }
-
-
-            // Sync lists
-
-            return isModified;
-        }
-
-
-
-        public static void MapTo(this IApplicationScoreResult source, IApplicationScoreResult target, Action<IApplicationScoreResult, IApplicationScoreResult> onMapped)
-        {
-            var sourceSynchSupport = source as IApplicationScoreResultSynchronizationSourceSupport;
-            var targetSynchSupport = target as IApplicationScoreResultSynchronizationSourceSupport;
-
-            // Copy contextual primary key values
-            target.AssessmentReportingMethodDescriptor = source.AssessmentReportingMethodDescriptor;
-
-            // Copy non-PK properties
-
-            if (sourceSynchSupport.IsResultSupported)
-                target.Result = source.Result;
-            else
-                targetSynchSupport.IsResultSupported = false;
-
-            if (sourceSynchSupport.IsResultDatatypeTypeDescriptorSupported)
-                target.ResultDatatypeTypeDescriptor = source.ResultDatatypeTypeDescriptor;
-            else
-                targetSynchSupport.IsResultDatatypeTypeDescriptorSupported = false;
-
-            // Copy Aggregate Reference Data
-
-
-            // ----------------------------------
-            //   Map One-to-one relationships
-            // ----------------------------------
-
-            // Map lists
-
-
-            var eTagProvider = new ETagProvider();
-
-            // Convert value to ETag, if appropriate
-            var entityWithETag = target as IHasETag;
-
-            if (entityWithETag != null)
-                entityWithETag.ETag = eTagProvider.GetETag(source);
-
-            // Convert value to LastModifiedDate, if appropriate
-            var dateVersionedEntity = target as IDateVersionedEntity;
-            var etagSource = source as IHasETag;
-
-            if (dateVersionedEntity != null && etagSource != null)
-                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
-        }
-    }
-
-    /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
-    /// is supported by a model implementation being used as the source in a "synchronization"
-    /// operation.
-    /// </summary>
-    public interface IApplicationScoreResultSynchronizationSourceSupport 
-    {
-        bool IsResultSupported { get; set; }
-        bool IsResultDatatypeTypeDescriptorSupported { get; set; }
-    }
- 
-    [ExcludeFromCodeCoverage]
-    public static class ApplicationTermMapper 
+    public static class ApplicationTermMapper
     {
         public static bool SynchronizeTo(this IApplicationTerm source, IApplicationTerm target)
         {
@@ -6295,21 +6231,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IApplicationTermSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: ApplicationEvent
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationEventAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ApplicationEventMapper 
+    public static class ApplicationEventMapper
     {
         public static bool SynchronizeTo(this IApplicationEvent source, IApplicationEvent target)
         {
@@ -6432,7 +6368,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationEventAggregate
                 targetSynchSupport.IsTermDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.ApplicationResourceId = source.ApplicationResourceId;
@@ -6467,7 +6403,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationEventAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -6479,14 +6415,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationEventAggregate
         bool IsSchoolYearSupported { get; set; }
         bool IsTermDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: ApplicationEventResultDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationEventResultDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ApplicationEventResultDescriptorMapper 
+    public static class ApplicationEventResultDescriptorMapper
     {
         public static bool SynchronizeTo(this IApplicationEventResultDescriptor source, IApplicationEventResultDescriptor target)
         {
@@ -6644,7 +6580,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationEventResultDescriptorAggre
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -6658,14 +6594,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationEventResultDescriptorAggre
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: ApplicationEventTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationEventTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ApplicationEventTypeDescriptorMapper 
+    public static class ApplicationEventTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IApplicationEventTypeDescriptor source, IApplicationEventTypeDescriptor target)
         {
@@ -6823,7 +6759,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationEventTypeDescriptorAggrega
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -6837,14 +6773,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationEventTypeDescriptorAggrega
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: ApplicationSourceDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationSourceDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ApplicationSourceDescriptorMapper 
+    public static class ApplicationSourceDescriptorMapper
     {
         public static bool SynchronizeTo(this IApplicationSourceDescriptor source, IApplicationSourceDescriptor target)
         {
@@ -7002,7 +6938,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationSourceDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -7016,14 +6952,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationSourceDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: ApplicationStatusDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationStatusDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ApplicationStatusDescriptorMapper 
+    public static class ApplicationStatusDescriptorMapper
     {
         public static bool SynchronizeTo(this IApplicationStatusDescriptor source, IApplicationStatusDescriptor target)
         {
@@ -7181,7 +7117,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationStatusDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -7195,14 +7131,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ApplicationStatusDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: Assessment
 
 namespace EdFi.Ods.Entities.Common.TPDM //.AssessmentAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class AssessmentExtensionMapper 
+    public static class AssessmentExtensionMapper
     {
         public static bool SynchronizeTo(this IAssessmentExtension source, IAssessmentExtension target)
         {
@@ -7276,7 +7212,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AssessmentAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -7284,14 +7220,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.AssessmentAggregate
     {
         bool IsProgramGatewayDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: BackgroundCheckStatusDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.BackgroundCheckStatusDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class BackgroundCheckStatusDescriptorMapper 
+    public static class BackgroundCheckStatusDescriptorMapper
     {
         public static bool SynchronizeTo(this IBackgroundCheckStatusDescriptor source, IBackgroundCheckStatusDescriptor target)
         {
@@ -7449,7 +7385,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.BackgroundCheckStatusDescriptorAggreg
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -7463,14 +7399,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.BackgroundCheckStatusDescriptorAggreg
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: BackgroundCheckTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.BackgroundCheckTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class BackgroundCheckTypeDescriptorMapper 
+    public static class BackgroundCheckTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IBackgroundCheckTypeDescriptor source, IBackgroundCheckTypeDescriptor target)
         {
@@ -7628,7 +7564,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.BackgroundCheckTypeDescriptorAggregat
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -7642,14 +7578,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.BackgroundCheckTypeDescriptorAggregat
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: Certification
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CertificationMapper 
+    public static class CertificationMapper
     {
         public static bool SynchronizeTo(this ICertification source, ICertification target)
         {
@@ -7662,9 +7598,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
             {
                 source.CertificationIdentifier = target.CertificationIdentifier;
             }
-            if (source.Namespace != target.Namespace)
+            if (source.IssuerNamespace != target.IssuerNamespace)
             {
-                source.Namespace = target.Namespace;
+                source.IssuerNamespace = target.IssuerNamespace;
             }
 
             // Copy non-PK properties
@@ -7750,43 +7686,43 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsCertificationCertificationExamsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.CertificationCertificationExams.SynchronizeCollectionTo(
-                        target.CertificationCertificationExams, 
-                        onChildAdded: child => 
+                        target.CertificationCertificationExams,
+                        onChildAdded: child =>
                             {
                                 child.Certification = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsCertificationCertificationExamIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsCertificationGradeLevelsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.CertificationGradeLevels.SynchronizeCollectionTo(
-                        target.CertificationGradeLevels, 
-                        onChildAdded: child => 
+                        target.CertificationGradeLevels,
+                        onChildAdded: child =>
                             {
                                 child.Certification = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsCertificationGradeLevelIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsCertificationRoutesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.CertificationRoutes.SynchronizeCollectionTo(
-                        target.CertificationRoutes, 
-                        onChildAdded: child => 
+                        target.CertificationRoutes,
+                        onChildAdded: child =>
                             {
                                 child.Certification = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsCertificationRouteIncluded);
             }
 
@@ -7806,7 +7742,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
 
             // Copy contextual primary key values
             target.CertificationIdentifier = source.CertificationIdentifier;
-            target.Namespace = source.Namespace;
+            target.IssuerNamespace = source.IssuerNamespace;
 
             // Copy non-PK properties
 
@@ -7866,7 +7802,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
                 targetSynchSupport.IsPopulationServedDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EducationOrganizationResourceId = source.EducationOrganizationResourceId;
@@ -7882,7 +7818,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
             // Map lists
 
             if (sourceSynchSupport.IsCertificationCertificationExamsSupported)
-            {    
+            {
                 targetSynchSupport.IsCertificationCertificationExamIncluded = sourceSynchSupport.IsCertificationCertificationExamIncluded;
                 source.CertificationCertificationExams.MapCollectionTo(target.CertificationCertificationExams, target);
             }
@@ -7892,7 +7828,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
             }
 
             if (sourceSynchSupport.IsCertificationGradeLevelsSupported)
-            {    
+            {
                 targetSynchSupport.IsCertificationGradeLevelIncluded = sourceSynchSupport.IsCertificationGradeLevelIncluded;
                 source.CertificationGradeLevels.MapCollectionTo(target.CertificationGradeLevels, target);
             }
@@ -7902,7 +7838,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
             }
 
             if (sourceSynchSupport.IsCertificationRoutesSupported)
-            {    
+            {
                 targetSynchSupport.IsCertificationRouteIncluded = sourceSynchSupport.IsCertificationRouteIncluded;
                 source.CertificationRoutes.MapCollectionTo(target.CertificationRoutes, target);
             }
@@ -7930,7 +7866,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -7954,9 +7890,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
         Func<ICertificationGradeLevel, bool> IsCertificationGradeLevelIncluded { get; set; }
         Func<ICertificationRoute, bool> IsCertificationRouteIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class CertificationCertificationExamMapper 
+    public static class CertificationCertificationExamMapper
     {
         public static bool SynchronizeTo(this ICertificationCertificationExam source, ICertificationCertificationExam target)
         {
@@ -7969,9 +7905,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
             {
                 source.CertificationExamIdentifier = target.CertificationExamIdentifier;
             }
-            if (source.ExamNamespace != target.ExamNamespace)
+            if (source.Namespace != target.Namespace)
             {
-                source.ExamNamespace = target.ExamNamespace;
+                source.Namespace = target.Namespace;
             }
 
             // Copy non-PK properties
@@ -7991,12 +7927,12 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
 
             // Copy contextual primary key values
             target.CertificationExamIdentifier = source.CertificationExamIdentifier;
-            target.ExamNamespace = source.ExamNamespace;
+            target.Namespace = source.Namespace;
 
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.CertificationExamResourceId = source.CertificationExamResourceId;
@@ -8030,16 +7966,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ICertificationCertificationExamSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class CertificationGradeLevelMapper 
+    public static class CertificationGradeLevelMapper
     {
         public static bool SynchronizeTo(this ICertificationGradeLevel source, ICertificationGradeLevel target)
         {
@@ -8101,16 +8037,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ICertificationGradeLevelSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class CertificationRouteMapper 
+    public static class CertificationRouteMapper
     {
         public static bool SynchronizeTo(this ICertificationRoute source, ICertificationRoute target)
         {
@@ -8172,21 +8108,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ICertificationRouteSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: CertificationExam
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CertificationExamMapper 
+    public static class CertificationExamMapper
     {
         public static bool SynchronizeTo(this ICertificationExam source, ICertificationExam target)
         {
@@ -8199,9 +8135,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamAggregate
             {
                 source.CertificationExamIdentifier = target.CertificationExamIdentifier;
             }
-            if (source.ExamNamespace != target.ExamNamespace)
+            if (source.Namespace != target.Namespace)
             {
-                source.ExamNamespace = target.ExamNamespace;
+                source.Namespace = target.Namespace;
             }
 
             // Copy non-PK properties
@@ -8259,7 +8195,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamAggregate
 
             // Copy contextual primary key values
             target.CertificationExamIdentifier = source.CertificationExamIdentifier;
-            target.ExamNamespace = source.ExamNamespace;
+            target.Namespace = source.Namespace;
 
             // Copy non-PK properties
 
@@ -8289,7 +8225,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamAggregate
                 targetSynchSupport.IsEndDateSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EducationOrganizationResourceId = source.EducationOrganizationResourceId;
@@ -8323,7 +8259,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -8335,14 +8271,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamAggregate
         bool IsEffectiveDateSupported { get; set; }
         bool IsEndDateSupported { get; set; }
     }
- 
+
 }
 // Aggregate: CertificationExamResult
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamResultAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CertificationExamResultMapper 
+    public static class CertificationExamResultMapper
     {
         public static bool SynchronizeTo(this ICertificationExamResult source, ICertificationExamResult target)
         {
@@ -8359,9 +8295,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamResultAggregate
             {
                 source.CertificationExamIdentifier = target.CertificationExamIdentifier;
             }
-            if (source.ExamNamespace != target.ExamNamespace)
+            if (source.Namespace != target.Namespace)
             {
-                source.ExamNamespace = target.ExamNamespace;
+                source.Namespace = target.Namespace;
             }
             if (source.PersonId != target.PersonId)
             {
@@ -8421,7 +8357,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamResultAggregate
             // Copy contextual primary key values
             target.CertificationExamDate = source.CertificationExamDate;
             target.CertificationExamIdentifier = source.CertificationExamIdentifier;
-            target.ExamNamespace = source.ExamNamespace;
+            target.Namespace = source.Namespace;
             target.PersonId = source.PersonId;
             target.SourceSystemDescriptor = source.SourceSystemDescriptor;
 
@@ -8448,7 +8384,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamResultAggregate
                 targetSynchSupport.IsCertificationExamStatusDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.CertificationExamResourceId = source.CertificationExamResourceId;
@@ -8484,7 +8420,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamResultAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -8495,14 +8431,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamResultAggregate
         bool IsCertificationExamScoreSupported { get; set; }
         bool IsCertificationExamStatusDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: CertificationExamStatusDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamStatusDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CertificationExamStatusDescriptorMapper 
+    public static class CertificationExamStatusDescriptorMapper
     {
         public static bool SynchronizeTo(this ICertificationExamStatusDescriptor source, ICertificationExamStatusDescriptor target)
         {
@@ -8660,7 +8596,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamStatusDescriptorAggr
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -8674,14 +8610,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamStatusDescriptorAggr
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: CertificationExamTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CertificationExamTypeDescriptorMapper 
+    public static class CertificationExamTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this ICertificationExamTypeDescriptor source, ICertificationExamTypeDescriptor target)
         {
@@ -8839,7 +8775,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamTypeDescriptorAggreg
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -8853,14 +8789,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationExamTypeDescriptorAggreg
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: CertificationFieldDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CertificationFieldDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CertificationFieldDescriptorMapper 
+    public static class CertificationFieldDescriptorMapper
     {
         public static bool SynchronizeTo(this ICertificationFieldDescriptor source, ICertificationFieldDescriptor target)
         {
@@ -9018,7 +8954,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationFieldDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -9032,14 +8968,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationFieldDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: CertificationLevelDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CertificationLevelDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CertificationLevelDescriptorMapper 
+    public static class CertificationLevelDescriptorMapper
     {
         public static bool SynchronizeTo(this ICertificationLevelDescriptor source, ICertificationLevelDescriptor target)
         {
@@ -9197,7 +9133,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationLevelDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -9211,14 +9147,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationLevelDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: CertificationRouteDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CertificationRouteDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CertificationRouteDescriptorMapper 
+    public static class CertificationRouteDescriptorMapper
     {
         public static bool SynchronizeTo(this ICertificationRouteDescriptor source, ICertificationRouteDescriptor target)
         {
@@ -9376,7 +9312,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationRouteDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -9390,14 +9326,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationRouteDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: CertificationStandardDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CertificationStandardDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CertificationStandardDescriptorMapper 
+    public static class CertificationStandardDescriptorMapper
     {
         public static bool SynchronizeTo(this ICertificationStandardDescriptor source, ICertificationStandardDescriptor target)
         {
@@ -9555,7 +9491,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationStandardDescriptorAggreg
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -9569,14 +9505,192 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CertificationStandardDescriptorAggreg
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
+}
+// Aggregate: CommunityOrganization
+
+namespace EdFi.Ods.Entities.Common.TPDM //.CommunityOrganizationAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class CommunityOrganizationExtensionMapper
+    {
+        public static bool SynchronizeTo(this ICommunityOrganizationExtension source, ICommunityOrganizationExtension target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as ICommunityOrganizationExtensionSynchronizationSourceSupport;
+
+            var sourceExtensionSupport = source.CommunityOrganization as IExtensionsSynchronizationSourceSupport;
+
+            if (!sourceExtensionSupport.IsExtensionAvailable("TPDM"))
+                return false;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsFederalLocaleCodeDescriptorSupported)
+                && target.FederalLocaleCodeDescriptor != source.FederalLocaleCodeDescriptor)
+            {
+                target.FederalLocaleCodeDescriptor = source.FederalLocaleCodeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this ICommunityOrganizationExtension source, ICommunityOrganizationExtension target, Action<ICommunityOrganizationExtension, ICommunityOrganizationExtension> onMapped)
+        {
+            var sourceSynchSupport = source as ICommunityOrganizationExtensionSynchronizationSourceSupport;
+            var targetSynchSupport = target as ICommunityOrganizationExtensionSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsFederalLocaleCodeDescriptorSupported)
+                target.FederalLocaleCodeDescriptor = source.FederalLocaleCodeDescriptor;
+            else
+                targetSynchSupport.IsFederalLocaleCodeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface ICommunityOrganizationExtensionSynchronizationSourceSupport 
+    {
+        bool IsFederalLocaleCodeDescriptorSupported { get; set; }
+    }
+
+}
+// Aggregate: CommunityProvider
+
+namespace EdFi.Ods.Entities.Common.TPDM //.CommunityProviderAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class CommunityProviderExtensionMapper
+    {
+        public static bool SynchronizeTo(this ICommunityProviderExtension source, ICommunityProviderExtension target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as ICommunityProviderExtensionSynchronizationSourceSupport;
+
+            var sourceExtensionSupport = source.CommunityProvider as IExtensionsSynchronizationSourceSupport;
+
+            if (!sourceExtensionSupport.IsExtensionAvailable("TPDM"))
+                return false;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsFederalLocaleCodeDescriptorSupported)
+                && target.FederalLocaleCodeDescriptor != source.FederalLocaleCodeDescriptor)
+            {
+                target.FederalLocaleCodeDescriptor = source.FederalLocaleCodeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this ICommunityProviderExtension source, ICommunityProviderExtension target, Action<ICommunityProviderExtension, ICommunityProviderExtension> onMapped)
+        {
+            var sourceSynchSupport = source as ICommunityProviderExtensionSynchronizationSourceSupport;
+            var targetSynchSupport = target as ICommunityProviderExtensionSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsFederalLocaleCodeDescriptorSupported)
+                target.FederalLocaleCodeDescriptor = source.FederalLocaleCodeDescriptor;
+            else
+                targetSynchSupport.IsFederalLocaleCodeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface ICommunityProviderExtensionSynchronizationSourceSupport 
+    {
+        bool IsFederalLocaleCodeDescriptorSupported { get; set; }
+    }
+
 }
 // Aggregate: CompleterAsStaffAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CompleterAsStaffAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CompleterAsStaffAssociationMapper 
+    public static class CompleterAsStaffAssociationMapper
     {
         public static bool SynchronizeTo(this ICompleterAsStaffAssociation source, ICompleterAsStaffAssociation target)
         {
@@ -9619,7 +9733,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CompleterAsStaffAssociationAggregate
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.StaffResourceId = source.StaffResourceId;
@@ -9655,21 +9769,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CompleterAsStaffAssociationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ICompleterAsStaffAssociationSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: CoteachingStyleObservedDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CoteachingStyleObservedDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CoteachingStyleObservedDescriptorMapper 
+    public static class CoteachingStyleObservedDescriptorMapper
     {
         public static bool SynchronizeTo(this ICoteachingStyleObservedDescriptor source, ICoteachingStyleObservedDescriptor target)
         {
@@ -9827,7 +9941,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CoteachingStyleObservedDescriptorAggr
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -9841,14 +9955,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CoteachingStyleObservedDescriptorAggr
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: Credential
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CredentialAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CredentialExtensionMapper 
+    public static class CredentialExtensionMapper
     {
         public static bool SynchronizeTo(this ICredentialExtension source, ICredentialExtension target)
         {
@@ -9907,10 +10021,10 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialAggregate
                 isModified = true;
             }
 
-            if ((sourceSupport == null || sourceSupport.IsNamespaceSupported)
-                && target.Namespace != source.Namespace)
+            if ((sourceSupport == null || sourceSupport.IsIssuerNamespaceSupported)
+                && target.IssuerNamespace != source.IssuerNamespace)
             {
-                target.Namespace = source.Namespace;
+                target.IssuerNamespace = source.IssuerNamespace;
                 isModified = true;
             }
 
@@ -9932,18 +10046,18 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsCredentialStudentAcademicRecordsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.CredentialStudentAcademicRecords.SynchronizeCollectionTo(
-                        target.CredentialStudentAcademicRecords, 
-                        onChildAdded: child => 
+                        target.CredentialStudentAcademicRecords,
+                        onChildAdded: child =>
                             {
                                 child.CredentialExtension = target;
 
                                 // Extension class "children" need to reference the Ed-Fi Standard entity as the parent
                                 (child as IChildEntity)?.SetParent(target.Credential);
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsCredentialStudentAcademicRecordIncluded);
             }
 
@@ -9992,10 +10106,10 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialAggregate
             else
                 targetSynchSupport.IsCredentialStatusDescriptorSupported = false;
 
-            if (sourceSynchSupport.IsNamespaceSupported)
-                target.Namespace = source.Namespace;
+            if (sourceSynchSupport.IsIssuerNamespaceSupported)
+                target.IssuerNamespace = source.IssuerNamespace;
             else
-                targetSynchSupport.IsNamespaceSupported = false;
+                targetSynchSupport.IsIssuerNamespaceSupported = false;
 
             if (sourceSynchSupport.IsPersonIdSupported)
                 target.PersonId = source.PersonId;
@@ -10008,7 +10122,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialAggregate
                 targetSynchSupport.IsSourceSystemDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.CertificationResourceId = source.CertificationResourceId;
@@ -10026,7 +10140,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialAggregate
             // Map lists
 
             if (sourceSynchSupport.IsCredentialStudentAcademicRecordsSupported)
-            {    
+            {
                 targetSynchSupport.IsCredentialStudentAcademicRecordIncluded = sourceSynchSupport.IsCredentialStudentAcademicRecordIncluded;
                 source.CredentialStudentAcademicRecords.MapCollectionTo(target.CredentialStudentAcademicRecords, target.Credential);
             }
@@ -10054,7 +10168,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -10067,14 +10181,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialAggregate
         bool IsCredentialStatusDateSupported { get; set; }
         bool IsCredentialStatusDescriptorSupported { get; set; }
         bool IsCredentialStudentAcademicRecordsSupported { get; set; }
-        bool IsNamespaceSupported { get; set; }
+        bool IsIssuerNamespaceSupported { get; set; }
         bool IsPersonIdSupported { get; set; }
         bool IsSourceSystemDescriptorSupported { get; set; }
         Func<ICredentialStudentAcademicRecord, bool> IsCredentialStudentAcademicRecordIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class CredentialStudentAcademicRecordMapper 
+    public static class CredentialStudentAcademicRecordMapper
     {
         public static bool SynchronizeTo(this ICredentialStudentAcademicRecord source, ICredentialStudentAcademicRecord target)
         {
@@ -10124,7 +10238,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialAggregate
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.StudentAcademicRecordResourceId = source.StudentAcademicRecordResourceId;
@@ -10158,21 +10272,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ICredentialStudentAcademicRecordSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: CredentialEvent
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CredentialEventAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CredentialEventMapper 
+    public static class CredentialEventMapper
     {
         public static bool SynchronizeTo(this ICredentialEvent source, ICredentialEvent target)
         {
@@ -10237,7 +10351,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialEventAggregate
                 targetSynchSupport.IsCredentialEventReasonSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.CredentialResourceId = source.CredentialResourceId;
@@ -10271,7 +10385,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialEventAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -10279,14 +10393,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialEventAggregate
     {
         bool IsCredentialEventReasonSupported { get; set; }
     }
- 
+
 }
 // Aggregate: CredentialEventTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CredentialEventTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CredentialEventTypeDescriptorMapper 
+    public static class CredentialEventTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this ICredentialEventTypeDescriptor source, ICredentialEventTypeDescriptor target)
         {
@@ -10444,7 +10558,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialEventTypeDescriptorAggregat
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -10458,14 +10572,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialEventTypeDescriptorAggregat
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: CredentialStatusDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.CredentialStatusDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class CredentialStatusDescriptorMapper 
+    public static class CredentialStatusDescriptorMapper
     {
         public static bool SynchronizeTo(this ICredentialStatusDescriptor source, ICredentialStatusDescriptor target)
         {
@@ -10623,7 +10737,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialStatusDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -10637,14 +10751,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.CredentialStatusDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: DegreeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.DegreeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class DegreeDescriptorMapper 
+    public static class DegreeDescriptorMapper
     {
         public static bool SynchronizeTo(this IDegreeDescriptor source, IDegreeDescriptor target)
         {
@@ -10802,7 +10916,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.DegreeDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -10816,14 +10930,2981 @@ namespace EdFi.Ods.Entities.Common.TPDM //.DegreeDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
+}
+// Aggregate: EducationOrganizationFacts
+
+namespace EdFi.Ods.Entities.Common.TPDM //.EducationOrganizationFactsAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationFactsMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationFacts source, IEducationOrganizationFacts target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationFactsSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.EducationOrganizationId != target.EducationOrganizationId)
+            {
+                source.EducationOrganizationId = target.EducationOrganizationId;
+            }
+            if (source.FactsAsOfDate != target.FactsAsOfDate)
+            {
+                source.FactsAsOfDate = target.FactsAsOfDate;
+            }
+            if (source.SchoolYear != target.SchoolYear)
+            {
+                source.SchoolYear = target.SchoolYear;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsAverageYearsInDistrictEmployedSupported)
+                && target.AverageYearsInDistrictEmployed != source.AverageYearsInDistrictEmployed)
+            {
+                target.AverageYearsInDistrictEmployed = source.AverageYearsInDistrictEmployed;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsHiringRateSupported)
+                && target.HiringRate != source.HiringRate)
+            {
+                target.HiringRate = source.HiringRate;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsNumberAdministratorsEmployedSupported)
+                && target.NumberAdministratorsEmployed != source.NumberAdministratorsEmployed)
+            {
+                target.NumberAdministratorsEmployed = source.NumberAdministratorsEmployed;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsNumberStudentsEnrolledSupported)
+                && target.NumberStudentsEnrolled != source.NumberStudentsEnrolled)
+            {
+                target.NumberStudentsEnrolled = source.NumberStudentsEnrolled;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsNumberTeachersEmployedSupported)
+                && target.NumberTeachersEmployed != source.NumberTeachersEmployed)
+            {
+                target.NumberTeachersEmployed = source.NumberTeachersEmployed;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsPercentStudentsFreeReducedLunchSupported)
+                && target.PercentStudentsFreeReducedLunch != source.PercentStudentsFreeReducedLunch)
+            {
+                target.PercentStudentsFreeReducedLunch = source.PercentStudentsFreeReducedLunch;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsPercentStudentsLimitedEnglishProficiencySupported)
+                && target.PercentStudentsLimitedEnglishProficiency != source.PercentStudentsLimitedEnglishProficiency)
+            {
+                target.PercentStudentsLimitedEnglishProficiency = source.PercentStudentsLimitedEnglishProficiency;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsPercentStudentsSpecialEducationSupported)
+                && target.PercentStudentsSpecialEducation != source.PercentStudentsSpecialEducation)
+            {
+                target.PercentStudentsSpecialEducation = source.PercentStudentsSpecialEducation;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsRetentionRateSupported)
+                && target.RetentionRate != source.RetentionRate)
+            {
+                target.RetentionRate = source.RetentionRate;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsRetirementRateSupported)
+                && target.RetirementRate != source.RetirementRate)
+            {
+                target.RetirementRate = source.RetirementRate;
+                isModified = true;
+            }
+
+            // ----------------------------------
+            //   Synch One-to-one relationships
+            // ----------------------------------
+            // EducationOrganizationFactsAggregatedSalary
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationFactsAggregatedSalarySupported)
+            {
+                if (source.EducationOrganizationFactsAggregatedSalary == null)
+                {
+                    if (target.EducationOrganizationFactsAggregatedSalary != null)
+                    {
+                        target.EducationOrganizationFactsAggregatedSalary = null;
+                        isModified = true;
+                    }
+                }
+                else
+                {
+                    if (target.EducationOrganizationFactsAggregatedSalary == null)
+                    {
+                        var itemType = target.GetType().GetProperty("EducationOrganizationFactsAggregatedSalary").PropertyType;
+                        var newItem = Activator.CreateInstance(itemType);
+                        target.EducationOrganizationFactsAggregatedSalary = (IEducationOrganizationFactsAggregatedSalary) newItem;
+                    }
+
+                    isModified |= source.EducationOrganizationFactsAggregatedSalary.Synchronize(target.EducationOrganizationFactsAggregatedSalary);
+                }
+            }
+
+            // -------------------------------------------------------------
+
+            // Sync lists
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationFactsVacanciesSupported)
+            {
+                isModified |=
+                    source.EducationOrganizationFactsVacancies.SynchronizeCollectionTo(
+                        target.EducationOrganizationFactsVacancies,
+                        onChildAdded: child =>
+                            {
+                                child.EducationOrganizationFacts = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsEducationOrganizationFactsVacanciesIncluded);
+            }
+
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationFacts source, IEducationOrganizationFacts target, Action<IEducationOrganizationFacts, IEducationOrganizationFacts> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationFactsSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationFactsSynchronizationSourceSupport;
+
+            // Copy resource Id
+            target.Id = source.Id;
+
+            // Copy contextual primary key values
+            target.EducationOrganizationId = source.EducationOrganizationId;
+            target.FactsAsOfDate = source.FactsAsOfDate;
+            target.SchoolYear = source.SchoolYear;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsAverageYearsInDistrictEmployedSupported)
+                target.AverageYearsInDistrictEmployed = source.AverageYearsInDistrictEmployed;
+            else
+                targetSynchSupport.IsAverageYearsInDistrictEmployedSupported = false;
+
+            if (sourceSynchSupport.IsHiringRateSupported)
+                target.HiringRate = source.HiringRate;
+            else
+                targetSynchSupport.IsHiringRateSupported = false;
+
+            if (sourceSynchSupport.IsNumberAdministratorsEmployedSupported)
+                target.NumberAdministratorsEmployed = source.NumberAdministratorsEmployed;
+            else
+                targetSynchSupport.IsNumberAdministratorsEmployedSupported = false;
+
+            if (sourceSynchSupport.IsNumberStudentsEnrolledSupported)
+                target.NumberStudentsEnrolled = source.NumberStudentsEnrolled;
+            else
+                targetSynchSupport.IsNumberStudentsEnrolledSupported = false;
+
+            if (sourceSynchSupport.IsNumberTeachersEmployedSupported)
+                target.NumberTeachersEmployed = source.NumberTeachersEmployed;
+            else
+                targetSynchSupport.IsNumberTeachersEmployedSupported = false;
+
+            if (sourceSynchSupport.IsPercentStudentsFreeReducedLunchSupported)
+                target.PercentStudentsFreeReducedLunch = source.PercentStudentsFreeReducedLunch;
+            else
+                targetSynchSupport.IsPercentStudentsFreeReducedLunchSupported = false;
+
+            if (sourceSynchSupport.IsPercentStudentsLimitedEnglishProficiencySupported)
+                target.PercentStudentsLimitedEnglishProficiency = source.PercentStudentsLimitedEnglishProficiency;
+            else
+                targetSynchSupport.IsPercentStudentsLimitedEnglishProficiencySupported = false;
+
+            if (sourceSynchSupport.IsPercentStudentsSpecialEducationSupported)
+                target.PercentStudentsSpecialEducation = source.PercentStudentsSpecialEducation;
+            else
+                targetSynchSupport.IsPercentStudentsSpecialEducationSupported = false;
+
+            if (sourceSynchSupport.IsRetentionRateSupported)
+                target.RetentionRate = source.RetentionRate;
+            else
+                targetSynchSupport.IsRetentionRateSupported = false;
+
+            if (sourceSynchSupport.IsRetirementRateSupported)
+                target.RetirementRate = source.RetirementRate;
+            else
+                targetSynchSupport.IsRetirementRateSupported = false;
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.EducationOrganizationResourceId = source.EducationOrganizationResourceId;
+                target.EducationOrganizationDiscriminator = source.EducationOrganizationDiscriminator;
+                target.SchoolYearTypeResourceId = source.SchoolYearTypeResourceId;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+            // EducationOrganizationFactsAggregatedSalary (Source)
+            if (sourceSynchSupport.IsEducationOrganizationFactsAggregatedSalarySupported)
+            {
+                var itemProperty = target.GetType().GetProperty("EducationOrganizationFactsAggregatedSalary");
+
+                if (itemProperty != null)
+                {
+                    if (source.EducationOrganizationFactsAggregatedSalary == null)
+                    {
+                        target.EducationOrganizationFactsAggregatedSalary = null;
+                    }
+                    else
+                    {
+                        var itemType = itemProperty.PropertyType;
+                        object targetEducationOrganizationFactsAggregatedSalary = Activator.CreateInstance(itemType);
+                        (targetEducationOrganizationFactsAggregatedSalary as IChildEntity)?.SetParent(target);
+                        source.EducationOrganizationFactsAggregatedSalary.Map(targetEducationOrganizationFactsAggregatedSalary);
+
+                        // Update the target reference appropriately
+                        target.EducationOrganizationFactsAggregatedSalary = (IEducationOrganizationFactsAggregatedSalary) targetEducationOrganizationFactsAggregatedSalary;
+                    }
+                }
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationFactsAggregatedSalarySupported = false;
+            }
+            // -------------------------------------------------------------
+
+            // Map lists
+
+            if (sourceSynchSupport.IsEducationOrganizationFactsVacanciesSupported)
+            {
+                targetSynchSupport.IsEducationOrganizationFactsVacanciesIncluded = sourceSynchSupport.IsEducationOrganizationFactsVacanciesIncluded;
+                source.EducationOrganizationFactsVacancies.MapCollectionTo(target.EducationOrganizationFactsVacancies, target);
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationFactsVacanciesSupported = false;
+            }
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationFactsSynchronizationSourceSupport 
+    {
+        bool IsAverageYearsInDistrictEmployedSupported { get; set; }
+        bool IsEducationOrganizationFactsAggregatedSalarySupported { get; set; }
+        bool IsEducationOrganizationFactsVacanciesSupported { get; set; }
+        bool IsHiringRateSupported { get; set; }
+        bool IsNumberAdministratorsEmployedSupported { get; set; }
+        bool IsNumberStudentsEnrolledSupported { get; set; }
+        bool IsNumberTeachersEmployedSupported { get; set; }
+        bool IsPercentStudentsFreeReducedLunchSupported { get; set; }
+        bool IsPercentStudentsLimitedEnglishProficiencySupported { get; set; }
+        bool IsPercentStudentsSpecialEducationSupported { get; set; }
+        bool IsRetentionRateSupported { get; set; }
+        bool IsRetirementRateSupported { get; set; }
+        Func<IEducationOrganizationFactsVacancies, bool> IsEducationOrganizationFactsVacanciesIncluded { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationFactsAggregatedSalaryMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationFactsAggregatedSalary source, IEducationOrganizationFactsAggregatedSalary target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationFactsAggregatedSalarySynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsAverageSalarySupported)
+                && target.AverageSalary != source.AverageSalary)
+            {
+                target.AverageSalary = source.AverageSalary;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsCountOfSalariesAveragedSupported)
+                && target.CountOfSalariesAveraged != source.CountOfSalariesAveraged)
+            {
+                target.CountOfSalariesAveraged = source.CountOfSalariesAveraged;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsSalaryMaxRangeSupported)
+                && target.SalaryMaxRange != source.SalaryMaxRange)
+            {
+                target.SalaryMaxRange = source.SalaryMaxRange;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsSalaryMinRangeSupported)
+                && target.SalaryMinRange != source.SalaryMinRange)
+            {
+                target.SalaryMinRange = source.SalaryMinRange;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsStandardDeviationSupported)
+                && target.StandardDeviation != source.StandardDeviation)
+            {
+                target.StandardDeviation = source.StandardDeviation;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationFactsAggregatedSalary source, IEducationOrganizationFactsAggregatedSalary target, Action<IEducationOrganizationFactsAggregatedSalary, IEducationOrganizationFactsAggregatedSalary> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationFactsAggregatedSalarySynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationFactsAggregatedSalarySynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsAverageSalarySupported)
+                target.AverageSalary = source.AverageSalary;
+            else
+                targetSynchSupport.IsAverageSalarySupported = false;
+
+            if (sourceSynchSupport.IsCountOfSalariesAveragedSupported)
+                target.CountOfSalariesAveraged = source.CountOfSalariesAveraged;
+            else
+                targetSynchSupport.IsCountOfSalariesAveragedSupported = false;
+
+            if (sourceSynchSupport.IsSalaryMaxRangeSupported)
+                target.SalaryMaxRange = source.SalaryMaxRange;
+            else
+                targetSynchSupport.IsSalaryMaxRangeSupported = false;
+
+            if (sourceSynchSupport.IsSalaryMinRangeSupported)
+                target.SalaryMinRange = source.SalaryMinRange;
+            else
+                targetSynchSupport.IsSalaryMinRangeSupported = false;
+
+            if (sourceSynchSupport.IsStandardDeviationSupported)
+                target.StandardDeviation = source.StandardDeviation;
+            else
+                targetSynchSupport.IsStandardDeviationSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationFactsAggregatedSalarySynchronizationSourceSupport 
+    {
+        bool IsAverageSalarySupported { get; set; }
+        bool IsCountOfSalariesAveragedSupported { get; set; }
+        bool IsSalaryMaxRangeSupported { get; set; }
+        bool IsSalaryMinRangeSupported { get; set; }
+        bool IsStandardDeviationSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationFactsVacanciesMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationFactsVacancies source, IEducationOrganizationFactsVacancies target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationFactsVacanciesSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.AcademicSubjectDescriptor != target.AcademicSubjectDescriptor)
+            {
+                source.AcademicSubjectDescriptor = target.AcademicSubjectDescriptor;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsNumberOfVacanciesSupported)
+                && target.NumberOfVacancies != source.NumberOfVacancies)
+            {
+                target.NumberOfVacancies = source.NumberOfVacancies;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationFactsVacanciesGradeLevelsSupported)
+            {
+                isModified |=
+                    source.EducationOrganizationFactsVacanciesGradeLevels.SynchronizeCollectionTo(
+                        target.EducationOrganizationFactsVacanciesGradeLevels,
+                        onChildAdded: child =>
+                            {
+                                child.EducationOrganizationFactsVacancies = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsEducationOrganizationFactsVacanciesGradeLevelIncluded);
+            }
+
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationFactsVacancies source, IEducationOrganizationFactsVacancies target, Action<IEducationOrganizationFactsVacancies, IEducationOrganizationFactsVacancies> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationFactsVacanciesSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationFactsVacanciesSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.AcademicSubjectDescriptor = source.AcademicSubjectDescriptor;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsNumberOfVacanciesSupported)
+                target.NumberOfVacancies = source.NumberOfVacancies;
+            else
+                targetSynchSupport.IsNumberOfVacanciesSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+            if (sourceSynchSupport.IsEducationOrganizationFactsVacanciesGradeLevelsSupported)
+            {
+                targetSynchSupport.IsEducationOrganizationFactsVacanciesGradeLevelIncluded = sourceSynchSupport.IsEducationOrganizationFactsVacanciesGradeLevelIncluded;
+                source.EducationOrganizationFactsVacanciesGradeLevels.MapCollectionTo(target.EducationOrganizationFactsVacanciesGradeLevels, target);
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationFactsVacanciesGradeLevelsSupported = false;
+            }
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationFactsVacanciesSynchronizationSourceSupport 
+    {
+        bool IsEducationOrganizationFactsVacanciesGradeLevelsSupported { get; set; }
+        bool IsNumberOfVacanciesSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+        Func<IEducationOrganizationFactsVacanciesGradeLevel, bool> IsEducationOrganizationFactsVacanciesGradeLevelIncluded { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationFactsVacanciesGradeLevelMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationFactsVacanciesGradeLevel source, IEducationOrganizationFactsVacanciesGradeLevel target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationFactsVacanciesGradeLevelSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.GradeLevelDescriptor != target.GradeLevelDescriptor)
+            {
+                source.GradeLevelDescriptor = target.GradeLevelDescriptor;
+            }
+
+            // Copy non-PK properties
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationFactsVacanciesGradeLevel source, IEducationOrganizationFactsVacanciesGradeLevel target, Action<IEducationOrganizationFactsVacanciesGradeLevel, IEducationOrganizationFactsVacanciesGradeLevel> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationFactsVacanciesGradeLevelSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationFactsVacanciesGradeLevelSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.GradeLevelDescriptor = source.GradeLevelDescriptor;
+
+            // Copy non-PK properties
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationFactsVacanciesGradeLevelSynchronizationSourceSupport 
+    {
+    }
+
+}
+// Aggregate: EducationOrganizationNetwork
+
+namespace EdFi.Ods.Entities.Common.TPDM //.EducationOrganizationNetworkAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationNetworkExtensionMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationNetworkExtension source, IEducationOrganizationNetworkExtension target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationNetworkExtensionSynchronizationSourceSupport;
+
+            var sourceExtensionSupport = source.EducationOrganizationNetwork as IExtensionsSynchronizationSourceSupport;
+
+            if (!sourceExtensionSupport.IsExtensionAvailable("TPDM"))
+                return false;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsFederalLocaleCodeDescriptorSupported)
+                && target.FederalLocaleCodeDescriptor != source.FederalLocaleCodeDescriptor)
+            {
+                target.FederalLocaleCodeDescriptor = source.FederalLocaleCodeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationNetworkExtension source, IEducationOrganizationNetworkExtension target, Action<IEducationOrganizationNetworkExtension, IEducationOrganizationNetworkExtension> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationNetworkExtensionSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationNetworkExtensionSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsFederalLocaleCodeDescriptorSupported)
+                target.FederalLocaleCodeDescriptor = source.FederalLocaleCodeDescriptor;
+            else
+                targetSynchSupport.IsFederalLocaleCodeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationNetworkExtensionSynchronizationSourceSupport 
+    {
+        bool IsFederalLocaleCodeDescriptorSupported { get; set; }
+    }
+
+}
+// Aggregate: EducationOrganizationStudentFacts
+
+namespace EdFi.Ods.Entities.Common.TPDM //.EducationOrganizationStudentFactsAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFacts source, IEducationOrganizationStudentFacts target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.EducationOrganizationId != target.EducationOrganizationId)
+            {
+                source.EducationOrganizationId = target.EducationOrganizationId;
+            }
+            if (source.FactAsOfDate != target.FactAsOfDate)
+            {
+                source.FactAsOfDate = target.FactAsOfDate;
+            }
+
+            // Copy non-PK properties
+
+            // ----------------------------------
+            //   Synch One-to-one relationships
+            // ----------------------------------
+            // EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabledSupported)
+            {
+                if (source.EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled == null)
+                {
+                    if (target.EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled != null)
+                    {
+                        target.EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled = null;
+                        isModified = true;
+                    }
+                }
+                else
+                {
+                    if (target.EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled == null)
+                    {
+                        var itemType = target.GetType().GetProperty("EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled").PropertyType;
+                        var newItem = Activator.CreateInstance(itemType);
+                        target.EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled = (IEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled) newItem;
+                    }
+
+                    isModified |= source.EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled.Synchronize(target.EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled);
+                }
+            }
+            // EducationOrganizationStudentFactsAggregatedELLEnrollment
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsAggregatedELLEnrollmentSupported)
+            {
+                if (source.EducationOrganizationStudentFactsAggregatedELLEnrollment == null)
+                {
+                    if (target.EducationOrganizationStudentFactsAggregatedELLEnrollment != null)
+                    {
+                        target.EducationOrganizationStudentFactsAggregatedELLEnrollment = null;
+                        isModified = true;
+                    }
+                }
+                else
+                {
+                    if (target.EducationOrganizationStudentFactsAggregatedELLEnrollment == null)
+                    {
+                        var itemType = target.GetType().GetProperty("EducationOrganizationStudentFactsAggregatedELLEnrollment").PropertyType;
+                        var newItem = Activator.CreateInstance(itemType);
+                        target.EducationOrganizationStudentFactsAggregatedELLEnrollment = (IEducationOrganizationStudentFactsAggregatedELLEnrollment) newItem;
+                    }
+
+                    isModified |= source.EducationOrganizationStudentFactsAggregatedELLEnrollment.Synchronize(target.EducationOrganizationStudentFactsAggregatedELLEnrollment);
+                }
+            }
+            // EducationOrganizationStudentFactsAggregatedESLEnrollment
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsAggregatedESLEnrollmentSupported)
+            {
+                if (source.EducationOrganizationStudentFactsAggregatedESLEnrollment == null)
+                {
+                    if (target.EducationOrganizationStudentFactsAggregatedESLEnrollment != null)
+                    {
+                        target.EducationOrganizationStudentFactsAggregatedESLEnrollment = null;
+                        isModified = true;
+                    }
+                }
+                else
+                {
+                    if (target.EducationOrganizationStudentFactsAggregatedESLEnrollment == null)
+                    {
+                        var itemType = target.GetType().GetProperty("EducationOrganizationStudentFactsAggregatedESLEnrollment").PropertyType;
+                        var newItem = Activator.CreateInstance(itemType);
+                        target.EducationOrganizationStudentFactsAggregatedESLEnrollment = (IEducationOrganizationStudentFactsAggregatedESLEnrollment) newItem;
+                    }
+
+                    isModified |= source.EducationOrganizationStudentFactsAggregatedESLEnrollment.Synchronize(target.EducationOrganizationStudentFactsAggregatedESLEnrollment);
+                }
+            }
+            // EducationOrganizationStudentFactsAggregatedSection504Enrollment
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsAggregatedSection504EnrollmentSupported)
+            {
+                if (source.EducationOrganizationStudentFactsAggregatedSection504Enrollment == null)
+                {
+                    if (target.EducationOrganizationStudentFactsAggregatedSection504Enrollment != null)
+                    {
+                        target.EducationOrganizationStudentFactsAggregatedSection504Enrollment = null;
+                        isModified = true;
+                    }
+                }
+                else
+                {
+                    if (target.EducationOrganizationStudentFactsAggregatedSection504Enrollment == null)
+                    {
+                        var itemType = target.GetType().GetProperty("EducationOrganizationStudentFactsAggregatedSection504Enrollment").PropertyType;
+                        var newItem = Activator.CreateInstance(itemType);
+                        target.EducationOrganizationStudentFactsAggregatedSection504Enrollment = (IEducationOrganizationStudentFactsAggregatedSection504Enrollment) newItem;
+                    }
+
+                    isModified |= source.EducationOrganizationStudentFactsAggregatedSection504Enrollment.Synchronize(target.EducationOrganizationStudentFactsAggregatedSection504Enrollment);
+                }
+            }
+            // EducationOrganizationStudentFactsAggregatedSPED
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsAggregatedSPEDSupported)
+            {
+                if (source.EducationOrganizationStudentFactsAggregatedSPED == null)
+                {
+                    if (target.EducationOrganizationStudentFactsAggregatedSPED != null)
+                    {
+                        target.EducationOrganizationStudentFactsAggregatedSPED = null;
+                        isModified = true;
+                    }
+                }
+                else
+                {
+                    if (target.EducationOrganizationStudentFactsAggregatedSPED == null)
+                    {
+                        var itemType = target.GetType().GetProperty("EducationOrganizationStudentFactsAggregatedSPED").PropertyType;
+                        var newItem = Activator.CreateInstance(itemType);
+                        target.EducationOrganizationStudentFactsAggregatedSPED = (IEducationOrganizationStudentFactsAggregatedSPED) newItem;
+                    }
+
+                    isModified |= source.EducationOrganizationStudentFactsAggregatedSPED.Synchronize(target.EducationOrganizationStudentFactsAggregatedSPED);
+                }
+            }
+            // EducationOrganizationStudentFactsAggregatedTitleIEnrollment
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsAggregatedTitleIEnrollmentSupported)
+            {
+                if (source.EducationOrganizationStudentFactsAggregatedTitleIEnrollment == null)
+                {
+                    if (target.EducationOrganizationStudentFactsAggregatedTitleIEnrollment != null)
+                    {
+                        target.EducationOrganizationStudentFactsAggregatedTitleIEnrollment = null;
+                        isModified = true;
+                    }
+                }
+                else
+                {
+                    if (target.EducationOrganizationStudentFactsAggregatedTitleIEnrollment == null)
+                    {
+                        var itemType = target.GetType().GetProperty("EducationOrganizationStudentFactsAggregatedTitleIEnrollment").PropertyType;
+                        var newItem = Activator.CreateInstance(itemType);
+                        target.EducationOrganizationStudentFactsAggregatedTitleIEnrollment = (IEducationOrganizationStudentFactsAggregatedTitleIEnrollment) newItem;
+                    }
+
+                    isModified |= source.EducationOrganizationStudentFactsAggregatedTitleIEnrollment.Synchronize(target.EducationOrganizationStudentFactsAggregatedTitleIEnrollment);
+                }
+            }
+            // EducationOrganizationStudentFactsStudentsEnrolled
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsStudentsEnrolledSupported)
+            {
+                if (source.EducationOrganizationStudentFactsStudentsEnrolled == null)
+                {
+                    if (target.EducationOrganizationStudentFactsStudentsEnrolled != null)
+                    {
+                        target.EducationOrganizationStudentFactsStudentsEnrolled = null;
+                        isModified = true;
+                    }
+                }
+                else
+                {
+                    if (target.EducationOrganizationStudentFactsStudentsEnrolled == null)
+                    {
+                        var itemType = target.GetType().GetProperty("EducationOrganizationStudentFactsStudentsEnrolled").PropertyType;
+                        var newItem = Activator.CreateInstance(itemType);
+                        target.EducationOrganizationStudentFactsStudentsEnrolled = (IEducationOrganizationStudentFactsStudentsEnrolled) newItem;
+                    }
+
+                    isModified |= source.EducationOrganizationStudentFactsStudentsEnrolled.Synchronize(target.EducationOrganizationStudentFactsStudentsEnrolled);
+                }
+            }
+
+            // -------------------------------------------------------------
+
+            // Sync lists
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsAggregatedByDisabilitiesSupported)
+            {
+                isModified |=
+                    source.EducationOrganizationStudentFactsAggregatedByDisabilities.SynchronizeCollectionTo(
+                        target.EducationOrganizationStudentFactsAggregatedByDisabilities,
+                        onChildAdded: child =>
+                            {
+                                child.EducationOrganizationStudentFacts = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsEducationOrganizationStudentFactsAggregatedByDisabilityIncluded);
+            }
+
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsAggregatedGendersSupported)
+            {
+                isModified |=
+                    source.EducationOrganizationStudentFactsAggregatedGenders.SynchronizeCollectionTo(
+                        target.EducationOrganizationStudentFactsAggregatedGenders,
+                        onChildAdded: child =>
+                            {
+                                child.EducationOrganizationStudentFacts = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsEducationOrganizationStudentFactsAggregatedGenderIncluded);
+            }
+
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicitiesSupported)
+            {
+                isModified |=
+                    source.EducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicities.SynchronizeCollectionTo(
+                        target.EducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicities,
+                        onChildAdded: child =>
+                            {
+                                child.EducationOrganizationStudentFacts = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicityIncluded);
+            }
+
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsAggregatedLanguagesSupported)
+            {
+                isModified |=
+                    source.EducationOrganizationStudentFactsAggregatedLanguages.SynchronizeCollectionTo(
+                        target.EducationOrganizationStudentFactsAggregatedLanguages,
+                        onChildAdded: child =>
+                            {
+                                child.EducationOrganizationStudentFacts = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsEducationOrganizationStudentFactsAggregatedLanguageIncluded);
+            }
+
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsAggregatedRacesSupported)
+            {
+                isModified |=
+                    source.EducationOrganizationStudentFactsAggregatedRaces.SynchronizeCollectionTo(
+                        target.EducationOrganizationStudentFactsAggregatedRaces,
+                        onChildAdded: child =>
+                            {
+                                child.EducationOrganizationStudentFacts = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsEducationOrganizationStudentFactsAggregatedRaceIncluded);
+            }
+
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServicesSupported)
+            {
+                isModified |=
+                    source.EducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServices.SynchronizeCollectionTo(
+                        target.EducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServices,
+                        onChildAdded: child =>
+                            {
+                                child.EducationOrganizationStudentFacts = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServiceIncluded);
+            }
+
+            if (sourceSupport == null || sourceSupport.IsEducationOrganizationStudentFactsAggregatedSexesSupported)
+            {
+                isModified |=
+                    source.EducationOrganizationStudentFactsAggregatedSexes.SynchronizeCollectionTo(
+                        target.EducationOrganizationStudentFactsAggregatedSexes,
+                        onChildAdded: child =>
+                            {
+                                child.EducationOrganizationStudentFacts = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsEducationOrganizationStudentFactsAggregatedSexIncluded);
+            }
+
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFacts source, IEducationOrganizationStudentFacts target, Action<IEducationOrganizationStudentFacts, IEducationOrganizationStudentFacts> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsSynchronizationSourceSupport;
+
+            // Copy resource Id
+            target.Id = source.Id;
+
+            // Copy contextual primary key values
+            target.EducationOrganizationId = source.EducationOrganizationId;
+            target.FactAsOfDate = source.FactAsOfDate;
+
+            // Copy non-PK properties
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.EducationOrganizationResourceId = source.EducationOrganizationResourceId;
+                target.EducationOrganizationDiscriminator = source.EducationOrganizationDiscriminator;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+            // EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled (Source)
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabledSupported)
+            {
+                var itemProperty = target.GetType().GetProperty("EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled");
+
+                if (itemProperty != null)
+                {
+                    if (source.EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled == null)
+                    {
+                        target.EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled = null;
+                    }
+                    else
+                    {
+                        var itemType = itemProperty.PropertyType;
+                        object targetEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled = Activator.CreateInstance(itemType);
+                        (targetEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled as IChildEntity)?.SetParent(target);
+                        source.EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled.Map(targetEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled);
+
+                        // Update the target reference appropriately
+                        target.EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled = (IEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled) targetEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled;
+                    }
+                }
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabledSupported = false;
+            }
+            // EducationOrganizationStudentFactsAggregatedELLEnrollment (Source)
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedELLEnrollmentSupported)
+            {
+                var itemProperty = target.GetType().GetProperty("EducationOrganizationStudentFactsAggregatedELLEnrollment");
+
+                if (itemProperty != null)
+                {
+                    if (source.EducationOrganizationStudentFactsAggregatedELLEnrollment == null)
+                    {
+                        target.EducationOrganizationStudentFactsAggregatedELLEnrollment = null;
+                    }
+                    else
+                    {
+                        var itemType = itemProperty.PropertyType;
+                        object targetEducationOrganizationStudentFactsAggregatedELLEnrollment = Activator.CreateInstance(itemType);
+                        (targetEducationOrganizationStudentFactsAggregatedELLEnrollment as IChildEntity)?.SetParent(target);
+                        source.EducationOrganizationStudentFactsAggregatedELLEnrollment.Map(targetEducationOrganizationStudentFactsAggregatedELLEnrollment);
+
+                        // Update the target reference appropriately
+                        target.EducationOrganizationStudentFactsAggregatedELLEnrollment = (IEducationOrganizationStudentFactsAggregatedELLEnrollment) targetEducationOrganizationStudentFactsAggregatedELLEnrollment;
+                    }
+                }
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedELLEnrollmentSupported = false;
+            }
+            // EducationOrganizationStudentFactsAggregatedESLEnrollment (Source)
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedESLEnrollmentSupported)
+            {
+                var itemProperty = target.GetType().GetProperty("EducationOrganizationStudentFactsAggregatedESLEnrollment");
+
+                if (itemProperty != null)
+                {
+                    if (source.EducationOrganizationStudentFactsAggregatedESLEnrollment == null)
+                    {
+                        target.EducationOrganizationStudentFactsAggregatedESLEnrollment = null;
+                    }
+                    else
+                    {
+                        var itemType = itemProperty.PropertyType;
+                        object targetEducationOrganizationStudentFactsAggregatedESLEnrollment = Activator.CreateInstance(itemType);
+                        (targetEducationOrganizationStudentFactsAggregatedESLEnrollment as IChildEntity)?.SetParent(target);
+                        source.EducationOrganizationStudentFactsAggregatedESLEnrollment.Map(targetEducationOrganizationStudentFactsAggregatedESLEnrollment);
+
+                        // Update the target reference appropriately
+                        target.EducationOrganizationStudentFactsAggregatedESLEnrollment = (IEducationOrganizationStudentFactsAggregatedESLEnrollment) targetEducationOrganizationStudentFactsAggregatedESLEnrollment;
+                    }
+                }
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedESLEnrollmentSupported = false;
+            }
+            // EducationOrganizationStudentFactsAggregatedSection504Enrollment (Source)
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedSection504EnrollmentSupported)
+            {
+                var itemProperty = target.GetType().GetProperty("EducationOrganizationStudentFactsAggregatedSection504Enrollment");
+
+                if (itemProperty != null)
+                {
+                    if (source.EducationOrganizationStudentFactsAggregatedSection504Enrollment == null)
+                    {
+                        target.EducationOrganizationStudentFactsAggregatedSection504Enrollment = null;
+                    }
+                    else
+                    {
+                        var itemType = itemProperty.PropertyType;
+                        object targetEducationOrganizationStudentFactsAggregatedSection504Enrollment = Activator.CreateInstance(itemType);
+                        (targetEducationOrganizationStudentFactsAggregatedSection504Enrollment as IChildEntity)?.SetParent(target);
+                        source.EducationOrganizationStudentFactsAggregatedSection504Enrollment.Map(targetEducationOrganizationStudentFactsAggregatedSection504Enrollment);
+
+                        // Update the target reference appropriately
+                        target.EducationOrganizationStudentFactsAggregatedSection504Enrollment = (IEducationOrganizationStudentFactsAggregatedSection504Enrollment) targetEducationOrganizationStudentFactsAggregatedSection504Enrollment;
+                    }
+                }
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedSection504EnrollmentSupported = false;
+            }
+            // EducationOrganizationStudentFactsAggregatedSPED (Source)
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedSPEDSupported)
+            {
+                var itemProperty = target.GetType().GetProperty("EducationOrganizationStudentFactsAggregatedSPED");
+
+                if (itemProperty != null)
+                {
+                    if (source.EducationOrganizationStudentFactsAggregatedSPED == null)
+                    {
+                        target.EducationOrganizationStudentFactsAggregatedSPED = null;
+                    }
+                    else
+                    {
+                        var itemType = itemProperty.PropertyType;
+                        object targetEducationOrganizationStudentFactsAggregatedSPED = Activator.CreateInstance(itemType);
+                        (targetEducationOrganizationStudentFactsAggregatedSPED as IChildEntity)?.SetParent(target);
+                        source.EducationOrganizationStudentFactsAggregatedSPED.Map(targetEducationOrganizationStudentFactsAggregatedSPED);
+
+                        // Update the target reference appropriately
+                        target.EducationOrganizationStudentFactsAggregatedSPED = (IEducationOrganizationStudentFactsAggregatedSPED) targetEducationOrganizationStudentFactsAggregatedSPED;
+                    }
+                }
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedSPEDSupported = false;
+            }
+            // EducationOrganizationStudentFactsAggregatedTitleIEnrollment (Source)
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedTitleIEnrollmentSupported)
+            {
+                var itemProperty = target.GetType().GetProperty("EducationOrganizationStudentFactsAggregatedTitleIEnrollment");
+
+                if (itemProperty != null)
+                {
+                    if (source.EducationOrganizationStudentFactsAggregatedTitleIEnrollment == null)
+                    {
+                        target.EducationOrganizationStudentFactsAggregatedTitleIEnrollment = null;
+                    }
+                    else
+                    {
+                        var itemType = itemProperty.PropertyType;
+                        object targetEducationOrganizationStudentFactsAggregatedTitleIEnrollment = Activator.CreateInstance(itemType);
+                        (targetEducationOrganizationStudentFactsAggregatedTitleIEnrollment as IChildEntity)?.SetParent(target);
+                        source.EducationOrganizationStudentFactsAggregatedTitleIEnrollment.Map(targetEducationOrganizationStudentFactsAggregatedTitleIEnrollment);
+
+                        // Update the target reference appropriately
+                        target.EducationOrganizationStudentFactsAggregatedTitleIEnrollment = (IEducationOrganizationStudentFactsAggregatedTitleIEnrollment) targetEducationOrganizationStudentFactsAggregatedTitleIEnrollment;
+                    }
+                }
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedTitleIEnrollmentSupported = false;
+            }
+            // EducationOrganizationStudentFactsStudentsEnrolled (Source)
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsStudentsEnrolledSupported)
+            {
+                var itemProperty = target.GetType().GetProperty("EducationOrganizationStudentFactsStudentsEnrolled");
+
+                if (itemProperty != null)
+                {
+                    if (source.EducationOrganizationStudentFactsStudentsEnrolled == null)
+                    {
+                        target.EducationOrganizationStudentFactsStudentsEnrolled = null;
+                    }
+                    else
+                    {
+                        var itemType = itemProperty.PropertyType;
+                        object targetEducationOrganizationStudentFactsStudentsEnrolled = Activator.CreateInstance(itemType);
+                        (targetEducationOrganizationStudentFactsStudentsEnrolled as IChildEntity)?.SetParent(target);
+                        source.EducationOrganizationStudentFactsStudentsEnrolled.Map(targetEducationOrganizationStudentFactsStudentsEnrolled);
+
+                        // Update the target reference appropriately
+                        target.EducationOrganizationStudentFactsStudentsEnrolled = (IEducationOrganizationStudentFactsStudentsEnrolled) targetEducationOrganizationStudentFactsStudentsEnrolled;
+                    }
+                }
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsStudentsEnrolledSupported = false;
+            }
+            // -------------------------------------------------------------
+
+            // Map lists
+
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedByDisabilitiesSupported)
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedByDisabilityIncluded = sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedByDisabilityIncluded;
+                source.EducationOrganizationStudentFactsAggregatedByDisabilities.MapCollectionTo(target.EducationOrganizationStudentFactsAggregatedByDisabilities, target);
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedByDisabilitiesSupported = false;
+            }
+
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedGendersSupported)
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedGenderIncluded = sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedGenderIncluded;
+                source.EducationOrganizationStudentFactsAggregatedGenders.MapCollectionTo(target.EducationOrganizationStudentFactsAggregatedGenders, target);
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedGendersSupported = false;
+            }
+
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicitiesSupported)
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicityIncluded = sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicityIncluded;
+                source.EducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicities.MapCollectionTo(target.EducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicities, target);
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicitiesSupported = false;
+            }
+
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedLanguagesSupported)
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedLanguageIncluded = sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedLanguageIncluded;
+                source.EducationOrganizationStudentFactsAggregatedLanguages.MapCollectionTo(target.EducationOrganizationStudentFactsAggregatedLanguages, target);
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedLanguagesSupported = false;
+            }
+
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedRacesSupported)
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedRaceIncluded = sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedRaceIncluded;
+                source.EducationOrganizationStudentFactsAggregatedRaces.MapCollectionTo(target.EducationOrganizationStudentFactsAggregatedRaces, target);
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedRacesSupported = false;
+            }
+
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServicesSupported)
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServiceIncluded = sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServiceIncluded;
+                source.EducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServices.MapCollectionTo(target.EducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServices, target);
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServicesSupported = false;
+            }
+
+            if (sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedSexesSupported)
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedSexIncluded = sourceSynchSupport.IsEducationOrganizationStudentFactsAggregatedSexIncluded;
+                source.EducationOrganizationStudentFactsAggregatedSexes.MapCollectionTo(target.EducationOrganizationStudentFactsAggregatedSexes, target);
+            }
+            else
+            {
+                targetSynchSupport.IsEducationOrganizationStudentFactsAggregatedSexesSupported = false;
+            }
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsSynchronizationSourceSupport 
+    {
+        bool IsEducationOrganizationStudentFactsAggregatedByDisabilitiesSupported { get; set; }
+        bool IsEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabledSupported { get; set; }
+        bool IsEducationOrganizationStudentFactsAggregatedELLEnrollmentSupported { get; set; }
+        bool IsEducationOrganizationStudentFactsAggregatedESLEnrollmentSupported { get; set; }
+        bool IsEducationOrganizationStudentFactsAggregatedGendersSupported { get; set; }
+        bool IsEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicitiesSupported { get; set; }
+        bool IsEducationOrganizationStudentFactsAggregatedLanguagesSupported { get; set; }
+        bool IsEducationOrganizationStudentFactsAggregatedRacesSupported { get; set; }
+        bool IsEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServicesSupported { get; set; }
+        bool IsEducationOrganizationStudentFactsAggregatedSection504EnrollmentSupported { get; set; }
+        bool IsEducationOrganizationStudentFactsAggregatedSexesSupported { get; set; }
+        bool IsEducationOrganizationStudentFactsAggregatedSPEDSupported { get; set; }
+        bool IsEducationOrganizationStudentFactsAggregatedTitleIEnrollmentSupported { get; set; }
+        bool IsEducationOrganizationStudentFactsStudentsEnrolledSupported { get; set; }
+        Func<IEducationOrganizationStudentFactsAggregatedByDisability, bool> IsEducationOrganizationStudentFactsAggregatedByDisabilityIncluded { get; set; }
+        Func<IEducationOrganizationStudentFactsAggregatedGender, bool> IsEducationOrganizationStudentFactsAggregatedGenderIncluded { get; set; }
+        Func<IEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicity, bool> IsEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicityIncluded { get; set; }
+        Func<IEducationOrganizationStudentFactsAggregatedLanguage, bool> IsEducationOrganizationStudentFactsAggregatedLanguageIncluded { get; set; }
+        Func<IEducationOrganizationStudentFactsAggregatedRace, bool> IsEducationOrganizationStudentFactsAggregatedRaceIncluded { get; set; }
+        Func<IEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramService, bool> IsEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServiceIncluded { get; set; }
+        Func<IEducationOrganizationStudentFactsAggregatedSex, bool> IsEducationOrganizationStudentFactsAggregatedSexIncluded { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsAggregatedByDisabilityMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsAggregatedByDisability source, IEducationOrganizationStudentFactsAggregatedByDisability target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsAggregatedByDisabilitySynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.DisabilityDescriptor != target.DisabilityDescriptor)
+            {
+                source.DisabilityDescriptor = target.DisabilityDescriptor;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsPercentageSupported)
+                && target.Percentage != source.Percentage)
+            {
+                target.Percentage = source.Percentage;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsTypeNumberSupported)
+                && target.TypeNumber != source.TypeNumber)
+            {
+                target.TypeNumber = source.TypeNumber;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsAggregatedByDisability source, IEducationOrganizationStudentFactsAggregatedByDisability target, Action<IEducationOrganizationStudentFactsAggregatedByDisability, IEducationOrganizationStudentFactsAggregatedByDisability> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsAggregatedByDisabilitySynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsAggregatedByDisabilitySynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.DisabilityDescriptor = source.DisabilityDescriptor;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsPercentageSupported)
+                target.Percentage = source.Percentage;
+            else
+                targetSynchSupport.IsPercentageSupported = false;
+
+            if (sourceSynchSupport.IsTypeNumberSupported)
+                target.TypeNumber = source.TypeNumber;
+            else
+                targetSynchSupport.IsTypeNumberSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsAggregatedByDisabilitySynchronizationSourceSupport 
+    {
+        bool IsPercentageSupported { get; set; }
+        bool IsTypeNumberSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabledMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled source, IEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabledSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsStudentsDisabledNumberSupported)
+                && target.StudentsDisabledNumber != source.StudentsDisabledNumber)
+            {
+                target.StudentsDisabledNumber = source.StudentsDisabledNumber;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsStudentsDisabledPercentageSupported)
+                && target.StudentsDisabledPercentage != source.StudentsDisabledPercentage)
+            {
+                target.StudentsDisabledPercentage = source.StudentsDisabledPercentage;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled source, IEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled target, Action<IEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled, IEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabled> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabledSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabledSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsStudentsDisabledNumberSupported)
+                target.StudentsDisabledNumber = source.StudentsDisabledNumber;
+            else
+                targetSynchSupport.IsStudentsDisabledNumberSupported = false;
+
+            if (sourceSynchSupport.IsStudentsDisabledPercentageSupported)
+                target.StudentsDisabledPercentage = source.StudentsDisabledPercentage;
+            else
+                targetSynchSupport.IsStudentsDisabledPercentageSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsAggregatedDisabilityTotalStudentsDisabledSynchronizationSourceSupport 
+    {
+        bool IsStudentsDisabledNumberSupported { get; set; }
+        bool IsStudentsDisabledPercentageSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsAggregatedELLEnrollmentMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsAggregatedELLEnrollment source, IEducationOrganizationStudentFactsAggregatedELLEnrollment target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsAggregatedELLEnrollmentSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsELLEnrollmentNumberSupported)
+                && target.ELLEnrollmentNumber != source.ELLEnrollmentNumber)
+            {
+                target.ELLEnrollmentNumber = source.ELLEnrollmentNumber;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsELLEnrollmentPercentageSupported)
+                && target.ELLEnrollmentPercentage != source.ELLEnrollmentPercentage)
+            {
+                target.ELLEnrollmentPercentage = source.ELLEnrollmentPercentage;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsAggregatedELLEnrollment source, IEducationOrganizationStudentFactsAggregatedELLEnrollment target, Action<IEducationOrganizationStudentFactsAggregatedELLEnrollment, IEducationOrganizationStudentFactsAggregatedELLEnrollment> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsAggregatedELLEnrollmentSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsAggregatedELLEnrollmentSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsELLEnrollmentNumberSupported)
+                target.ELLEnrollmentNumber = source.ELLEnrollmentNumber;
+            else
+                targetSynchSupport.IsELLEnrollmentNumberSupported = false;
+
+            if (sourceSynchSupport.IsELLEnrollmentPercentageSupported)
+                target.ELLEnrollmentPercentage = source.ELLEnrollmentPercentage;
+            else
+                targetSynchSupport.IsELLEnrollmentPercentageSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsAggregatedELLEnrollmentSynchronizationSourceSupport 
+    {
+        bool IsELLEnrollmentNumberSupported { get; set; }
+        bool IsELLEnrollmentPercentageSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsAggregatedESLEnrollmentMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsAggregatedESLEnrollment source, IEducationOrganizationStudentFactsAggregatedESLEnrollment target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsAggregatedESLEnrollmentSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsESLEnrollmentNumberSupported)
+                && target.ESLEnrollmentNumber != source.ESLEnrollmentNumber)
+            {
+                target.ESLEnrollmentNumber = source.ESLEnrollmentNumber;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsESLEnrollmentPercentageSupported)
+                && target.ESLEnrollmentPercentage != source.ESLEnrollmentPercentage)
+            {
+                target.ESLEnrollmentPercentage = source.ESLEnrollmentPercentage;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsAggregatedESLEnrollment source, IEducationOrganizationStudentFactsAggregatedESLEnrollment target, Action<IEducationOrganizationStudentFactsAggregatedESLEnrollment, IEducationOrganizationStudentFactsAggregatedESLEnrollment> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsAggregatedESLEnrollmentSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsAggregatedESLEnrollmentSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsESLEnrollmentNumberSupported)
+                target.ESLEnrollmentNumber = source.ESLEnrollmentNumber;
+            else
+                targetSynchSupport.IsESLEnrollmentNumberSupported = false;
+
+            if (sourceSynchSupport.IsESLEnrollmentPercentageSupported)
+                target.ESLEnrollmentPercentage = source.ESLEnrollmentPercentage;
+            else
+                targetSynchSupport.IsESLEnrollmentPercentageSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsAggregatedESLEnrollmentSynchronizationSourceSupport 
+    {
+        bool IsESLEnrollmentNumberSupported { get; set; }
+        bool IsESLEnrollmentPercentageSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsAggregatedGenderMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsAggregatedGender source, IEducationOrganizationStudentFactsAggregatedGender target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsAggregatedGenderSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.GenderDescriptor != target.GenderDescriptor)
+            {
+                source.GenderDescriptor = target.GenderDescriptor;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsGenderTypeNumberSupported)
+                && target.GenderTypeNumber != source.GenderTypeNumber)
+            {
+                target.GenderTypeNumber = source.GenderTypeNumber;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsGenderTypePercentageSupported)
+                && target.GenderTypePercentage != source.GenderTypePercentage)
+            {
+                target.GenderTypePercentage = source.GenderTypePercentage;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsAggregatedGender source, IEducationOrganizationStudentFactsAggregatedGender target, Action<IEducationOrganizationStudentFactsAggregatedGender, IEducationOrganizationStudentFactsAggregatedGender> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsAggregatedGenderSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsAggregatedGenderSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.GenderDescriptor = source.GenderDescriptor;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsGenderTypeNumberSupported)
+                target.GenderTypeNumber = source.GenderTypeNumber;
+            else
+                targetSynchSupport.IsGenderTypeNumberSupported = false;
+
+            if (sourceSynchSupport.IsGenderTypePercentageSupported)
+                target.GenderTypePercentage = source.GenderTypePercentage;
+            else
+                targetSynchSupport.IsGenderTypePercentageSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsAggregatedGenderSynchronizationSourceSupport 
+    {
+        bool IsGenderTypeNumberSupported { get; set; }
+        bool IsGenderTypePercentageSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicityMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicity source, IEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicity target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicitySynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.HispanicLatinoEthnicity != target.HispanicLatinoEthnicity)
+            {
+                source.HispanicLatinoEthnicity = target.HispanicLatinoEthnicity;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsHispanicLatinoEthnicityNumberSupported)
+                && target.HispanicLatinoEthnicityNumber != source.HispanicLatinoEthnicityNumber)
+            {
+                target.HispanicLatinoEthnicityNumber = source.HispanicLatinoEthnicityNumber;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsHispanicLatinoEthnicityPercentageSupported)
+                && target.HispanicLatinoEthnicityPercentage != source.HispanicLatinoEthnicityPercentage)
+            {
+                target.HispanicLatinoEthnicityPercentage = source.HispanicLatinoEthnicityPercentage;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicity source, IEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicity target, Action<IEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicity, IEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicity> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicitySynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicitySynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsHispanicLatinoEthnicityNumberSupported)
+                target.HispanicLatinoEthnicityNumber = source.HispanicLatinoEthnicityNumber;
+            else
+                targetSynchSupport.IsHispanicLatinoEthnicityNumberSupported = false;
+
+            if (sourceSynchSupport.IsHispanicLatinoEthnicityPercentageSupported)
+                target.HispanicLatinoEthnicityPercentage = source.HispanicLatinoEthnicityPercentage;
+            else
+                targetSynchSupport.IsHispanicLatinoEthnicityPercentageSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsAggregatedHispanicLatinoEthnicitySynchronizationSourceSupport 
+    {
+        bool IsHispanicLatinoEthnicityNumberSupported { get; set; }
+        bool IsHispanicLatinoEthnicityPercentageSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsAggregatedLanguageMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsAggregatedLanguage source, IEducationOrganizationStudentFactsAggregatedLanguage target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsAggregatedLanguageSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.LanguageDescriptor != target.LanguageDescriptor)
+            {
+                source.LanguageDescriptor = target.LanguageDescriptor;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsLanguageTypeNumberSupported)
+                && target.LanguageTypeNumber != source.LanguageTypeNumber)
+            {
+                target.LanguageTypeNumber = source.LanguageTypeNumber;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsLanguageTypePercentageSupported)
+                && target.LanguageTypePercentage != source.LanguageTypePercentage)
+            {
+                target.LanguageTypePercentage = source.LanguageTypePercentage;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsAggregatedLanguage source, IEducationOrganizationStudentFactsAggregatedLanguage target, Action<IEducationOrganizationStudentFactsAggregatedLanguage, IEducationOrganizationStudentFactsAggregatedLanguage> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsAggregatedLanguageSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsAggregatedLanguageSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.LanguageDescriptor = source.LanguageDescriptor;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsLanguageTypeNumberSupported)
+                target.LanguageTypeNumber = source.LanguageTypeNumber;
+            else
+                targetSynchSupport.IsLanguageTypeNumberSupported = false;
+
+            if (sourceSynchSupport.IsLanguageTypePercentageSupported)
+                target.LanguageTypePercentage = source.LanguageTypePercentage;
+            else
+                targetSynchSupport.IsLanguageTypePercentageSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsAggregatedLanguageSynchronizationSourceSupport 
+    {
+        bool IsLanguageTypeNumberSupported { get; set; }
+        bool IsLanguageTypePercentageSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsAggregatedRaceMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsAggregatedRace source, IEducationOrganizationStudentFactsAggregatedRace target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsAggregatedRaceSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.RaceDescriptor != target.RaceDescriptor)
+            {
+                source.RaceDescriptor = target.RaceDescriptor;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsRaceTypeNumberSupported)
+                && target.RaceTypeNumber != source.RaceTypeNumber)
+            {
+                target.RaceTypeNumber = source.RaceTypeNumber;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsRaceTypePercentageSupported)
+                && target.RaceTypePercentage != source.RaceTypePercentage)
+            {
+                target.RaceTypePercentage = source.RaceTypePercentage;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsAggregatedRace source, IEducationOrganizationStudentFactsAggregatedRace target, Action<IEducationOrganizationStudentFactsAggregatedRace, IEducationOrganizationStudentFactsAggregatedRace> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsAggregatedRaceSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsAggregatedRaceSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.RaceDescriptor = source.RaceDescriptor;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsRaceTypeNumberSupported)
+                target.RaceTypeNumber = source.RaceTypeNumber;
+            else
+                targetSynchSupport.IsRaceTypeNumberSupported = false;
+
+            if (sourceSynchSupport.IsRaceTypePercentageSupported)
+                target.RaceTypePercentage = source.RaceTypePercentage;
+            else
+                targetSynchSupport.IsRaceTypePercentageSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsAggregatedRaceSynchronizationSourceSupport 
+    {
+        bool IsRaceTypeNumberSupported { get; set; }
+        bool IsRaceTypePercentageSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServiceMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramService source, IEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramService target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServiceSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.SchoolFoodServiceProgramServiceDescriptor != target.SchoolFoodServiceProgramServiceDescriptor)
+            {
+                source.SchoolFoodServiceProgramServiceDescriptor = target.SchoolFoodServiceProgramServiceDescriptor;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsTypeNumberSupported)
+                && target.TypeNumber != source.TypeNumber)
+            {
+                target.TypeNumber = source.TypeNumber;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsTypePercentageSupported)
+                && target.TypePercentage != source.TypePercentage)
+            {
+                target.TypePercentage = source.TypePercentage;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramService source, IEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramService target, Action<IEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramService, IEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramService> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServiceSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServiceSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.SchoolFoodServiceProgramServiceDescriptor = source.SchoolFoodServiceProgramServiceDescriptor;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsTypeNumberSupported)
+                target.TypeNumber = source.TypeNumber;
+            else
+                targetSynchSupport.IsTypeNumberSupported = false;
+
+            if (sourceSynchSupport.IsTypePercentageSupported)
+                target.TypePercentage = source.TypePercentage;
+            else
+                targetSynchSupport.IsTypePercentageSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsAggregatedSchoolFoodServiceProgramServiceSynchronizationSourceSupport 
+    {
+        bool IsTypeNumberSupported { get; set; }
+        bool IsTypePercentageSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsAggregatedSection504EnrollmentMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsAggregatedSection504Enrollment source, IEducationOrganizationStudentFactsAggregatedSection504Enrollment target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsAggregatedSection504EnrollmentSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsNumber504EnrolledSupported)
+                && target.Number504Enrolled != source.Number504Enrolled)
+            {
+                target.Number504Enrolled = source.Number504Enrolled;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsPercentage504EnrolledSupported)
+                && target.Percentage504Enrolled != source.Percentage504Enrolled)
+            {
+                target.Percentage504Enrolled = source.Percentage504Enrolled;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsAggregatedSection504Enrollment source, IEducationOrganizationStudentFactsAggregatedSection504Enrollment target, Action<IEducationOrganizationStudentFactsAggregatedSection504Enrollment, IEducationOrganizationStudentFactsAggregatedSection504Enrollment> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsAggregatedSection504EnrollmentSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsAggregatedSection504EnrollmentSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsNumber504EnrolledSupported)
+                target.Number504Enrolled = source.Number504Enrolled;
+            else
+                targetSynchSupport.IsNumber504EnrolledSupported = false;
+
+            if (sourceSynchSupport.IsPercentage504EnrolledSupported)
+                target.Percentage504Enrolled = source.Percentage504Enrolled;
+            else
+                targetSynchSupport.IsPercentage504EnrolledSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsAggregatedSection504EnrollmentSynchronizationSourceSupport 
+    {
+        bool IsNumber504EnrolledSupported { get; set; }
+        bool IsPercentage504EnrolledSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsAggregatedSexMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsAggregatedSex source, IEducationOrganizationStudentFactsAggregatedSex target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsAggregatedSexSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.SexDescriptor != target.SexDescriptor)
+            {
+                source.SexDescriptor = target.SexDescriptor;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsSexTypeNumberSupported)
+                && target.SexTypeNumber != source.SexTypeNumber)
+            {
+                target.SexTypeNumber = source.SexTypeNumber;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsSexTypePercentageSupported)
+                && target.SexTypePercentage != source.SexTypePercentage)
+            {
+                target.SexTypePercentage = source.SexTypePercentage;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsAggregatedSex source, IEducationOrganizationStudentFactsAggregatedSex target, Action<IEducationOrganizationStudentFactsAggregatedSex, IEducationOrganizationStudentFactsAggregatedSex> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsAggregatedSexSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsAggregatedSexSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.SexDescriptor = source.SexDescriptor;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsSexTypeNumberSupported)
+                target.SexTypeNumber = source.SexTypeNumber;
+            else
+                targetSynchSupport.IsSexTypeNumberSupported = false;
+
+            if (sourceSynchSupport.IsSexTypePercentageSupported)
+                target.SexTypePercentage = source.SexTypePercentage;
+            else
+                targetSynchSupport.IsSexTypePercentageSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsAggregatedSexSynchronizationSourceSupport 
+    {
+        bool IsSexTypeNumberSupported { get; set; }
+        bool IsSexTypePercentageSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsAggregatedSPEDMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsAggregatedSPED source, IEducationOrganizationStudentFactsAggregatedSPED target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsAggregatedSPEDSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsSPEDEnrollmentNumberSupported)
+                && target.SPEDEnrollmentNumber != source.SPEDEnrollmentNumber)
+            {
+                target.SPEDEnrollmentNumber = source.SPEDEnrollmentNumber;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsSPEDEnrollmentPercentageSupported)
+                && target.SPEDEnrollmentPercentage != source.SPEDEnrollmentPercentage)
+            {
+                target.SPEDEnrollmentPercentage = source.SPEDEnrollmentPercentage;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsAggregatedSPED source, IEducationOrganizationStudentFactsAggregatedSPED target, Action<IEducationOrganizationStudentFactsAggregatedSPED, IEducationOrganizationStudentFactsAggregatedSPED> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsAggregatedSPEDSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsAggregatedSPEDSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsSPEDEnrollmentNumberSupported)
+                target.SPEDEnrollmentNumber = source.SPEDEnrollmentNumber;
+            else
+                targetSynchSupport.IsSPEDEnrollmentNumberSupported = false;
+
+            if (sourceSynchSupport.IsSPEDEnrollmentPercentageSupported)
+                target.SPEDEnrollmentPercentage = source.SPEDEnrollmentPercentage;
+            else
+                targetSynchSupport.IsSPEDEnrollmentPercentageSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsAggregatedSPEDSynchronizationSourceSupport 
+    {
+        bool IsSPEDEnrollmentNumberSupported { get; set; }
+        bool IsSPEDEnrollmentPercentageSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsAggregatedTitleIEnrollmentMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsAggregatedTitleIEnrollment source, IEducationOrganizationStudentFactsAggregatedTitleIEnrollment target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsAggregatedTitleIEnrollmentSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsTitleIEnrollmentNumberSupported)
+                && target.TitleIEnrollmentNumber != source.TitleIEnrollmentNumber)
+            {
+                target.TitleIEnrollmentNumber = source.TitleIEnrollmentNumber;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsTitleIEnrollmentPercentageSupported)
+                && target.TitleIEnrollmentPercentage != source.TitleIEnrollmentPercentage)
+            {
+                target.TitleIEnrollmentPercentage = source.TitleIEnrollmentPercentage;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsAggregatedTitleIEnrollment source, IEducationOrganizationStudentFactsAggregatedTitleIEnrollment target, Action<IEducationOrganizationStudentFactsAggregatedTitleIEnrollment, IEducationOrganizationStudentFactsAggregatedTitleIEnrollment> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsAggregatedTitleIEnrollmentSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsAggregatedTitleIEnrollmentSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsTitleIEnrollmentNumberSupported)
+                target.TitleIEnrollmentNumber = source.TitleIEnrollmentNumber;
+            else
+                targetSynchSupport.IsTitleIEnrollmentNumberSupported = false;
+
+            if (sourceSynchSupport.IsTitleIEnrollmentPercentageSupported)
+                target.TitleIEnrollmentPercentage = source.TitleIEnrollmentPercentage;
+            else
+                targetSynchSupport.IsTitleIEnrollmentPercentageSupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsAggregatedTitleIEnrollmentSynchronizationSourceSupport 
+    {
+        bool IsTitleIEnrollmentNumberSupported { get; set; }
+        bool IsTitleIEnrollmentPercentageSupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class EducationOrganizationStudentFactsStudentsEnrolledMapper
+    {
+        public static bool SynchronizeTo(this IEducationOrganizationStudentFactsStudentsEnrolled source, IEducationOrganizationStudentFactsStudentsEnrolled target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationOrganizationStudentFactsStudentsEnrolledSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsNumberStudentsEnrolledSupported)
+                && target.NumberStudentsEnrolled != source.NumberStudentsEnrolled)
+            {
+                target.NumberStudentsEnrolled = source.NumberStudentsEnrolled;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsPercentAtRiskSupported)
+                && target.PercentAtRisk != source.PercentAtRisk)
+            {
+                target.PercentAtRisk = source.PercentAtRisk;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsPercentMobilitySupported)
+                && target.PercentMobility != source.PercentMobility)
+            {
+                target.PercentMobility = source.PercentMobility;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsValueTypeDescriptorSupported)
+                && target.ValueTypeDescriptor != source.ValueTypeDescriptor)
+            {
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationOrganizationStudentFactsStudentsEnrolled source, IEducationOrganizationStudentFactsStudentsEnrolled target, Action<IEducationOrganizationStudentFactsStudentsEnrolled, IEducationOrganizationStudentFactsStudentsEnrolled> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationOrganizationStudentFactsStudentsEnrolledSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationOrganizationStudentFactsStudentsEnrolledSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsNumberStudentsEnrolledSupported)
+                target.NumberStudentsEnrolled = source.NumberStudentsEnrolled;
+            else
+                targetSynchSupport.IsNumberStudentsEnrolledSupported = false;
+
+            if (sourceSynchSupport.IsPercentAtRiskSupported)
+                target.PercentAtRisk = source.PercentAtRisk;
+            else
+                targetSynchSupport.IsPercentAtRiskSupported = false;
+
+            if (sourceSynchSupport.IsPercentMobilitySupported)
+                target.PercentMobility = source.PercentMobility;
+            else
+                targetSynchSupport.IsPercentMobilitySupported = false;
+
+            if (sourceSynchSupport.IsValueTypeDescriptorSupported)
+                target.ValueTypeDescriptor = source.ValueTypeDescriptor;
+            else
+                targetSynchSupport.IsValueTypeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationOrganizationStudentFactsStudentsEnrolledSynchronizationSourceSupport 
+    {
+        bool IsNumberStudentsEnrolledSupported { get; set; }
+        bool IsPercentAtRiskSupported { get; set; }
+        bool IsPercentMobilitySupported { get; set; }
+        bool IsValueTypeDescriptorSupported { get; set; }
+    }
+
+}
+// Aggregate: EducationServiceCenter
+
+namespace EdFi.Ods.Entities.Common.TPDM //.EducationServiceCenterAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class EducationServiceCenterExtensionMapper
+    {
+        public static bool SynchronizeTo(this IEducationServiceCenterExtension source, IEducationServiceCenterExtension target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IEducationServiceCenterExtensionSynchronizationSourceSupport;
+
+            var sourceExtensionSupport = source.EducationServiceCenter as IExtensionsSynchronizationSourceSupport;
+
+            if (!sourceExtensionSupport.IsExtensionAvailable("TPDM"))
+                return false;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsFederalLocaleCodeDescriptorSupported)
+                && target.FederalLocaleCodeDescriptor != source.FederalLocaleCodeDescriptor)
+            {
+                target.FederalLocaleCodeDescriptor = source.FederalLocaleCodeDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IEducationServiceCenterExtension source, IEducationServiceCenterExtension target, Action<IEducationServiceCenterExtension, IEducationServiceCenterExtension> onMapped)
+        {
+            var sourceSynchSupport = source as IEducationServiceCenterExtensionSynchronizationSourceSupport;
+            var targetSynchSupport = target as IEducationServiceCenterExtensionSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsFederalLocaleCodeDescriptorSupported)
+                target.FederalLocaleCodeDescriptor = source.FederalLocaleCodeDescriptor;
+            else
+                targetSynchSupport.IsFederalLocaleCodeDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IEducationServiceCenterExtensionSynchronizationSourceSupport 
+    {
+        bool IsFederalLocaleCodeDescriptorSupported { get; set; }
+    }
+
 }
 // Aggregate: EducatorRoleDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EducatorRoleDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EducatorRoleDescriptorMapper 
+    public static class EducatorRoleDescriptorMapper
     {
         public static bool SynchronizeTo(this IEducatorRoleDescriptor source, IEducatorRoleDescriptor target)
         {
@@ -10981,7 +14062,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EducatorRoleDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -10995,14 +14076,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EducatorRoleDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EmploymentEvent
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentEventAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EmploymentEventMapper 
+    public static class EmploymentEventMapper
     {
         public static bool SynchronizeTo(this IEmploymentEvent source, IEmploymentEvent target)
         {
@@ -11110,7 +14191,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentEventAggregate
                 targetSynchSupport.IsRestrictedChoiceSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.OpenStaffPositionResourceId = source.OpenStaffPositionResourceId;
@@ -11144,7 +14225,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentEventAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -11156,14 +14237,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentEventAggregate
         bool IsMutualConsentSupported { get; set; }
         bool IsRestrictedChoiceSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EmploymentEventTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentEventTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EmploymentEventTypeDescriptorMapper 
+    public static class EmploymentEventTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IEmploymentEventTypeDescriptor source, IEmploymentEventTypeDescriptor target)
         {
@@ -11321,7 +14402,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentEventTypeDescriptorAggregat
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -11335,14 +14416,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentEventTypeDescriptorAggregat
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EmploymentSeparationEvent
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentSeparationEventAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EmploymentSeparationEventMapper 
+    public static class EmploymentSeparationEventMapper
     {
         public static bool SynchronizeTo(this IEmploymentSeparationEvent source, IEmploymentSeparationEvent target)
         {
@@ -11438,7 +14519,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentSeparationEventAggregate
                 targetSynchSupport.IsRemainingInDistrictSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.OpenStaffPositionResourceId = source.OpenStaffPositionResourceId;
@@ -11472,7 +14553,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentSeparationEventAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -11483,14 +14564,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentSeparationEventAggregate
         bool IsEmploymentSeparationTypeDescriptorSupported { get; set; }
         bool IsRemainingInDistrictSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EmploymentSeparationReasonDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentSeparationReasonDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EmploymentSeparationReasonDescriptorMapper 
+    public static class EmploymentSeparationReasonDescriptorMapper
     {
         public static bool SynchronizeTo(this IEmploymentSeparationReasonDescriptor source, IEmploymentSeparationReasonDescriptor target)
         {
@@ -11648,7 +14729,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentSeparationReasonDescriptorA
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -11662,14 +14743,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentSeparationReasonDescriptorA
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EmploymentSeparationTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentSeparationTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EmploymentSeparationTypeDescriptorMapper 
+    public static class EmploymentSeparationTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IEmploymentSeparationTypeDescriptor source, IEmploymentSeparationTypeDescriptor target)
         {
@@ -11827,7 +14908,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentSeparationTypeDescriptorAgg
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -11841,14 +14922,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EmploymentSeparationTypeDescriptorAgg
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EnglishLanguageExamDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EnglishLanguageExamDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EnglishLanguageExamDescriptorMapper 
+    public static class EnglishLanguageExamDescriptorMapper
     {
         public static bool SynchronizeTo(this IEnglishLanguageExamDescriptor source, IEnglishLanguageExamDescriptor target)
         {
@@ -12006,7 +15087,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EnglishLanguageExamDescriptorAggregat
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -12020,14 +15101,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EnglishLanguageExamDescriptorAggregat
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: Evaluation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EvaluationMapper 
+    public static class EvaluationMapper
     {
         public static bool SynchronizeTo(this IEvaluation source, IEvaluation target)
         {
@@ -12036,14 +15117,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationAggregate
             var sourceSupport = source as IEvaluationSynchronizationSourceSupport;
 
             // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.EducationOrganizationId != target.EducationOrganizationId)
-            {
-                source.EducationOrganizationId = target.EducationOrganizationId;
-            }
-            if (source.EvaluationPeriodDescriptor != target.EvaluationPeriodDescriptor)
-            {
-                source.EvaluationPeriodDescriptor = target.EvaluationPeriodDescriptor;
-            }
             if (source.EvaluationTitle != target.EvaluationTitle)
             {
                 source.EvaluationTitle = target.EvaluationTitle;
@@ -12055,10 +15128,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationAggregate
             if (source.PerformanceEvaluationTypeDescriptor != target.PerformanceEvaluationTypeDescriptor)
             {
                 source.PerformanceEvaluationTypeDescriptor = target.PerformanceEvaluationTypeDescriptor;
-            }
-            if (source.SchoolYear != target.SchoolYear)
-            {
-                source.SchoolYear = target.SchoolYear;
             }
             if (source.TermDescriptor != target.TermDescriptor)
             {
@@ -12099,15 +15168,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsEvaluationRatingLevelsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.EvaluationRatingLevels.SynchronizeCollectionTo(
-                        target.EvaluationRatingLevels, 
-                        onChildAdded: child => 
+                        target.EvaluationRatingLevels,
+                        onChildAdded: child =>
                             {
                                 child.Evaluation = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsEvaluationRatingLevelIncluded);
             }
 
@@ -12126,12 +15195,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationAggregate
             target.Id = source.Id;
 
             // Copy contextual primary key values
-            target.EducationOrganizationId = source.EducationOrganizationId;
-            target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
             target.EvaluationTitle = source.EvaluationTitle;
             target.PerformanceEvaluationTitle = source.PerformanceEvaluationTitle;
             target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
-            target.SchoolYear = source.SchoolYear;
             target.TermDescriptor = source.TermDescriptor;
 
             // Copy non-PK properties
@@ -12157,7 +15223,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationAggregate
                 targetSynchSupport.IsMinRatingSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.PerformanceEvaluationResourceId = source.PerformanceEvaluationResourceId;
@@ -12173,7 +15239,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationAggregate
             // Map lists
 
             if (sourceSynchSupport.IsEvaluationRatingLevelsSupported)
-            {    
+            {
                 targetSynchSupport.IsEvaluationRatingLevelIncluded = sourceSynchSupport.IsEvaluationRatingLevelIncluded;
                 source.EvaluationRatingLevels.MapCollectionTo(target.EvaluationRatingLevels, target);
             }
@@ -12201,7 +15267,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -12214,9 +15280,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationAggregate
         bool IsMinRatingSupported { get; set; }
         Func<IEvaluationRatingLevel, bool> IsEvaluationRatingLevelIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class EvaluationRatingLevelMapper 
+    public static class EvaluationRatingLevelMapper
     {
         public static bool SynchronizeTo(this IEvaluationRatingLevel source, IEvaluationRatingLevel target)
         {
@@ -12302,7 +15368,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -12311,14 +15377,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationAggregate
         bool IsMaxRatingSupported { get; set; }
         bool IsMinRatingSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EvaluationElement
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EvaluationElementMapper 
+    public static class EvaluationElementMapper
     {
         public static bool SynchronizeTo(this IEvaluationElement source, IEvaluationElement target)
         {
@@ -12327,10 +15393,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementAggregate
             var sourceSupport = source as IEvaluationElementSynchronizationSourceSupport;
 
             // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.EducationOrganizationId != target.EducationOrganizationId)
-            {
-                source.EducationOrganizationId = target.EducationOrganizationId;
-            }
             if (source.EvaluationElementTitle != target.EvaluationElementTitle)
             {
                 source.EvaluationElementTitle = target.EvaluationElementTitle;
@@ -12338,10 +15400,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementAggregate
             if (source.EvaluationObjectiveTitle != target.EvaluationObjectiveTitle)
             {
                 source.EvaluationObjectiveTitle = target.EvaluationObjectiveTitle;
-            }
-            if (source.EvaluationPeriodDescriptor != target.EvaluationPeriodDescriptor)
-            {
-                source.EvaluationPeriodDescriptor = target.EvaluationPeriodDescriptor;
             }
             if (source.EvaluationTitle != target.EvaluationTitle)
             {
@@ -12354,10 +15412,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementAggregate
             if (source.PerformanceEvaluationTypeDescriptor != target.PerformanceEvaluationTypeDescriptor)
             {
                 source.PerformanceEvaluationTypeDescriptor = target.PerformanceEvaluationTypeDescriptor;
-            }
-            if (source.SchoolYear != target.SchoolYear)
-            {
-                source.SchoolYear = target.SchoolYear;
             }
             if (source.TermDescriptor != target.TermDescriptor)
             {
@@ -12398,15 +15452,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsEvaluationElementRatingLevelsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.EvaluationElementRatingLevels.SynchronizeCollectionTo(
-                        target.EvaluationElementRatingLevels, 
-                        onChildAdded: child => 
+                        target.EvaluationElementRatingLevels,
+                        onChildAdded: child =>
                             {
                                 child.EvaluationElement = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsEvaluationElementRatingLevelIncluded);
             }
 
@@ -12425,14 +15479,11 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementAggregate
             target.Id = source.Id;
 
             // Copy contextual primary key values
-            target.EducationOrganizationId = source.EducationOrganizationId;
             target.EvaluationElementTitle = source.EvaluationElementTitle;
             target.EvaluationObjectiveTitle = source.EvaluationObjectiveTitle;
-            target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
             target.EvaluationTitle = source.EvaluationTitle;
             target.PerformanceEvaluationTitle = source.PerformanceEvaluationTitle;
             target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
-            target.SchoolYear = source.SchoolYear;
             target.TermDescriptor = source.TermDescriptor;
 
             // Copy non-PK properties
@@ -12458,7 +15509,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementAggregate
                 targetSynchSupport.IsSortOrderSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EvaluationObjectiveResourceId = source.EvaluationObjectiveResourceId;
@@ -12474,7 +15525,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementAggregate
             // Map lists
 
             if (sourceSynchSupport.IsEvaluationElementRatingLevelsSupported)
-            {    
+            {
                 targetSynchSupport.IsEvaluationElementRatingLevelIncluded = sourceSynchSupport.IsEvaluationElementRatingLevelIncluded;
                 source.EvaluationElementRatingLevels.MapCollectionTo(target.EvaluationElementRatingLevels, target);
             }
@@ -12502,7 +15553,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -12515,9 +15566,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementAggregate
         bool IsSortOrderSupported { get; set; }
         Func<IEvaluationElementRatingLevel, bool> IsEvaluationElementRatingLevelIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class EvaluationElementRatingLevelMapper 
+    public static class EvaluationElementRatingLevelMapper
     {
         public static bool SynchronizeTo(this IEvaluationElementRatingLevel source, IEvaluationElementRatingLevel target)
         {
@@ -12603,7 +15654,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -12612,14 +15663,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementAggregate
         bool IsMaxRatingSupported { get; set; }
         bool IsMinRatingSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EvaluationElementRating
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EvaluationElementRatingMapper 
+    public static class EvaluationElementRatingMapper
     {
         public static bool SynchronizeTo(this IEvaluationElementRating source, IEvaluationElementRating target)
         {
@@ -12628,10 +15679,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingAggregate
             var sourceSupport = source as IEvaluationElementRatingSynchronizationSourceSupport;
 
             // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.EducationOrganizationId != target.EducationOrganizationId)
-            {
-                source.EducationOrganizationId = target.EducationOrganizationId;
-            }
             if (source.EvaluationDate != target.EvaluationDate)
             {
                 source.EvaluationDate = target.EvaluationDate;
@@ -12643,10 +15690,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingAggregate
             if (source.EvaluationObjectiveTitle != target.EvaluationObjectiveTitle)
             {
                 source.EvaluationObjectiveTitle = target.EvaluationObjectiveTitle;
-            }
-            if (source.EvaluationPeriodDescriptor != target.EvaluationPeriodDescriptor)
-            {
-                source.EvaluationPeriodDescriptor = target.EvaluationPeriodDescriptor;
             }
             if (source.EvaluationTitle != target.EvaluationTitle)
             {
@@ -12663,10 +15706,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingAggregate
             if (source.PersonId != target.PersonId)
             {
                 source.PersonId = target.PersonId;
-            }
-            if (source.SchoolYear != target.SchoolYear)
-            {
-                source.SchoolYear = target.SchoolYear;
             }
             if (source.SourceSystemDescriptor != target.SourceSystemDescriptor)
             {
@@ -12718,15 +15757,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsEvaluationElementRatingResultsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.EvaluationElementRatingResults.SynchronizeCollectionTo(
-                        target.EvaluationElementRatingResults, 
-                        onChildAdded: child => 
+                        target.EvaluationElementRatingResults,
+                        onChildAdded: child =>
                             {
                                 child.EvaluationElementRating = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsEvaluationElementRatingResultIncluded);
             }
 
@@ -12745,16 +15784,13 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingAggregate
             target.Id = source.Id;
 
             // Copy contextual primary key values
-            target.EducationOrganizationId = source.EducationOrganizationId;
             target.EvaluationDate = source.EvaluationDate;
             target.EvaluationElementTitle = source.EvaluationElementTitle;
             target.EvaluationObjectiveTitle = source.EvaluationObjectiveTitle;
-            target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
             target.EvaluationTitle = source.EvaluationTitle;
             target.PerformanceEvaluationTitle = source.PerformanceEvaluationTitle;
             target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
             target.PersonId = source.PersonId;
-            target.SchoolYear = source.SchoolYear;
             target.SourceSystemDescriptor = source.SourceSystemDescriptor;
             target.TermDescriptor = source.TermDescriptor;
 
@@ -12786,7 +15822,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingAggregate
                 targetSynchSupport.IsFeedbackSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EvaluationElementResourceId = source.EvaluationElementResourceId;
@@ -12804,7 +15840,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingAggregate
             // Map lists
 
             if (sourceSynchSupport.IsEvaluationElementRatingResultsSupported)
-            {    
+            {
                 targetSynchSupport.IsEvaluationElementRatingResultIncluded = sourceSynchSupport.IsEvaluationElementRatingResultIncluded;
                 source.EvaluationElementRatingResults.MapCollectionTo(target.EvaluationElementRatingResults, target);
             }
@@ -12832,7 +15868,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -12846,9 +15882,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingAggregate
         bool IsFeedbackSupported { get; set; }
         Func<IEvaluationElementRatingResult, bool> IsEvaluationElementRatingResultIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class EvaluationElementRatingResultMapper 
+    public static class EvaluationElementRatingResultMapper
     {
         public static bool SynchronizeTo(this IEvaluationElementRatingResult source, IEvaluationElementRatingResult target)
         {
@@ -12927,7 +15963,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -12935,14 +15971,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingAggregate
     {
         bool IsResultDatatypeTypeDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EvaluationElementRatingLevelDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingLevelDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EvaluationElementRatingLevelDescriptorMapper 
+    public static class EvaluationElementRatingLevelDescriptorMapper
     {
         public static bool SynchronizeTo(this IEvaluationElementRatingLevelDescriptor source, IEvaluationElementRatingLevelDescriptor target)
         {
@@ -13100,7 +16136,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingLevelDescripto
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -13114,14 +16150,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationElementRatingLevelDescripto
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EvaluationObjective
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EvaluationObjectiveMapper 
+    public static class EvaluationObjectiveMapper
     {
         public static bool SynchronizeTo(this IEvaluationObjective source, IEvaluationObjective target)
         {
@@ -13130,17 +16166,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveAggregate
             var sourceSupport = source as IEvaluationObjectiveSynchronizationSourceSupport;
 
             // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.EducationOrganizationId != target.EducationOrganizationId)
-            {
-                source.EducationOrganizationId = target.EducationOrganizationId;
-            }
             if (source.EvaluationObjectiveTitle != target.EvaluationObjectiveTitle)
             {
                 source.EvaluationObjectiveTitle = target.EvaluationObjectiveTitle;
-            }
-            if (source.EvaluationPeriodDescriptor != target.EvaluationPeriodDescriptor)
-            {
-                source.EvaluationPeriodDescriptor = target.EvaluationPeriodDescriptor;
             }
             if (source.EvaluationTitle != target.EvaluationTitle)
             {
@@ -13153,10 +16181,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveAggregate
             if (source.PerformanceEvaluationTypeDescriptor != target.PerformanceEvaluationTypeDescriptor)
             {
                 source.PerformanceEvaluationTypeDescriptor = target.PerformanceEvaluationTypeDescriptor;
-            }
-            if (source.SchoolYear != target.SchoolYear)
-            {
-                source.SchoolYear = target.SchoolYear;
             }
             if (source.TermDescriptor != target.TermDescriptor)
             {
@@ -13197,15 +16221,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsEvaluationObjectiveRatingLevelsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.EvaluationObjectiveRatingLevels.SynchronizeCollectionTo(
-                        target.EvaluationObjectiveRatingLevels, 
-                        onChildAdded: child => 
+                        target.EvaluationObjectiveRatingLevels,
+                        onChildAdded: child =>
                             {
                                 child.EvaluationObjective = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsEvaluationObjectiveRatingLevelIncluded);
             }
 
@@ -13224,13 +16248,10 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveAggregate
             target.Id = source.Id;
 
             // Copy contextual primary key values
-            target.EducationOrganizationId = source.EducationOrganizationId;
             target.EvaluationObjectiveTitle = source.EvaluationObjectiveTitle;
-            target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
             target.EvaluationTitle = source.EvaluationTitle;
             target.PerformanceEvaluationTitle = source.PerformanceEvaluationTitle;
             target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
-            target.SchoolYear = source.SchoolYear;
             target.TermDescriptor = source.TermDescriptor;
 
             // Copy non-PK properties
@@ -13256,7 +16277,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveAggregate
                 targetSynchSupport.IsSortOrderSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EvaluationResourceId = source.EvaluationResourceId;
@@ -13272,7 +16293,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveAggregate
             // Map lists
 
             if (sourceSynchSupport.IsEvaluationObjectiveRatingLevelsSupported)
-            {    
+            {
                 targetSynchSupport.IsEvaluationObjectiveRatingLevelIncluded = sourceSynchSupport.IsEvaluationObjectiveRatingLevelIncluded;
                 source.EvaluationObjectiveRatingLevels.MapCollectionTo(target.EvaluationObjectiveRatingLevels, target);
             }
@@ -13300,7 +16321,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -13313,9 +16334,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveAggregate
         bool IsSortOrderSupported { get; set; }
         Func<IEvaluationObjectiveRatingLevel, bool> IsEvaluationObjectiveRatingLevelIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class EvaluationObjectiveRatingLevelMapper 
+    public static class EvaluationObjectiveRatingLevelMapper
     {
         public static bool SynchronizeTo(this IEvaluationObjectiveRatingLevel source, IEvaluationObjectiveRatingLevel target)
         {
@@ -13401,7 +16422,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -13410,14 +16431,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveAggregate
         bool IsMaxRatingSupported { get; set; }
         bool IsMinRatingSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EvaluationObjectiveRating
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveRatingAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EvaluationObjectiveRatingMapper 
+    public static class EvaluationObjectiveRatingMapper
     {
         public static bool SynchronizeTo(this IEvaluationObjectiveRating source, IEvaluationObjectiveRating target)
         {
@@ -13426,10 +16447,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveRatingAggregate
             var sourceSupport = source as IEvaluationObjectiveRatingSynchronizationSourceSupport;
 
             // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.EducationOrganizationId != target.EducationOrganizationId)
-            {
-                source.EducationOrganizationId = target.EducationOrganizationId;
-            }
             if (source.EvaluationDate != target.EvaluationDate)
             {
                 source.EvaluationDate = target.EvaluationDate;
@@ -13437,10 +16454,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveRatingAggregate
             if (source.EvaluationObjectiveTitle != target.EvaluationObjectiveTitle)
             {
                 source.EvaluationObjectiveTitle = target.EvaluationObjectiveTitle;
-            }
-            if (source.EvaluationPeriodDescriptor != target.EvaluationPeriodDescriptor)
-            {
-                source.EvaluationPeriodDescriptor = target.EvaluationPeriodDescriptor;
             }
             if (source.EvaluationTitle != target.EvaluationTitle)
             {
@@ -13457,10 +16470,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveRatingAggregate
             if (source.PersonId != target.PersonId)
             {
                 source.PersonId = target.PersonId;
-            }
-            if (source.SchoolYear != target.SchoolYear)
-            {
-                source.SchoolYear = target.SchoolYear;
             }
             if (source.SourceSystemDescriptor != target.SourceSystemDescriptor)
             {
@@ -13491,15 +16500,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveRatingAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsEvaluationObjectiveRatingResultsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.EvaluationObjectiveRatingResults.SynchronizeCollectionTo(
-                        target.EvaluationObjectiveRatingResults, 
-                        onChildAdded: child => 
+                        target.EvaluationObjectiveRatingResults,
+                        onChildAdded: child =>
                             {
                                 child.EvaluationObjectiveRating = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsEvaluationObjectiveRatingResultIncluded);
             }
 
@@ -13518,15 +16527,12 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveRatingAggregate
             target.Id = source.Id;
 
             // Copy contextual primary key values
-            target.EducationOrganizationId = source.EducationOrganizationId;
             target.EvaluationDate = source.EvaluationDate;
             target.EvaluationObjectiveTitle = source.EvaluationObjectiveTitle;
-            target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
             target.EvaluationTitle = source.EvaluationTitle;
             target.PerformanceEvaluationTitle = source.PerformanceEvaluationTitle;
             target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
             target.PersonId = source.PersonId;
-            target.SchoolYear = source.SchoolYear;
             target.SourceSystemDescriptor = source.SourceSystemDescriptor;
             target.TermDescriptor = source.TermDescriptor;
 
@@ -13543,7 +16549,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveRatingAggregate
                 targetSynchSupport.IsObjectiveRatingLevelDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EvaluationObjectiveResourceId = source.EvaluationObjectiveResourceId;
@@ -13561,7 +16567,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveRatingAggregate
             // Map lists
 
             if (sourceSynchSupport.IsEvaluationObjectiveRatingResultsSupported)
-            {    
+            {
                 targetSynchSupport.IsEvaluationObjectiveRatingResultIncluded = sourceSynchSupport.IsEvaluationObjectiveRatingResultIncluded;
                 source.EvaluationObjectiveRatingResults.MapCollectionTo(target.EvaluationObjectiveRatingResults, target);
             }
@@ -13589,7 +16595,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveRatingAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -13600,9 +16606,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveRatingAggregate
         bool IsObjectiveRatingLevelDescriptorSupported { get; set; }
         Func<IEvaluationObjectiveRatingResult, bool> IsEvaluationObjectiveRatingResultIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class EvaluationObjectiveRatingResultMapper 
+    public static class EvaluationObjectiveRatingResultMapper
     {
         public static bool SynchronizeTo(this IEvaluationObjectiveRatingResult source, IEvaluationObjectiveRatingResult target)
         {
@@ -13681,7 +16687,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveRatingAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -13689,14 +16695,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationObjectiveRatingAggregate
     {
         bool IsResultDatatypeTypeDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EvaluationPeriodDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationPeriodDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EvaluationPeriodDescriptorMapper 
+    public static class EvaluationPeriodDescriptorMapper
     {
         public static bool SynchronizeTo(this IEvaluationPeriodDescriptor source, IEvaluationPeriodDescriptor target)
         {
@@ -13854,7 +16860,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationPeriodDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -13868,14 +16874,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationPeriodDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EvaluationRating
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EvaluationRatingMapper 
+    public static class EvaluationRatingMapper
     {
         public static bool SynchronizeTo(this IEvaluationRating source, IEvaluationRating target)
         {
@@ -13884,17 +16890,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
             var sourceSupport = source as IEvaluationRatingSynchronizationSourceSupport;
 
             // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.EducationOrganizationId != target.EducationOrganizationId)
-            {
-                source.EducationOrganizationId = target.EducationOrganizationId;
-            }
             if (source.EvaluationDate != target.EvaluationDate)
             {
                 source.EvaluationDate = target.EvaluationDate;
-            }
-            if (source.EvaluationPeriodDescriptor != target.EvaluationPeriodDescriptor)
-            {
-                source.EvaluationPeriodDescriptor = target.EvaluationPeriodDescriptor;
             }
             if (source.EvaluationTitle != target.EvaluationTitle)
             {
@@ -13911,10 +16909,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
             if (source.PersonId != target.PersonId)
             {
                 source.PersonId = target.PersonId;
-            }
-            if (source.SchoolYear != target.SchoolYear)
-            {
-                source.SchoolYear = target.SchoolYear;
             }
             if (source.SourceSystemDescriptor != target.SourceSystemDescriptor)
             {
@@ -13948,6 +16942,13 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
                 isModified = true;
             }
 
+            if ((sourceSupport == null || sourceSupport.IsSchoolYearSupported)
+                && target.SchoolYear != source.SchoolYear)
+            {
+                target.SchoolYear = source.SchoolYear;
+                isModified = true;
+            }
+
             if ((sourceSupport == null || sourceSupport.IsSectionIdentifierSupported)
                 && target.SectionIdentifier != source.SectionIdentifier)
             {
@@ -13966,29 +16967,29 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsEvaluationRatingResultsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.EvaluationRatingResults.SynchronizeCollectionTo(
-                        target.EvaluationRatingResults, 
-                        onChildAdded: child => 
+                        target.EvaluationRatingResults,
+                        onChildAdded: child =>
                             {
                                 child.EvaluationRating = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsEvaluationRatingResultIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsEvaluationRatingReviewersSupported)
             {
-                isModified |= 
+                isModified |=
                     source.EvaluationRatingReviewers.SynchronizeCollectionTo(
-                        target.EvaluationRatingReviewers, 
-                        onChildAdded: child => 
+                        target.EvaluationRatingReviewers,
+                        onChildAdded: child =>
                             {
                                 child.EvaluationRating = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsEvaluationRatingReviewerIncluded);
             }
 
@@ -14007,14 +17008,11 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
             target.Id = source.Id;
 
             // Copy contextual primary key values
-            target.EducationOrganizationId = source.EducationOrganizationId;
             target.EvaluationDate = source.EvaluationDate;
-            target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
             target.EvaluationTitle = source.EvaluationTitle;
             target.PerformanceEvaluationTitle = source.PerformanceEvaluationTitle;
             target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
             target.PersonId = source.PersonId;
-            target.SchoolYear = source.SchoolYear;
             target.SourceSystemDescriptor = source.SourceSystemDescriptor;
             target.TermDescriptor = source.TermDescriptor;
 
@@ -14035,6 +17033,11 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
             else
                 targetSynchSupport.IsSchoolIdSupported = false;
 
+            if (sourceSynchSupport.IsSchoolYearSupported)
+                target.SchoolYear = source.SchoolYear;
+            else
+                targetSynchSupport.IsSchoolYearSupported = false;
+
             if (sourceSynchSupport.IsSectionIdentifierSupported)
                 target.SectionIdentifier = source.SectionIdentifier;
             else
@@ -14046,7 +17049,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
                 targetSynchSupport.IsSessionNameSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EvaluationResourceId = source.EvaluationResourceId;
@@ -14066,7 +17069,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
             // Map lists
 
             if (sourceSynchSupport.IsEvaluationRatingResultsSupported)
-            {    
+            {
                 targetSynchSupport.IsEvaluationRatingResultIncluded = sourceSynchSupport.IsEvaluationRatingResultIncluded;
                 source.EvaluationRatingResults.MapCollectionTo(target.EvaluationRatingResults, target);
             }
@@ -14076,7 +17079,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
             }
 
             if (sourceSynchSupport.IsEvaluationRatingReviewersSupported)
-            {    
+            {
                 targetSynchSupport.IsEvaluationRatingReviewerIncluded = sourceSynchSupport.IsEvaluationRatingReviewerIncluded;
                 source.EvaluationRatingReviewers.MapCollectionTo(target.EvaluationRatingReviewers, target);
             }
@@ -14104,7 +17107,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -14115,14 +17118,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
         bool IsEvaluationRatingReviewersSupported { get; set; }
         bool IsLocalCourseCodeSupported { get; set; }
         bool IsSchoolIdSupported { get; set; }
+        bool IsSchoolYearSupported { get; set; }
         bool IsSectionIdentifierSupported { get; set; }
         bool IsSessionNameSupported { get; set; }
         Func<IEvaluationRatingResult, bool> IsEvaluationRatingResultIncluded { get; set; }
         Func<IEvaluationRatingReviewer, bool> IsEvaluationRatingReviewerIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class EvaluationRatingResultMapper 
+    public static class EvaluationRatingResultMapper
     {
         public static bool SynchronizeTo(this IEvaluationRatingResult source, IEvaluationRatingResult target)
         {
@@ -14201,7 +17205,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -14209,9 +17213,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
     {
         bool IsResultDatatypeTypeDescriptorSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class EvaluationRatingReviewerMapper 
+    public static class EvaluationRatingReviewerMapper
     {
         public static bool SynchronizeTo(this IEvaluationRatingReviewer source, IEvaluationRatingReviewer target)
         {
@@ -14231,9 +17235,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
 
             // Copy non-PK properties
 
-            // ----------------------------------            
+            // ----------------------------------
             //   Synch One-to-one relationships
-            // ----------------------------------            
+            // ----------------------------------
             // EvaluationRatingReviewerReceivedTraining
             if (sourceSupport == null || sourceSupport.IsEvaluationRatingReviewerReceivedTrainingSupported)
             {
@@ -14257,7 +17261,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
                     isModified |= source.EvaluationRatingReviewerReceivedTraining.Synchronize(target.EvaluationRatingReviewerReceivedTraining);
                 }
             }
-            
+
             // -------------------------------------------------------------
 
             // Sync lists
@@ -14279,7 +17283,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.PersonResourceId = source.PersonResourceId;
@@ -14295,9 +17299,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
             if (sourceSynchSupport.IsEvaluationRatingReviewerReceivedTrainingSupported)
             {
                 var itemProperty = target.GetType().GetProperty("EvaluationRatingReviewerReceivedTraining");
-                
+
                 if (itemProperty != null)
-                {                    
+                {
                     if (source.EvaluationRatingReviewerReceivedTraining == null)
                     {
                         target.EvaluationRatingReviewerReceivedTraining = null;
@@ -14308,7 +17312,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
                         object targetEvaluationRatingReviewerReceivedTraining = Activator.CreateInstance(itemType);
                         (targetEvaluationRatingReviewerReceivedTraining as IChildEntity)?.SetParent(target);
                         source.EvaluationRatingReviewerReceivedTraining.Map(targetEvaluationRatingReviewerReceivedTraining);
-                        
+
                         // Update the target reference appropriately
                         target.EvaluationRatingReviewerReceivedTraining = (IEvaluationRatingReviewerReceivedTraining) targetEvaluationRatingReviewerReceivedTraining;
                     }
@@ -14316,7 +17320,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
             }
             else
             {
-                targetSynchSupport.IsEvaluationRatingReviewerReceivedTrainingSupported = false; 
+                targetSynchSupport.IsEvaluationRatingReviewerReceivedTrainingSupported = false;
             }
             // -------------------------------------------------------------
 
@@ -14341,7 +17345,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -14349,9 +17353,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
     {
         bool IsEvaluationRatingReviewerReceivedTrainingSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class EvaluationRatingReviewerReceivedTrainingMapper 
+    public static class EvaluationRatingReviewerReceivedTrainingMapper
     {
         public static bool SynchronizeTo(this IEvaluationRatingReviewerReceivedTraining source, IEvaluationRatingReviewerReceivedTraining target)
         {
@@ -14432,7 +17436,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -14441,14 +17445,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingAggregate
         bool IsInterRaterReliabilityScoreSupported { get; set; }
         bool IsReceivedTrainingDateSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EvaluationRatingLevelDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingLevelDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EvaluationRatingLevelDescriptorMapper 
+    public static class EvaluationRatingLevelDescriptorMapper
     {
         public static bool SynchronizeTo(this IEvaluationRatingLevelDescriptor source, IEvaluationRatingLevelDescriptor target)
         {
@@ -14606,7 +17610,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingLevelDescriptorAggreg
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -14620,14 +17624,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationRatingLevelDescriptorAggreg
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: EvaluationTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class EvaluationTypeDescriptorMapper 
+    public static class EvaluationTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IEvaluationTypeDescriptor source, IEvaluationTypeDescriptor target)
         {
@@ -14785,7 +17789,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationTypeDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -14799,14 +17803,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.EvaluationTypeDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: FederalLocaleCodeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.FederalLocaleCodeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class FederalLocaleCodeDescriptorMapper 
+    public static class FederalLocaleCodeDescriptorMapper
     {
         public static bool SynchronizeTo(this IFederalLocaleCodeDescriptor source, IFederalLocaleCodeDescriptor target)
         {
@@ -14964,7 +17968,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.FederalLocaleCodeDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -14978,537 +17982,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.FederalLocaleCodeDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
-}
-// Aggregate: FieldworkExperience
 
-namespace EdFi.Ods.Entities.Common.TPDM //.FieldworkExperienceAggregate
-{ 
-    [ExcludeFromCodeCoverage]
-    public static class FieldworkExperienceMapper 
-    {
-        public static bool SynchronizeTo(this IFieldworkExperience source, IFieldworkExperience target)
-        {
-            bool isModified = false;
-
-            var sourceSupport = source as IFieldworkExperienceSynchronizationSourceSupport;
-
-            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.BeginDate != target.BeginDate)
-            {
-                source.BeginDate = target.BeginDate;
-            }
-            if (source.FieldworkIdentifier != target.FieldworkIdentifier)
-            {
-                source.FieldworkIdentifier = target.FieldworkIdentifier;
-            }
-            if (source.StudentUniqueId != target.StudentUniqueId)
-            {
-                source.StudentUniqueId = target.StudentUniqueId;
-            }
-
-            // Copy non-PK properties
-
-            if ((sourceSupport == null || sourceSupport.IsEndDateSupported)
-                && target.EndDate != source.EndDate)
-            {
-                target.EndDate = source.EndDate;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsFieldworkTypeDescriptorSupported)
-                && target.FieldworkTypeDescriptor != source.FieldworkTypeDescriptor)
-            {
-                target.FieldworkTypeDescriptor = source.FieldworkTypeDescriptor;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsHoursCompletedSupported)
-                && target.HoursCompleted != source.HoursCompleted)
-            {
-                target.HoursCompleted = source.HoursCompleted;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsProgramGatewayDescriptorSupported)
-                && target.ProgramGatewayDescriptor != source.ProgramGatewayDescriptor)
-            {
-                target.ProgramGatewayDescriptor = source.ProgramGatewayDescriptor;
-                isModified = true;
-            }
-
-            // ----------------------------------            
-            //   Synch One-to-one relationships
-            // ----------------------------------            
-            // FieldworkExperienceCoteaching
-            if (sourceSupport == null || sourceSupport.IsFieldworkExperienceCoteachingSupported)
-            {
-                if (source.FieldworkExperienceCoteaching == null)
-                {
-                    if (target.FieldworkExperienceCoteaching != null)
-                    {
-                        target.FieldworkExperienceCoteaching = null;
-                        isModified = true;
-                    }
-                }
-                else
-                {
-                    if (target.FieldworkExperienceCoteaching == null)
-                    {
-                        var itemType = target.GetType().GetProperty("FieldworkExperienceCoteaching").PropertyType;
-                        var newItem = Activator.CreateInstance(itemType);
-                        target.FieldworkExperienceCoteaching = (IFieldworkExperienceCoteaching) newItem;
-                    }
-
-                    isModified |= source.FieldworkExperienceCoteaching.Synchronize(target.FieldworkExperienceCoteaching);
-                }
-            }
-            
-            // -------------------------------------------------------------
-
-            // Sync lists
-            if (sourceSupport == null || sourceSupport.IsFieldworkExperienceSchoolsSupported)
-            {
-                isModified |= 
-                    source.FieldworkExperienceSchools.SynchronizeCollectionTo(
-                        target.FieldworkExperienceSchools, 
-                        onChildAdded: child => 
-                            {
-                                child.FieldworkExperience = target;
-                            },
-                        includeItem: sourceSupport == null 
-                            ? null 
-                            : sourceSupport.IsFieldworkExperienceSchoolIncluded);
-            }
-
-
-            return isModified;
-        }
-
-
-
-        public static void MapTo(this IFieldworkExperience source, IFieldworkExperience target, Action<IFieldworkExperience, IFieldworkExperience> onMapped)
-        {
-            var sourceSynchSupport = source as IFieldworkExperienceSynchronizationSourceSupport;
-            var targetSynchSupport = target as IFieldworkExperienceSynchronizationSourceSupport;
-
-            // Copy resource Id
-            target.Id = source.Id;
-
-            // Copy contextual primary key values
-            target.BeginDate = source.BeginDate;
-            target.FieldworkIdentifier = source.FieldworkIdentifier;
-            target.StudentUniqueId = source.StudentUniqueId;
-
-            // Copy non-PK properties
-
-            if (sourceSynchSupport.IsEndDateSupported)
-                target.EndDate = source.EndDate;
-            else
-                targetSynchSupport.IsEndDateSupported = false;
-
-            if (sourceSynchSupport.IsFieldworkTypeDescriptorSupported)
-                target.FieldworkTypeDescriptor = source.FieldworkTypeDescriptor;
-            else
-                targetSynchSupport.IsFieldworkTypeDescriptorSupported = false;
-
-            if (sourceSynchSupport.IsHoursCompletedSupported)
-                target.HoursCompleted = source.HoursCompleted;
-            else
-                targetSynchSupport.IsHoursCompletedSupported = false;
-
-            if (sourceSynchSupport.IsProgramGatewayDescriptorSupported)
-                target.ProgramGatewayDescriptor = source.ProgramGatewayDescriptor;
-            else
-                targetSynchSupport.IsProgramGatewayDescriptorSupported = false;
-
-            // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
-                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
-            {
-                target.StudentResourceId = source.StudentResourceId;
-                target.StudentDiscriminator = source.StudentDiscriminator;
-            }
-
-
-
-            // ----------------------------------
-            //   Map One-to-one relationships
-            // ----------------------------------
-            // FieldworkExperienceCoteaching (Source)
-            if (sourceSynchSupport.IsFieldworkExperienceCoteachingSupported)
-            {
-                var itemProperty = target.GetType().GetProperty("FieldworkExperienceCoteaching");
-                
-                if (itemProperty != null)
-                {                    
-                    if (source.FieldworkExperienceCoteaching == null)
-                    {
-                        target.FieldworkExperienceCoteaching = null;
-                    }
-                    else
-                    {
-                        var itemType = itemProperty.PropertyType;
-                        object targetFieldworkExperienceCoteaching = Activator.CreateInstance(itemType);
-                        (targetFieldworkExperienceCoteaching as IChildEntity)?.SetParent(target);
-                        source.FieldworkExperienceCoteaching.Map(targetFieldworkExperienceCoteaching);
-                        
-                        // Update the target reference appropriately
-                        target.FieldworkExperienceCoteaching = (IFieldworkExperienceCoteaching) targetFieldworkExperienceCoteaching;
-                    }
-                }
-            }
-            else
-            {
-                targetSynchSupport.IsFieldworkExperienceCoteachingSupported = false; 
-            }
-            // -------------------------------------------------------------
-
-            // Map lists
-
-            if (sourceSynchSupport.IsFieldworkExperienceSchoolsSupported)
-            {    
-                targetSynchSupport.IsFieldworkExperienceSchoolIncluded = sourceSynchSupport.IsFieldworkExperienceSchoolIncluded;
-                source.FieldworkExperienceSchools.MapCollectionTo(target.FieldworkExperienceSchools, target);
-            }
-            else
-            {
-                targetSynchSupport.IsFieldworkExperienceSchoolsSupported = false;
-            }
-
-
-            var eTagProvider = new ETagProvider();
-
-            // Convert value to ETag, if appropriate
-            var entityWithETag = target as IHasETag;
-
-            if (entityWithETag != null)
-                entityWithETag.ETag = eTagProvider.GetETag(source);
-
-            // Convert value to LastModifiedDate, if appropriate
-            var dateVersionedEntity = target as IDateVersionedEntity;
-            var etagSource = source as IHasETag;
-
-            if (dateVersionedEntity != null && etagSource != null)
-                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
-        }
-    }
-
-    /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
-    /// is supported by a model implementation being used as the source in a "synchronization"
-    /// operation.
-    /// </summary>
-    public interface IFieldworkExperienceSynchronizationSourceSupport 
-    {
-        bool IsEndDateSupported { get; set; }
-        bool IsFieldworkExperienceCoteachingSupported { get; set; }
-        bool IsFieldworkExperienceSchoolsSupported { get; set; }
-        bool IsFieldworkTypeDescriptorSupported { get; set; }
-        bool IsHoursCompletedSupported { get; set; }
-        bool IsProgramGatewayDescriptorSupported { get; set; }
-        Func<IFieldworkExperienceSchool, bool> IsFieldworkExperienceSchoolIncluded { get; set; }
-    }
- 
-    [ExcludeFromCodeCoverage]
-    public static class FieldworkExperienceCoteachingMapper 
-    {
-        public static bool SynchronizeTo(this IFieldworkExperienceCoteaching source, IFieldworkExperienceCoteaching target)
-        {
-            bool isModified = false;
-
-            var sourceSupport = source as IFieldworkExperienceCoteachingSynchronizationSourceSupport;
-
-            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-
-            // Copy non-PK properties
-
-            if ((sourceSupport == null || sourceSupport.IsCoteachingBeginDateSupported)
-                && target.CoteachingBeginDate != source.CoteachingBeginDate)
-            {
-                target.CoteachingBeginDate = source.CoteachingBeginDate;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsCoteachingEndDateSupported)
-                && target.CoteachingEndDate != source.CoteachingEndDate)
-            {
-                target.CoteachingEndDate = source.CoteachingEndDate;
-                isModified = true;
-            }
-
-
-            // Sync lists
-
-            return isModified;
-        }
-
-
-
-        public static void MapTo(this IFieldworkExperienceCoteaching source, IFieldworkExperienceCoteaching target, Action<IFieldworkExperienceCoteaching, IFieldworkExperienceCoteaching> onMapped)
-        {
-            var sourceSynchSupport = source as IFieldworkExperienceCoteachingSynchronizationSourceSupport;
-            var targetSynchSupport = target as IFieldworkExperienceCoteachingSynchronizationSourceSupport;
-
-            // Copy contextual primary key values
-
-            // Copy non-PK properties
-
-            if (sourceSynchSupport.IsCoteachingBeginDateSupported)
-                target.CoteachingBeginDate = source.CoteachingBeginDate;
-            else
-                targetSynchSupport.IsCoteachingBeginDateSupported = false;
-
-            if (sourceSynchSupport.IsCoteachingEndDateSupported)
-                target.CoteachingEndDate = source.CoteachingEndDate;
-            else
-                targetSynchSupport.IsCoteachingEndDateSupported = false;
-
-            // Copy Aggregate Reference Data
-
-
-            // ----------------------------------
-            //   Map One-to-one relationships
-            // ----------------------------------
-
-            // Map lists
-
-
-            var eTagProvider = new ETagProvider();
-
-            // Convert value to ETag, if appropriate
-            var entityWithETag = target as IHasETag;
-
-            if (entityWithETag != null)
-                entityWithETag.ETag = eTagProvider.GetETag(source);
-
-            // Convert value to LastModifiedDate, if appropriate
-            var dateVersionedEntity = target as IDateVersionedEntity;
-            var etagSource = source as IHasETag;
-
-            if (dateVersionedEntity != null && etagSource != null)
-                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
-        }
-    }
-
-    /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
-    /// is supported by a model implementation being used as the source in a "synchronization"
-    /// operation.
-    /// </summary>
-    public interface IFieldworkExperienceCoteachingSynchronizationSourceSupport 
-    {
-        bool IsCoteachingBeginDateSupported { get; set; }
-        bool IsCoteachingEndDateSupported { get; set; }
-    }
- 
-    [ExcludeFromCodeCoverage]
-    public static class FieldworkExperienceSchoolMapper 
-    {
-        public static bool SynchronizeTo(this IFieldworkExperienceSchool source, IFieldworkExperienceSchool target)
-        {
-            bool isModified = false;
-
-            var sourceSupport = source as IFieldworkExperienceSchoolSynchronizationSourceSupport;
-
-            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.SchoolId != target.SchoolId)
-            {
-                source.SchoolId = target.SchoolId;
-            }
-
-            // Copy non-PK properties
-
-
-            // Sync lists
-
-            return isModified;
-        }
-
-
-
-        public static void MapTo(this IFieldworkExperienceSchool source, IFieldworkExperienceSchool target, Action<IFieldworkExperienceSchool, IFieldworkExperienceSchool> onMapped)
-        {
-            var sourceSynchSupport = source as IFieldworkExperienceSchoolSynchronizationSourceSupport;
-            var targetSynchSupport = target as IFieldworkExperienceSchoolSynchronizationSourceSupport;
-
-            // Copy contextual primary key values
-            target.SchoolId = source.SchoolId;
-
-            // Copy non-PK properties
-
-            // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
-                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
-            {
-                target.SchoolResourceId = source.SchoolResourceId;
-            }
-
-
-
-            // ----------------------------------
-            //   Map One-to-one relationships
-            // ----------------------------------
-
-            // Map lists
-
-
-            var eTagProvider = new ETagProvider();
-
-            // Convert value to ETag, if appropriate
-            var entityWithETag = target as IHasETag;
-
-            if (entityWithETag != null)
-                entityWithETag.ETag = eTagProvider.GetETag(source);
-
-            // Convert value to LastModifiedDate, if appropriate
-            var dateVersionedEntity = target as IDateVersionedEntity;
-            var etagSource = source as IHasETag;
-
-            if (dateVersionedEntity != null && etagSource != null)
-                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
-        }
-    }
-
-    /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
-    /// is supported by a model implementation being used as the source in a "synchronization"
-    /// operation.
-    /// </summary>
-    public interface IFieldworkExperienceSchoolSynchronizationSourceSupport 
-    {
-    }
- 
-}
-// Aggregate: FieldworkExperienceSectionAssociation
-
-namespace EdFi.Ods.Entities.Common.TPDM //.FieldworkExperienceSectionAssociationAggregate
-{ 
-    [ExcludeFromCodeCoverage]
-    public static class FieldworkExperienceSectionAssociationMapper 
-    {
-        public static bool SynchronizeTo(this IFieldworkExperienceSectionAssociation source, IFieldworkExperienceSectionAssociation target)
-        {
-            bool isModified = false;
-
-            var sourceSupport = source as IFieldworkExperienceSectionAssociationSynchronizationSourceSupport;
-
-            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.BeginDate != target.BeginDate)
-            {
-                source.BeginDate = target.BeginDate;
-            }
-            if (source.FieldworkIdentifier != target.FieldworkIdentifier)
-            {
-                source.FieldworkIdentifier = target.FieldworkIdentifier;
-            }
-            if (source.LocalCourseCode != target.LocalCourseCode)
-            {
-                source.LocalCourseCode = target.LocalCourseCode;
-            }
-            if (source.SchoolId != target.SchoolId)
-            {
-                source.SchoolId = target.SchoolId;
-            }
-            if (source.SchoolYear != target.SchoolYear)
-            {
-                source.SchoolYear = target.SchoolYear;
-            }
-            if (source.SectionIdentifier != target.SectionIdentifier)
-            {
-                source.SectionIdentifier = target.SectionIdentifier;
-            }
-            if (source.SessionName != target.SessionName)
-            {
-                source.SessionName = target.SessionName;
-            }
-            if (source.StudentUniqueId != target.StudentUniqueId)
-            {
-                source.StudentUniqueId = target.StudentUniqueId;
-            }
-
-            // Copy non-PK properties
-
-
-            // Sync lists
-
-            return isModified;
-        }
-
-
-
-        public static void MapTo(this IFieldworkExperienceSectionAssociation source, IFieldworkExperienceSectionAssociation target, Action<IFieldworkExperienceSectionAssociation, IFieldworkExperienceSectionAssociation> onMapped)
-        {
-            var sourceSynchSupport = source as IFieldworkExperienceSectionAssociationSynchronizationSourceSupport;
-            var targetSynchSupport = target as IFieldworkExperienceSectionAssociationSynchronizationSourceSupport;
-
-            // Copy resource Id
-            target.Id = source.Id;
-
-            // Copy contextual primary key values
-            target.BeginDate = source.BeginDate;
-            target.FieldworkIdentifier = source.FieldworkIdentifier;
-            target.LocalCourseCode = source.LocalCourseCode;
-            target.SchoolId = source.SchoolId;
-            target.SchoolYear = source.SchoolYear;
-            target.SectionIdentifier = source.SectionIdentifier;
-            target.SessionName = source.SessionName;
-            target.StudentUniqueId = source.StudentUniqueId;
-
-            // Copy non-PK properties
-
-            // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
-                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
-            {
-                target.FieldworkExperienceResourceId = source.FieldworkExperienceResourceId;
-                target.FieldworkExperienceDiscriminator = source.FieldworkExperienceDiscriminator;
-                target.SectionResourceId = source.SectionResourceId;
-                target.SectionDiscriminator = source.SectionDiscriminator;
-            }
-
-
-
-            // ----------------------------------
-            //   Map One-to-one relationships
-            // ----------------------------------
-
-            // Map lists
-
-
-            var eTagProvider = new ETagProvider();
-
-            // Convert value to ETag, if appropriate
-            var entityWithETag = target as IHasETag;
-
-            if (entityWithETag != null)
-                entityWithETag.ETag = eTagProvider.GetETag(source);
-
-            // Convert value to LastModifiedDate, if appropriate
-            var dateVersionedEntity = target as IDateVersionedEntity;
-            var etagSource = source as IHasETag;
-
-            if (dateVersionedEntity != null && etagSource != null)
-                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
-        }
-    }
-
-    /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
-    /// is supported by a model implementation being used as the source in a "synchronization"
-    /// operation.
-    /// </summary>
-    public interface IFieldworkExperienceSectionAssociationSynchronizationSourceSupport 
-    {
-    }
- 
 }
 // Aggregate: FieldworkTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.FieldworkTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class FieldworkTypeDescriptorMapper 
+    public static class FieldworkTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IFieldworkTypeDescriptor source, IFieldworkTypeDescriptor target)
         {
@@ -15666,7 +18147,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.FieldworkTypeDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -15680,14 +18161,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.FieldworkTypeDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: FundingSourceDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.FundingSourceDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class FundingSourceDescriptorMapper 
+    public static class FundingSourceDescriptorMapper
     {
         public static bool SynchronizeTo(this IFundingSourceDescriptor source, IFundingSourceDescriptor target)
         {
@@ -15845,7 +18326,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.FundingSourceDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -15859,14 +18340,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.FundingSourceDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: GenderDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.GenderDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class GenderDescriptorMapper 
+    public static class GenderDescriptorMapper
     {
         public static bool SynchronizeTo(this IGenderDescriptor source, IGenderDescriptor target)
         {
@@ -16024,7 +18505,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GenderDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -16038,14 +18519,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GenderDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: Goal
 
 namespace EdFi.Ods.Entities.Common.TPDM //.GoalAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class GoalMapper 
+    public static class GoalMapper
     {
         public static bool SynchronizeTo(this IGoal source, IGoal target)
         {
@@ -16101,13 +18582,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GoalAggregate
                 isModified = true;
             }
 
-            if ((sourceSupport == null || sourceSupport.IsEducationOrganizationIdSupported)
-                && target.EducationOrganizationId != source.EducationOrganizationId)
-            {
-                target.EducationOrganizationId = source.EducationOrganizationId;
-                isModified = true;
-            }
-
             if ((sourceSupport == null || sourceSupport.IsEvaluationElementTitleSupported)
                 && target.EvaluationElementTitle != source.EvaluationElementTitle)
             {
@@ -16119,13 +18593,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GoalAggregate
                 && target.EvaluationObjectiveTitle != source.EvaluationObjectiveTitle)
             {
                 target.EvaluationObjectiveTitle = source.EvaluationObjectiveTitle;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsEvaluationPeriodDescriptorSupported)
-                && target.EvaluationPeriodDescriptor != source.EvaluationPeriodDescriptor)
-            {
-                target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
                 isModified = true;
             }
 
@@ -16161,13 +18628,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GoalAggregate
                 && target.PerformanceEvaluationTypeDescriptor != source.PerformanceEvaluationTypeDescriptor)
             {
                 target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsSchoolYearSupported)
-                && target.SchoolYear != source.SchoolYear)
-            {
-                target.SchoolYear = source.SchoolYear;
                 isModified = true;
             }
 
@@ -16222,11 +18682,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GoalAggregate
             else
                 targetSynchSupport.IsDueDateSupported = false;
 
-            if (sourceSynchSupport.IsEducationOrganizationIdSupported)
-                target.EducationOrganizationId = source.EducationOrganizationId;
-            else
-                targetSynchSupport.IsEducationOrganizationIdSupported = false;
-
             if (sourceSynchSupport.IsEvaluationElementTitleSupported)
                 target.EvaluationElementTitle = source.EvaluationElementTitle;
             else
@@ -16236,11 +18691,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GoalAggregate
                 target.EvaluationObjectiveTitle = source.EvaluationObjectiveTitle;
             else
                 targetSynchSupport.IsEvaluationObjectiveTitleSupported = false;
-
-            if (sourceSynchSupport.IsEvaluationPeriodDescriptorSupported)
-                target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
-            else
-                targetSynchSupport.IsEvaluationPeriodDescriptorSupported = false;
 
             if (sourceSynchSupport.IsEvaluationTitleSupported)
                 target.EvaluationTitle = source.EvaluationTitle;
@@ -16267,18 +18717,13 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GoalAggregate
             else
                 targetSynchSupport.IsPerformanceEvaluationTypeDescriptorSupported = false;
 
-            if (sourceSynchSupport.IsSchoolYearSupported)
-                target.SchoolYear = source.SchoolYear;
-            else
-                targetSynchSupport.IsSchoolYearSupported = false;
-
             if (sourceSynchSupport.IsTermDescriptorSupported)
                 target.TermDescriptor = source.TermDescriptor;
             else
                 targetSynchSupport.IsTermDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EvaluationElementResourceId = source.EvaluationElementResourceId;
@@ -16314,7 +18759,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GoalAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -16324,26 +18769,23 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GoalAggregate
         bool IsCompletedDateSupported { get; set; }
         bool IsCompletedIndicatorSupported { get; set; }
         bool IsDueDateSupported { get; set; }
-        bool IsEducationOrganizationIdSupported { get; set; }
         bool IsEvaluationElementTitleSupported { get; set; }
         bool IsEvaluationObjectiveTitleSupported { get; set; }
-        bool IsEvaluationPeriodDescriptorSupported { get; set; }
         bool IsEvaluationTitleSupported { get; set; }
         bool IsGoalDescriptionSupported { get; set; }
         bool IsGoalTypeDescriptorSupported { get; set; }
         bool IsPerformanceEvaluationTitleSupported { get; set; }
         bool IsPerformanceEvaluationTypeDescriptorSupported { get; set; }
-        bool IsSchoolYearSupported { get; set; }
         bool IsTermDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: GoalTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.GoalTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class GoalTypeDescriptorMapper 
+    public static class GoalTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IGoalTypeDescriptor source, IGoalTypeDescriptor target)
         {
@@ -16501,7 +18943,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GoalTypeDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -16515,14 +18957,103 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GoalTypeDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
+}
+// Aggregate: GradebookEntry
+
+namespace EdFi.Ods.Entities.Common.TPDM //.GradebookEntryAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class GradebookEntryExtensionMapper
+    {
+        public static bool SynchronizeTo(this IGradebookEntryExtension source, IGradebookEntryExtension target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IGradebookEntryExtensionSynchronizationSourceSupport;
+
+            var sourceExtensionSupport = source.GradebookEntry as IExtensionsSynchronizationSourceSupport;
+
+            if (!sourceExtensionSupport.IsExtensionAvailable("TPDM"))
+                return false;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsProgramGatewayDescriptorSupported)
+                && target.ProgramGatewayDescriptor != source.ProgramGatewayDescriptor)
+            {
+                target.ProgramGatewayDescriptor = source.ProgramGatewayDescriptor;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IGradebookEntryExtension source, IGradebookEntryExtension target, Action<IGradebookEntryExtension, IGradebookEntryExtension> onMapped)
+        {
+            var sourceSynchSupport = source as IGradebookEntryExtensionSynchronizationSourceSupport;
+            var targetSynchSupport = target as IGradebookEntryExtensionSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsProgramGatewayDescriptorSupported)
+                target.ProgramGatewayDescriptor = source.ProgramGatewayDescriptor;
+            else
+                targetSynchSupport.IsProgramGatewayDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IGradebookEntryExtensionSynchronizationSourceSupport 
+    {
+        bool IsProgramGatewayDescriptorSupported { get; set; }
+    }
+
 }
 // Aggregate: GraduationPlan
 
 namespace EdFi.Ods.Entities.Common.TPDM //.GraduationPlanAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class GraduationPlanExtensionMapper 
+    public static class GraduationPlanExtensionMapper
     {
         public static bool SynchronizeTo(this IGraduationPlanExtension source, IGraduationPlanExtension target)
         {
@@ -16543,18 +19074,18 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GraduationPlanAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsGraduationPlanRequiredCertificationsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.GraduationPlanRequiredCertifications.SynchronizeCollectionTo(
-                        target.GraduationPlanRequiredCertifications, 
-                        onChildAdded: child => 
+                        target.GraduationPlanRequiredCertifications,
+                        onChildAdded: child =>
                             {
                                 child.GraduationPlanExtension = target;
 
                                 // Extension class "children" need to reference the Ed-Fi Standard entity as the parent
                                 (child as IChildEntity)?.SetParent(target.GraduationPlan);
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsGraduationPlanRequiredCertificationIncluded);
             }
 
@@ -16583,7 +19114,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GraduationPlanAggregate
             // Map lists
 
             if (sourceSynchSupport.IsGraduationPlanRequiredCertificationsSupported)
-            {    
+            {
                 targetSynchSupport.IsGraduationPlanRequiredCertificationIncluded = sourceSynchSupport.IsGraduationPlanRequiredCertificationIncluded;
                 source.GraduationPlanRequiredCertifications.MapCollectionTo(target.GraduationPlanRequiredCertifications, target.GraduationPlan);
             }
@@ -16611,7 +19142,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GraduationPlanAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -16620,9 +19151,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GraduationPlanAggregate
         bool IsGraduationPlanRequiredCertificationsSupported { get; set; }
         Func<IGraduationPlanRequiredCertification, bool> IsGraduationPlanRequiredCertificationIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class GraduationPlanRequiredCertificationMapper 
+    public static class GraduationPlanRequiredCertificationMapper
     {
         public static bool SynchronizeTo(this IGraduationPlanRequiredCertification source, IGraduationPlanRequiredCertification target)
         {
@@ -16652,10 +19183,10 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GraduationPlanAggregate
                 isModified = true;
             }
 
-            if ((sourceSupport == null || sourceSupport.IsNamespaceSupported)
-                && target.Namespace != source.Namespace)
+            if ((sourceSupport == null || sourceSupport.IsIssuerNamespaceSupported)
+                && target.IssuerNamespace != source.IssuerNamespace)
             {
-                target.Namespace = source.Namespace;
+                target.IssuerNamespace = source.IssuerNamespace;
                 isModified = true;
             }
 
@@ -16687,13 +19218,13 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GraduationPlanAggregate
             else
                 targetSynchSupport.IsCertificationRouteDescriptorSupported = false;
 
-            if (sourceSynchSupport.IsNamespaceSupported)
-                target.Namespace = source.Namespace;
+            if (sourceSynchSupport.IsIssuerNamespaceSupported)
+                target.IssuerNamespace = source.IssuerNamespace;
             else
-                targetSynchSupport.IsNamespaceSupported = false;
+                targetSynchSupport.IsIssuerNamespaceSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.CertificationResourceId = source.CertificationResourceId;
@@ -16727,7 +19258,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GraduationPlanAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -16735,16 +19266,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.GraduationPlanAggregate
     {
         bool IsCertificationIdentifierSupported { get; set; }
         bool IsCertificationRouteDescriptorSupported { get; set; }
-        bool IsNamespaceSupported { get; set; }
+        bool IsIssuerNamespaceSupported { get; set; }
     }
- 
+
 }
 // Aggregate: HireStatusDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.HireStatusDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class HireStatusDescriptorMapper 
+    public static class HireStatusDescriptorMapper
     {
         public static bool SynchronizeTo(this IHireStatusDescriptor source, IHireStatusDescriptor target)
         {
@@ -16902,7 +19433,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.HireStatusDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -16916,14 +19447,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.HireStatusDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: HiringSourceDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.HiringSourceDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class HiringSourceDescriptorMapper 
+    public static class HiringSourceDescriptorMapper
     {
         public static bool SynchronizeTo(this IHiringSourceDescriptor source, IHiringSourceDescriptor target)
         {
@@ -17081,7 +19612,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.HiringSourceDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -17095,14 +19626,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.HiringSourceDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: InstructionalSettingDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.InstructionalSettingDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class InstructionalSettingDescriptorMapper 
+    public static class InstructionalSettingDescriptorMapper
     {
         public static bool SynchronizeTo(this IInstructionalSettingDescriptor source, IInstructionalSettingDescriptor target)
         {
@@ -17260,7 +19791,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.InstructionalSettingDescriptorAggrega
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -17274,14 +19805,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.InstructionalSettingDescriptorAggrega
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: InternalExternalHireDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.InternalExternalHireDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class InternalExternalHireDescriptorMapper 
+    public static class InternalExternalHireDescriptorMapper
     {
         public static bool SynchronizeTo(this IInternalExternalHireDescriptor source, IInternalExternalHireDescriptor target)
         {
@@ -17439,7 +19970,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.InternalExternalHireDescriptorAggrega
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -17453,14 +19984,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.InternalExternalHireDescriptorAggrega
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: LevelOfDegreeAwardedDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.LevelOfDegreeAwardedDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class LevelOfDegreeAwardedDescriptorMapper 
+    public static class LevelOfDegreeAwardedDescriptorMapper
     {
         public static bool SynchronizeTo(this ILevelOfDegreeAwardedDescriptor source, ILevelOfDegreeAwardedDescriptor target)
         {
@@ -17618,7 +20149,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.LevelOfDegreeAwardedDescriptorAggrega
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -17632,14 +20163,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.LevelOfDegreeAwardedDescriptorAggrega
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: LocalEducationAgency
 
 namespace EdFi.Ods.Entities.Common.TPDM //.LocalEducationAgencyAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class LocalEducationAgencyExtensionMapper 
+    public static class LocalEducationAgencyExtensionMapper
     {
         public static bool SynchronizeTo(this ILocalEducationAgencyExtension source, ILocalEducationAgencyExtension target)
         {
@@ -17713,7 +20244,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.LocalEducationAgencyAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -17721,14 +20252,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.LocalEducationAgencyAggregate
     {
         bool IsFederalLocaleCodeDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: ObjectiveRatingLevelDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ObjectiveRatingLevelDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ObjectiveRatingLevelDescriptorMapper 
+    public static class ObjectiveRatingLevelDescriptorMapper
     {
         public static bool SynchronizeTo(this IObjectiveRatingLevelDescriptor source, IObjectiveRatingLevelDescriptor target)
         {
@@ -17886,7 +20417,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ObjectiveRatingLevelDescriptorAggrega
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -17900,14 +20431,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ObjectiveRatingLevelDescriptorAggrega
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: OpenStaffPosition
 
 namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class OpenStaffPositionExtensionMapper 
+    public static class OpenStaffPositionExtensionMapper
     {
         public static bool SynchronizeTo(this IOpenStaffPositionExtension source, IOpenStaffPositionExtension target)
         {
@@ -18074,7 +20605,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionAggregate
                 targetSynchSupport.IsTotalBudgetedSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.SchoolYearTypeResourceId = source.SchoolYearTypeResourceId;
@@ -18107,7 +20638,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -18125,14 +20656,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionAggregate
         bool IsTermDescriptorSupported { get; set; }
         bool IsTotalBudgetedSupported { get; set; }
     }
- 
+
 }
 // Aggregate: OpenStaffPositionEvent
 
 namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionEventAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class OpenStaffPositionEventMapper 
+    public static class OpenStaffPositionEventMapper
     {
         public static bool SynchronizeTo(this IOpenStaffPositionEvent source, IOpenStaffPositionEvent target)
         {
@@ -18197,7 +20728,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionEventAggregate
                 targetSynchSupport.IsOpenStaffPositionEventStatusDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.OpenStaffPositionResourceId = source.OpenStaffPositionResourceId;
@@ -18231,7 +20762,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionEventAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -18239,14 +20770,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionEventAggregate
     {
         bool IsOpenStaffPositionEventStatusDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: OpenStaffPositionEventStatusDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionEventStatusDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class OpenStaffPositionEventStatusDescriptorMapper 
+    public static class OpenStaffPositionEventStatusDescriptorMapper
     {
         public static bool SynchronizeTo(this IOpenStaffPositionEventStatusDescriptor source, IOpenStaffPositionEventStatusDescriptor target)
         {
@@ -18404,7 +20935,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionEventStatusDescripto
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -18418,14 +20949,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionEventStatusDescripto
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: OpenStaffPositionEventTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionEventTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class OpenStaffPositionEventTypeDescriptorMapper 
+    public static class OpenStaffPositionEventTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IOpenStaffPositionEventTypeDescriptor source, IOpenStaffPositionEventTypeDescriptor target)
         {
@@ -18583,7 +21114,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionEventTypeDescriptorA
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -18597,14 +21128,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionEventTypeDescriptorA
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: OpenStaffPositionReasonDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionReasonDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class OpenStaffPositionReasonDescriptorMapper 
+    public static class OpenStaffPositionReasonDescriptorMapper
     {
         public static bool SynchronizeTo(this IOpenStaffPositionReasonDescriptor source, IOpenStaffPositionReasonDescriptor target)
         {
@@ -18762,7 +21293,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionReasonDescriptorAggr
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -18776,14 +21307,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.OpenStaffPositionReasonDescriptorAggr
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: PerformanceEvaluation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class PerformanceEvaluationMapper 
+    public static class PerformanceEvaluationMapper
     {
         public static bool SynchronizeTo(this IPerformanceEvaluation source, IPerformanceEvaluation target)
         {
@@ -18792,14 +21323,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
             var sourceSupport = source as IPerformanceEvaluationSynchronizationSourceSupport;
 
             // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.EducationOrganizationId != target.EducationOrganizationId)
-            {
-                source.EducationOrganizationId = target.EducationOrganizationId;
-            }
-            if (source.EvaluationPeriodDescriptor != target.EvaluationPeriodDescriptor)
-            {
-                source.EvaluationPeriodDescriptor = target.EvaluationPeriodDescriptor;
-            }
             if (source.PerformanceEvaluationTitle != target.PerformanceEvaluationTitle)
             {
                 source.PerformanceEvaluationTitle = target.PerformanceEvaluationTitle;
@@ -18807,10 +21330,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
             if (source.PerformanceEvaluationTypeDescriptor != target.PerformanceEvaluationTypeDescriptor)
             {
                 source.PerformanceEvaluationTypeDescriptor = target.PerformanceEvaluationTypeDescriptor;
-            }
-            if (source.SchoolYear != target.SchoolYear)
-            {
-                source.SchoolYear = target.SchoolYear;
             }
             if (source.TermDescriptor != target.TermDescriptor)
             {
@@ -18826,47 +21345,68 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
                 isModified = true;
             }
 
+            if ((sourceSupport == null || sourceSupport.IsEducationOrganizationIdSupported)
+                && target.EducationOrganizationId != source.EducationOrganizationId)
+            {
+                target.EducationOrganizationId = source.EducationOrganizationId;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsEvaluationPeriodDescriptorSupported)
+                && target.EvaluationPeriodDescriptor != source.EvaluationPeriodDescriptor)
+            {
+                target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsSchoolYearSupported)
+                && target.SchoolYear != source.SchoolYear)
+            {
+                target.SchoolYear = source.SchoolYear;
+                isModified = true;
+            }
+
 
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsPerformanceEvaluationGradeLevelsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.PerformanceEvaluationGradeLevels.SynchronizeCollectionTo(
-                        target.PerformanceEvaluationGradeLevels, 
-                        onChildAdded: child => 
+                        target.PerformanceEvaluationGradeLevels,
+                        onChildAdded: child =>
                             {
                                 child.PerformanceEvaluation = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsPerformanceEvaluationGradeLevelIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsPerformanceEvaluationProgramGatewaysSupported)
             {
-                isModified |= 
+                isModified |=
                     source.PerformanceEvaluationProgramGateways.SynchronizeCollectionTo(
-                        target.PerformanceEvaluationProgramGateways, 
-                        onChildAdded: child => 
+                        target.PerformanceEvaluationProgramGateways,
+                        onChildAdded: child =>
                             {
                                 child.PerformanceEvaluation = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsPerformanceEvaluationProgramGatewayIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsPerformanceEvaluationRatingLevelsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.PerformanceEvaluationRatingLevels.SynchronizeCollectionTo(
-                        target.PerformanceEvaluationRatingLevels, 
-                        onChildAdded: child => 
+                        target.PerformanceEvaluationRatingLevels,
+                        onChildAdded: child =>
                             {
                                 child.PerformanceEvaluation = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsPerformanceEvaluationRatingLevelIncluded);
             }
 
@@ -18885,11 +21425,8 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
             target.Id = source.Id;
 
             // Copy contextual primary key values
-            target.EducationOrganizationId = source.EducationOrganizationId;
-            target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
             target.PerformanceEvaluationTitle = source.PerformanceEvaluationTitle;
             target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
-            target.SchoolYear = source.SchoolYear;
             target.TermDescriptor = source.TermDescriptor;
 
             // Copy non-PK properties
@@ -18899,8 +21436,23 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
             else
                 targetSynchSupport.IsAcademicSubjectDescriptorSupported = false;
 
+            if (sourceSynchSupport.IsEducationOrganizationIdSupported)
+                target.EducationOrganizationId = source.EducationOrganizationId;
+            else
+                targetSynchSupport.IsEducationOrganizationIdSupported = false;
+
+            if (sourceSynchSupport.IsEvaluationPeriodDescriptorSupported)
+                target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
+            else
+                targetSynchSupport.IsEvaluationPeriodDescriptorSupported = false;
+
+            if (sourceSynchSupport.IsSchoolYearSupported)
+                target.SchoolYear = source.SchoolYear;
+            else
+                targetSynchSupport.IsSchoolYearSupported = false;
+
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EducationOrganizationResourceId = source.EducationOrganizationResourceId;
@@ -18917,7 +21469,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
             // Map lists
 
             if (sourceSynchSupport.IsPerformanceEvaluationGradeLevelsSupported)
-            {    
+            {
                 targetSynchSupport.IsPerformanceEvaluationGradeLevelIncluded = sourceSynchSupport.IsPerformanceEvaluationGradeLevelIncluded;
                 source.PerformanceEvaluationGradeLevels.MapCollectionTo(target.PerformanceEvaluationGradeLevels, target);
             }
@@ -18927,7 +21479,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
             }
 
             if (sourceSynchSupport.IsPerformanceEvaluationProgramGatewaysSupported)
-            {    
+            {
                 targetSynchSupport.IsPerformanceEvaluationProgramGatewayIncluded = sourceSynchSupport.IsPerformanceEvaluationProgramGatewayIncluded;
                 source.PerformanceEvaluationProgramGateways.MapCollectionTo(target.PerformanceEvaluationProgramGateways, target);
             }
@@ -18937,7 +21489,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
             }
 
             if (sourceSynchSupport.IsPerformanceEvaluationRatingLevelsSupported)
-            {    
+            {
                 targetSynchSupport.IsPerformanceEvaluationRatingLevelIncluded = sourceSynchSupport.IsPerformanceEvaluationRatingLevelIncluded;
                 source.PerformanceEvaluationRatingLevels.MapCollectionTo(target.PerformanceEvaluationRatingLevels, target);
             }
@@ -18965,23 +21517,26 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IPerformanceEvaluationSynchronizationSourceSupport 
     {
         bool IsAcademicSubjectDescriptorSupported { get; set; }
+        bool IsEducationOrganizationIdSupported { get; set; }
+        bool IsEvaluationPeriodDescriptorSupported { get; set; }
         bool IsPerformanceEvaluationGradeLevelsSupported { get; set; }
         bool IsPerformanceEvaluationProgramGatewaysSupported { get; set; }
         bool IsPerformanceEvaluationRatingLevelsSupported { get; set; }
+        bool IsSchoolYearSupported { get; set; }
         Func<IPerformanceEvaluationGradeLevel, bool> IsPerformanceEvaluationGradeLevelIncluded { get; set; }
         Func<IPerformanceEvaluationProgramGateway, bool> IsPerformanceEvaluationProgramGatewayIncluded { get; set; }
         Func<IPerformanceEvaluationRatingLevel, bool> IsPerformanceEvaluationRatingLevelIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class PerformanceEvaluationGradeLevelMapper 
+    public static class PerformanceEvaluationGradeLevelMapper
     {
         public static bool SynchronizeTo(this IPerformanceEvaluationGradeLevel source, IPerformanceEvaluationGradeLevel target)
         {
@@ -19043,16 +21598,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IPerformanceEvaluationGradeLevelSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class PerformanceEvaluationProgramGatewayMapper 
+    public static class PerformanceEvaluationProgramGatewayMapper
     {
         public static bool SynchronizeTo(this IPerformanceEvaluationProgramGateway source, IPerformanceEvaluationProgramGateway target)
         {
@@ -19114,16 +21669,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IPerformanceEvaluationProgramGatewaySynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class PerformanceEvaluationRatingLevelMapper 
+    public static class PerformanceEvaluationRatingLevelMapper
     {
         public static bool SynchronizeTo(this IPerformanceEvaluationRatingLevel source, IPerformanceEvaluationRatingLevel target)
         {
@@ -19209,7 +21764,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -19218,14 +21773,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationAggregate
         bool IsMaxRatingSupported { get; set; }
         bool IsMinRatingSupported { get; set; }
     }
- 
+
 }
 // Aggregate: PerformanceEvaluationRating
 
 namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class PerformanceEvaluationRatingMapper 
+    public static class PerformanceEvaluationRatingMapper
     {
         public static bool SynchronizeTo(this IPerformanceEvaluationRating source, IPerformanceEvaluationRating target)
         {
@@ -19234,14 +21789,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
             var sourceSupport = source as IPerformanceEvaluationRatingSynchronizationSourceSupport;
 
             // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.EducationOrganizationId != target.EducationOrganizationId)
-            {
-                source.EducationOrganizationId = target.EducationOrganizationId;
-            }
-            if (source.EvaluationPeriodDescriptor != target.EvaluationPeriodDescriptor)
-            {
-                source.EvaluationPeriodDescriptor = target.EvaluationPeriodDescriptor;
-            }
             if (source.PerformanceEvaluationTitle != target.PerformanceEvaluationTitle)
             {
                 source.PerformanceEvaluationTitle = target.PerformanceEvaluationTitle;
@@ -19253,10 +21800,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
             if (source.PersonId != target.PersonId)
             {
                 source.PersonId = target.PersonId;
-            }
-            if (source.SchoolYear != target.SchoolYear)
-            {
-                source.SchoolYear = target.SchoolYear;
             }
             if (source.SourceSystemDescriptor != target.SourceSystemDescriptor)
             {
@@ -19329,29 +21872,29 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsPerformanceEvaluationRatingResultsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.PerformanceEvaluationRatingResults.SynchronizeCollectionTo(
-                        target.PerformanceEvaluationRatingResults, 
-                        onChildAdded: child => 
+                        target.PerformanceEvaluationRatingResults,
+                        onChildAdded: child =>
                             {
                                 child.PerformanceEvaluationRating = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsPerformanceEvaluationRatingResultIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsPerformanceEvaluationRatingReviewersSupported)
             {
-                isModified |= 
+                isModified |=
                     source.PerformanceEvaluationRatingReviewers.SynchronizeCollectionTo(
-                        target.PerformanceEvaluationRatingReviewers, 
-                        onChildAdded: child => 
+                        target.PerformanceEvaluationRatingReviewers,
+                        onChildAdded: child =>
                             {
                                 child.PerformanceEvaluationRating = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsPerformanceEvaluationRatingReviewerIncluded);
             }
 
@@ -19370,12 +21913,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
             target.Id = source.Id;
 
             // Copy contextual primary key values
-            target.EducationOrganizationId = source.EducationOrganizationId;
-            target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
             target.PerformanceEvaluationTitle = source.PerformanceEvaluationTitle;
             target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
             target.PersonId = source.PersonId;
-            target.SchoolYear = source.SchoolYear;
             target.SourceSystemDescriptor = source.SourceSystemDescriptor;
             target.TermDescriptor = source.TermDescriptor;
 
@@ -19422,7 +21962,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
                 targetSynchSupport.IsScheduleDateSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.PerformanceEvaluationResourceId = source.PerformanceEvaluationResourceId;
@@ -19440,7 +21980,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
             // Map lists
 
             if (sourceSynchSupport.IsPerformanceEvaluationRatingResultsSupported)
-            {    
+            {
                 targetSynchSupport.IsPerformanceEvaluationRatingResultIncluded = sourceSynchSupport.IsPerformanceEvaluationRatingResultIncluded;
                 source.PerformanceEvaluationRatingResults.MapCollectionTo(target.PerformanceEvaluationRatingResults, target);
             }
@@ -19450,7 +21990,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
             }
 
             if (sourceSynchSupport.IsPerformanceEvaluationRatingReviewersSupported)
-            {    
+            {
                 targetSynchSupport.IsPerformanceEvaluationRatingReviewerIncluded = sourceSynchSupport.IsPerformanceEvaluationRatingReviewerIncluded;
                 source.PerformanceEvaluationRatingReviewers.MapCollectionTo(target.PerformanceEvaluationRatingReviewers, target);
             }
@@ -19478,7 +22018,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -19497,9 +22037,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
         Func<IPerformanceEvaluationRatingResult, bool> IsPerformanceEvaluationRatingResultIncluded { get; set; }
         Func<IPerformanceEvaluationRatingReviewer, bool> IsPerformanceEvaluationRatingReviewerIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class PerformanceEvaluationRatingResultMapper 
+    public static class PerformanceEvaluationRatingResultMapper
     {
         public static bool SynchronizeTo(this IPerformanceEvaluationRatingResult source, IPerformanceEvaluationRatingResult target)
         {
@@ -19578,7 +22118,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -19586,9 +22126,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
     {
         bool IsResultDatatypeTypeDescriptorSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class PerformanceEvaluationRatingReviewerMapper 
+    public static class PerformanceEvaluationRatingReviewerMapper
     {
         public static bool SynchronizeTo(this IPerformanceEvaluationRatingReviewer source, IPerformanceEvaluationRatingReviewer target)
         {
@@ -19608,9 +22148,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
 
             // Copy non-PK properties
 
-            // ----------------------------------            
+            // ----------------------------------
             //   Synch One-to-one relationships
-            // ----------------------------------            
+            // ----------------------------------
             // PerformanceEvaluationRatingReviewerReceivedTraining
             if (sourceSupport == null || sourceSupport.IsPerformanceEvaluationRatingReviewerReceivedTrainingSupported)
             {
@@ -19634,7 +22174,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
                     isModified |= source.PerformanceEvaluationRatingReviewerReceivedTraining.Synchronize(target.PerformanceEvaluationRatingReviewerReceivedTraining);
                 }
             }
-            
+
             // -------------------------------------------------------------
 
             // Sync lists
@@ -19656,7 +22196,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.PersonResourceId = source.PersonResourceId;
@@ -19672,9 +22212,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
             if (sourceSynchSupport.IsPerformanceEvaluationRatingReviewerReceivedTrainingSupported)
             {
                 var itemProperty = target.GetType().GetProperty("PerformanceEvaluationRatingReviewerReceivedTraining");
-                
+
                 if (itemProperty != null)
-                {                    
+                {
                     if (source.PerformanceEvaluationRatingReviewerReceivedTraining == null)
                     {
                         target.PerformanceEvaluationRatingReviewerReceivedTraining = null;
@@ -19685,7 +22225,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
                         object targetPerformanceEvaluationRatingReviewerReceivedTraining = Activator.CreateInstance(itemType);
                         (targetPerformanceEvaluationRatingReviewerReceivedTraining as IChildEntity)?.SetParent(target);
                         source.PerformanceEvaluationRatingReviewerReceivedTraining.Map(targetPerformanceEvaluationRatingReviewerReceivedTraining);
-                        
+
                         // Update the target reference appropriately
                         target.PerformanceEvaluationRatingReviewerReceivedTraining = (IPerformanceEvaluationRatingReviewerReceivedTraining) targetPerformanceEvaluationRatingReviewerReceivedTraining;
                     }
@@ -19693,7 +22233,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
             }
             else
             {
-                targetSynchSupport.IsPerformanceEvaluationRatingReviewerReceivedTrainingSupported = false; 
+                targetSynchSupport.IsPerformanceEvaluationRatingReviewerReceivedTrainingSupported = false;
             }
             // -------------------------------------------------------------
 
@@ -19718,7 +22258,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -19726,9 +22266,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
     {
         bool IsPerformanceEvaluationRatingReviewerReceivedTrainingSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class PerformanceEvaluationRatingReviewerReceivedTrainingMapper 
+    public static class PerformanceEvaluationRatingReviewerReceivedTrainingMapper
     {
         public static bool SynchronizeTo(this IPerformanceEvaluationRatingReviewerReceivedTraining source, IPerformanceEvaluationRatingReviewerReceivedTraining target)
         {
@@ -19809,7 +22349,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -19818,14 +22358,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingAggregate
         bool IsInterRaterReliabilityScoreSupported { get; set; }
         bool IsReceivedTrainingDateSupported { get; set; }
     }
- 
+
 }
 // Aggregate: PerformanceEvaluationRatingLevelDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingLevelDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class PerformanceEvaluationRatingLevelDescriptorMapper 
+    public static class PerformanceEvaluationRatingLevelDescriptorMapper
     {
         public static bool SynchronizeTo(this IPerformanceEvaluationRatingLevelDescriptor source, IPerformanceEvaluationRatingLevelDescriptor target)
         {
@@ -19983,7 +22523,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingLevelDescr
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -19997,14 +22537,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationRatingLevelDescr
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: PerformanceEvaluationTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class PerformanceEvaluationTypeDescriptorMapper 
+    public static class PerformanceEvaluationTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IPerformanceEvaluationTypeDescriptor source, IPerformanceEvaluationTypeDescriptor target)
         {
@@ -20162,7 +22702,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationTypeDescriptorAg
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -20176,14 +22716,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PerformanceEvaluationTypeDescriptorAg
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: PostSecondaryInstitution
 
 namespace EdFi.Ods.Entities.Common.TPDM //.PostSecondaryInstitutionAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class PostSecondaryInstitutionExtensionMapper 
+    public static class PostSecondaryInstitutionExtensionMapper
     {
         public static bool SynchronizeTo(this IPostSecondaryInstitutionExtension source, IPostSecondaryInstitutionExtension target)
         {
@@ -20257,7 +22797,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PostSecondaryInstitutionAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -20265,14 +22805,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PostSecondaryInstitutionAggregate
     {
         bool IsFederalLocaleCodeDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: PreviousCareerDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.PreviousCareerDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class PreviousCareerDescriptorMapper 
+    public static class PreviousCareerDescriptorMapper
     {
         public static bool SynchronizeTo(this IPreviousCareerDescriptor source, IPreviousCareerDescriptor target)
         {
@@ -20430,7 +22970,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PreviousCareerDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -20444,14 +22984,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.PreviousCareerDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: ProfessionalDevelopmentEvent
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ProfessionalDevelopmentEventAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ProfessionalDevelopmentEventMapper 
+    public static class ProfessionalDevelopmentEventMapper
     {
         public static bool SynchronizeTo(this IProfessionalDevelopmentEvent source, IProfessionalDevelopmentEvent target)
         {
@@ -20460,10 +23000,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProfessionalDevelopmentEventAggregate
             var sourceSupport = source as IProfessionalDevelopmentEventSynchronizationSourceSupport;
 
             // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.Namespace != target.Namespace)
-            {
-                source.Namespace = target.Namespace;
-            }
             if (source.ProfessionalDevelopmentTitle != target.ProfessionalDevelopmentTitle)
             {
                 source.ProfessionalDevelopmentTitle = target.ProfessionalDevelopmentTitle;
@@ -20523,7 +23059,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProfessionalDevelopmentEventAggregate
             target.Id = source.Id;
 
             // Copy contextual primary key values
-            target.Namespace = source.Namespace;
             target.ProfessionalDevelopmentTitle = source.ProfessionalDevelopmentTitle;
 
             // Copy non-PK properties
@@ -20581,7 +23116,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProfessionalDevelopmentEventAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -20593,148 +23128,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProfessionalDevelopmentEventAggregate
         bool IsRequiredSupported { get; set; }
         bool IsTotalHoursSupported { get; set; }
     }
- 
-}
-// Aggregate: ProfessionalDevelopmentEventAttendance
 
-namespace EdFi.Ods.Entities.Common.TPDM //.ProfessionalDevelopmentEventAttendanceAggregate
-{ 
-    [ExcludeFromCodeCoverage]
-    public static class ProfessionalDevelopmentEventAttendanceMapper 
-    {
-        public static bool SynchronizeTo(this IProfessionalDevelopmentEventAttendance source, IProfessionalDevelopmentEventAttendance target)
-        {
-            bool isModified = false;
-
-            var sourceSupport = source as IProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport;
-
-            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.AttendanceDate != target.AttendanceDate)
-            {
-                source.AttendanceDate = target.AttendanceDate;
-            }
-            if (source.Namespace != target.Namespace)
-            {
-                source.Namespace = target.Namespace;
-            }
-            if (source.PersonId != target.PersonId)
-            {
-                source.PersonId = target.PersonId;
-            }
-            if (source.ProfessionalDevelopmentTitle != target.ProfessionalDevelopmentTitle)
-            {
-                source.ProfessionalDevelopmentTitle = target.ProfessionalDevelopmentTitle;
-            }
-            if (source.SourceSystemDescriptor != target.SourceSystemDescriptor)
-            {
-                source.SourceSystemDescriptor = target.SourceSystemDescriptor;
-            }
-
-            // Copy non-PK properties
-
-            if ((sourceSupport == null || sourceSupport.IsAttendanceEventCategoryDescriptorSupported)
-                && target.AttendanceEventCategoryDescriptor != source.AttendanceEventCategoryDescriptor)
-            {
-                target.AttendanceEventCategoryDescriptor = source.AttendanceEventCategoryDescriptor;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsAttendanceEventReasonSupported)
-                && target.AttendanceEventReason != source.AttendanceEventReason)
-            {
-                target.AttendanceEventReason = source.AttendanceEventReason;
-                isModified = true;
-            }
-
-
-            // Sync lists
-
-            return isModified;
-        }
-
-
-
-        public static void MapTo(this IProfessionalDevelopmentEventAttendance source, IProfessionalDevelopmentEventAttendance target, Action<IProfessionalDevelopmentEventAttendance, IProfessionalDevelopmentEventAttendance> onMapped)
-        {
-            var sourceSynchSupport = source as IProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport;
-            var targetSynchSupport = target as IProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport;
-
-            // Copy resource Id
-            target.Id = source.Id;
-
-            // Copy contextual primary key values
-            target.AttendanceDate = source.AttendanceDate;
-            target.Namespace = source.Namespace;
-            target.PersonId = source.PersonId;
-            target.ProfessionalDevelopmentTitle = source.ProfessionalDevelopmentTitle;
-            target.SourceSystemDescriptor = source.SourceSystemDescriptor;
-
-            // Copy non-PK properties
-
-            if (sourceSynchSupport.IsAttendanceEventCategoryDescriptorSupported)
-                target.AttendanceEventCategoryDescriptor = source.AttendanceEventCategoryDescriptor;
-            else
-                targetSynchSupport.IsAttendanceEventCategoryDescriptorSupported = false;
-
-            if (sourceSynchSupport.IsAttendanceEventReasonSupported)
-                target.AttendanceEventReason = source.AttendanceEventReason;
-            else
-                targetSynchSupport.IsAttendanceEventReasonSupported = false;
-
-            // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
-                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
-            {
-                target.PersonResourceId = source.PersonResourceId;
-                target.PersonDiscriminator = source.PersonDiscriminator;
-                target.ProfessionalDevelopmentEventResourceId = source.ProfessionalDevelopmentEventResourceId;
-                target.ProfessionalDevelopmentEventDiscriminator = source.ProfessionalDevelopmentEventDiscriminator;
-            }
-
-
-
-            // ----------------------------------
-            //   Map One-to-one relationships
-            // ----------------------------------
-
-            // Map lists
-
-
-            var eTagProvider = new ETagProvider();
-
-            // Convert value to ETag, if appropriate
-            var entityWithETag = target as IHasETag;
-
-            if (entityWithETag != null)
-                entityWithETag.ETag = eTagProvider.GetETag(source);
-
-            // Convert value to LastModifiedDate, if appropriate
-            var dateVersionedEntity = target as IDateVersionedEntity;
-            var etagSource = source as IHasETag;
-
-            if (dateVersionedEntity != null && etagSource != null)
-                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
-        }
-    }
-
-    /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
-    /// is supported by a model implementation being used as the source in a "synchronization"
-    /// operation.
-    /// </summary>
-    public interface IProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport 
-    {
-        bool IsAttendanceEventCategoryDescriptorSupported { get; set; }
-        bool IsAttendanceEventReasonSupported { get; set; }
-    }
- 
 }
 // Aggregate: ProfessionalDevelopmentOfferedByDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ProfessionalDevelopmentOfferedByDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ProfessionalDevelopmentOfferedByDescriptorMapper 
+    public static class ProfessionalDevelopmentOfferedByDescriptorMapper
     {
         public static bool SynchronizeTo(this IProfessionalDevelopmentOfferedByDescriptor source, IProfessionalDevelopmentOfferedByDescriptor target)
         {
@@ -20892,7 +23293,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProfessionalDevelopmentOfferedByDescr
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -20906,14 +23307,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProfessionalDevelopmentOfferedByDescr
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: ProgramGatewayDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ProgramGatewayDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ProgramGatewayDescriptorMapper 
+    public static class ProgramGatewayDescriptorMapper
     {
         public static bool SynchronizeTo(this IProgramGatewayDescriptor source, IProgramGatewayDescriptor target)
         {
@@ -21071,7 +23472,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProgramGatewayDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -21085,14 +23486,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProgramGatewayDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: Prospect
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ProspectMapper 
+    public static class ProspectMapper
     {
         public static bool SynchronizeTo(this IProspect source, IProspect target)
         {
@@ -21280,9 +23681,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
                 isModified = true;
             }
 
-            // ----------------------------------            
+            // ----------------------------------
             //   Synch One-to-one relationships
-            // ----------------------------------            
+            // ----------------------------------
             // ProspectAid
             if (sourceSupport == null || sourceSupport.IsProspectAidSupported)
             {
@@ -21352,91 +23753,105 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
                     isModified |= source.ProspectQualifications.Synchronize(target.ProspectQualifications);
                 }
             }
-            
+
             // -------------------------------------------------------------
 
             // Sync lists
-            if (sourceSupport == null || sourceSupport.IsProspectDisabilitiesSupported)
+            if (sourceSupport == null || sourceSupport.IsProspectCredentialsSupported)
             {
-                isModified |= 
-                    source.ProspectDisabilities.SynchronizeCollectionTo(
-                        target.ProspectDisabilities, 
-                        onChildAdded: child => 
+                isModified |=
+                    source.ProspectCredentials.SynchronizeCollectionTo(
+                        target.ProspectCredentials,
+                        onChildAdded: child =>
                             {
                                 child.Prospect = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsProspectCredentialIncluded);
+            }
+
+            if (sourceSupport == null || sourceSupport.IsProspectDisabilitiesSupported)
+            {
+                isModified |=
+                    source.ProspectDisabilities.SynchronizeCollectionTo(
+                        target.ProspectDisabilities,
+                        onChildAdded: child =>
+                            {
+                                child.Prospect = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsProspectDisabilityIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsProspectPersonalIdentificationDocumentsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ProspectPersonalIdentificationDocuments.SynchronizeCollectionTo(
-                        target.ProspectPersonalIdentificationDocuments, 
-                        onChildAdded: child => 
+                        target.ProspectPersonalIdentificationDocuments,
+                        onChildAdded: child =>
                             {
                                 child.Prospect = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsProspectPersonalIdentificationDocumentIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsProspectRacesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ProspectRaces.SynchronizeCollectionTo(
-                        target.ProspectRaces, 
-                        onChildAdded: child => 
+                        target.ProspectRaces,
+                        onChildAdded: child =>
                             {
                                 child.Prospect = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsProspectRaceIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsProspectRecruitmentEventsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ProspectRecruitmentEvents.SynchronizeCollectionTo(
-                        target.ProspectRecruitmentEvents, 
-                        onChildAdded: child => 
+                        target.ProspectRecruitmentEvents,
+                        onChildAdded: child =>
                             {
                                 child.Prospect = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsProspectRecruitmentEventIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsProspectTelephonesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ProspectTelephones.SynchronizeCollectionTo(
-                        target.ProspectTelephones, 
-                        onChildAdded: child => 
+                        target.ProspectTelephones,
+                        onChildAdded: child =>
                             {
                                 child.Prospect = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsProspectTelephoneIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsProspectTouchpointsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ProspectTouchpoints.SynchronizeCollectionTo(
-                        target.ProspectTouchpoints, 
-                        onChildAdded: child => 
+                        target.ProspectTouchpoints,
+                        onChildAdded: child =>
                             {
                                 child.Prospect = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsProspectTouchpointIncluded);
             }
 
@@ -21581,7 +23996,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
                 targetSynchSupport.IsTeacherCandidateIdentifierSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EducationOrganizationResourceId = source.EducationOrganizationResourceId;
@@ -21601,9 +24016,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             if (sourceSynchSupport.IsProspectAidSupported)
             {
                 var itemProperty = target.GetType().GetProperty("ProspectAid");
-                
+
                 if (itemProperty != null)
-                {                    
+                {
                     if (source.ProspectAid == null)
                     {
                         target.ProspectAid = null;
@@ -21614,7 +24029,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
                         object targetProspectAid = Activator.CreateInstance(itemType);
                         (targetProspectAid as IChildEntity)?.SetParent(target);
                         source.ProspectAid.Map(targetProspectAid);
-                        
+
                         // Update the target reference appropriately
                         target.ProspectAid = (IProspectAid) targetProspectAid;
                     }
@@ -21622,15 +24037,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             }
             else
             {
-                targetSynchSupport.IsProspectAidSupported = false; 
+                targetSynchSupport.IsProspectAidSupported = false;
             }
             // ProspectCurrentPosition (Source)
             if (sourceSynchSupport.IsProspectCurrentPositionSupported)
             {
                 var itemProperty = target.GetType().GetProperty("ProspectCurrentPosition");
-                
+
                 if (itemProperty != null)
-                {                    
+                {
                     if (source.ProspectCurrentPosition == null)
                     {
                         target.ProspectCurrentPosition = null;
@@ -21641,7 +24056,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
                         object targetProspectCurrentPosition = Activator.CreateInstance(itemType);
                         (targetProspectCurrentPosition as IChildEntity)?.SetParent(target);
                         source.ProspectCurrentPosition.Map(targetProspectCurrentPosition);
-                        
+
                         // Update the target reference appropriately
                         target.ProspectCurrentPosition = (IProspectCurrentPosition) targetProspectCurrentPosition;
                     }
@@ -21649,15 +24064,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             }
             else
             {
-                targetSynchSupport.IsProspectCurrentPositionSupported = false; 
+                targetSynchSupport.IsProspectCurrentPositionSupported = false;
             }
             // ProspectQualifications (Source)
             if (sourceSynchSupport.IsProspectQualificationsSupported)
             {
                 var itemProperty = target.GetType().GetProperty("ProspectQualifications");
-                
+
                 if (itemProperty != null)
-                {                    
+                {
                     if (source.ProspectQualifications == null)
                     {
                         target.ProspectQualifications = null;
@@ -21668,7 +24083,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
                         object targetProspectQualifications = Activator.CreateInstance(itemType);
                         (targetProspectQualifications as IChildEntity)?.SetParent(target);
                         source.ProspectQualifications.Map(targetProspectQualifications);
-                        
+
                         // Update the target reference appropriately
                         target.ProspectQualifications = (IProspectQualifications) targetProspectQualifications;
                     }
@@ -21676,14 +24091,24 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             }
             else
             {
-                targetSynchSupport.IsProspectQualificationsSupported = false; 
+                targetSynchSupport.IsProspectQualificationsSupported = false;
             }
             // -------------------------------------------------------------
 
             // Map lists
 
+            if (sourceSynchSupport.IsProspectCredentialsSupported)
+            {
+                targetSynchSupport.IsProspectCredentialIncluded = sourceSynchSupport.IsProspectCredentialIncluded;
+                source.ProspectCredentials.MapCollectionTo(target.ProspectCredentials, target);
+            }
+            else
+            {
+                targetSynchSupport.IsProspectCredentialsSupported = false;
+            }
+
             if (sourceSynchSupport.IsProspectDisabilitiesSupported)
-            {    
+            {
                 targetSynchSupport.IsProspectDisabilityIncluded = sourceSynchSupport.IsProspectDisabilityIncluded;
                 source.ProspectDisabilities.MapCollectionTo(target.ProspectDisabilities, target);
             }
@@ -21693,7 +24118,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             }
 
             if (sourceSynchSupport.IsProspectPersonalIdentificationDocumentsSupported)
-            {    
+            {
                 targetSynchSupport.IsProspectPersonalIdentificationDocumentIncluded = sourceSynchSupport.IsProspectPersonalIdentificationDocumentIncluded;
                 source.ProspectPersonalIdentificationDocuments.MapCollectionTo(target.ProspectPersonalIdentificationDocuments, target);
             }
@@ -21703,7 +24128,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             }
 
             if (sourceSynchSupport.IsProspectRacesSupported)
-            {    
+            {
                 targetSynchSupport.IsProspectRaceIncluded = sourceSynchSupport.IsProspectRaceIncluded;
                 source.ProspectRaces.MapCollectionTo(target.ProspectRaces, target);
             }
@@ -21713,7 +24138,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             }
 
             if (sourceSynchSupport.IsProspectRecruitmentEventsSupported)
-            {    
+            {
                 targetSynchSupport.IsProspectRecruitmentEventIncluded = sourceSynchSupport.IsProspectRecruitmentEventIncluded;
                 source.ProspectRecruitmentEvents.MapCollectionTo(target.ProspectRecruitmentEvents, target);
             }
@@ -21723,7 +24148,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             }
 
             if (sourceSynchSupport.IsProspectTelephonesSupported)
-            {    
+            {
                 targetSynchSupport.IsProspectTelephoneIncluded = sourceSynchSupport.IsProspectTelephoneIncluded;
                 source.ProspectTelephones.MapCollectionTo(target.ProspectTelephones, target);
             }
@@ -21733,7 +24158,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             }
 
             if (sourceSynchSupport.IsProspectTouchpointsSupported)
-            {    
+            {
                 targetSynchSupport.IsProspectTouchpointIncluded = sourceSynchSupport.IsProspectTouchpointIncluded;
                 source.ProspectTouchpoints.MapCollectionTo(target.ProspectTouchpoints, target);
             }
@@ -21761,7 +24186,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -21784,6 +24209,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
         bool IsPersonIdSupported { get; set; }
         bool IsPreScreeningRatingSupported { get; set; }
         bool IsProspectAidSupported { get; set; }
+        bool IsProspectCredentialsSupported { get; set; }
         bool IsProspectCurrentPositionSupported { get; set; }
         bool IsProspectDisabilitiesSupported { get; set; }
         bool IsProspectPersonalIdentificationDocumentsSupported { get; set; }
@@ -21800,6 +24226,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
         bool IsSocialMediaUserNameSupported { get; set; }
         bool IsSourceSystemDescriptorSupported { get; set; }
         bool IsTeacherCandidateIdentifierSupported { get; set; }
+        Func<IProspectCredential, bool> IsProspectCredentialIncluded { get; set; }
         Func<IProspectDisability, bool> IsProspectDisabilityIncluded { get; set; }
         Func<IProspectPersonalIdentificationDocument, bool> IsProspectPersonalIdentificationDocumentIncluded { get; set; }
         Func<IProspectRace, bool> IsProspectRaceIncluded { get; set; }
@@ -21807,9 +24234,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
         Func<IProspectTelephone, bool> IsProspectTelephoneIncluded { get; set; }
         Func<IProspectTouchpoint, bool> IsProspectTouchpointIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ProspectAidMapper 
+    public static class ProspectAidMapper
     {
         public static bool SynchronizeTo(this IProspectAid source, IProspectAid target)
         {
@@ -21938,7 +24365,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -21951,9 +24378,92 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
         bool IsEndDateSupported { get; set; }
         bool IsPellGrantRecipientSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ProspectCurrentPositionMapper 
+    public static class ProspectCredentialMapper
+    {
+        public static bool SynchronizeTo(this IProspectCredential source, IProspectCredential target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IProspectCredentialSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.CredentialIdentifier != target.CredentialIdentifier)
+            {
+                source.CredentialIdentifier = target.CredentialIdentifier;
+            }
+            if (source.StateOfIssueStateAbbreviationDescriptor != target.StateOfIssueStateAbbreviationDescriptor)
+            {
+                source.StateOfIssueStateAbbreviationDescriptor = target.StateOfIssueStateAbbreviationDescriptor;
+            }
+
+            // Copy non-PK properties
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IProspectCredential source, IProspectCredential target, Action<IProspectCredential, IProspectCredential> onMapped)
+        {
+            var sourceSynchSupport = source as IProspectCredentialSynchronizationSourceSupport;
+            var targetSynchSupport = target as IProspectCredentialSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.CredentialIdentifier = source.CredentialIdentifier;
+            target.StateOfIssueStateAbbreviationDescriptor = source.StateOfIssueStateAbbreviationDescriptor;
+
+            // Copy non-PK properties
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.CredentialResourceId = source.CredentialResourceId;
+                target.CredentialDiscriminator = source.CredentialDiscriminator;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IProspectCredentialSynchronizationSourceSupport 
+    {
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class ProspectCurrentPositionMapper
     {
         public static bool SynchronizeTo(this IProspectCurrentPosition source, IProspectCurrentPosition target)
         {
@@ -21997,15 +24507,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsProspectCurrentPositionGradeLevelsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ProspectCurrentPositionGradeLevels.SynchronizeCollectionTo(
-                        target.ProspectCurrentPositionGradeLevels, 
-                        onChildAdded: child => 
+                        target.ProspectCurrentPositionGradeLevels,
+                        onChildAdded: child =>
                             {
                                 child.ProspectCurrentPosition = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsProspectCurrentPositionGradeLevelIncluded);
             }
 
@@ -22054,7 +24564,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             // Map lists
 
             if (sourceSynchSupport.IsProspectCurrentPositionGradeLevelsSupported)
-            {    
+            {
                 targetSynchSupport.IsProspectCurrentPositionGradeLevelIncluded = sourceSynchSupport.IsProspectCurrentPositionGradeLevelIncluded;
                 source.ProspectCurrentPositionGradeLevels.MapCollectionTo(target.ProspectCurrentPositionGradeLevels, target);
             }
@@ -22082,7 +24592,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -22095,9 +24605,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
         bool IsProspectCurrentPositionGradeLevelsSupported { get; set; }
         Func<IProspectCurrentPositionGradeLevel, bool> IsProspectCurrentPositionGradeLevelIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ProspectCurrentPositionGradeLevelMapper 
+    public static class ProspectCurrentPositionGradeLevelMapper
     {
         public static bool SynchronizeTo(this IProspectCurrentPositionGradeLevel source, IProspectCurrentPositionGradeLevel target)
         {
@@ -22159,16 +24669,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IProspectCurrentPositionGradeLevelSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ProspectDisabilityMapper 
+    public static class ProspectDisabilityMapper
     {
         public static bool SynchronizeTo(this IProspectDisability source, IProspectDisability target)
         {
@@ -22209,15 +24719,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsProspectDisabilityDesignationsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.ProspectDisabilityDesignations.SynchronizeCollectionTo(
-                        target.ProspectDisabilityDesignations, 
-                        onChildAdded: child => 
+                        target.ProspectDisabilityDesignations,
+                        onChildAdded: child =>
                             {
                                 child.ProspectDisability = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsProspectDisabilityDesignationIncluded);
             }
 
@@ -22262,7 +24772,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             // Map lists
 
             if (sourceSynchSupport.IsProspectDisabilityDesignationsSupported)
-            {    
+            {
                 targetSynchSupport.IsProspectDisabilityDesignationIncluded = sourceSynchSupport.IsProspectDisabilityDesignationIncluded;
                 source.ProspectDisabilityDesignations.MapCollectionTo(target.ProspectDisabilityDesignations, target);
             }
@@ -22290,7 +24800,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -22302,9 +24812,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
         bool IsProspectDisabilityDesignationsSupported { get; set; }
         Func<IProspectDisabilityDesignation, bool> IsProspectDisabilityDesignationIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ProspectDisabilityDesignationMapper 
+    public static class ProspectDisabilityDesignationMapper
     {
         public static bool SynchronizeTo(this IProspectDisabilityDesignation source, IProspectDisabilityDesignation target)
         {
@@ -22366,16 +24876,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IProspectDisabilityDesignationSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ProspectPersonalIdentificationDocumentMapper 
+    public static class ProspectPersonalIdentificationDocumentMapper
     {
         public static bool SynchronizeTo(this IProspectPersonalIdentificationDocument source, IProspectPersonalIdentificationDocument target)
         {
@@ -22502,7 +25012,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -22514,9 +25024,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
         bool IsIssuerDocumentIdentificationCodeSupported { get; set; }
         bool IsIssuerNameSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ProspectQualificationsMapper 
+    public static class ProspectQualificationsMapper
     {
         public static bool SynchronizeTo(this IProspectQualifications source, IProspectQualifications target)
         {
@@ -22621,7 +25131,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -22632,9 +25142,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
         bool IsYearsOfServiceCurrentPlacementSupported { get; set; }
         bool IsYearsOfServiceTotalSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ProspectRaceMapper 
+    public static class ProspectRaceMapper
     {
         public static bool SynchronizeTo(this IProspectRace source, IProspectRace target)
         {
@@ -22696,16 +25206,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IProspectRaceSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ProspectRecruitmentEventMapper 
+    public static class ProspectRecruitmentEventMapper
     {
         public static bool SynchronizeTo(this IProspectRecruitmentEvent source, IProspectRecruitmentEvent target)
         {
@@ -22745,7 +25255,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.RecruitmentEventResourceId = source.RecruitmentEventResourceId;
@@ -22779,16 +25289,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IProspectRecruitmentEventSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ProspectTelephoneMapper 
+    public static class ProspectTelephoneMapper
     {
         public static bool SynchronizeTo(this IProspectTelephone source, IProspectTelephone target)
         {
@@ -22891,7 +25401,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -22901,9 +25411,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
         bool IsOrderOfPrioritySupported { get; set; }
         bool IsTextMessageCapabilityIndicatorSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class ProspectTouchpointMapper 
+    public static class ProspectTouchpointMapper
     {
         public static bool SynchronizeTo(this IProspectTouchpoint source, IProspectTouchpoint target)
         {
@@ -22970,21 +25480,150 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IProspectTouchpointSynchronizationSourceSupport 
     {
     }
- 
+
+}
+// Aggregate: ProspectProfessionalDevelopmentEventAttendance
+
+namespace EdFi.Ods.Entities.Common.TPDM //.ProspectProfessionalDevelopmentEventAttendanceAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class ProspectProfessionalDevelopmentEventAttendanceMapper
+    {
+        public static bool SynchronizeTo(this IProspectProfessionalDevelopmentEventAttendance source, IProspectProfessionalDevelopmentEventAttendance target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IProspectProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.AttendanceDate != target.AttendanceDate)
+            {
+                source.AttendanceDate = target.AttendanceDate;
+            }
+            if (source.EducationOrganizationId != target.EducationOrganizationId)
+            {
+                source.EducationOrganizationId = target.EducationOrganizationId;
+            }
+            if (source.ProfessionalDevelopmentTitle != target.ProfessionalDevelopmentTitle)
+            {
+                source.ProfessionalDevelopmentTitle = target.ProfessionalDevelopmentTitle;
+            }
+            if (source.ProspectIdentifier != target.ProspectIdentifier)
+            {
+                source.ProspectIdentifier = target.ProspectIdentifier;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsAttendanceEventCategoryDescriptorSupported)
+                && target.AttendanceEventCategoryDescriptor != source.AttendanceEventCategoryDescriptor)
+            {
+                target.AttendanceEventCategoryDescriptor = source.AttendanceEventCategoryDescriptor;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsAttendanceEventReasonSupported)
+                && target.AttendanceEventReason != source.AttendanceEventReason)
+            {
+                target.AttendanceEventReason = source.AttendanceEventReason;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IProspectProfessionalDevelopmentEventAttendance source, IProspectProfessionalDevelopmentEventAttendance target, Action<IProspectProfessionalDevelopmentEventAttendance, IProspectProfessionalDevelopmentEventAttendance> onMapped)
+        {
+            var sourceSynchSupport = source as IProspectProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport;
+            var targetSynchSupport = target as IProspectProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport;
+
+            // Copy resource Id
+            target.Id = source.Id;
+
+            // Copy contextual primary key values
+            target.AttendanceDate = source.AttendanceDate;
+            target.EducationOrganizationId = source.EducationOrganizationId;
+            target.ProfessionalDevelopmentTitle = source.ProfessionalDevelopmentTitle;
+            target.ProspectIdentifier = source.ProspectIdentifier;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsAttendanceEventCategoryDescriptorSupported)
+                target.AttendanceEventCategoryDescriptor = source.AttendanceEventCategoryDescriptor;
+            else
+                targetSynchSupport.IsAttendanceEventCategoryDescriptorSupported = false;
+
+            if (sourceSynchSupport.IsAttendanceEventReasonSupported)
+                target.AttendanceEventReason = source.AttendanceEventReason;
+            else
+                targetSynchSupport.IsAttendanceEventReasonSupported = false;
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.ProfessionalDevelopmentEventResourceId = source.ProfessionalDevelopmentEventResourceId;
+                target.ProfessionalDevelopmentEventDiscriminator = source.ProfessionalDevelopmentEventDiscriminator;
+                target.ProspectResourceId = source.ProspectResourceId;
+                target.ProspectDiscriminator = source.ProspectDiscriminator;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IProspectProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport 
+    {
+        bool IsAttendanceEventCategoryDescriptorSupported { get; set; }
+        bool IsAttendanceEventReasonSupported { get; set; }
+    }
+
 }
 // Aggregate: ProspectTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ProspectTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ProspectTypeDescriptorMapper 
+    public static class ProspectTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IProspectTypeDescriptor source, IProspectTypeDescriptor target)
         {
@@ -23142,7 +25781,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectTypeDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -23156,14 +25795,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ProspectTypeDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: QuantitativeMeasure
 
 namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class QuantitativeMeasureMapper 
+    public static class QuantitativeMeasureMapper
     {
         public static bool SynchronizeTo(this IQuantitativeMeasure source, IQuantitativeMeasure target)
         {
@@ -23172,10 +25811,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureAggregate
             var sourceSupport = source as IQuantitativeMeasureSynchronizationSourceSupport;
 
             // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.EducationOrganizationId != target.EducationOrganizationId)
-            {
-                source.EducationOrganizationId = target.EducationOrganizationId;
-            }
             if (source.EvaluationElementTitle != target.EvaluationElementTitle)
             {
                 source.EvaluationElementTitle = target.EvaluationElementTitle;
@@ -23183,10 +25818,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureAggregate
             if (source.EvaluationObjectiveTitle != target.EvaluationObjectiveTitle)
             {
                 source.EvaluationObjectiveTitle = target.EvaluationObjectiveTitle;
-            }
-            if (source.EvaluationPeriodDescriptor != target.EvaluationPeriodDescriptor)
-            {
-                source.EvaluationPeriodDescriptor = target.EvaluationPeriodDescriptor;
             }
             if (source.EvaluationTitle != target.EvaluationTitle)
             {
@@ -23203,10 +25834,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureAggregate
             if (source.QuantitativeMeasureIdentifier != target.QuantitativeMeasureIdentifier)
             {
                 source.QuantitativeMeasureIdentifier = target.QuantitativeMeasureIdentifier;
-            }
-            if (source.SchoolYear != target.SchoolYear)
-            {
-                source.SchoolYear = target.SchoolYear;
             }
             if (source.TermDescriptor != target.TermDescriptor)
             {
@@ -23246,15 +25873,12 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureAggregate
             target.Id = source.Id;
 
             // Copy contextual primary key values
-            target.EducationOrganizationId = source.EducationOrganizationId;
             target.EvaluationElementTitle = source.EvaluationElementTitle;
             target.EvaluationObjectiveTitle = source.EvaluationObjectiveTitle;
-            target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
             target.EvaluationTitle = source.EvaluationTitle;
             target.PerformanceEvaluationTitle = source.PerformanceEvaluationTitle;
             target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
             target.QuantitativeMeasureIdentifier = source.QuantitativeMeasureIdentifier;
-            target.SchoolYear = source.SchoolYear;
             target.TermDescriptor = source.TermDescriptor;
 
             // Copy non-PK properties
@@ -23270,7 +25894,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureAggregate
                 targetSynchSupport.IsQuantitativeMeasureTypeDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EvaluationElementResourceId = source.EvaluationElementResourceId;
@@ -23304,7 +25928,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -23313,14 +25937,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureAggregate
         bool IsQuantitativeMeasureDatatypeDescriptorSupported { get; set; }
         bool IsQuantitativeMeasureTypeDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: QuantitativeMeasureDatatypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureDatatypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class QuantitativeMeasureDatatypeDescriptorMapper 
+    public static class QuantitativeMeasureDatatypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IQuantitativeMeasureDatatypeDescriptor source, IQuantitativeMeasureDatatypeDescriptor target)
         {
@@ -23478,7 +26102,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureDatatypeDescriptor
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -23492,14 +26116,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureDatatypeDescriptor
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: QuantitativeMeasureScore
 
 namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureScoreAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class QuantitativeMeasureScoreMapper 
+    public static class QuantitativeMeasureScoreMapper
     {
         public static bool SynchronizeTo(this IQuantitativeMeasureScore source, IQuantitativeMeasureScore target)
         {
@@ -23508,10 +26132,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureScoreAggregate
             var sourceSupport = source as IQuantitativeMeasureScoreSynchronizationSourceSupport;
 
             // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.EducationOrganizationId != target.EducationOrganizationId)
-            {
-                source.EducationOrganizationId = target.EducationOrganizationId;
-            }
             if (source.EvaluationDate != target.EvaluationDate)
             {
                 source.EvaluationDate = target.EvaluationDate;
@@ -23523,10 +26143,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureScoreAggregate
             if (source.EvaluationObjectiveTitle != target.EvaluationObjectiveTitle)
             {
                 source.EvaluationObjectiveTitle = target.EvaluationObjectiveTitle;
-            }
-            if (source.EvaluationPeriodDescriptor != target.EvaluationPeriodDescriptor)
-            {
-                source.EvaluationPeriodDescriptor = target.EvaluationPeriodDescriptor;
             }
             if (source.EvaluationTitle != target.EvaluationTitle)
             {
@@ -23547,10 +26163,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureScoreAggregate
             if (source.QuantitativeMeasureIdentifier != target.QuantitativeMeasureIdentifier)
             {
                 source.QuantitativeMeasureIdentifier = target.QuantitativeMeasureIdentifier;
-            }
-            if (source.SchoolYear != target.SchoolYear)
-            {
-                source.SchoolYear = target.SchoolYear;
             }
             if (source.SourceSystemDescriptor != target.SourceSystemDescriptor)
             {
@@ -23594,17 +26206,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureScoreAggregate
             target.Id = source.Id;
 
             // Copy contextual primary key values
-            target.EducationOrganizationId = source.EducationOrganizationId;
             target.EvaluationDate = source.EvaluationDate;
             target.EvaluationElementTitle = source.EvaluationElementTitle;
             target.EvaluationObjectiveTitle = source.EvaluationObjectiveTitle;
-            target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
             target.EvaluationTitle = source.EvaluationTitle;
             target.PerformanceEvaluationTitle = source.PerformanceEvaluationTitle;
             target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
             target.PersonId = source.PersonId;
             target.QuantitativeMeasureIdentifier = source.QuantitativeMeasureIdentifier;
-            target.SchoolYear = source.SchoolYear;
             target.SourceSystemDescriptor = source.SourceSystemDescriptor;
             target.TermDescriptor = source.TermDescriptor;
 
@@ -23621,7 +26230,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureScoreAggregate
                 targetSynchSupport.IsStandardErrorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EvaluationElementRatingResourceId = source.EvaluationElementRatingResourceId;
@@ -23657,7 +26266,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureScoreAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -23666,14 +26275,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureScoreAggregate
         bool IsScoreValueSupported { get; set; }
         bool IsStandardErrorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: QuantitativeMeasureTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class QuantitativeMeasureTypeDescriptorMapper 
+    public static class QuantitativeMeasureTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IQuantitativeMeasureTypeDescriptor source, IQuantitativeMeasureTypeDescriptor target)
         {
@@ -23831,7 +26440,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureTypeDescriptorAggr
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -23845,14 +26454,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.QuantitativeMeasureTypeDescriptorAggr
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: RecruitmentEvent
 
 namespace EdFi.Ods.Entities.Common.TPDM //.RecruitmentEventAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class RecruitmentEventMapper 
+    public static class RecruitmentEventMapper
     {
         public static bool SynchronizeTo(this IRecruitmentEvent source, IRecruitmentEvent target)
         {
@@ -23958,7 +26567,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.RecruitmentEventAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -23968,14 +26577,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.RecruitmentEventAggregate
         bool IsEventLocationSupported { get; set; }
         bool IsRecruitmentEventTypeDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: RecruitmentEventTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.RecruitmentEventTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class RecruitmentEventTypeDescriptorMapper 
+    public static class RecruitmentEventTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IRecruitmentEventTypeDescriptor source, IRecruitmentEventTypeDescriptor target)
         {
@@ -24133,7 +26742,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.RecruitmentEventTypeDescriptorAggrega
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -24147,14 +26756,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.RecruitmentEventTypeDescriptorAggrega
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: RubricDimension
 
 namespace EdFi.Ods.Entities.Common.TPDM //.RubricDimensionAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class RubricDimensionMapper 
+    public static class RubricDimensionMapper
     {
         public static bool SynchronizeTo(this IRubricDimension source, IRubricDimension target)
         {
@@ -24163,10 +26772,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.RubricDimensionAggregate
             var sourceSupport = source as IRubricDimensionSynchronizationSourceSupport;
 
             // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.EducationOrganizationId != target.EducationOrganizationId)
-            {
-                source.EducationOrganizationId = target.EducationOrganizationId;
-            }
             if (source.EvaluationElementTitle != target.EvaluationElementTitle)
             {
                 source.EvaluationElementTitle = target.EvaluationElementTitle;
@@ -24174,10 +26779,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.RubricDimensionAggregate
             if (source.EvaluationObjectiveTitle != target.EvaluationObjectiveTitle)
             {
                 source.EvaluationObjectiveTitle = target.EvaluationObjectiveTitle;
-            }
-            if (source.EvaluationPeriodDescriptor != target.EvaluationPeriodDescriptor)
-            {
-                source.EvaluationPeriodDescriptor = target.EvaluationPeriodDescriptor;
             }
             if (source.EvaluationTitle != target.EvaluationTitle)
             {
@@ -24194,10 +26795,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.RubricDimensionAggregate
             if (source.RubricRating != target.RubricRating)
             {
                 source.RubricRating = target.RubricRating;
-            }
-            if (source.SchoolYear != target.SchoolYear)
-            {
-                source.SchoolYear = target.SchoolYear;
             }
             if (source.TermDescriptor != target.TermDescriptor)
             {
@@ -24244,15 +26841,12 @@ namespace EdFi.Ods.Entities.Common.TPDM //.RubricDimensionAggregate
             target.Id = source.Id;
 
             // Copy contextual primary key values
-            target.EducationOrganizationId = source.EducationOrganizationId;
             target.EvaluationElementTitle = source.EvaluationElementTitle;
             target.EvaluationObjectiveTitle = source.EvaluationObjectiveTitle;
-            target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
             target.EvaluationTitle = source.EvaluationTitle;
             target.PerformanceEvaluationTitle = source.PerformanceEvaluationTitle;
             target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
             target.RubricRating = source.RubricRating;
-            target.SchoolYear = source.SchoolYear;
             target.TermDescriptor = source.TermDescriptor;
 
             // Copy non-PK properties
@@ -24273,7 +26867,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.RubricDimensionAggregate
                 targetSynchSupport.IsRubricRatingLevelDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EvaluationElementResourceId = source.EvaluationElementResourceId;
@@ -24307,7 +26901,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.RubricDimensionAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -24317,14 +26911,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.RubricDimensionAggregate
         bool IsDimensionOrderSupported { get; set; }
         bool IsRubricRatingLevelDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: RubricRatingLevelDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.RubricRatingLevelDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class RubricRatingLevelDescriptorMapper 
+    public static class RubricRatingLevelDescriptorMapper
     {
         public static bool SynchronizeTo(this IRubricRatingLevelDescriptor source, IRubricRatingLevelDescriptor target)
         {
@@ -24482,7 +27076,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.RubricRatingLevelDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -24496,14 +27090,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.RubricRatingLevelDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: SalaryTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.SalaryTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class SalaryTypeDescriptorMapper 
+    public static class SalaryTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this ISalaryTypeDescriptor source, ISalaryTypeDescriptor target)
         {
@@ -24661,7 +27255,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SalaryTypeDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -24675,14 +27269,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SalaryTypeDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: School
 
 namespace EdFi.Ods.Entities.Common.TPDM //.SchoolAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class SchoolExtensionMapper 
+    public static class SchoolExtensionMapper
     {
         public static bool SynchronizeTo(this ISchoolExtension source, ISchoolExtension target)
         {
@@ -24780,7 +27374,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SchoolAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -24790,14 +27384,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SchoolAggregate
         bool IsImprovingSchoolSupported { get; set; }
         bool IsSchoolStatusDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: SchoolStatusDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.SchoolStatusDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class SchoolStatusDescriptorMapper 
+    public static class SchoolStatusDescriptorMapper
     {
         public static bool SynchronizeTo(this ISchoolStatusDescriptor source, ISchoolStatusDescriptor target)
         {
@@ -24955,7 +27549,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SchoolStatusDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -24969,14 +27563,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SchoolStatusDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: Staff
 
 namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class StaffBackgroundCheckMapper 
+    public static class StaffBackgroundCheckMapper
     {
         public static bool SynchronizeTo(this IStaffBackgroundCheck source, IStaffBackgroundCheck target)
         {
@@ -25086,7 +27680,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -25097,9 +27691,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
         bool IsBackgroundCheckStatusDescriptorSupported { get; set; }
         bool IsFingerprintSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class StaffExtensionMapper 
+    public static class StaffExtensionMapper
     {
         public static bool SynchronizeTo(this IStaffExtension source, IStaffExtension target)
         {
@@ -25144,9 +27738,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
                 isModified = true;
             }
 
-            // ----------------------------------            
+            // ----------------------------------
             //   Synch One-to-one relationships
-            // ----------------------------------            
+            // ----------------------------------
             // StaffSalary
             if (sourceSupport == null || sourceSupport.IsStaffSalarySupported)
             {
@@ -25193,75 +27787,75 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
                     isModified |= source.StaffTeacherEducatorResearch.Synchronize(target.StaffTeacherEducatorResearch);
                 }
             }
-            
+
             // -------------------------------------------------------------
 
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsStaffBackgroundChecksSupported)
             {
-                isModified |= 
+                isModified |=
                     source.StaffBackgroundChecks.SynchronizeCollectionTo(
-                        target.StaffBackgroundChecks, 
-                        onChildAdded: child => 
+                        target.StaffBackgroundChecks,
+                        onChildAdded: child =>
                             {
                                 child.StaffExtension = target;
 
                                 // Extension class "children" need to reference the Ed-Fi Standard entity as the parent
                                 (child as IChildEntity)?.SetParent(target.Staff);
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsStaffBackgroundCheckIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsStaffHighlyQualifiedAcademicSubjectsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.StaffHighlyQualifiedAcademicSubjects.SynchronizeCollectionTo(
-                        target.StaffHighlyQualifiedAcademicSubjects, 
-                        onChildAdded: child => 
+                        target.StaffHighlyQualifiedAcademicSubjects,
+                        onChildAdded: child =>
                             {
                                 child.StaffExtension = target;
 
                                 // Extension class "children" need to reference the Ed-Fi Standard entity as the parent
                                 (child as IChildEntity)?.SetParent(target.Staff);
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsStaffHighlyQualifiedAcademicSubjectIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsStaffSenioritiesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.StaffSeniorities.SynchronizeCollectionTo(
-                        target.StaffSeniorities, 
-                        onChildAdded: child => 
+                        target.StaffSeniorities,
+                        onChildAdded: child =>
                             {
                                 child.StaffExtension = target;
 
                                 // Extension class "children" need to reference the Ed-Fi Standard entity as the parent
                                 (child as IChildEntity)?.SetParent(target.Staff);
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsStaffSeniorityIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsStaffTeacherPreparationProgramsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.StaffTeacherPreparationPrograms.SynchronizeCollectionTo(
-                        target.StaffTeacherPreparationPrograms, 
-                        onChildAdded: child => 
+                        target.StaffTeacherPreparationPrograms,
+                        onChildAdded: child =>
                             {
                                 child.StaffExtension = target;
 
                                 // Extension class "children" need to reference the Ed-Fi Standard entity as the parent
                                 (child as IChildEntity)?.SetParent(target.Staff);
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsStaffTeacherPreparationProgramIncluded);
             }
 
@@ -25310,9 +27904,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
             if (sourceSynchSupport.IsStaffSalarySupported)
             {
                 var itemProperty = target.GetType().GetProperty("StaffSalary");
-                
+
                 if (itemProperty != null)
-                {                    
+                {
                     if (source.StaffSalary == null)
                     {
                         target.StaffSalary = null;
@@ -25323,7 +27917,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
                         object targetStaffSalary = Activator.CreateInstance(itemType);
                         (targetStaffSalary as IChildEntity)?.SetParent(target.Staff);
                         source.StaffSalary.Map(targetStaffSalary);
-                        
+
                         // Update the target reference appropriately
                         target.StaffSalary = (IStaffSalary) targetStaffSalary;
                     }
@@ -25331,15 +27925,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
             }
             else
             {
-                targetSynchSupport.IsStaffSalarySupported = false; 
+                targetSynchSupport.IsStaffSalarySupported = false;
             }
             // StaffTeacherEducatorResearch (Source)
             if (sourceSynchSupport.IsStaffTeacherEducatorResearchSupported)
             {
                 var itemProperty = target.GetType().GetProperty("StaffTeacherEducatorResearch");
-                
+
                 if (itemProperty != null)
-                {                    
+                {
                     if (source.StaffTeacherEducatorResearch == null)
                     {
                         target.StaffTeacherEducatorResearch = null;
@@ -25350,7 +27944,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
                         object targetStaffTeacherEducatorResearch = Activator.CreateInstance(itemType);
                         (targetStaffTeacherEducatorResearch as IChildEntity)?.SetParent(target.Staff);
                         source.StaffTeacherEducatorResearch.Map(targetStaffTeacherEducatorResearch);
-                        
+
                         // Update the target reference appropriately
                         target.StaffTeacherEducatorResearch = (IStaffTeacherEducatorResearch) targetStaffTeacherEducatorResearch;
                     }
@@ -25358,14 +27952,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
             }
             else
             {
-                targetSynchSupport.IsStaffTeacherEducatorResearchSupported = false; 
+                targetSynchSupport.IsStaffTeacherEducatorResearchSupported = false;
             }
             // -------------------------------------------------------------
 
             // Map lists
 
             if (sourceSynchSupport.IsStaffBackgroundChecksSupported)
-            {    
+            {
                 targetSynchSupport.IsStaffBackgroundCheckIncluded = sourceSynchSupport.IsStaffBackgroundCheckIncluded;
                 source.StaffBackgroundChecks.MapCollectionTo(target.StaffBackgroundChecks, target.Staff);
             }
@@ -25375,7 +27969,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
             }
 
             if (sourceSynchSupport.IsStaffHighlyQualifiedAcademicSubjectsSupported)
-            {    
+            {
                 targetSynchSupport.IsStaffHighlyQualifiedAcademicSubjectIncluded = sourceSynchSupport.IsStaffHighlyQualifiedAcademicSubjectIncluded;
                 source.StaffHighlyQualifiedAcademicSubjects.MapCollectionTo(target.StaffHighlyQualifiedAcademicSubjects, target.Staff);
             }
@@ -25385,7 +27979,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
             }
 
             if (sourceSynchSupport.IsStaffSenioritiesSupported)
-            {    
+            {
                 targetSynchSupport.IsStaffSeniorityIncluded = sourceSynchSupport.IsStaffSeniorityIncluded;
                 source.StaffSeniorities.MapCollectionTo(target.StaffSeniorities, target.Staff);
             }
@@ -25395,7 +27989,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
             }
 
             if (sourceSynchSupport.IsStaffTeacherPreparationProgramsSupported)
-            {    
+            {
                 targetSynchSupport.IsStaffTeacherPreparationProgramIncluded = sourceSynchSupport.IsStaffTeacherPreparationProgramIncluded;
                 source.StaffTeacherPreparationPrograms.MapCollectionTo(target.StaffTeacherPreparationPrograms, target.Staff);
             }
@@ -25423,7 +28017,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -25444,9 +28038,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
         Func<IStaffSeniority, bool> IsStaffSeniorityIncluded { get; set; }
         Func<IStaffTeacherPreparationProgram, bool> IsStaffTeacherPreparationProgramIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class StaffHighlyQualifiedAcademicSubjectMapper 
+    public static class StaffHighlyQualifiedAcademicSubjectMapper
     {
         public static bool SynchronizeTo(this IStaffHighlyQualifiedAcademicSubject source, IStaffHighlyQualifiedAcademicSubject target)
         {
@@ -25508,16 +28102,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IStaffHighlyQualifiedAcademicSubjectSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class StaffSalaryMapper 
+    public static class StaffSalaryMapper
     {
         public static bool SynchronizeTo(this IStaffSalary source, IStaffSalary target)
         {
@@ -25622,7 +28216,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -25633,9 +28227,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
         bool IsSalaryMinRangeSupported { get; set; }
         bool IsSalaryTypeDescriptorSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class StaffSeniorityMapper 
+    public static class StaffSeniorityMapper
     {
         public static bool SynchronizeTo(this IStaffSeniority source, IStaffSeniority target)
         {
@@ -25714,7 +28308,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -25722,9 +28316,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
     {
         bool IsYearsExperienceSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class StaffTeacherEducatorResearchMapper 
+    public static class StaffTeacherEducatorResearchMapper
     {
         public static bool SynchronizeTo(this IStaffTeacherEducatorResearch source, IStaffTeacherEducatorResearch target)
         {
@@ -25817,7 +28411,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -25827,9 +28421,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
         bool IsResearchExperienceDescriptionSupported { get; set; }
         bool IsResearchExperienceTitleSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class StaffTeacherPreparationProgramMapper 
+    public static class StaffTeacherPreparationProgramMapper
     {
         public static bool SynchronizeTo(this IStaffTeacherPreparationProgram source, IStaffTeacherPreparationProgram target)
         {
@@ -25963,7 +28557,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -25976,14 +28570,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffAggregate
         bool IsTeacherPreparationProgramIdentifierSupported { get; set; }
         bool IsTeacherPreparationProgramTypeDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: StaffApplicantAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.StaffApplicantAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class StaffApplicantAssociationMapper 
+    public static class StaffApplicantAssociationMapper
     {
         public static bool SynchronizeTo(this IStaffApplicantAssociation source, IStaffApplicantAssociation target)
         {
@@ -25995,6 +28589,10 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffApplicantAssociationAggregate
             if (source.ApplicantIdentifier != target.ApplicantIdentifier)
             {
                 source.ApplicantIdentifier = target.ApplicantIdentifier;
+            }
+            if (source.EducationOrganizationId != target.EducationOrganizationId)
+            {
+                source.EducationOrganizationId = target.EducationOrganizationId;
             }
             if (source.StaffUniqueId != target.StaffUniqueId)
             {
@@ -26021,12 +28619,13 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffApplicantAssociationAggregate
 
             // Copy contextual primary key values
             target.ApplicantIdentifier = source.ApplicantIdentifier;
+            target.EducationOrganizationId = source.EducationOrganizationId;
             target.StaffUniqueId = source.StaffUniqueId;
 
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.ApplicantResourceId = source.ApplicantResourceId;
@@ -26062,21 +28661,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffApplicantAssociationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IStaffApplicantAssociationSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: StaffEducationOrganizationAssignmentAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.StaffEducationOrganizationAssignmentAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class StaffEducationOrganizationAssignmentAssociationExtensionMapper 
+    public static class StaffEducationOrganizationAssignmentAssociationExtensionMapper
     {
         public static bool SynchronizeTo(this IStaffEducationOrganizationAssignmentAssociationExtension source, IStaffEducationOrganizationAssignmentAssociationExtension target)
         {
@@ -26150,7 +28749,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffEducationOrganizationAssignmentA
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -26158,14 +28757,783 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffEducationOrganizationAssignmentA
     {
         bool IsYearsOfExperienceAtCurrentEducationOrganizationSupported { get; set; }
     }
- 
+
+}
+// Aggregate: StaffFieldworkAbsenceEvent
+
+namespace EdFi.Ods.Entities.Common.TPDM //.StaffFieldworkAbsenceEventAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class StaffFieldworkAbsenceEventMapper
+    {
+        public static bool SynchronizeTo(this IStaffFieldworkAbsenceEvent source, IStaffFieldworkAbsenceEvent target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IStaffFieldworkAbsenceEventSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.AbsenceEventCategoryDescriptor != target.AbsenceEventCategoryDescriptor)
+            {
+                source.AbsenceEventCategoryDescriptor = target.AbsenceEventCategoryDescriptor;
+            }
+            if (source.EventDate != target.EventDate)
+            {
+                source.EventDate = target.EventDate;
+            }
+            if (source.StaffUniqueId != target.StaffUniqueId)
+            {
+                source.StaffUniqueId = target.StaffUniqueId;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsAbsenceEventReasonSupported)
+                && target.AbsenceEventReason != source.AbsenceEventReason)
+            {
+                target.AbsenceEventReason = source.AbsenceEventReason;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsHoursAbsentSupported)
+                && target.HoursAbsent != source.HoursAbsent)
+            {
+                target.HoursAbsent = source.HoursAbsent;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IStaffFieldworkAbsenceEvent source, IStaffFieldworkAbsenceEvent target, Action<IStaffFieldworkAbsenceEvent, IStaffFieldworkAbsenceEvent> onMapped)
+        {
+            var sourceSynchSupport = source as IStaffFieldworkAbsenceEventSynchronizationSourceSupport;
+            var targetSynchSupport = target as IStaffFieldworkAbsenceEventSynchronizationSourceSupport;
+
+            // Copy resource Id
+            target.Id = source.Id;
+
+            // Copy contextual primary key values
+            target.AbsenceEventCategoryDescriptor = source.AbsenceEventCategoryDescriptor;
+            target.EventDate = source.EventDate;
+            target.StaffUniqueId = source.StaffUniqueId;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsAbsenceEventReasonSupported)
+                target.AbsenceEventReason = source.AbsenceEventReason;
+            else
+                targetSynchSupport.IsAbsenceEventReasonSupported = false;
+
+            if (sourceSynchSupport.IsHoursAbsentSupported)
+                target.HoursAbsent = source.HoursAbsent;
+            else
+                targetSynchSupport.IsHoursAbsentSupported = false;
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.StaffResourceId = source.StaffResourceId;
+                target.StaffDiscriminator = source.StaffDiscriminator;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IStaffFieldworkAbsenceEventSynchronizationSourceSupport 
+    {
+        bool IsAbsenceEventReasonSupported { get; set; }
+        bool IsHoursAbsentSupported { get; set; }
+    }
+
+}
+// Aggregate: StaffFieldworkExperience
+
+namespace EdFi.Ods.Entities.Common.TPDM //.StaffFieldworkExperienceAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class StaffFieldworkExperienceMapper
+    {
+        public static bool SynchronizeTo(this IStaffFieldworkExperience source, IStaffFieldworkExperience target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IStaffFieldworkExperienceSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.BeginDate != target.BeginDate)
+            {
+                source.BeginDate = target.BeginDate;
+            }
+            if (source.FieldworkIdentifier != target.FieldworkIdentifier)
+            {
+                source.FieldworkIdentifier = target.FieldworkIdentifier;
+            }
+            if (source.StaffUniqueId != target.StaffUniqueId)
+            {
+                source.StaffUniqueId = target.StaffUniqueId;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsEndDateSupported)
+                && target.EndDate != source.EndDate)
+            {
+                target.EndDate = source.EndDate;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsFieldworkTypeDescriptorSupported)
+                && target.FieldworkTypeDescriptor != source.FieldworkTypeDescriptor)
+            {
+                target.FieldworkTypeDescriptor = source.FieldworkTypeDescriptor;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsHoursCompletedSupported)
+                && target.HoursCompleted != source.HoursCompleted)
+            {
+                target.HoursCompleted = source.HoursCompleted;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsProgramGatewayDescriptorSupported)
+                && target.ProgramGatewayDescriptor != source.ProgramGatewayDescriptor)
+            {
+                target.ProgramGatewayDescriptor = source.ProgramGatewayDescriptor;
+                isModified = true;
+            }
+
+            // ----------------------------------
+            //   Synch One-to-one relationships
+            // ----------------------------------
+            // StaffFieldworkExperienceCoteaching
+            if (sourceSupport == null || sourceSupport.IsStaffFieldworkExperienceCoteachingSupported)
+            {
+                if (source.StaffFieldworkExperienceCoteaching == null)
+                {
+                    if (target.StaffFieldworkExperienceCoteaching != null)
+                    {
+                        target.StaffFieldworkExperienceCoteaching = null;
+                        isModified = true;
+                    }
+                }
+                else
+                {
+                    if (target.StaffFieldworkExperienceCoteaching == null)
+                    {
+                        var itemType = target.GetType().GetProperty("StaffFieldworkExperienceCoteaching").PropertyType;
+                        var newItem = Activator.CreateInstance(itemType);
+                        target.StaffFieldworkExperienceCoteaching = (IStaffFieldworkExperienceCoteaching) newItem;
+                    }
+
+                    isModified |= source.StaffFieldworkExperienceCoteaching.Synchronize(target.StaffFieldworkExperienceCoteaching);
+                }
+            }
+
+            // -------------------------------------------------------------
+
+            // Sync lists
+            if (sourceSupport == null || sourceSupport.IsStaffFieldworkExperienceSchoolsSupported)
+            {
+                isModified |=
+                    source.StaffFieldworkExperienceSchools.SynchronizeCollectionTo(
+                        target.StaffFieldworkExperienceSchools,
+                        onChildAdded: child =>
+                            {
+                                child.StaffFieldworkExperience = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsStaffFieldworkExperienceSchoolIncluded);
+            }
+
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IStaffFieldworkExperience source, IStaffFieldworkExperience target, Action<IStaffFieldworkExperience, IStaffFieldworkExperience> onMapped)
+        {
+            var sourceSynchSupport = source as IStaffFieldworkExperienceSynchronizationSourceSupport;
+            var targetSynchSupport = target as IStaffFieldworkExperienceSynchronizationSourceSupport;
+
+            // Copy resource Id
+            target.Id = source.Id;
+
+            // Copy contextual primary key values
+            target.BeginDate = source.BeginDate;
+            target.FieldworkIdentifier = source.FieldworkIdentifier;
+            target.StaffUniqueId = source.StaffUniqueId;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsEndDateSupported)
+                target.EndDate = source.EndDate;
+            else
+                targetSynchSupport.IsEndDateSupported = false;
+
+            if (sourceSynchSupport.IsFieldworkTypeDescriptorSupported)
+                target.FieldworkTypeDescriptor = source.FieldworkTypeDescriptor;
+            else
+                targetSynchSupport.IsFieldworkTypeDescriptorSupported = false;
+
+            if (sourceSynchSupport.IsHoursCompletedSupported)
+                target.HoursCompleted = source.HoursCompleted;
+            else
+                targetSynchSupport.IsHoursCompletedSupported = false;
+
+            if (sourceSynchSupport.IsProgramGatewayDescriptorSupported)
+                target.ProgramGatewayDescriptor = source.ProgramGatewayDescriptor;
+            else
+                targetSynchSupport.IsProgramGatewayDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.StaffResourceId = source.StaffResourceId;
+                target.StaffDiscriminator = source.StaffDiscriminator;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+            // StaffFieldworkExperienceCoteaching (Source)
+            if (sourceSynchSupport.IsStaffFieldworkExperienceCoteachingSupported)
+            {
+                var itemProperty = target.GetType().GetProperty("StaffFieldworkExperienceCoteaching");
+
+                if (itemProperty != null)
+                {
+                    if (source.StaffFieldworkExperienceCoteaching == null)
+                    {
+                        target.StaffFieldworkExperienceCoteaching = null;
+                    }
+                    else
+                    {
+                        var itemType = itemProperty.PropertyType;
+                        object targetStaffFieldworkExperienceCoteaching = Activator.CreateInstance(itemType);
+                        (targetStaffFieldworkExperienceCoteaching as IChildEntity)?.SetParent(target);
+                        source.StaffFieldworkExperienceCoteaching.Map(targetStaffFieldworkExperienceCoteaching);
+
+                        // Update the target reference appropriately
+                        target.StaffFieldworkExperienceCoteaching = (IStaffFieldworkExperienceCoteaching) targetStaffFieldworkExperienceCoteaching;
+                    }
+                }
+            }
+            else
+            {
+                targetSynchSupport.IsStaffFieldworkExperienceCoteachingSupported = false;
+            }
+            // -------------------------------------------------------------
+
+            // Map lists
+
+            if (sourceSynchSupport.IsStaffFieldworkExperienceSchoolsSupported)
+            {
+                targetSynchSupport.IsStaffFieldworkExperienceSchoolIncluded = sourceSynchSupport.IsStaffFieldworkExperienceSchoolIncluded;
+                source.StaffFieldworkExperienceSchools.MapCollectionTo(target.StaffFieldworkExperienceSchools, target);
+            }
+            else
+            {
+                targetSynchSupport.IsStaffFieldworkExperienceSchoolsSupported = false;
+            }
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IStaffFieldworkExperienceSynchronizationSourceSupport 
+    {
+        bool IsEndDateSupported { get; set; }
+        bool IsFieldworkTypeDescriptorSupported { get; set; }
+        bool IsHoursCompletedSupported { get; set; }
+        bool IsProgramGatewayDescriptorSupported { get; set; }
+        bool IsStaffFieldworkExperienceCoteachingSupported { get; set; }
+        bool IsStaffFieldworkExperienceSchoolsSupported { get; set; }
+        Func<IStaffFieldworkExperienceSchool, bool> IsStaffFieldworkExperienceSchoolIncluded { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class StaffFieldworkExperienceCoteachingMapper
+    {
+        public static bool SynchronizeTo(this IStaffFieldworkExperienceCoteaching source, IStaffFieldworkExperienceCoteaching target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IStaffFieldworkExperienceCoteachingSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsCoteachingBeginDateSupported)
+                && target.CoteachingBeginDate != source.CoteachingBeginDate)
+            {
+                target.CoteachingBeginDate = source.CoteachingBeginDate;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsCoteachingEndDateSupported)
+                && target.CoteachingEndDate != source.CoteachingEndDate)
+            {
+                target.CoteachingEndDate = source.CoteachingEndDate;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IStaffFieldworkExperienceCoteaching source, IStaffFieldworkExperienceCoteaching target, Action<IStaffFieldworkExperienceCoteaching, IStaffFieldworkExperienceCoteaching> onMapped)
+        {
+            var sourceSynchSupport = source as IStaffFieldworkExperienceCoteachingSynchronizationSourceSupport;
+            var targetSynchSupport = target as IStaffFieldworkExperienceCoteachingSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsCoteachingBeginDateSupported)
+                target.CoteachingBeginDate = source.CoteachingBeginDate;
+            else
+                targetSynchSupport.IsCoteachingBeginDateSupported = false;
+
+            if (sourceSynchSupport.IsCoteachingEndDateSupported)
+                target.CoteachingEndDate = source.CoteachingEndDate;
+            else
+                targetSynchSupport.IsCoteachingEndDateSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IStaffFieldworkExperienceCoteachingSynchronizationSourceSupport 
+    {
+        bool IsCoteachingBeginDateSupported { get; set; }
+        bool IsCoteachingEndDateSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class StaffFieldworkExperienceSchoolMapper
+    {
+        public static bool SynchronizeTo(this IStaffFieldworkExperienceSchool source, IStaffFieldworkExperienceSchool target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IStaffFieldworkExperienceSchoolSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.SchoolId != target.SchoolId)
+            {
+                source.SchoolId = target.SchoolId;
+            }
+
+            // Copy non-PK properties
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IStaffFieldworkExperienceSchool source, IStaffFieldworkExperienceSchool target, Action<IStaffFieldworkExperienceSchool, IStaffFieldworkExperienceSchool> onMapped)
+        {
+            var sourceSynchSupport = source as IStaffFieldworkExperienceSchoolSynchronizationSourceSupport;
+            var targetSynchSupport = target as IStaffFieldworkExperienceSchoolSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.SchoolId = source.SchoolId;
+
+            // Copy non-PK properties
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.SchoolResourceId = source.SchoolResourceId;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IStaffFieldworkExperienceSchoolSynchronizationSourceSupport 
+    {
+    }
+
+}
+// Aggregate: StaffFieldworkExperienceSectionAssociation
+
+namespace EdFi.Ods.Entities.Common.TPDM //.StaffFieldworkExperienceSectionAssociationAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class StaffFieldworkExperienceSectionAssociationMapper
+    {
+        public static bool SynchronizeTo(this IStaffFieldworkExperienceSectionAssociation source, IStaffFieldworkExperienceSectionAssociation target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IStaffFieldworkExperienceSectionAssociationSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.BeginDate != target.BeginDate)
+            {
+                source.BeginDate = target.BeginDate;
+            }
+            if (source.FieldworkIdentifier != target.FieldworkIdentifier)
+            {
+                source.FieldworkIdentifier = target.FieldworkIdentifier;
+            }
+            if (source.LocalCourseCode != target.LocalCourseCode)
+            {
+                source.LocalCourseCode = target.LocalCourseCode;
+            }
+            if (source.SchoolId != target.SchoolId)
+            {
+                source.SchoolId = target.SchoolId;
+            }
+            if (source.SchoolYear != target.SchoolYear)
+            {
+                source.SchoolYear = target.SchoolYear;
+            }
+            if (source.SectionIdentifier != target.SectionIdentifier)
+            {
+                source.SectionIdentifier = target.SectionIdentifier;
+            }
+            if (source.SessionName != target.SessionName)
+            {
+                source.SessionName = target.SessionName;
+            }
+            if (source.StaffUniqueId != target.StaffUniqueId)
+            {
+                source.StaffUniqueId = target.StaffUniqueId;
+            }
+
+            // Copy non-PK properties
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IStaffFieldworkExperienceSectionAssociation source, IStaffFieldworkExperienceSectionAssociation target, Action<IStaffFieldworkExperienceSectionAssociation, IStaffFieldworkExperienceSectionAssociation> onMapped)
+        {
+            var sourceSynchSupport = source as IStaffFieldworkExperienceSectionAssociationSynchronizationSourceSupport;
+            var targetSynchSupport = target as IStaffFieldworkExperienceSectionAssociationSynchronizationSourceSupport;
+
+            // Copy resource Id
+            target.Id = source.Id;
+
+            // Copy contextual primary key values
+            target.BeginDate = source.BeginDate;
+            target.FieldworkIdentifier = source.FieldworkIdentifier;
+            target.LocalCourseCode = source.LocalCourseCode;
+            target.SchoolId = source.SchoolId;
+            target.SchoolYear = source.SchoolYear;
+            target.SectionIdentifier = source.SectionIdentifier;
+            target.SessionName = source.SessionName;
+            target.StaffUniqueId = source.StaffUniqueId;
+
+            // Copy non-PK properties
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.SectionResourceId = source.SectionResourceId;
+                target.SectionDiscriminator = source.SectionDiscriminator;
+                target.StaffFieldworkExperienceResourceId = source.StaffFieldworkExperienceResourceId;
+                target.StaffFieldworkExperienceDiscriminator = source.StaffFieldworkExperienceDiscriminator;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IStaffFieldworkExperienceSectionAssociationSynchronizationSourceSupport 
+    {
+    }
+
+}
+// Aggregate: StaffProfessionalDevelopmentEventAttendance
+
+namespace EdFi.Ods.Entities.Common.TPDM //.StaffProfessionalDevelopmentEventAttendanceAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class StaffProfessionalDevelopmentEventAttendanceMapper
+    {
+        public static bool SynchronizeTo(this IStaffProfessionalDevelopmentEventAttendance source, IStaffProfessionalDevelopmentEventAttendance target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as IStaffProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.AttendanceDate != target.AttendanceDate)
+            {
+                source.AttendanceDate = target.AttendanceDate;
+            }
+            if (source.ProfessionalDevelopmentTitle != target.ProfessionalDevelopmentTitle)
+            {
+                source.ProfessionalDevelopmentTitle = target.ProfessionalDevelopmentTitle;
+            }
+            if (source.StaffUniqueId != target.StaffUniqueId)
+            {
+                source.StaffUniqueId = target.StaffUniqueId;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsAttendanceEventCategoryDescriptorSupported)
+                && target.AttendanceEventCategoryDescriptor != source.AttendanceEventCategoryDescriptor)
+            {
+                target.AttendanceEventCategoryDescriptor = source.AttendanceEventCategoryDescriptor;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsAttendanceEventReasonSupported)
+                && target.AttendanceEventReason != source.AttendanceEventReason)
+            {
+                target.AttendanceEventReason = source.AttendanceEventReason;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this IStaffProfessionalDevelopmentEventAttendance source, IStaffProfessionalDevelopmentEventAttendance target, Action<IStaffProfessionalDevelopmentEventAttendance, IStaffProfessionalDevelopmentEventAttendance> onMapped)
+        {
+            var sourceSynchSupport = source as IStaffProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport;
+            var targetSynchSupport = target as IStaffProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport;
+
+            // Copy resource Id
+            target.Id = source.Id;
+
+            // Copy contextual primary key values
+            target.AttendanceDate = source.AttendanceDate;
+            target.ProfessionalDevelopmentTitle = source.ProfessionalDevelopmentTitle;
+            target.StaffUniqueId = source.StaffUniqueId;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsAttendanceEventCategoryDescriptorSupported)
+                target.AttendanceEventCategoryDescriptor = source.AttendanceEventCategoryDescriptor;
+            else
+                targetSynchSupport.IsAttendanceEventCategoryDescriptorSupported = false;
+
+            if (sourceSynchSupport.IsAttendanceEventReasonSupported)
+                target.AttendanceEventReason = source.AttendanceEventReason;
+            else
+                targetSynchSupport.IsAttendanceEventReasonSupported = false;
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.ProfessionalDevelopmentEventResourceId = source.ProfessionalDevelopmentEventResourceId;
+                target.ProfessionalDevelopmentEventDiscriminator = source.ProfessionalDevelopmentEventDiscriminator;
+                target.StaffResourceId = source.StaffResourceId;
+                target.StaffDiscriminator = source.StaffDiscriminator;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface IStaffProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport 
+    {
+        bool IsAttendanceEventCategoryDescriptorSupported { get; set; }
+        bool IsAttendanceEventReasonSupported { get; set; }
+    }
+
 }
 // Aggregate: StaffProspectAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.StaffProspectAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class StaffProspectAssociationMapper 
+    public static class StaffProspectAssociationMapper
     {
         public static bool SynchronizeTo(this IStaffProspectAssociation source, IStaffProspectAssociation target)
         {
@@ -26213,7 +29581,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffProspectAssociationAggregate
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.ProspectResourceId = source.ProspectResourceId;
@@ -26249,21 +29617,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffProspectAssociationAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IStaffProspectAssociationSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: StaffStudentGrowthMeasure
 
 namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class StaffStudentGrowthMeasureMapper 
+    public static class StaffStudentGrowthMeasureMapper
     {
         public static bool SynchronizeTo(this IStaffStudentGrowthMeasure source, IStaffStudentGrowthMeasure target)
         {
@@ -26351,29 +29719,29 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsStaffStudentGrowthMeasureAcademicSubjectsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.StaffStudentGrowthMeasureAcademicSubjects.SynchronizeCollectionTo(
-                        target.StaffStudentGrowthMeasureAcademicSubjects, 
-                        onChildAdded: child => 
+                        target.StaffStudentGrowthMeasureAcademicSubjects,
+                        onChildAdded: child =>
                             {
                                 child.StaffStudentGrowthMeasure = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsStaffStudentGrowthMeasureAcademicSubjectIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsStaffStudentGrowthMeasureGradeLevelsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.StaffStudentGrowthMeasureGradeLevels.SynchronizeCollectionTo(
-                        target.StaffStudentGrowthMeasureGradeLevels, 
-                        onChildAdded: child => 
+                        target.StaffStudentGrowthMeasureGradeLevels,
+                        onChildAdded: child =>
                             {
                                 child.StaffStudentGrowthMeasure = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsStaffStudentGrowthMeasureGradeLevelIncluded);
             }
 
@@ -26440,7 +29808,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureAggregate
                 targetSynchSupport.IsStudentGrowthTypeDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.SchoolYearTypeResourceId = source.SchoolYearTypeResourceId;
@@ -26457,7 +29825,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureAggregate
             // Map lists
 
             if (sourceSynchSupport.IsStaffStudentGrowthMeasureAcademicSubjectsSupported)
-            {    
+            {
                 targetSynchSupport.IsStaffStudentGrowthMeasureAcademicSubjectIncluded = sourceSynchSupport.IsStaffStudentGrowthMeasureAcademicSubjectIncluded;
                 source.StaffStudentGrowthMeasureAcademicSubjects.MapCollectionTo(target.StaffStudentGrowthMeasureAcademicSubjects, target);
             }
@@ -26467,7 +29835,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureAggregate
             }
 
             if (sourceSynchSupport.IsStaffStudentGrowthMeasureGradeLevelsSupported)
-            {    
+            {
                 targetSynchSupport.IsStaffStudentGrowthMeasureGradeLevelIncluded = sourceSynchSupport.IsStaffStudentGrowthMeasureGradeLevelIncluded;
                 source.StaffStudentGrowthMeasureGradeLevels.MapCollectionTo(target.StaffStudentGrowthMeasureGradeLevels, target);
             }
@@ -26495,7 +29863,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -26514,9 +29882,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureAggregate
         Func<IStaffStudentGrowthMeasureAcademicSubject, bool> IsStaffStudentGrowthMeasureAcademicSubjectIncluded { get; set; }
         Func<IStaffStudentGrowthMeasureGradeLevel, bool> IsStaffStudentGrowthMeasureGradeLevelIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class StaffStudentGrowthMeasureAcademicSubjectMapper 
+    public static class StaffStudentGrowthMeasureAcademicSubjectMapper
     {
         public static bool SynchronizeTo(this IStaffStudentGrowthMeasureAcademicSubject source, IStaffStudentGrowthMeasureAcademicSubject target)
         {
@@ -26578,16 +29946,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IStaffStudentGrowthMeasureAcademicSubjectSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class StaffStudentGrowthMeasureGradeLevelMapper 
+    public static class StaffStudentGrowthMeasureGradeLevelMapper
     {
         public static bool SynchronizeTo(this IStaffStudentGrowthMeasureGradeLevel source, IStaffStudentGrowthMeasureGradeLevel target)
         {
@@ -26649,21 +30017,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IStaffStudentGrowthMeasureGradeLevelSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: StaffStudentGrowthMeasureCourseAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureCourseAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class StaffStudentGrowthMeasureCourseAssociationMapper 
+    public static class StaffStudentGrowthMeasureCourseAssociationMapper
     {
         public static bool SynchronizeTo(this IStaffStudentGrowthMeasureCourseAssociation source, IStaffStudentGrowthMeasureCourseAssociation target)
         {
@@ -26750,7 +30118,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureCourseAssoci
                 targetSynchSupport.IsEndDateSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.CourseResourceId = source.CourseResourceId;
@@ -26786,7 +30154,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureCourseAssoci
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -26795,14 +30163,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureCourseAssoci
         bool IsBeginDateSupported { get; set; }
         bool IsEndDateSupported { get; set; }
     }
- 
+
 }
 // Aggregate: StaffStudentGrowthMeasureEducationOrganizationAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureEducationOrganizationAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class StaffStudentGrowthMeasureEducationOrganizationAssociationMapper 
+    public static class StaffStudentGrowthMeasureEducationOrganizationAssociationMapper
     {
         public static bool SynchronizeTo(this IStaffStudentGrowthMeasureEducationOrganizationAssociation source, IStaffStudentGrowthMeasureEducationOrganizationAssociation target)
         {
@@ -26884,7 +30252,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureEducationOrg
                 targetSynchSupport.IsEndDateSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EducationOrganizationResourceId = source.EducationOrganizationResourceId;
@@ -26920,7 +30288,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureEducationOrg
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -26929,14 +30297,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureEducationOrg
         bool IsBeginDateSupported { get; set; }
         bool IsEndDateSupported { get; set; }
     }
- 
+
 }
 // Aggregate: StaffStudentGrowthMeasureSectionAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureSectionAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class StaffStudentGrowthMeasureSectionAssociationMapper 
+    public static class StaffStudentGrowthMeasureSectionAssociationMapper
     {
         public static bool SynchronizeTo(this IStaffStudentGrowthMeasureSectionAssociation source, IStaffStudentGrowthMeasureSectionAssociation target)
         {
@@ -27033,7 +30401,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureSectionAssoc
                 targetSynchSupport.IsEndDateSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.SectionResourceId = source.SectionResourceId;
@@ -27069,7 +30437,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureSectionAssoc
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -27078,14 +30446,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffStudentGrowthMeasureSectionAssoc
         bool IsBeginDateSupported { get; set; }
         bool IsEndDateSupported { get; set; }
     }
- 
+
 }
 // Aggregate: StaffTeacherPreparationProviderAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.StaffTeacherPreparationProviderAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class StaffTeacherPreparationProviderAssociationMapper 
+    public static class StaffTeacherPreparationProviderAssociationMapper
     {
         public static bool SynchronizeTo(this IStaffTeacherPreparationProviderAssociation source, IStaffTeacherPreparationProviderAssociation target)
         {
@@ -27123,29 +30491,29 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffTeacherPreparationProviderAssoci
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsStaffTeacherPreparationProviderAssociationAcademicSubjectsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.StaffTeacherPreparationProviderAssociationAcademicSubjects.SynchronizeCollectionTo(
-                        target.StaffTeacherPreparationProviderAssociationAcademicSubjects, 
-                        onChildAdded: child => 
+                        target.StaffTeacherPreparationProviderAssociationAcademicSubjects,
+                        onChildAdded: child =>
                             {
                                 child.StaffTeacherPreparationProviderAssociation = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsStaffTeacherPreparationProviderAssociationAcademicSubjectIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsStaffTeacherPreparationProviderAssociationGradeLevelsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.StaffTeacherPreparationProviderAssociationGradeLevels.SynchronizeCollectionTo(
-                        target.StaffTeacherPreparationProviderAssociationGradeLevels, 
-                        onChildAdded: child => 
+                        target.StaffTeacherPreparationProviderAssociationGradeLevels,
+                        onChildAdded: child =>
                             {
                                 child.StaffTeacherPreparationProviderAssociation = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsStaffTeacherPreparationProviderAssociationGradeLevelIncluded);
             }
 
@@ -27180,7 +30548,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffTeacherPreparationProviderAssoci
                 targetSynchSupport.IsSchoolYearSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.SchoolYearTypeResourceId = source.SchoolYearTypeResourceId;
@@ -27198,7 +30566,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffTeacherPreparationProviderAssoci
             // Map lists
 
             if (sourceSynchSupport.IsStaffTeacherPreparationProviderAssociationAcademicSubjectsSupported)
-            {    
+            {
                 targetSynchSupport.IsStaffTeacherPreparationProviderAssociationAcademicSubjectIncluded = sourceSynchSupport.IsStaffTeacherPreparationProviderAssociationAcademicSubjectIncluded;
                 source.StaffTeacherPreparationProviderAssociationAcademicSubjects.MapCollectionTo(target.StaffTeacherPreparationProviderAssociationAcademicSubjects, target);
             }
@@ -27208,7 +30576,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffTeacherPreparationProviderAssoci
             }
 
             if (sourceSynchSupport.IsStaffTeacherPreparationProviderAssociationGradeLevelsSupported)
-            {    
+            {
                 targetSynchSupport.IsStaffTeacherPreparationProviderAssociationGradeLevelIncluded = sourceSynchSupport.IsStaffTeacherPreparationProviderAssociationGradeLevelIncluded;
                 source.StaffTeacherPreparationProviderAssociationGradeLevels.MapCollectionTo(target.StaffTeacherPreparationProviderAssociationGradeLevels, target);
             }
@@ -27236,7 +30604,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffTeacherPreparationProviderAssoci
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -27249,9 +30617,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffTeacherPreparationProviderAssoci
         Func<IStaffTeacherPreparationProviderAssociationAcademicSubject, bool> IsStaffTeacherPreparationProviderAssociationAcademicSubjectIncluded { get; set; }
         Func<IStaffTeacherPreparationProviderAssociationGradeLevel, bool> IsStaffTeacherPreparationProviderAssociationGradeLevelIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class StaffTeacherPreparationProviderAssociationAcademicSubjectMapper 
+    public static class StaffTeacherPreparationProviderAssociationAcademicSubjectMapper
     {
         public static bool SynchronizeTo(this IStaffTeacherPreparationProviderAssociationAcademicSubject source, IStaffTeacherPreparationProviderAssociationAcademicSubject target)
         {
@@ -27313,16 +30681,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffTeacherPreparationProviderAssoci
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IStaffTeacherPreparationProviderAssociationAcademicSubjectSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class StaffTeacherPreparationProviderAssociationGradeLevelMapper 
+    public static class StaffTeacherPreparationProviderAssociationGradeLevelMapper
     {
         public static bool SynchronizeTo(this IStaffTeacherPreparationProviderAssociationGradeLevel source, IStaffTeacherPreparationProviderAssociationGradeLevel target)
         {
@@ -27384,21 +30752,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffTeacherPreparationProviderAssoci
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface IStaffTeacherPreparationProviderAssociationGradeLevelSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: StaffTeacherPreparationProviderProgramAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.StaffTeacherPreparationProviderProgramAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class StaffTeacherPreparationProviderProgramAssociationMapper 
+    public static class StaffTeacherPreparationProviderProgramAssociationMapper
     {
         public static bool SynchronizeTo(this IStaffTeacherPreparationProviderProgramAssociation source, IStaffTeacherPreparationProviderProgramAssociation target)
         {
@@ -27487,7 +30855,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffTeacherPreparationProviderProgra
                 targetSynchSupport.IsStudentRecordAccessSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.StaffResourceId = source.StaffResourceId;
@@ -27523,7 +30891,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffTeacherPreparationProviderProgra
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -27533,14 +30901,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StaffTeacherPreparationProviderProgra
         bool IsEndDateSupported { get; set; }
         bool IsStudentRecordAccessSupported { get; set; }
     }
- 
+
 }
 // Aggregate: StateEducationAgency
 
 namespace EdFi.Ods.Entities.Common.TPDM //.StateEducationAgencyAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class StateEducationAgencyExtensionMapper 
+    public static class StateEducationAgencyExtensionMapper
     {
         public static bool SynchronizeTo(this IStateEducationAgencyExtension source, IStateEducationAgencyExtension target)
         {
@@ -27614,7 +30982,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StateEducationAgencyAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -27622,14 +30990,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StateEducationAgencyAggregate
     {
         bool IsFederalLocaleCodeDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: StudentGradebookEntry
 
 namespace EdFi.Ods.Entities.Common.TPDM //.StudentGradebookEntryAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class StudentGradebookEntryExtensionMapper 
+    public static class StudentGradebookEntryExtensionMapper
     {
         public static bool SynchronizeTo(this IStudentGradebookEntryExtension source, IStudentGradebookEntryExtension target)
         {
@@ -27715,7 +31083,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StudentGradebookEntryAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -27724,14 +31092,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StudentGradebookEntryAggregate
         bool IsAssignmentPassedSupported { get; set; }
         bool IsDateCompletedSupported { get; set; }
     }
- 
+
 }
 // Aggregate: StudentGrowthTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.StudentGrowthTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class StudentGrowthTypeDescriptorMapper 
+    public static class StudentGrowthTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IStudentGrowthTypeDescriptor source, IStudentGrowthTypeDescriptor target)
         {
@@ -27889,7 +31257,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StudentGrowthTypeDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -27903,125 +31271,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.StudentGrowthTypeDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
-}
-// Aggregate: SurveyResponse
 
-namespace EdFi.Ods.Entities.Common.TPDM //.SurveyResponseAggregate
-{ 
-    [ExcludeFromCodeCoverage]
-    public static class SurveyResponseExtensionMapper 
-    {
-        public static bool SynchronizeTo(this ISurveyResponseExtension source, ISurveyResponseExtension target)
-        {
-            bool isModified = false;
-
-            var sourceSupport = source as ISurveyResponseExtensionSynchronizationSourceSupport;
-
-            var sourceExtensionSupport = source.SurveyResponse as IExtensionsSynchronizationSourceSupport;
-
-            if (!sourceExtensionSupport.IsExtensionAvailable("TPDM"))
-                return false;
-
-            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-
-            // Copy non-PK properties
-
-            if ((sourceSupport == null || sourceSupport.IsApplicantIdentifierSupported)
-                && target.ApplicantIdentifier != source.ApplicantIdentifier)
-            {
-                target.ApplicantIdentifier = source.ApplicantIdentifier;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsTeacherCandidateIdentifierSupported)
-                && target.TeacherCandidateIdentifier != source.TeacherCandidateIdentifier)
-            {
-                target.TeacherCandidateIdentifier = source.TeacherCandidateIdentifier;
-                isModified = true;
-            }
-
-
-            // Sync lists
-
-            return isModified;
-        }
-
-
-
-        public static void MapTo(this ISurveyResponseExtension source, ISurveyResponseExtension target, Action<ISurveyResponseExtension, ISurveyResponseExtension> onMapped)
-        {
-            var sourceSynchSupport = source as ISurveyResponseExtensionSynchronizationSourceSupport;
-            var targetSynchSupport = target as ISurveyResponseExtensionSynchronizationSourceSupport;
-
-            // Copy contextual primary key values
-
-            // Copy non-PK properties
-
-            if (sourceSynchSupport.IsApplicantIdentifierSupported)
-                target.ApplicantIdentifier = source.ApplicantIdentifier;
-            else
-                targetSynchSupport.IsApplicantIdentifierSupported = false;
-
-            if (sourceSynchSupport.IsTeacherCandidateIdentifierSupported)
-                target.TeacherCandidateIdentifier = source.TeacherCandidateIdentifier;
-            else
-                targetSynchSupport.IsTeacherCandidateIdentifierSupported = false;
-
-            // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
-                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
-            {
-                target.ApplicantResourceId = source.ApplicantResourceId;
-                target.ApplicantDiscriminator = source.ApplicantDiscriminator;
-                target.TeacherCandidateResourceId = source.TeacherCandidateResourceId;
-                target.TeacherCandidateDiscriminator = source.TeacherCandidateDiscriminator;
-            }
-
-
-
-            // ----------------------------------
-            //   Map One-to-one relationships
-            // ----------------------------------
-
-            // Map lists
-
-
-            var eTagProvider = new ETagProvider();
-
-            // Convert value to ETag, if appropriate
-            var entityWithETag = target as IHasETag;
-
-            if (entityWithETag != null)
-                entityWithETag.ETag = eTagProvider.GetETag(source);
-
-            // Convert value to LastModifiedDate, if appropriate
-            var dateVersionedEntity = target as IDateVersionedEntity;
-            var etagSource = source as IHasETag;
-
-            if (dateVersionedEntity != null && etagSource != null)
-                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
-        }
-    }
-
-    /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
-    /// is supported by a model implementation being used as the source in a "synchronization"
-    /// operation.
-    /// </summary>
-    public interface ISurveyResponseExtensionSynchronizationSourceSupport 
-    {
-        bool IsApplicantIdentifierSupported { get; set; }
-        bool IsTeacherCandidateIdentifierSupported { get; set; }
-    }
- 
 }
 // Aggregate: SurveyResponseTeacherCandidateTargetAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.SurveyResponseTeacherCandidateTargetAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class SurveyResponseTeacherCandidateTargetAssociationMapper 
+    public static class SurveyResponseTeacherCandidateTargetAssociationMapper
     {
         public static bool SynchronizeTo(this ISurveyResponseTeacherCandidateTargetAssociation source, ISurveyResponseTeacherCandidateTargetAssociation target)
         {
@@ -28074,7 +31331,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveyResponseTeacherCandidateTargetA
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.SurveyResponseResourceId = source.SurveyResponseResourceId;
@@ -28110,21 +31367,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveyResponseTeacherCandidateTargetA
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ISurveyResponseTeacherCandidateTargetAssociationSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: SurveySection
 
 namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class SurveySectionExtensionMapper 
+    public static class SurveySectionExtensionMapper
     {
         public static bool SynchronizeTo(this ISurveySectionExtension source, ISurveySectionExtension target)
         {
@@ -28141,13 +31398,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregate
 
             // Copy non-PK properties
 
-            if ((sourceSupport == null || sourceSupport.IsEducationOrganizationIdSupported)
-                && target.EducationOrganizationId != source.EducationOrganizationId)
-            {
-                target.EducationOrganizationId = source.EducationOrganizationId;
-                isModified = true;
-            }
-
             if ((sourceSupport == null || sourceSupport.IsEvaluationElementTitleSupported)
                 && target.EvaluationElementTitle != source.EvaluationElementTitle)
             {
@@ -28159,13 +31409,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregate
                 && target.EvaluationObjectiveTitle != source.EvaluationObjectiveTitle)
             {
                 target.EvaluationObjectiveTitle = source.EvaluationObjectiveTitle;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsEvaluationPeriodDescriptorSupported)
-                && target.EvaluationPeriodDescriptor != source.EvaluationPeriodDescriptor)
-            {
-                target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
                 isModified = true;
             }
 
@@ -28187,13 +31430,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregate
                 && target.PerformanceEvaluationTypeDescriptor != source.PerformanceEvaluationTypeDescriptor)
             {
                 target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
-                isModified = true;
-            }
-
-            if ((sourceSupport == null || sourceSupport.IsSchoolYearSupported)
-                && target.SchoolYear != source.SchoolYear)
-            {
-                target.SchoolYear = source.SchoolYear;
                 isModified = true;
             }
 
@@ -28221,11 +31457,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregate
 
             // Copy non-PK properties
 
-            if (sourceSynchSupport.IsEducationOrganizationIdSupported)
-                target.EducationOrganizationId = source.EducationOrganizationId;
-            else
-                targetSynchSupport.IsEducationOrganizationIdSupported = false;
-
             if (sourceSynchSupport.IsEvaluationElementTitleSupported)
                 target.EvaluationElementTitle = source.EvaluationElementTitle;
             else
@@ -28235,11 +31466,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregate
                 target.EvaluationObjectiveTitle = source.EvaluationObjectiveTitle;
             else
                 targetSynchSupport.IsEvaluationObjectiveTitleSupported = false;
-
-            if (sourceSynchSupport.IsEvaluationPeriodDescriptorSupported)
-                target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
-            else
-                targetSynchSupport.IsEvaluationPeriodDescriptorSupported = false;
 
             if (sourceSynchSupport.IsEvaluationTitleSupported)
                 target.EvaluationTitle = source.EvaluationTitle;
@@ -28256,18 +31482,13 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregate
             else
                 targetSynchSupport.IsPerformanceEvaluationTypeDescriptorSupported = false;
 
-            if (sourceSynchSupport.IsSchoolYearSupported)
-                target.SchoolYear = source.SchoolYear;
-            else
-                targetSynchSupport.IsSchoolYearSupported = false;
-
             if (sourceSynchSupport.IsTermDescriptorSupported)
                 target.TermDescriptor = source.TermDescriptor;
             else
                 targetSynchSupport.IsTermDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EvaluationElementResourceId = source.EvaluationElementResourceId;
@@ -28301,30 +31522,27 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ISurveySectionExtensionSynchronizationSourceSupport 
     {
-        bool IsEducationOrganizationIdSupported { get; set; }
         bool IsEvaluationElementTitleSupported { get; set; }
         bool IsEvaluationObjectiveTitleSupported { get; set; }
-        bool IsEvaluationPeriodDescriptorSupported { get; set; }
         bool IsEvaluationTitleSupported { get; set; }
         bool IsPerformanceEvaluationTitleSupported { get; set; }
         bool IsPerformanceEvaluationTypeDescriptorSupported { get; set; }
-        bool IsSchoolYearSupported { get; set; }
         bool IsTermDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: SurveySectionAggregateResponse
 
 namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregateResponseAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class SurveySectionAggregateResponseMapper 
+    public static class SurveySectionAggregateResponseMapper
     {
         public static bool SynchronizeTo(this ISurveySectionAggregateResponse source, ISurveySectionAggregateResponse target)
         {
@@ -28333,10 +31551,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregateResponseAggrega
             var sourceSupport = source as ISurveySectionAggregateResponseSynchronizationSourceSupport;
 
             // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
-            if (source.EducationOrganizationId != target.EducationOrganizationId)
-            {
-                source.EducationOrganizationId = target.EducationOrganizationId;
-            }
             if (source.EvaluationDate != target.EvaluationDate)
             {
                 source.EvaluationDate = target.EvaluationDate;
@@ -28348,10 +31562,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregateResponseAggrega
             if (source.EvaluationObjectiveTitle != target.EvaluationObjectiveTitle)
             {
                 source.EvaluationObjectiveTitle = target.EvaluationObjectiveTitle;
-            }
-            if (source.EvaluationPeriodDescriptor != target.EvaluationPeriodDescriptor)
-            {
-                source.EvaluationPeriodDescriptor = target.EvaluationPeriodDescriptor;
             }
             if (source.EvaluationTitle != target.EvaluationTitle)
             {
@@ -28372,10 +31582,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregateResponseAggrega
             if (source.PersonId != target.PersonId)
             {
                 source.PersonId = target.PersonId;
-            }
-            if (source.SchoolYear != target.SchoolYear)
-            {
-                source.SchoolYear = target.SchoolYear;
             }
             if (source.SourceSystemDescriptor != target.SourceSystemDescriptor)
             {
@@ -28420,17 +31626,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregateResponseAggrega
             target.Id = source.Id;
 
             // Copy contextual primary key values
-            target.EducationOrganizationId = source.EducationOrganizationId;
             target.EvaluationDate = source.EvaluationDate;
             target.EvaluationElementTitle = source.EvaluationElementTitle;
             target.EvaluationObjectiveTitle = source.EvaluationObjectiveTitle;
-            target.EvaluationPeriodDescriptor = source.EvaluationPeriodDescriptor;
             target.EvaluationTitle = source.EvaluationTitle;
             target.Namespace = source.Namespace;
             target.PerformanceEvaluationTitle = source.PerformanceEvaluationTitle;
             target.PerformanceEvaluationTypeDescriptor = source.PerformanceEvaluationTypeDescriptor;
             target.PersonId = source.PersonId;
-            target.SchoolYear = source.SchoolYear;
             target.SourceSystemDescriptor = source.SourceSystemDescriptor;
             target.SurveyIdentifier = source.SurveyIdentifier;
             target.SurveySectionTitle = source.SurveySectionTitle;
@@ -28444,7 +31647,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregateResponseAggrega
                 targetSynchSupport.IsScoreValueSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EvaluationElementRatingResourceId = source.EvaluationElementRatingResourceId;
@@ -28480,7 +31683,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregateResponseAggrega
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -28488,14 +31691,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionAggregateResponseAggrega
     {
         bool IsScoreValueSupported { get; set; }
     }
- 
+
 }
 // Aggregate: SurveySectionResponseTeacherCandidateTargetAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionResponseTeacherCandidateTargetAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class SurveySectionResponseTeacherCandidateTargetAssociationMapper 
+    public static class SurveySectionResponseTeacherCandidateTargetAssociationMapper
     {
         public static bool SynchronizeTo(this ISurveySectionResponseTeacherCandidateTargetAssociation source, ISurveySectionResponseTeacherCandidateTargetAssociation target)
         {
@@ -28553,7 +31756,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionResponseTeacherCandidate
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.SurveySectionResponseResourceId = source.SurveySectionResponseResourceId;
@@ -28589,21 +31792,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.SurveySectionResponseTeacherCandidate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ISurveySectionResponseTeacherCandidateTargetAssociationSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: TeacherCandidate
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateMapper 
+    public static class TeacherCandidateMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidate source, ITeacherCandidate target)
         {
@@ -28843,9 +32046,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
                 isModified = true;
             }
 
-            // ----------------------------------            
+            // ----------------------------------
             //   Synch One-to-one relationships
-            // ----------------------------------            
+            // ----------------------------------
             // TeacherCandidateBackgroundCheck
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateBackgroundCheckSupported)
             {
@@ -28869,259 +32072,273 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
                     isModified |= source.TeacherCandidateBackgroundCheck.Synchronize(target.TeacherCandidateBackgroundCheck);
                 }
             }
-            
+
             // -------------------------------------------------------------
 
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateAddressesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateAddresses.SynchronizeCollectionTo(
-                        target.TeacherCandidateAddresses, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateAddresses,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateAddressIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateAidsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateAids.SynchronizeCollectionTo(
-                        target.TeacherCandidateAids, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateAids,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateAidIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateCharacteristicsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateCharacteristics.SynchronizeCollectionTo(
-                        target.TeacherCandidateCharacteristics, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateCharacteristics,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateCharacteristicIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateCohortYearsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateCohortYears.SynchronizeCollectionTo(
-                        target.TeacherCandidateCohortYears, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateCohortYears,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateCohortYearIncluded);
+            }
+
+            if (sourceSupport == null || sourceSupport.IsTeacherCandidateCredentialsSupported)
+            {
+                isModified |=
+                    source.TeacherCandidateCredentials.SynchronizeCollectionTo(
+                        target.TeacherCandidateCredentials,
+                        onChildAdded: child =>
+                            {
+                                child.TeacherCandidate = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsTeacherCandidateCredentialIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateDegreeSpecializationsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateDegreeSpecializations.SynchronizeCollectionTo(
-                        target.TeacherCandidateDegreeSpecializations, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateDegreeSpecializations,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateDegreeSpecializationIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateDisabilitiesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateDisabilities.SynchronizeCollectionTo(
-                        target.TeacherCandidateDisabilities, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateDisabilities,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateDisabilityIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateElectronicMailsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateElectronicMails.SynchronizeCollectionTo(
-                        target.TeacherCandidateElectronicMails, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateElectronicMails,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateElectronicMailIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateIdentificationCodesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateIdentificationCodes.SynchronizeCollectionTo(
-                        target.TeacherCandidateIdentificationCodes, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateIdentificationCodes,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateIdentificationCodeIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateIdentificationDocumentsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateIdentificationDocuments.SynchronizeCollectionTo(
-                        target.TeacherCandidateIdentificationDocuments, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateIdentificationDocuments,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateIdentificationDocumentIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateIndicatorsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateIndicators.SynchronizeCollectionTo(
-                        target.TeacherCandidateIndicators, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateIndicators,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateIndicatorIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateInternationalAddressesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateInternationalAddresses.SynchronizeCollectionTo(
-                        target.TeacherCandidateInternationalAddresses, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateInternationalAddresses,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateInternationalAddressIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateLanguagesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateLanguages.SynchronizeCollectionTo(
-                        target.TeacherCandidateLanguages, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateLanguages,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateLanguageIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateOtherNamesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateOtherNames.SynchronizeCollectionTo(
-                        target.TeacherCandidateOtherNames, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateOtherNames,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateOtherNameIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidatePersonalIdentificationDocumentsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidatePersonalIdentificationDocuments.SynchronizeCollectionTo(
-                        target.TeacherCandidatePersonalIdentificationDocuments, 
-                        onChildAdded: child => 
+                        target.TeacherCandidatePersonalIdentificationDocuments,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidatePersonalIdentificationDocumentIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateRacesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateRaces.SynchronizeCollectionTo(
-                        target.TeacherCandidateRaces, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateRaces,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateRaceIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateTelephonesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateTelephones.SynchronizeCollectionTo(
-                        target.TeacherCandidateTelephones, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateTelephones,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateTelephoneIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateTPPProgramDegreesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateTPPProgramDegrees.SynchronizeCollectionTo(
-                        target.TeacherCandidateTPPProgramDegrees, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateTPPProgramDegrees,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateTPPProgramDegreeIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateVisasSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateVisas.SynchronizeCollectionTo(
-                        target.TeacherCandidateVisas, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateVisas,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidate = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateVisaIncluded);
             }
 
@@ -29305,7 +32522,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
                 targetSynchSupport.IsTuitionCostSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.PersonResourceId = source.PersonResourceId;
@@ -29323,9 +32540,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             if (sourceSynchSupport.IsTeacherCandidateBackgroundCheckSupported)
             {
                 var itemProperty = target.GetType().GetProperty("TeacherCandidateBackgroundCheck");
-                
+
                 if (itemProperty != null)
-                {                    
+                {
                     if (source.TeacherCandidateBackgroundCheck == null)
                     {
                         target.TeacherCandidateBackgroundCheck = null;
@@ -29336,7 +32553,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
                         object targetTeacherCandidateBackgroundCheck = Activator.CreateInstance(itemType);
                         (targetTeacherCandidateBackgroundCheck as IChildEntity)?.SetParent(target);
                         source.TeacherCandidateBackgroundCheck.Map(targetTeacherCandidateBackgroundCheck);
-                        
+
                         // Update the target reference appropriately
                         target.TeacherCandidateBackgroundCheck = (ITeacherCandidateBackgroundCheck) targetTeacherCandidateBackgroundCheck;
                     }
@@ -29344,14 +32561,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
             else
             {
-                targetSynchSupport.IsTeacherCandidateBackgroundCheckSupported = false; 
+                targetSynchSupport.IsTeacherCandidateBackgroundCheckSupported = false;
             }
             // -------------------------------------------------------------
 
             // Map lists
 
             if (sourceSynchSupport.IsTeacherCandidateAddressesSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateAddressIncluded = sourceSynchSupport.IsTeacherCandidateAddressIncluded;
                 source.TeacherCandidateAddresses.MapCollectionTo(target.TeacherCandidateAddresses, target);
             }
@@ -29361,7 +32578,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateAidsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateAidIncluded = sourceSynchSupport.IsTeacherCandidateAidIncluded;
                 source.TeacherCandidateAids.MapCollectionTo(target.TeacherCandidateAids, target);
             }
@@ -29371,7 +32588,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateCharacteristicsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateCharacteristicIncluded = sourceSynchSupport.IsTeacherCandidateCharacteristicIncluded;
                 source.TeacherCandidateCharacteristics.MapCollectionTo(target.TeacherCandidateCharacteristics, target);
             }
@@ -29381,7 +32598,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateCohortYearsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateCohortYearIncluded = sourceSynchSupport.IsTeacherCandidateCohortYearIncluded;
                 source.TeacherCandidateCohortYears.MapCollectionTo(target.TeacherCandidateCohortYears, target);
             }
@@ -29390,8 +32607,18 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
                 targetSynchSupport.IsTeacherCandidateCohortYearsSupported = false;
             }
 
+            if (sourceSynchSupport.IsTeacherCandidateCredentialsSupported)
+            {
+                targetSynchSupport.IsTeacherCandidateCredentialIncluded = sourceSynchSupport.IsTeacherCandidateCredentialIncluded;
+                source.TeacherCandidateCredentials.MapCollectionTo(target.TeacherCandidateCredentials, target);
+            }
+            else
+            {
+                targetSynchSupport.IsTeacherCandidateCredentialsSupported = false;
+            }
+
             if (sourceSynchSupport.IsTeacherCandidateDegreeSpecializationsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateDegreeSpecializationIncluded = sourceSynchSupport.IsTeacherCandidateDegreeSpecializationIncluded;
                 source.TeacherCandidateDegreeSpecializations.MapCollectionTo(target.TeacherCandidateDegreeSpecializations, target);
             }
@@ -29401,7 +32628,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateDisabilitiesSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateDisabilityIncluded = sourceSynchSupport.IsTeacherCandidateDisabilityIncluded;
                 source.TeacherCandidateDisabilities.MapCollectionTo(target.TeacherCandidateDisabilities, target);
             }
@@ -29411,7 +32638,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateElectronicMailsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateElectronicMailIncluded = sourceSynchSupport.IsTeacherCandidateElectronicMailIncluded;
                 source.TeacherCandidateElectronicMails.MapCollectionTo(target.TeacherCandidateElectronicMails, target);
             }
@@ -29421,7 +32648,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateIdentificationCodesSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateIdentificationCodeIncluded = sourceSynchSupport.IsTeacherCandidateIdentificationCodeIncluded;
                 source.TeacherCandidateIdentificationCodes.MapCollectionTo(target.TeacherCandidateIdentificationCodes, target);
             }
@@ -29431,7 +32658,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateIdentificationDocumentsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateIdentificationDocumentIncluded = sourceSynchSupport.IsTeacherCandidateIdentificationDocumentIncluded;
                 source.TeacherCandidateIdentificationDocuments.MapCollectionTo(target.TeacherCandidateIdentificationDocuments, target);
             }
@@ -29441,7 +32668,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateIndicatorsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateIndicatorIncluded = sourceSynchSupport.IsTeacherCandidateIndicatorIncluded;
                 source.TeacherCandidateIndicators.MapCollectionTo(target.TeacherCandidateIndicators, target);
             }
@@ -29451,7 +32678,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateInternationalAddressesSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateInternationalAddressIncluded = sourceSynchSupport.IsTeacherCandidateInternationalAddressIncluded;
                 source.TeacherCandidateInternationalAddresses.MapCollectionTo(target.TeacherCandidateInternationalAddresses, target);
             }
@@ -29461,7 +32688,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateLanguagesSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateLanguageIncluded = sourceSynchSupport.IsTeacherCandidateLanguageIncluded;
                 source.TeacherCandidateLanguages.MapCollectionTo(target.TeacherCandidateLanguages, target);
             }
@@ -29471,7 +32698,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateOtherNamesSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateOtherNameIncluded = sourceSynchSupport.IsTeacherCandidateOtherNameIncluded;
                 source.TeacherCandidateOtherNames.MapCollectionTo(target.TeacherCandidateOtherNames, target);
             }
@@ -29481,7 +32708,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidatePersonalIdentificationDocumentsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidatePersonalIdentificationDocumentIncluded = sourceSynchSupport.IsTeacherCandidatePersonalIdentificationDocumentIncluded;
                 source.TeacherCandidatePersonalIdentificationDocuments.MapCollectionTo(target.TeacherCandidatePersonalIdentificationDocuments, target);
             }
@@ -29491,7 +32718,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateRacesSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateRaceIncluded = sourceSynchSupport.IsTeacherCandidateRaceIncluded;
                 source.TeacherCandidateRaces.MapCollectionTo(target.TeacherCandidateRaces, target);
             }
@@ -29501,7 +32728,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateTelephonesSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateTelephoneIncluded = sourceSynchSupport.IsTeacherCandidateTelephoneIncluded;
                 source.TeacherCandidateTelephones.MapCollectionTo(target.TeacherCandidateTelephones, target);
             }
@@ -29511,7 +32738,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateTPPProgramDegreesSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateTPPProgramDegreeIncluded = sourceSynchSupport.IsTeacherCandidateTPPProgramDegreeIncluded;
                 source.TeacherCandidateTPPProgramDegrees.MapCollectionTo(target.TeacherCandidateTPPProgramDegrees, target);
             }
@@ -29521,7 +32748,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             }
 
             if (sourceSynchSupport.IsTeacherCandidateVisasSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateVisaIncluded = sourceSynchSupport.IsTeacherCandidateVisaIncluded;
                 source.TeacherCandidateVisas.MapCollectionTo(target.TeacherCandidateVisas, target);
             }
@@ -29549,7 +32776,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -29591,6 +32818,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsTeacherCandidateBackgroundCheckSupported { get; set; }
         bool IsTeacherCandidateCharacteristicsSupported { get; set; }
         bool IsTeacherCandidateCohortYearsSupported { get; set; }
+        bool IsTeacherCandidateCredentialsSupported { get; set; }
         bool IsTeacherCandidateDegreeSpecializationsSupported { get; set; }
         bool IsTeacherCandidateDisabilitiesSupported { get; set; }
         bool IsTeacherCandidateElectronicMailsSupported { get; set; }
@@ -29610,6 +32838,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         Func<ITeacherCandidateAid, bool> IsTeacherCandidateAidIncluded { get; set; }
         Func<ITeacherCandidateCharacteristic, bool> IsTeacherCandidateCharacteristicIncluded { get; set; }
         Func<ITeacherCandidateCohortYear, bool> IsTeacherCandidateCohortYearIncluded { get; set; }
+        Func<ITeacherCandidateCredential, bool> IsTeacherCandidateCredentialIncluded { get; set; }
         Func<ITeacherCandidateDegreeSpecialization, bool> IsTeacherCandidateDegreeSpecializationIncluded { get; set; }
         Func<ITeacherCandidateDisability, bool> IsTeacherCandidateDisabilityIncluded { get; set; }
         Func<ITeacherCandidateElectronicMail, bool> IsTeacherCandidateElectronicMailIncluded { get; set; }
@@ -29625,9 +32854,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         Func<ITeacherCandidateTPPProgramDegree, bool> IsTeacherCandidateTPPProgramDegreeIncluded { get; set; }
         Func<ITeacherCandidateVisa, bool> IsTeacherCandidateVisaIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateAddressMapper 
+    public static class TeacherCandidateAddressMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateAddress source, ITeacherCandidateAddress target)
         {
@@ -29726,15 +32955,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateAddressPeriodsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateAddressPeriods.SynchronizeCollectionTo(
-                        target.TeacherCandidateAddressPeriods, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateAddressPeriods,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidateAddress = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateAddressPeriodIncluded);
             }
 
@@ -29813,7 +33042,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             // Map lists
 
             if (sourceSynchSupport.IsTeacherCandidateAddressPeriodsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateAddressPeriodIncluded = sourceSynchSupport.IsTeacherCandidateAddressPeriodIncluded;
                 source.TeacherCandidateAddressPeriods.MapCollectionTo(target.TeacherCandidateAddressPeriods, target);
             }
@@ -29841,7 +33070,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -29859,9 +33088,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsTeacherCandidateAddressPeriodsSupported { get; set; }
         Func<ITeacherCandidateAddressPeriod, bool> IsTeacherCandidateAddressPeriodIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateAddressPeriodMapper 
+    public static class TeacherCandidateAddressPeriodMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateAddressPeriod source, ITeacherCandidateAddressPeriod target)
         {
@@ -29935,7 +33164,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -29943,9 +33172,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     {
         bool IsEndDateSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateAidMapper 
+    public static class TeacherCandidateAidMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateAid source, ITeacherCandidateAid target)
         {
@@ -30060,7 +33289,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -30071,9 +33300,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsEndDateSupported { get; set; }
         bool IsPellGrantRecipientSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateBackgroundCheckMapper 
+    public static class TeacherCandidateBackgroundCheckMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateBackgroundCheck source, ITeacherCandidateBackgroundCheck target)
         {
@@ -30190,7 +33419,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -30202,9 +33431,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsBackgroundCheckTypeDescriptorSupported { get; set; }
         bool IsFingerprintSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateCharacteristicMapper 
+    public static class TeacherCandidateCharacteristicMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateCharacteristic source, ITeacherCandidateCharacteristic target)
         {
@@ -30302,7 +33531,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -30312,9 +33541,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsDesignatedBySupported { get; set; }
         bool IsEndDateSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateCohortYearMapper 
+    public static class TeacherCandidateCohortYearMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateCohortYear source, ITeacherCandidateCohortYear target)
         {
@@ -30354,7 +33583,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             // Copy non-PK properties
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.SchoolYearTypeResourceId = source.SchoolYearTypeResourceId;
@@ -30387,16 +33616,99 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ITeacherCandidateCohortYearSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateDegreeSpecializationMapper 
+    public static class TeacherCandidateCredentialMapper
+    {
+        public static bool SynchronizeTo(this ITeacherCandidateCredential source, ITeacherCandidateCredential target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as ITeacherCandidateCredentialSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.CredentialIdentifier != target.CredentialIdentifier)
+            {
+                source.CredentialIdentifier = target.CredentialIdentifier;
+            }
+            if (source.StateOfIssueStateAbbreviationDescriptor != target.StateOfIssueStateAbbreviationDescriptor)
+            {
+                source.StateOfIssueStateAbbreviationDescriptor = target.StateOfIssueStateAbbreviationDescriptor;
+            }
+
+            // Copy non-PK properties
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this ITeacherCandidateCredential source, ITeacherCandidateCredential target, Action<ITeacherCandidateCredential, ITeacherCandidateCredential> onMapped)
+        {
+            var sourceSynchSupport = source as ITeacherCandidateCredentialSynchronizationSourceSupport;
+            var targetSynchSupport = target as ITeacherCandidateCredentialSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.CredentialIdentifier = source.CredentialIdentifier;
+            target.StateOfIssueStateAbbreviationDescriptor = source.StateOfIssueStateAbbreviationDescriptor;
+
+            // Copy non-PK properties
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.CredentialResourceId = source.CredentialResourceId;
+                target.CredentialDiscriminator = source.CredentialDiscriminator;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface ITeacherCandidateCredentialSynchronizationSourceSupport 
+    {
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class TeacherCandidateDegreeSpecializationMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateDegreeSpecialization source, ITeacherCandidateDegreeSpecialization target)
         {
@@ -30487,7 +33799,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -30496,9 +33808,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsEndDateSupported { get; set; }
         bool IsMinorSpecializationSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateDisabilityMapper 
+    public static class TeacherCandidateDisabilityMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateDisability source, ITeacherCandidateDisability target)
         {
@@ -30539,15 +33851,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateDisabilityDesignationsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateDisabilityDesignations.SynchronizeCollectionTo(
-                        target.TeacherCandidateDisabilityDesignations, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateDisabilityDesignations,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidateDisability = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateDisabilityDesignationIncluded);
             }
 
@@ -30592,7 +33904,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             // Map lists
 
             if (sourceSynchSupport.IsTeacherCandidateDisabilityDesignationsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateDisabilityDesignationIncluded = sourceSynchSupport.IsTeacherCandidateDisabilityDesignationIncluded;
                 source.TeacherCandidateDisabilityDesignations.MapCollectionTo(target.TeacherCandidateDisabilityDesignations, target);
             }
@@ -30620,7 +33932,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -30632,9 +33944,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsTeacherCandidateDisabilityDesignationsSupported { get; set; }
         Func<ITeacherCandidateDisabilityDesignation, bool> IsTeacherCandidateDisabilityDesignationIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateDisabilityDesignationMapper 
+    public static class TeacherCandidateDisabilityDesignationMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateDisabilityDesignation source, ITeacherCandidateDisabilityDesignation target)
         {
@@ -30696,16 +34008,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ITeacherCandidateDisabilityDesignationSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateElectronicMailMapper 
+    public static class TeacherCandidateElectronicMailMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateElectronicMail source, ITeacherCandidateElectronicMail target)
         {
@@ -30796,7 +34108,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -30805,9 +34117,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsDoNotPublishIndicatorSupported { get; set; }
         bool IsPrimaryEmailAddressIndicatorSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateIdentificationCodeMapper 
+    public static class TeacherCandidateIdentificationCodeMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateIdentificationCode source, ITeacherCandidateIdentificationCode target)
         {
@@ -30886,7 +34198,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -30894,9 +34206,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     {
         bool IsIdentificationCodeSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateIdentificationDocumentMapper 
+    public static class TeacherCandidateIdentificationDocumentMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateIdentificationDocument source, ITeacherCandidateIdentificationDocument target)
         {
@@ -31023,7 +34335,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -31035,9 +34347,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsIssuerDocumentIdentificationCodeSupported { get; set; }
         bool IsIssuerNameSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateIndicatorMapper 
+    public static class TeacherCandidateIndicatorMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateIndicator source, ITeacherCandidateIndicator target)
         {
@@ -31159,7 +34471,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -31171,9 +34483,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsIndicatorSupported { get; set; }
         bool IsIndicatorGroupSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateInternationalAddressMapper 
+    public static class TeacherCandidateInternationalAddressMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateInternationalAddress source, ITeacherCandidateInternationalAddress target)
         {
@@ -31343,7 +34655,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -31359,9 +34671,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsLatitudeSupported { get; set; }
         bool IsLongitudeSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateLanguageMapper 
+    public static class TeacherCandidateLanguageMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateLanguage source, ITeacherCandidateLanguage target)
         {
@@ -31381,15 +34693,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateLanguageUsesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateLanguageUses.SynchronizeCollectionTo(
-                        target.TeacherCandidateLanguageUses, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateLanguageUses,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidateLanguage = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateLanguageUseIncluded);
             }
 
@@ -31419,7 +34731,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
             // Map lists
 
             if (sourceSynchSupport.IsTeacherCandidateLanguageUsesSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateLanguageUseIncluded = sourceSynchSupport.IsTeacherCandidateLanguageUseIncluded;
                 source.TeacherCandidateLanguageUses.MapCollectionTo(target.TeacherCandidateLanguageUses, target);
             }
@@ -31447,7 +34759,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -31456,9 +34768,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsTeacherCandidateLanguageUsesSupported { get; set; }
         Func<ITeacherCandidateLanguageUse, bool> IsTeacherCandidateLanguageUseIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateLanguageUseMapper 
+    public static class TeacherCandidateLanguageUseMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateLanguageUse source, ITeacherCandidateLanguageUse target)
         {
@@ -31520,16 +34832,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ITeacherCandidateLanguageUseSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateOtherNameMapper 
+    public static class TeacherCandidateOtherNameMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateOtherName source, ITeacherCandidateOtherName target)
         {
@@ -31651,7 +34963,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -31663,9 +34975,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsMiddleNameSupported { get; set; }
         bool IsPersonalTitlePrefixSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidatePersonalIdentificationDocumentMapper 
+    public static class TeacherCandidatePersonalIdentificationDocumentMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidatePersonalIdentificationDocument source, ITeacherCandidatePersonalIdentificationDocument target)
         {
@@ -31792,7 +35104,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -31804,9 +35116,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsIssuerDocumentIdentificationCodeSupported { get; set; }
         bool IsIssuerNameSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateRaceMapper 
+    public static class TeacherCandidateRaceMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateRace source, ITeacherCandidateRace target)
         {
@@ -31868,16 +35180,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ITeacherCandidateRaceSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateTelephoneMapper 
+    public static class TeacherCandidateTelephoneMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateTelephone source, ITeacherCandidateTelephone target)
         {
@@ -31980,7 +35292,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -31990,9 +35302,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
         bool IsOrderOfPrioritySupported { get; set; }
         bool IsTextMessageCapabilityIndicatorSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateTPPProgramDegreeMapper 
+    public static class TeacherCandidateTPPProgramDegreeMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateTPPProgramDegree source, ITeacherCandidateTPPProgramDegree target)
         {
@@ -32064,16 +35376,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ITeacherCandidateTPPProgramDegreeSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateVisaMapper 
+    public static class TeacherCandidateVisaMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateVisa source, ITeacherCandidateVisa target)
         {
@@ -32135,21 +35447,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ITeacherCandidateVisaSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: TeacherCandidateAcademicRecord
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateAcademicRecordMapper 
+    public static class TeacherCandidateAcademicRecordMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateAcademicRecord source, ITeacherCandidateAcademicRecord target)
         {
@@ -32331,9 +35643,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
                 isModified = true;
             }
 
-            // ----------------------------------            
+            // ----------------------------------
             //   Synch One-to-one relationships
-            // ----------------------------------            
+            // ----------------------------------
             // TeacherCandidateAcademicRecordClassRanking
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateAcademicRecordClassRankingSupported)
             {
@@ -32357,63 +35669,63 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
                     isModified |= source.TeacherCandidateAcademicRecordClassRanking.Synchronize(target.TeacherCandidateAcademicRecordClassRanking);
                 }
             }
-            
+
             // -------------------------------------------------------------
 
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateAcademicRecordAcademicHonorsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateAcademicRecordAcademicHonors.SynchronizeCollectionTo(
-                        target.TeacherCandidateAcademicRecordAcademicHonors, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateAcademicRecordAcademicHonors,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidateAcademicRecord = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateAcademicRecordAcademicHonorIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateAcademicRecordDiplomasSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateAcademicRecordDiplomas.SynchronizeCollectionTo(
-                        target.TeacherCandidateAcademicRecordDiplomas, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateAcademicRecordDiplomas,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidateAcademicRecord = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateAcademicRecordDiplomaIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateAcademicRecordGradePointAveragesSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateAcademicRecordGradePointAverages.SynchronizeCollectionTo(
-                        target.TeacherCandidateAcademicRecordGradePointAverages, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateAcademicRecordGradePointAverages,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidateAcademicRecord = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateAcademicRecordGradePointAverageIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateAcademicRecordRecognitionsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateAcademicRecordRecognitions.SynchronizeCollectionTo(
-                        target.TeacherCandidateAcademicRecordRecognitions, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateAcademicRecordRecognitions,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidateAcademicRecord = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateAcademicRecordRecognitionIncluded);
             }
 
@@ -32550,7 +35862,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
                 targetSynchSupport.IsTPPDegreeTypeDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EducationOrganizationResourceId = source.EducationOrganizationResourceId;
@@ -32569,9 +35881,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
             if (sourceSynchSupport.IsTeacherCandidateAcademicRecordClassRankingSupported)
             {
                 var itemProperty = target.GetType().GetProperty("TeacherCandidateAcademicRecordClassRanking");
-                
+
                 if (itemProperty != null)
-                {                    
+                {
                     if (source.TeacherCandidateAcademicRecordClassRanking == null)
                     {
                         target.TeacherCandidateAcademicRecordClassRanking = null;
@@ -32582,7 +35894,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
                         object targetTeacherCandidateAcademicRecordClassRanking = Activator.CreateInstance(itemType);
                         (targetTeacherCandidateAcademicRecordClassRanking as IChildEntity)?.SetParent(target);
                         source.TeacherCandidateAcademicRecordClassRanking.Map(targetTeacherCandidateAcademicRecordClassRanking);
-                        
+
                         // Update the target reference appropriately
                         target.TeacherCandidateAcademicRecordClassRanking = (ITeacherCandidateAcademicRecordClassRanking) targetTeacherCandidateAcademicRecordClassRanking;
                     }
@@ -32590,14 +35902,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
             }
             else
             {
-                targetSynchSupport.IsTeacherCandidateAcademicRecordClassRankingSupported = false; 
+                targetSynchSupport.IsTeacherCandidateAcademicRecordClassRankingSupported = false;
             }
             // -------------------------------------------------------------
 
             // Map lists
 
             if (sourceSynchSupport.IsTeacherCandidateAcademicRecordAcademicHonorsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateAcademicRecordAcademicHonorIncluded = sourceSynchSupport.IsTeacherCandidateAcademicRecordAcademicHonorIncluded;
                 source.TeacherCandidateAcademicRecordAcademicHonors.MapCollectionTo(target.TeacherCandidateAcademicRecordAcademicHonors, target);
             }
@@ -32607,7 +35919,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
             }
 
             if (sourceSynchSupport.IsTeacherCandidateAcademicRecordDiplomasSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateAcademicRecordDiplomaIncluded = sourceSynchSupport.IsTeacherCandidateAcademicRecordDiplomaIncluded;
                 source.TeacherCandidateAcademicRecordDiplomas.MapCollectionTo(target.TeacherCandidateAcademicRecordDiplomas, target);
             }
@@ -32617,7 +35929,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
             }
 
             if (sourceSynchSupport.IsTeacherCandidateAcademicRecordGradePointAveragesSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateAcademicRecordGradePointAverageIncluded = sourceSynchSupport.IsTeacherCandidateAcademicRecordGradePointAverageIncluded;
                 source.TeacherCandidateAcademicRecordGradePointAverages.MapCollectionTo(target.TeacherCandidateAcademicRecordGradePointAverages, target);
             }
@@ -32627,7 +35939,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
             }
 
             if (sourceSynchSupport.IsTeacherCandidateAcademicRecordRecognitionsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateAcademicRecordRecognitionIncluded = sourceSynchSupport.IsTeacherCandidateAcademicRecordRecognitionIncluded;
                 source.TeacherCandidateAcademicRecordRecognitions.MapCollectionTo(target.TeacherCandidateAcademicRecordRecognitions, target);
             }
@@ -32655,7 +35967,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -32693,9 +36005,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
         Func<ITeacherCandidateAcademicRecordGradePointAverage, bool> IsTeacherCandidateAcademicRecordGradePointAverageIncluded { get; set; }
         Func<ITeacherCandidateAcademicRecordRecognition, bool> IsTeacherCandidateAcademicRecordRecognitionIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateAcademicRecordAcademicHonorMapper 
+    public static class TeacherCandidateAcademicRecordAcademicHonorMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateAcademicRecordAcademicHonor source, ITeacherCandidateAcademicRecordAcademicHonor target)
         {
@@ -32894,7 +36206,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -32912,9 +36224,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
         bool IsIssuerNameSupported { get; set; }
         bool IsIssuerOriginURLSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateAcademicRecordClassRankingMapper 
+    public static class TeacherCandidateAcademicRecordClassRankingMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateAcademicRecordClassRanking source, ITeacherCandidateAcademicRecordClassRanking target)
         {
@@ -33019,7 +36331,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -33030,9 +36342,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
         bool IsPercentageRankingSupported { get; set; }
         bool IsTotalNumberInClassSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateAcademicRecordDiplomaMapper 
+    public static class TeacherCandidateAcademicRecordDiplomaMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateAcademicRecordDiploma source, ITeacherCandidateAcademicRecordDiploma target)
         {
@@ -33255,7 +36567,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -33275,9 +36587,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
         bool IsIssuerNameSupported { get; set; }
         bool IsIssuerOriginURLSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateAcademicRecordGradePointAverageMapper 
+    public static class TeacherCandidateAcademicRecordGradePointAverageMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateAcademicRecordGradePointAverage source, ITeacherCandidateAcademicRecordGradePointAverage target)
         {
@@ -33375,7 +36687,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -33385,9 +36697,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
         bool IsIsCumulativeSupported { get; set; }
         bool IsMaxGradePointAverageValueSupported { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateAcademicRecordRecognitionMapper 
+    public static class TeacherCandidateAcademicRecordRecognitionMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateAcademicRecordRecognition source, ITeacherCandidateAcademicRecordRecognition target)
         {
@@ -33593,7 +36905,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -33612,14 +36924,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateAcademicRecordAggrega
         bool IsRecognitionAwardExpiresDateSupported { get; set; }
         bool IsRecognitionDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: TeacherCandidateCharacteristicDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateCharacteristicDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateCharacteristicDescriptorMapper 
+    public static class TeacherCandidateCharacteristicDescriptorMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateCharacteristicDescriptor source, ITeacherCandidateCharacteristicDescriptor target)
         {
@@ -33777,7 +37089,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateCharacteristicDescrip
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -33791,14 +37103,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateCharacteristicDescrip
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: TeacherCandidateCourseTranscript
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateCourseTranscriptAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateCourseTranscriptMapper 
+    public static class TeacherCandidateCourseTranscriptMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateCourseTranscript source, ITeacherCandidateCourseTranscript target)
         {
@@ -33947,15 +37259,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateCourseTranscriptAggre
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateCourseTranscriptEarnedAdditionalCreditsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateCourseTranscriptEarnedAdditionalCredits.SynchronizeCollectionTo(
-                        target.TeacherCandidateCourseTranscriptEarnedAdditionalCredits, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateCourseTranscriptEarnedAdditionalCredits,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidateCourseTranscript = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateCourseTranscriptEarnedAdditionalCreditsIncluded);
             }
 
@@ -34060,7 +37372,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateCourseTranscriptAggre
                 targetSynchSupport.IsWhenTakenGradeLevelDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.CourseResourceId = source.CourseResourceId;
@@ -34079,7 +37391,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateCourseTranscriptAggre
             // Map lists
 
             if (sourceSynchSupport.IsTeacherCandidateCourseTranscriptEarnedAdditionalCreditsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateCourseTranscriptEarnedAdditionalCreditsIncluded = sourceSynchSupport.IsTeacherCandidateCourseTranscriptEarnedAdditionalCreditsIncluded;
                 source.TeacherCandidateCourseTranscriptEarnedAdditionalCredits.MapCollectionTo(target.TeacherCandidateCourseTranscriptEarnedAdditionalCredits, target);
             }
@@ -34107,7 +37419,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateCourseTranscriptAggre
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -34131,9 +37443,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateCourseTranscriptAggre
         bool IsWhenTakenGradeLevelDescriptorSupported { get; set; }
         Func<ITeacherCandidateCourseTranscriptEarnedAdditionalCredits, bool> IsTeacherCandidateCourseTranscriptEarnedAdditionalCreditsIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateCourseTranscriptEarnedAdditionalCreditsMapper 
+    public static class TeacherCandidateCourseTranscriptEarnedAdditionalCreditsMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateCourseTranscriptEarnedAdditionalCredits source, ITeacherCandidateCourseTranscriptEarnedAdditionalCredits target)
         {
@@ -34207,7 +37519,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateCourseTranscriptAggre
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -34215,14 +37527,791 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateCourseTranscriptAggre
     {
         bool IsCreditsSupported { get; set; }
     }
- 
+
+}
+// Aggregate: TeacherCandidateFieldworkAbsenceEvent
+
+namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateFieldworkAbsenceEventAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class TeacherCandidateFieldworkAbsenceEventMapper
+    {
+        public static bool SynchronizeTo(this ITeacherCandidateFieldworkAbsenceEvent source, ITeacherCandidateFieldworkAbsenceEvent target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as ITeacherCandidateFieldworkAbsenceEventSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.AbsenceEventCategoryDescriptor != target.AbsenceEventCategoryDescriptor)
+            {
+                source.AbsenceEventCategoryDescriptor = target.AbsenceEventCategoryDescriptor;
+            }
+            if (source.TeacherCandidateIdentifier != target.TeacherCandidateIdentifier)
+            {
+                source.TeacherCandidateIdentifier = target.TeacherCandidateIdentifier;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsAbsenceEventReasonSupported)
+                && target.AbsenceEventReason != source.AbsenceEventReason)
+            {
+                target.AbsenceEventReason = source.AbsenceEventReason;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsEventDateSupported)
+                && target.EventDate != source.EventDate)
+            {
+                target.EventDate = source.EventDate;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsHoursAbsentSupported)
+                && target.HoursAbsent != source.HoursAbsent)
+            {
+                target.HoursAbsent = source.HoursAbsent;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this ITeacherCandidateFieldworkAbsenceEvent source, ITeacherCandidateFieldworkAbsenceEvent target, Action<ITeacherCandidateFieldworkAbsenceEvent, ITeacherCandidateFieldworkAbsenceEvent> onMapped)
+        {
+            var sourceSynchSupport = source as ITeacherCandidateFieldworkAbsenceEventSynchronizationSourceSupport;
+            var targetSynchSupport = target as ITeacherCandidateFieldworkAbsenceEventSynchronizationSourceSupport;
+
+            // Copy resource Id
+            target.Id = source.Id;
+
+            // Copy contextual primary key values
+            target.AbsenceEventCategoryDescriptor = source.AbsenceEventCategoryDescriptor;
+            target.TeacherCandidateIdentifier = source.TeacherCandidateIdentifier;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsAbsenceEventReasonSupported)
+                target.AbsenceEventReason = source.AbsenceEventReason;
+            else
+                targetSynchSupport.IsAbsenceEventReasonSupported = false;
+
+            if (sourceSynchSupport.IsEventDateSupported)
+                target.EventDate = source.EventDate;
+            else
+                targetSynchSupport.IsEventDateSupported = false;
+
+            if (sourceSynchSupport.IsHoursAbsentSupported)
+                target.HoursAbsent = source.HoursAbsent;
+            else
+                targetSynchSupport.IsHoursAbsentSupported = false;
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.TeacherCandidateResourceId = source.TeacherCandidateResourceId;
+                target.TeacherCandidateDiscriminator = source.TeacherCandidateDiscriminator;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface ITeacherCandidateFieldworkAbsenceEventSynchronizationSourceSupport 
+    {
+        bool IsAbsenceEventReasonSupported { get; set; }
+        bool IsEventDateSupported { get; set; }
+        bool IsHoursAbsentSupported { get; set; }
+    }
+
+}
+// Aggregate: TeacherCandidateFieldworkExperience
+
+namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateFieldworkExperienceAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class TeacherCandidateFieldworkExperienceMapper
+    {
+        public static bool SynchronizeTo(this ITeacherCandidateFieldworkExperience source, ITeacherCandidateFieldworkExperience target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as ITeacherCandidateFieldworkExperienceSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.BeginDate != target.BeginDate)
+            {
+                source.BeginDate = target.BeginDate;
+            }
+            if (source.FieldworkIdentifier != target.FieldworkIdentifier)
+            {
+                source.FieldworkIdentifier = target.FieldworkIdentifier;
+            }
+            if (source.TeacherCandidateIdentifier != target.TeacherCandidateIdentifier)
+            {
+                source.TeacherCandidateIdentifier = target.TeacherCandidateIdentifier;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsEndDateSupported)
+                && target.EndDate != source.EndDate)
+            {
+                target.EndDate = source.EndDate;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsFieldworkTypeDescriptorSupported)
+                && target.FieldworkTypeDescriptor != source.FieldworkTypeDescriptor)
+            {
+                target.FieldworkTypeDescriptor = source.FieldworkTypeDescriptor;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsHoursCompletedSupported)
+                && target.HoursCompleted != source.HoursCompleted)
+            {
+                target.HoursCompleted = source.HoursCompleted;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsProgramGatewayDescriptorSupported)
+                && target.ProgramGatewayDescriptor != source.ProgramGatewayDescriptor)
+            {
+                target.ProgramGatewayDescriptor = source.ProgramGatewayDescriptor;
+                isModified = true;
+            }
+
+            // ----------------------------------
+            //   Synch One-to-one relationships
+            // ----------------------------------
+            // TeacherCandidateFieldworkExperienceCoteaching
+            if (sourceSupport == null || sourceSupport.IsTeacherCandidateFieldworkExperienceCoteachingSupported)
+            {
+                if (source.TeacherCandidateFieldworkExperienceCoteaching == null)
+                {
+                    if (target.TeacherCandidateFieldworkExperienceCoteaching != null)
+                    {
+                        target.TeacherCandidateFieldworkExperienceCoteaching = null;
+                        isModified = true;
+                    }
+                }
+                else
+                {
+                    if (target.TeacherCandidateFieldworkExperienceCoteaching == null)
+                    {
+                        var itemType = target.GetType().GetProperty("TeacherCandidateFieldworkExperienceCoteaching").PropertyType;
+                        var newItem = Activator.CreateInstance(itemType);
+                        target.TeacherCandidateFieldworkExperienceCoteaching = (ITeacherCandidateFieldworkExperienceCoteaching) newItem;
+                    }
+
+                    isModified |= source.TeacherCandidateFieldworkExperienceCoteaching.Synchronize(target.TeacherCandidateFieldworkExperienceCoteaching);
+                }
+            }
+
+            // -------------------------------------------------------------
+
+            // Sync lists
+            if (sourceSupport == null || sourceSupport.IsTeacherCandidateFieldworkExperienceSchoolsSupported)
+            {
+                isModified |=
+                    source.TeacherCandidateFieldworkExperienceSchools.SynchronizeCollectionTo(
+                        target.TeacherCandidateFieldworkExperienceSchools,
+                        onChildAdded: child =>
+                            {
+                                child.TeacherCandidateFieldworkExperience = target;
+                            },
+                        includeItem: sourceSupport == null
+                            ? null
+                            : sourceSupport.IsTeacherCandidateFieldworkExperienceSchoolIncluded);
+            }
+
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this ITeacherCandidateFieldworkExperience source, ITeacherCandidateFieldworkExperience target, Action<ITeacherCandidateFieldworkExperience, ITeacherCandidateFieldworkExperience> onMapped)
+        {
+            var sourceSynchSupport = source as ITeacherCandidateFieldworkExperienceSynchronizationSourceSupport;
+            var targetSynchSupport = target as ITeacherCandidateFieldworkExperienceSynchronizationSourceSupport;
+
+            // Copy resource Id
+            target.Id = source.Id;
+
+            // Copy contextual primary key values
+            target.BeginDate = source.BeginDate;
+            target.FieldworkIdentifier = source.FieldworkIdentifier;
+            target.TeacherCandidateIdentifier = source.TeacherCandidateIdentifier;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsEndDateSupported)
+                target.EndDate = source.EndDate;
+            else
+                targetSynchSupport.IsEndDateSupported = false;
+
+            if (sourceSynchSupport.IsFieldworkTypeDescriptorSupported)
+                target.FieldworkTypeDescriptor = source.FieldworkTypeDescriptor;
+            else
+                targetSynchSupport.IsFieldworkTypeDescriptorSupported = false;
+
+            if (sourceSynchSupport.IsHoursCompletedSupported)
+                target.HoursCompleted = source.HoursCompleted;
+            else
+                targetSynchSupport.IsHoursCompletedSupported = false;
+
+            if (sourceSynchSupport.IsProgramGatewayDescriptorSupported)
+                target.ProgramGatewayDescriptor = source.ProgramGatewayDescriptor;
+            else
+                targetSynchSupport.IsProgramGatewayDescriptorSupported = false;
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.TeacherCandidateResourceId = source.TeacherCandidateResourceId;
+                target.TeacherCandidateDiscriminator = source.TeacherCandidateDiscriminator;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+            // TeacherCandidateFieldworkExperienceCoteaching (Source)
+            if (sourceSynchSupport.IsTeacherCandidateFieldworkExperienceCoteachingSupported)
+            {
+                var itemProperty = target.GetType().GetProperty("TeacherCandidateFieldworkExperienceCoteaching");
+
+                if (itemProperty != null)
+                {
+                    if (source.TeacherCandidateFieldworkExperienceCoteaching == null)
+                    {
+                        target.TeacherCandidateFieldworkExperienceCoteaching = null;
+                    }
+                    else
+                    {
+                        var itemType = itemProperty.PropertyType;
+                        object targetTeacherCandidateFieldworkExperienceCoteaching = Activator.CreateInstance(itemType);
+                        (targetTeacherCandidateFieldworkExperienceCoteaching as IChildEntity)?.SetParent(target);
+                        source.TeacherCandidateFieldworkExperienceCoteaching.Map(targetTeacherCandidateFieldworkExperienceCoteaching);
+
+                        // Update the target reference appropriately
+                        target.TeacherCandidateFieldworkExperienceCoteaching = (ITeacherCandidateFieldworkExperienceCoteaching) targetTeacherCandidateFieldworkExperienceCoteaching;
+                    }
+                }
+            }
+            else
+            {
+                targetSynchSupport.IsTeacherCandidateFieldworkExperienceCoteachingSupported = false;
+            }
+            // -------------------------------------------------------------
+
+            // Map lists
+
+            if (sourceSynchSupport.IsTeacherCandidateFieldworkExperienceSchoolsSupported)
+            {
+                targetSynchSupport.IsTeacherCandidateFieldworkExperienceSchoolIncluded = sourceSynchSupport.IsTeacherCandidateFieldworkExperienceSchoolIncluded;
+                source.TeacherCandidateFieldworkExperienceSchools.MapCollectionTo(target.TeacherCandidateFieldworkExperienceSchools, target);
+            }
+            else
+            {
+                targetSynchSupport.IsTeacherCandidateFieldworkExperienceSchoolsSupported = false;
+            }
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface ITeacherCandidateFieldworkExperienceSynchronizationSourceSupport 
+    {
+        bool IsEndDateSupported { get; set; }
+        bool IsFieldworkTypeDescriptorSupported { get; set; }
+        bool IsHoursCompletedSupported { get; set; }
+        bool IsProgramGatewayDescriptorSupported { get; set; }
+        bool IsTeacherCandidateFieldworkExperienceCoteachingSupported { get; set; }
+        bool IsTeacherCandidateFieldworkExperienceSchoolsSupported { get; set; }
+        Func<ITeacherCandidateFieldworkExperienceSchool, bool> IsTeacherCandidateFieldworkExperienceSchoolIncluded { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class TeacherCandidateFieldworkExperienceCoteachingMapper
+    {
+        public static bool SynchronizeTo(this ITeacherCandidateFieldworkExperienceCoteaching source, ITeacherCandidateFieldworkExperienceCoteaching target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as ITeacherCandidateFieldworkExperienceCoteachingSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsCoteachingBeginDateSupported)
+                && target.CoteachingBeginDate != source.CoteachingBeginDate)
+            {
+                target.CoteachingBeginDate = source.CoteachingBeginDate;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsCoteachingEndDateSupported)
+                && target.CoteachingEndDate != source.CoteachingEndDate)
+            {
+                target.CoteachingEndDate = source.CoteachingEndDate;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this ITeacherCandidateFieldworkExperienceCoteaching source, ITeacherCandidateFieldworkExperienceCoteaching target, Action<ITeacherCandidateFieldworkExperienceCoteaching, ITeacherCandidateFieldworkExperienceCoteaching> onMapped)
+        {
+            var sourceSynchSupport = source as ITeacherCandidateFieldworkExperienceCoteachingSynchronizationSourceSupport;
+            var targetSynchSupport = target as ITeacherCandidateFieldworkExperienceCoteachingSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsCoteachingBeginDateSupported)
+                target.CoteachingBeginDate = source.CoteachingBeginDate;
+            else
+                targetSynchSupport.IsCoteachingBeginDateSupported = false;
+
+            if (sourceSynchSupport.IsCoteachingEndDateSupported)
+                target.CoteachingEndDate = source.CoteachingEndDate;
+            else
+                targetSynchSupport.IsCoteachingEndDateSupported = false;
+
+            // Copy Aggregate Reference Data
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface ITeacherCandidateFieldworkExperienceCoteachingSynchronizationSourceSupport 
+    {
+        bool IsCoteachingBeginDateSupported { get; set; }
+        bool IsCoteachingEndDateSupported { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public static class TeacherCandidateFieldworkExperienceSchoolMapper
+    {
+        public static bool SynchronizeTo(this ITeacherCandidateFieldworkExperienceSchool source, ITeacherCandidateFieldworkExperienceSchool target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as ITeacherCandidateFieldworkExperienceSchoolSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.SchoolId != target.SchoolId)
+            {
+                source.SchoolId = target.SchoolId;
+            }
+
+            // Copy non-PK properties
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this ITeacherCandidateFieldworkExperienceSchool source, ITeacherCandidateFieldworkExperienceSchool target, Action<ITeacherCandidateFieldworkExperienceSchool, ITeacherCandidateFieldworkExperienceSchool> onMapped)
+        {
+            var sourceSynchSupport = source as ITeacherCandidateFieldworkExperienceSchoolSynchronizationSourceSupport;
+            var targetSynchSupport = target as ITeacherCandidateFieldworkExperienceSchoolSynchronizationSourceSupport;
+
+            // Copy contextual primary key values
+            target.SchoolId = source.SchoolId;
+
+            // Copy non-PK properties
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.SchoolResourceId = source.SchoolResourceId;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface ITeacherCandidateFieldworkExperienceSchoolSynchronizationSourceSupport 
+    {
+    }
+
+}
+// Aggregate: TeacherCandidateFieldworkExperienceSectionAssociation
+
+namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateFieldworkExperienceSectionAssociationAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class TeacherCandidateFieldworkExperienceSectionAssociationMapper
+    {
+        public static bool SynchronizeTo(this ITeacherCandidateFieldworkExperienceSectionAssociation source, ITeacherCandidateFieldworkExperienceSectionAssociation target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as ITeacherCandidateFieldworkExperienceSectionAssociationSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.BeginDate != target.BeginDate)
+            {
+                source.BeginDate = target.BeginDate;
+            }
+            if (source.FieldworkIdentifier != target.FieldworkIdentifier)
+            {
+                source.FieldworkIdentifier = target.FieldworkIdentifier;
+            }
+            if (source.LocalCourseCode != target.LocalCourseCode)
+            {
+                source.LocalCourseCode = target.LocalCourseCode;
+            }
+            if (source.SchoolId != target.SchoolId)
+            {
+                source.SchoolId = target.SchoolId;
+            }
+            if (source.SchoolYear != target.SchoolYear)
+            {
+                source.SchoolYear = target.SchoolYear;
+            }
+            if (source.SectionIdentifier != target.SectionIdentifier)
+            {
+                source.SectionIdentifier = target.SectionIdentifier;
+            }
+            if (source.SessionName != target.SessionName)
+            {
+                source.SessionName = target.SessionName;
+            }
+            if (source.TeacherCandidateIdentifier != target.TeacherCandidateIdentifier)
+            {
+                source.TeacherCandidateIdentifier = target.TeacherCandidateIdentifier;
+            }
+
+            // Copy non-PK properties
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this ITeacherCandidateFieldworkExperienceSectionAssociation source, ITeacherCandidateFieldworkExperienceSectionAssociation target, Action<ITeacherCandidateFieldworkExperienceSectionAssociation, ITeacherCandidateFieldworkExperienceSectionAssociation> onMapped)
+        {
+            var sourceSynchSupport = source as ITeacherCandidateFieldworkExperienceSectionAssociationSynchronizationSourceSupport;
+            var targetSynchSupport = target as ITeacherCandidateFieldworkExperienceSectionAssociationSynchronizationSourceSupport;
+
+            // Copy resource Id
+            target.Id = source.Id;
+
+            // Copy contextual primary key values
+            target.BeginDate = source.BeginDate;
+            target.FieldworkIdentifier = source.FieldworkIdentifier;
+            target.LocalCourseCode = source.LocalCourseCode;
+            target.SchoolId = source.SchoolId;
+            target.SchoolYear = source.SchoolYear;
+            target.SectionIdentifier = source.SectionIdentifier;
+            target.SessionName = source.SessionName;
+            target.TeacherCandidateIdentifier = source.TeacherCandidateIdentifier;
+
+            // Copy non-PK properties
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.SectionResourceId = source.SectionResourceId;
+                target.SectionDiscriminator = source.SectionDiscriminator;
+                target.TeacherCandidateFieldworkExperienceResourceId = source.TeacherCandidateFieldworkExperienceResourceId;
+                target.TeacherCandidateFieldworkExperienceDiscriminator = source.TeacherCandidateFieldworkExperienceDiscriminator;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface ITeacherCandidateFieldworkExperienceSectionAssociationSynchronizationSourceSupport 
+    {
+    }
+
+}
+// Aggregate: TeacherCandidateProfessionalDevelopmentEventAttendance
+
+namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateProfessionalDevelopmentEventAttendanceAggregate
+{
+    [ExcludeFromCodeCoverage]
+    public static class TeacherCandidateProfessionalDevelopmentEventAttendanceMapper
+    {
+        public static bool SynchronizeTo(this ITeacherCandidateProfessionalDevelopmentEventAttendance source, ITeacherCandidateProfessionalDevelopmentEventAttendance target)
+        {
+            bool isModified = false;
+
+            var sourceSupport = source as ITeacherCandidateProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport;
+
+            // Back synch non-reference portion of PK (PK properties cannot be changed, therefore they can be omitted in the resource payload, but we need them for proper comparisons for persistence)
+            if (source.AttendanceDate != target.AttendanceDate)
+            {
+                source.AttendanceDate = target.AttendanceDate;
+            }
+            if (source.ProfessionalDevelopmentTitle != target.ProfessionalDevelopmentTitle)
+            {
+                source.ProfessionalDevelopmentTitle = target.ProfessionalDevelopmentTitle;
+            }
+            if (source.TeacherCandidateIdentifier != target.TeacherCandidateIdentifier)
+            {
+                source.TeacherCandidateIdentifier = target.TeacherCandidateIdentifier;
+            }
+
+            // Copy non-PK properties
+
+            if ((sourceSupport == null || sourceSupport.IsAttendanceEventCategoryDescriptorSupported)
+                && target.AttendanceEventCategoryDescriptor != source.AttendanceEventCategoryDescriptor)
+            {
+                target.AttendanceEventCategoryDescriptor = source.AttendanceEventCategoryDescriptor;
+                isModified = true;
+            }
+
+            if ((sourceSupport == null || sourceSupport.IsAttendanceEventReasonSupported)
+                && target.AttendanceEventReason != source.AttendanceEventReason)
+            {
+                target.AttendanceEventReason = source.AttendanceEventReason;
+                isModified = true;
+            }
+
+
+            // Sync lists
+
+            return isModified;
+        }
+
+
+
+        public static void MapTo(this ITeacherCandidateProfessionalDevelopmentEventAttendance source, ITeacherCandidateProfessionalDevelopmentEventAttendance target, Action<ITeacherCandidateProfessionalDevelopmentEventAttendance, ITeacherCandidateProfessionalDevelopmentEventAttendance> onMapped)
+        {
+            var sourceSynchSupport = source as ITeacherCandidateProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport;
+            var targetSynchSupport = target as ITeacherCandidateProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport;
+
+            // Copy resource Id
+            target.Id = source.Id;
+
+            // Copy contextual primary key values
+            target.AttendanceDate = source.AttendanceDate;
+            target.ProfessionalDevelopmentTitle = source.ProfessionalDevelopmentTitle;
+            target.TeacherCandidateIdentifier = source.TeacherCandidateIdentifier;
+
+            // Copy non-PK properties
+
+            if (sourceSynchSupport.IsAttendanceEventCategoryDescriptorSupported)
+                target.AttendanceEventCategoryDescriptor = source.AttendanceEventCategoryDescriptor;
+            else
+                targetSynchSupport.IsAttendanceEventCategoryDescriptorSupported = false;
+
+            if (sourceSynchSupport.IsAttendanceEventReasonSupported)
+                target.AttendanceEventReason = source.AttendanceEventReason;
+            else
+                targetSynchSupport.IsAttendanceEventReasonSupported = false;
+
+            // Copy Aggregate Reference Data
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
+                || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
+            {
+                target.ProfessionalDevelopmentEventResourceId = source.ProfessionalDevelopmentEventResourceId;
+                target.ProfessionalDevelopmentEventDiscriminator = source.ProfessionalDevelopmentEventDiscriminator;
+                target.TeacherCandidateResourceId = source.TeacherCandidateResourceId;
+                target.TeacherCandidateDiscriminator = source.TeacherCandidateDiscriminator;
+            }
+
+
+
+            // ----------------------------------
+            //   Map One-to-one relationships
+            // ----------------------------------
+
+            // Map lists
+
+
+            var eTagProvider = new ETagProvider();
+
+            // Convert value to ETag, if appropriate
+            var entityWithETag = target as IHasETag;
+
+            if (entityWithETag != null)
+                entityWithETag.ETag = eTagProvider.GetETag(source);
+
+            // Convert value to LastModifiedDate, if appropriate
+            var dateVersionedEntity = target as IDateVersionedEntity;
+            var etagSource = source as IHasETag;
+
+            if (dateVersionedEntity != null && etagSource != null)
+                dateVersionedEntity.LastModifiedDate = eTagProvider.GetDateTime(etagSource.ETag);
+        }
+    }
+
+    /// <summary>
+    /// Defines properties that indicate whether a particular property of the model abstraction
+    /// is supported by a model implementation being used as the source in a "synchronization"
+    /// operation.
+    /// </summary>
+    public interface ITeacherCandidateProfessionalDevelopmentEventAttendanceSynchronizationSourceSupport 
+    {
+        bool IsAttendanceEventCategoryDescriptorSupported { get; set; }
+        bool IsAttendanceEventReasonSupported { get; set; }
+    }
+
 }
 // Aggregate: TeacherCandidateStaffAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStaffAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateStaffAssociationMapper 
+    public static class TeacherCandidateStaffAssociationMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateStaffAssociation source, ITeacherCandidateStaffAssociation target)
         {
@@ -34289,7 +38378,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStaffAssociationAggre
                 targetSynchSupport.IsEndDateSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.StaffResourceId = source.StaffResourceId;
@@ -34325,7 +38414,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStaffAssociationAggre
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -34334,14 +38423,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStaffAssociationAggre
         bool IsBeginDateSupported { get; set; }
         bool IsEndDateSupported { get; set; }
     }
- 
+
 }
 // Aggregate: TeacherCandidateStudentGrowthMeasure
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateStudentGrowthMeasureMapper 
+    public static class TeacherCandidateStudentGrowthMeasureMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateStudentGrowthMeasure source, ITeacherCandidateStudentGrowthMeasure target)
         {
@@ -34429,29 +38518,29 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureA
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateStudentGrowthMeasureAcademicSubjectsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateStudentGrowthMeasureAcademicSubjects.SynchronizeCollectionTo(
-                        target.TeacherCandidateStudentGrowthMeasureAcademicSubjects, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateStudentGrowthMeasureAcademicSubjects,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidateStudentGrowthMeasure = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateStudentGrowthMeasureAcademicSubjectIncluded);
             }
 
             if (sourceSupport == null || sourceSupport.IsTeacherCandidateStudentGrowthMeasureGradeLevelsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherCandidateStudentGrowthMeasureGradeLevels.SynchronizeCollectionTo(
-                        target.TeacherCandidateStudentGrowthMeasureGradeLevels, 
-                        onChildAdded: child => 
+                        target.TeacherCandidateStudentGrowthMeasureGradeLevels,
+                        onChildAdded: child =>
                             {
                                 child.TeacherCandidateStudentGrowthMeasure = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherCandidateStudentGrowthMeasureGradeLevelIncluded);
             }
 
@@ -34518,7 +38607,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureA
                 targetSynchSupport.IsStudentGrowthTypeDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.SchoolYearTypeResourceId = source.SchoolYearTypeResourceId;
@@ -34535,7 +38624,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureA
             // Map lists
 
             if (sourceSynchSupport.IsTeacherCandidateStudentGrowthMeasureAcademicSubjectsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateStudentGrowthMeasureAcademicSubjectIncluded = sourceSynchSupport.IsTeacherCandidateStudentGrowthMeasureAcademicSubjectIncluded;
                 source.TeacherCandidateStudentGrowthMeasureAcademicSubjects.MapCollectionTo(target.TeacherCandidateStudentGrowthMeasureAcademicSubjects, target);
             }
@@ -34545,7 +38634,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureA
             }
 
             if (sourceSynchSupport.IsTeacherCandidateStudentGrowthMeasureGradeLevelsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherCandidateStudentGrowthMeasureGradeLevelIncluded = sourceSynchSupport.IsTeacherCandidateStudentGrowthMeasureGradeLevelIncluded;
                 source.TeacherCandidateStudentGrowthMeasureGradeLevels.MapCollectionTo(target.TeacherCandidateStudentGrowthMeasureGradeLevels, target);
             }
@@ -34573,7 +38662,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureA
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -34592,9 +38681,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureA
         Func<ITeacherCandidateStudentGrowthMeasureAcademicSubject, bool> IsTeacherCandidateStudentGrowthMeasureAcademicSubjectIncluded { get; set; }
         Func<ITeacherCandidateStudentGrowthMeasureGradeLevel, bool> IsTeacherCandidateStudentGrowthMeasureGradeLevelIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateStudentGrowthMeasureAcademicSubjectMapper 
+    public static class TeacherCandidateStudentGrowthMeasureAcademicSubjectMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateStudentGrowthMeasureAcademicSubject source, ITeacherCandidateStudentGrowthMeasureAcademicSubject target)
         {
@@ -34656,16 +38745,16 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureA
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ITeacherCandidateStudentGrowthMeasureAcademicSubjectSynchronizationSourceSupport 
     {
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateStudentGrowthMeasureGradeLevelMapper 
+    public static class TeacherCandidateStudentGrowthMeasureGradeLevelMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateStudentGrowthMeasureGradeLevel source, ITeacherCandidateStudentGrowthMeasureGradeLevel target)
         {
@@ -34727,21 +38816,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureA
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ITeacherCandidateStudentGrowthMeasureGradeLevelSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: TeacherCandidateStudentGrowthMeasureCourseAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureCourseAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateStudentGrowthMeasureCourseAssociationMapper 
+    public static class TeacherCandidateStudentGrowthMeasureCourseAssociationMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateStudentGrowthMeasureCourseAssociation source, ITeacherCandidateStudentGrowthMeasureCourseAssociation target)
         {
@@ -34828,7 +38917,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureC
                 targetSynchSupport.IsEndDateSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.CourseResourceId = source.CourseResourceId;
@@ -34864,7 +38953,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureC
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -34873,14 +38962,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureC
         bool IsBeginDateSupported { get; set; }
         bool IsEndDateSupported { get; set; }
     }
- 
+
 }
 // Aggregate: TeacherCandidateStudentGrowthMeasureEducationOrganizationAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureEducationOrganizationAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateStudentGrowthMeasureEducationOrganizationAssociationMapper 
+    public static class TeacherCandidateStudentGrowthMeasureEducationOrganizationAssociationMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateStudentGrowthMeasureEducationOrganizationAssociation source, ITeacherCandidateStudentGrowthMeasureEducationOrganizationAssociation target)
         {
@@ -34962,7 +39051,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureE
                 targetSynchSupport.IsEndDateSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EducationOrganizationResourceId = source.EducationOrganizationResourceId;
@@ -34998,7 +39087,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureE
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -35007,14 +39096,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureE
         bool IsBeginDateSupported { get; set; }
         bool IsEndDateSupported { get; set; }
     }
- 
+
 }
 // Aggregate: TeacherCandidateStudentGrowthMeasureSectionAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureSectionAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateStudentGrowthMeasureSectionAssociationMapper 
+    public static class TeacherCandidateStudentGrowthMeasureSectionAssociationMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateStudentGrowthMeasureSectionAssociation source, ITeacherCandidateStudentGrowthMeasureSectionAssociation target)
         {
@@ -35111,7 +39200,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureS
                 targetSynchSupport.IsEndDateSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.SectionResourceId = source.SectionResourceId;
@@ -35147,7 +39236,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureS
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -35156,14 +39245,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateStudentGrowthMeasureS
         bool IsBeginDateSupported { get; set; }
         bool IsEndDateSupported { get; set; }
     }
- 
+
 }
 // Aggregate: TeacherCandidateTeacherPreparationProviderAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateTeacherPreparationProviderAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateTeacherPreparationProviderAssociationMapper 
+    public static class TeacherCandidateTeacherPreparationProviderAssociationMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateTeacherPreparationProviderAssociation source, ITeacherCandidateTeacherPreparationProviderAssociation target)
         {
@@ -35271,7 +39360,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateTeacherPreparationPro
                 targetSynchSupport.IsSchoolYearSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.ClassOfSchoolYearTypeResourceId = source.ClassOfSchoolYearTypeResourceId;
@@ -35308,7 +39397,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateTeacherPreparationPro
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -35320,14 +39409,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateTeacherPreparationPro
         bool IsExitWithdrawTypeDescriptorSupported { get; set; }
         bool IsSchoolYearSupported { get; set; }
     }
- 
+
 }
 // Aggregate: TeacherCandidateTeacherPreparationProviderProgramAssociation
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateTeacherPreparationProviderProgramAssociationAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherCandidateTeacherPreparationProviderProgramAssociationMapper 
+    public static class TeacherCandidateTeacherPreparationProviderProgramAssociationMapper
     {
         public static bool SynchronizeTo(this ITeacherCandidateTeacherPreparationProviderProgramAssociation source, ITeacherCandidateTeacherPreparationProviderProgramAssociation target)
         {
@@ -35409,7 +39498,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateTeacherPreparationPro
                 targetSynchSupport.IsReasonExitedDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EducationOrganizationResourceId = source.EducationOrganizationResourceId;
@@ -35447,7 +39536,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateTeacherPreparationPro
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -35456,14 +39545,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherCandidateTeacherPreparationPro
         bool IsEndDateSupported { get; set; }
         bool IsReasonExitedDescriptorSupported { get; set; }
     }
- 
+
 }
 // Aggregate: TeacherPreparationProgramTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProgramTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherPreparationProgramTypeDescriptorMapper 
+    public static class TeacherPreparationProgramTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this ITeacherPreparationProgramTypeDescriptor source, ITeacherPreparationProgramTypeDescriptor target)
         {
@@ -35621,7 +39710,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProgramTypeDescript
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -35635,14 +39724,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProgramTypeDescript
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: TeacherPreparationProvider
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherPreparationProviderMapper 
+    public static class TeacherPreparationProviderMapper
     {
         public static bool SynchronizeTo(this ITeacherPreparationProvider source, ITeacherPreparationProvider target)
         {
@@ -35689,13 +39778,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderAggregate
 
             // Copy non-PK properties
 
-            if ((sourceSupport == null || sourceSupport.IsAccreditationStatusDescriptorSupported)
-                && target.AccreditationStatusDescriptor != source.AccreditationStatusDescriptor)
-            {
-                target.AccreditationStatusDescriptor = source.AccreditationStatusDescriptor;
-                isModified = true;
-            }
-
             if ((sourceSupport == null || sourceSupport.IsFederalLocaleCodeDescriptorSupported)
                 && target.FederalLocaleCodeDescriptor != source.FederalLocaleCodeDescriptor)
             {
@@ -35730,10 +39812,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderAggregate
             if (sourceSupport == null || sourceSupport.IsEducationOrganizationIdentificationCodesSupported)
                 isModified |= source.EducationOrganizationIdentificationCodes.SynchronizeCollectionTo(target.EducationOrganizationIdentificationCodes, child => child.EducationOrganization = target,
                                 sourceSupport == null ? null : sourceSupport.IsEducationOrganizationIdentificationCodeIncluded);
-
-            if (sourceSupport == null || sourceSupport.IsEducationOrganizationIndicatorsSupported)
-                isModified |= source.EducationOrganizationIndicators.SynchronizeCollectionTo(target.EducationOrganizationIndicators, child => child.EducationOrganization = target,
-                                sourceSupport == null ? null : sourceSupport.IsEducationOrganizationIndicatorIncluded);
 
             if (sourceSupport == null || sourceSupport.IsEducationOrganizationInstitutionTelephonesSupported)
                 isModified |= source.EducationOrganizationInstitutionTelephones.SynchronizeCollectionTo(target.EducationOrganizationInstitutionTelephones, child => child.EducationOrganization = target,
@@ -35786,11 +39864,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderAggregate
 
             // Copy non-PK properties
 
-            if (sourceSynchSupport.IsAccreditationStatusDescriptorSupported)
-                target.AccreditationStatusDescriptor = source.AccreditationStatusDescriptor;
-            else
-                targetSynchSupport.IsAccreditationStatusDescriptorSupported = false;
-
             if (sourceSynchSupport.IsFederalLocaleCodeDescriptorSupported)
                 target.FederalLocaleCodeDescriptor = source.FederalLocaleCodeDescriptor;
             else
@@ -35807,7 +39880,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderAggregate
                 targetSynchSupport.IsUniversityIdSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.SchoolResourceId = source.SchoolResourceId;
@@ -35852,16 +39925,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderAggregate
                 targetSynchSupport.IsEducationOrganizationIdentificationCodesSupported = false;
             }
 
-            if (sourceSynchSupport.IsEducationOrganizationIndicatorsSupported)
-            {
-                targetSynchSupport.IsEducationOrganizationIndicatorIncluded = sourceSynchSupport.IsEducationOrganizationIndicatorIncluded;
-                source.EducationOrganizationIndicators.MapCollectionTo(target.EducationOrganizationIndicators, target);
-            }
-            else
-            {
-                targetSynchSupport.IsEducationOrganizationIndicatorsSupported = false;
-            }
-
             if (sourceSynchSupport.IsEducationOrganizationInstitutionTelephonesSupported)
             {
                 targetSynchSupport.IsEducationOrganizationInstitutionTelephoneIncluded = sourceSynchSupport.IsEducationOrganizationInstitutionTelephoneIncluded;
@@ -35903,17 +39966,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ITeacherPreparationProviderSynchronizationSourceSupport 
     {
-        bool IsAccreditationStatusDescriptorSupported { get; set; }
         bool IsEducationOrganizationAddressesSupported { get; set; }
         bool IsEducationOrganizationCategoriesSupported { get; set; }
         bool IsEducationOrganizationIdentificationCodesSupported { get; set; }
-        bool IsEducationOrganizationIndicatorsSupported { get; set; }
         bool IsEducationOrganizationInstitutionTelephonesSupported { get; set; }
         bool IsEducationOrganizationInternationalAddressesSupported { get; set; }
         bool IsFederalLocaleCodeDescriptorSupported { get; set; }
@@ -35926,18 +39987,17 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderAggregate
         Func<IEducationOrganizationAddress, bool> IsEducationOrganizationAddressIncluded { get; set; }
         Func<IEducationOrganizationCategory, bool> IsEducationOrganizationCategoryIncluded { get; set; }
         Func<IEducationOrganizationIdentificationCode, bool> IsEducationOrganizationIdentificationCodeIncluded { get; set; }
-        Func<IEducationOrganizationIndicator, bool> IsEducationOrganizationIndicatorIncluded { get; set; }
         Func<IEducationOrganizationInstitutionTelephone, bool> IsEducationOrganizationInstitutionTelephoneIncluded { get; set; }
         Func<IEducationOrganizationInternationalAddress, bool> IsEducationOrganizationInternationalAddressIncluded { get; set; }
     }
- 
+
 }
 // Aggregate: TeacherPreparationProviderProgram
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderProgramAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TeacherPreparationProviderProgramMapper 
+    public static class TeacherPreparationProviderProgramMapper
     {
         public static bool SynchronizeTo(this ITeacherPreparationProviderProgram source, ITeacherPreparationProviderProgram target)
         {
@@ -36000,15 +40060,15 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderProgramAggr
             // Sync lists
             if (sourceSupport == null || sourceSupport.IsTeacherPreparationProviderProgramGradeLevelsSupported)
             {
-                isModified |= 
+                isModified |=
                     source.TeacherPreparationProviderProgramGradeLevels.SynchronizeCollectionTo(
-                        target.TeacherPreparationProviderProgramGradeLevels, 
-                        onChildAdded: child => 
+                        target.TeacherPreparationProviderProgramGradeLevels,
+                        onChildAdded: child =>
                             {
                                 child.TeacherPreparationProviderProgram = target;
                             },
-                        includeItem: sourceSupport == null 
-                            ? null 
+                        includeItem: sourceSupport == null
+                            ? null
                             : sourceSupport.IsTeacherPreparationProviderProgramGradeLevelIncluded);
             }
 
@@ -36059,7 +40119,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderProgramAggr
                 targetSynchSupport.IsTPPProgramPathwayDescriptorSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.EducationOrganizationResourceId = source.EducationOrganizationResourceId;
@@ -36075,7 +40135,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderProgramAggr
             // Map lists
 
             if (sourceSynchSupport.IsTeacherPreparationProviderProgramGradeLevelsSupported)
-            {    
+            {
                 targetSynchSupport.IsTeacherPreparationProviderProgramGradeLevelIncluded = sourceSynchSupport.IsTeacherPreparationProviderProgramGradeLevelIncluded;
                 source.TeacherPreparationProviderProgramGradeLevels.MapCollectionTo(target.TeacherPreparationProviderProgramGradeLevels, target);
             }
@@ -36103,7 +40163,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderProgramAggr
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -36117,9 +40177,9 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderProgramAggr
         bool IsTPPProgramPathwayDescriptorSupported { get; set; }
         Func<ITeacherPreparationProviderProgramGradeLevel, bool> IsTeacherPreparationProviderProgramGradeLevelIncluded { get; set; }
     }
- 
+
     [ExcludeFromCodeCoverage]
-    public static class TeacherPreparationProviderProgramGradeLevelMapper 
+    public static class TeacherPreparationProviderProgramGradeLevelMapper
     {
         public static bool SynchronizeTo(this ITeacherPreparationProviderProgramGradeLevel source, ITeacherPreparationProviderProgramGradeLevel target)
         {
@@ -36181,21 +40241,21 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TeacherPreparationProviderProgramAggr
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
     public interface ITeacherPreparationProviderProgramGradeLevelSynchronizationSourceSupport 
     {
     }
- 
+
 }
 // Aggregate: TPPDegreeTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TPPDegreeTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TPPDegreeTypeDescriptorMapper 
+    public static class TPPDegreeTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this ITPPDegreeTypeDescriptor source, ITPPDegreeTypeDescriptor target)
         {
@@ -36353,7 +40413,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TPPDegreeTypeDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -36367,14 +40427,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TPPDegreeTypeDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: TPPProgramPathwayDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.TPPProgramPathwayDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class TPPProgramPathwayDescriptorMapper 
+    public static class TPPProgramPathwayDescriptorMapper
     {
         public static bool SynchronizeTo(this ITPPProgramPathwayDescriptor source, ITPPProgramPathwayDescriptor target)
         {
@@ -36532,7 +40592,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TPPProgramPathwayDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -36546,14 +40606,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.TPPProgramPathwayDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: University
 
 namespace EdFi.Ods.Entities.Common.TPDM //.UniversityAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class UniversityMapper 
+    public static class UniversityMapper
     {
         public static bool SynchronizeTo(this IUniversity source, IUniversity target)
         {
@@ -36628,10 +40688,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.UniversityAggregate
                 isModified |= source.EducationOrganizationIdentificationCodes.SynchronizeCollectionTo(target.EducationOrganizationIdentificationCodes, child => child.EducationOrganization = target,
                                 sourceSupport == null ? null : sourceSupport.IsEducationOrganizationIdentificationCodeIncluded);
 
-            if (sourceSupport == null || sourceSupport.IsEducationOrganizationIndicatorsSupported)
-                isModified |= source.EducationOrganizationIndicators.SynchronizeCollectionTo(target.EducationOrganizationIndicators, child => child.EducationOrganization = target,
-                                sourceSupport == null ? null : sourceSupport.IsEducationOrganizationIndicatorIncluded);
-
             if (sourceSupport == null || sourceSupport.IsEducationOrganizationInstitutionTelephonesSupported)
                 isModified |= source.EducationOrganizationInstitutionTelephones.SynchronizeCollectionTo(target.EducationOrganizationInstitutionTelephones, child => child.EducationOrganization = target,
                                 sourceSupport == null ? null : sourceSupport.IsEducationOrganizationInstitutionTelephoneIncluded);
@@ -36694,7 +40750,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.UniversityAggregate
                 targetSynchSupport.IsSchoolIdSupported = false;
 
             // Copy Aggregate Reference Data
-            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null 
+            if (GeneratedArtifactStaticDependencies.AuthorizationContextProvider == null
                 || GeneratedArtifactStaticDependencies.AuthorizationContextProvider.GetAction() == RequestActions.ReadActionUri)
             {
                 target.SchoolResourceId = source.SchoolResourceId;
@@ -36738,16 +40794,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.UniversityAggregate
                 targetSynchSupport.IsEducationOrganizationIdentificationCodesSupported = false;
             }
 
-            if (sourceSynchSupport.IsEducationOrganizationIndicatorsSupported)
-            {
-                targetSynchSupport.IsEducationOrganizationIndicatorIncluded = sourceSynchSupport.IsEducationOrganizationIndicatorIncluded;
-                source.EducationOrganizationIndicators.MapCollectionTo(target.EducationOrganizationIndicators, target);
-            }
-            else
-            {
-                targetSynchSupport.IsEducationOrganizationIndicatorsSupported = false;
-            }
-
             if (sourceSynchSupport.IsEducationOrganizationInstitutionTelephonesSupported)
             {
                 targetSynchSupport.IsEducationOrganizationInstitutionTelephoneIncluded = sourceSynchSupport.IsEducationOrganizationInstitutionTelephoneIncluded;
@@ -36789,7 +40835,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.UniversityAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -36798,7 +40844,6 @@ namespace EdFi.Ods.Entities.Common.TPDM //.UniversityAggregate
         bool IsEducationOrganizationAddressesSupported { get; set; }
         bool IsEducationOrganizationCategoriesSupported { get; set; }
         bool IsEducationOrganizationIdentificationCodesSupported { get; set; }
-        bool IsEducationOrganizationIndicatorsSupported { get; set; }
         bool IsEducationOrganizationInstitutionTelephonesSupported { get; set; }
         bool IsEducationOrganizationInternationalAddressesSupported { get; set; }
         bool IsFederalLocaleCodeDescriptorSupported { get; set; }
@@ -36810,18 +40855,17 @@ namespace EdFi.Ods.Entities.Common.TPDM //.UniversityAggregate
         Func<IEducationOrganizationAddress, bool> IsEducationOrganizationAddressIncluded { get; set; }
         Func<IEducationOrganizationCategory, bool> IsEducationOrganizationCategoryIncluded { get; set; }
         Func<IEducationOrganizationIdentificationCode, bool> IsEducationOrganizationIdentificationCodeIncluded { get; set; }
-        Func<IEducationOrganizationIndicator, bool> IsEducationOrganizationIndicatorIncluded { get; set; }
         Func<IEducationOrganizationInstitutionTelephone, bool> IsEducationOrganizationInstitutionTelephoneIncluded { get; set; }
         Func<IEducationOrganizationInternationalAddress, bool> IsEducationOrganizationInternationalAddressIncluded { get; set; }
     }
- 
+
 }
 // Aggregate: ValueTypeDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.ValueTypeDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class ValueTypeDescriptorMapper 
+    public static class ValueTypeDescriptorMapper
     {
         public static bool SynchronizeTo(this IValueTypeDescriptor source, IValueTypeDescriptor target)
         {
@@ -36979,7 +41023,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ValueTypeDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -36993,14 +41037,14 @@ namespace EdFi.Ods.Entities.Common.TPDM //.ValueTypeDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }
 // Aggregate: WithdrawReasonDescriptor
 
 namespace EdFi.Ods.Entities.Common.TPDM //.WithdrawReasonDescriptorAggregate
-{ 
+{
     [ExcludeFromCodeCoverage]
-    public static class WithdrawReasonDescriptorMapper 
+    public static class WithdrawReasonDescriptorMapper
     {
         public static bool SynchronizeTo(this IWithdrawReasonDescriptor source, IWithdrawReasonDescriptor target)
         {
@@ -37158,7 +41202,7 @@ namespace EdFi.Ods.Entities.Common.TPDM //.WithdrawReasonDescriptorAggregate
     }
 
     /// <summary>
-    /// Defines properties that indicate whether a particular property of the model abstraction 
+    /// Defines properties that indicate whether a particular property of the model abstraction
     /// is supported by a model implementation being used as the source in a "synchronization"
     /// operation.
     /// </summary>
@@ -37172,5 +41216,5 @@ namespace EdFi.Ods.Entities.Common.TPDM //.WithdrawReasonDescriptorAggregate
         bool IsPriorDescriptorIdSupported { get; set; }
         bool IsShortDescriptionSupported { get; set; }
     }
- 
+
 }

@@ -55,6 +55,9 @@ namespace EdFi.Ods.CodeGen.Modules
 
             builder.RegisterType<SchemaFileProvider>()
                 .As<ISchemaFileProvider>();
+
+            builder.RegisterType<ViewsProvider>()
+                .As<IViewsProvider>();
         }
     }
 }

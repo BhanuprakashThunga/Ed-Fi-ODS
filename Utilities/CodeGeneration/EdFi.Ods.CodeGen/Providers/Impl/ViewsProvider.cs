@@ -10,11 +10,11 @@ using EdFi.Ods.Common;
 
 namespace EdFi.Ods.CodeGen.Providers.Impl
 {
-    public class JsonViewsProvider : JsonFileProvider, IViewsProvider
+    public class ViewsProvider : JsonFileProvider, IViewsProvider
     {
         private readonly Lazy<List<DatabaseView>> _views;
 
-        public JsonViewsProvider(IMetadataFolderProvider metadataFolderProvider)
+        public ViewsProvider(IMetadataFolderProvider metadataFolderProvider)
         {
             Preconditions.ThrowIfNull(metadataFolderProvider, nameof(metadataFolderProvider));
 

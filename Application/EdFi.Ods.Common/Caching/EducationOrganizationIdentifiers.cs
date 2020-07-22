@@ -26,9 +26,7 @@ namespace EdFi.Ods.Common.Caching
             int? postSecondaryInstitutionId = null,
             // For TPDM Extension Support
             int? universityId = null,
-            int? teacherPreparationProviderId = null,
-            string fullEducationOrganizationType = null,
-            string nameOfInstitution = null)
+            int? teacherPreparationProviderId = null)
         {
             EducationOrganizationId = educationOrganizationId;
             EducationOrganizationType = educationOrganizationType;
@@ -42,10 +40,6 @@ namespace EdFi.Ods.Common.Caching
             // For TPDM Extension Support
             UniversityId = universityId;
             TeacherPreparationProviderId = teacherPreparationProviderId;
-
-            // new for UserInfo endpoint
-            NameOfInstitution = nameOfInstitution;
-            FullEducationOrganizationType = fullEducationOrganizationType;
         }
 
         public int EducationOrganizationId { get; private set; }
@@ -71,12 +65,6 @@ namespace EdFi.Ods.Common.Caching
 
         // For TPDM Extension Support
         public int? TeacherPreparationProviderId { get; private set; }
-
-        // For TokenInfo Endpoint
-        public string NameOfInstitution { get; private set; }
-
-        // For TokenInfo Endpoint
-        public string FullEducationOrganizationType { get; private set; }
 
         public bool IsDefault => EducationOrganizationId == default(int)
                                  && EducationServiceCenterId == null

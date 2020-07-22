@@ -306,8 +306,6 @@
     <Entity table="EducationOrganizationAddressPeriod"/>
     <Entity table="EducationOrganizationCategory" isRequiredCollection="true"/>
     <Entity table="EducationOrganizationIdentificationCode"/>
-    <Entity table="EducationOrganizationIndicator"/>
-    <Entity table="EducationOrganizationIndicatorPeriod"/>
     <Entity table="EducationOrganizationInstitutionTelephone"/>
     <Entity table="EducationOrganizationInternationalAddress"/>
   </Aggregate>
@@ -417,15 +415,6 @@
   </Aggregate>
   <Aggregate root="IncidentLocationDescriptor">
     <Entity table="IncidentLocationDescriptor" isA="Descriptor"/>
-  </Aggregate>
-  <Aggregate root="IndicatorDescriptor">
-    <Entity table="IndicatorDescriptor" isA="Descriptor"/>
-  </Aggregate>
-  <Aggregate root="IndicatorGroupDescriptor">
-    <Entity table="IndicatorGroupDescriptor" isA="Descriptor"/>
-  </Aggregate>
-  <Aggregate root="IndicatorLevelDescriptor">
-    <Entity table="IndicatorLevelDescriptor" isA="Descriptor"/>
   </Aggregate>
   <Aggregate root="InstitutionTelephoneNumberTypeDescriptor">
     <Entity table="InstitutionTelephoneNumberTypeDescriptor" isA="Descriptor"/>

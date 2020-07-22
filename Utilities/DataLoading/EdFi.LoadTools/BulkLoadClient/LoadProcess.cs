@@ -4,7 +4,6 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -51,7 +50,7 @@ namespace EdFi.LoadTools.BulkLoadClient
                         ConfigureCompositionRoot(container, configuration);
 
                         // retrieve application
-                        var application = container.GetInstance<IApiLoaderApplication>();
+                        var application = container.GetInstance<ApiLoaderApplication>();
 
                         // run application
                         exitCode = application.Run().Result;
@@ -168,16 +167,6 @@ namespace EdFi.LoadTools.BulkLoadClient
             container.RegisterSingleton<IMetadataFactory<XmlModelMetadata>, XsdApiTypesMetadataFactory>();
             container.RegisterSingleton<IMetadataMappingFactory, ResourceToResourceMetadataMappingFactory>();
             container.RegisterSingleton<ITokenRetriever, TokenRetriever>();
-            container.Register<IOdsRestClient, OdsRestClient>();
-            container.Register<ISubmitResource, SubmitResource>();
-            container.Register<IApiLoaderApplication, ApiLoaderApplication>();
-
-            if (configuration.IncludeStats)
-            {
-                container.RegisterSingleton<IResourceStatistic, ResourceStatistic>();
-                container.RegisterDecorator<ISubmitResource, SubmitResourceTimingDecorator>();
-                container.RegisterDecorator<IApiLoaderApplication, ApiLoaderApplicationTimerDecorator>();
-            }
 
             container.RegisterCollection<IFileImportPipelineStep>(
                 new[]

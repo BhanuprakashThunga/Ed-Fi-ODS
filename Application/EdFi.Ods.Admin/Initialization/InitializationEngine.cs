@@ -4,7 +4,6 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Security;
 using EdFi.Ods.Admin.Security;
@@ -85,7 +84,10 @@ namespace EdFi.Ods.Admin.Initialization
             WebSecurity.CreateUserAndAccount(
                 user.UserName,
                 user.Password,
-                new {FullName = user.Name});
+                new
+                {
+                    FullName = user.Name
+                });
 
             foreach (var role in user.Roles)
             {
@@ -93,10 +95,7 @@ namespace EdFi.Ods.Admin.Initialization
             }
 
             WebSecurityService.UpdatePasswordAndActivate(user.UserName, user.Password);
-
-            var namespacePrefixes = user.NamespacePrefixes.Select(nsp => nsp.NamespacePrefix).ToList();
-
-            _clientAppRepo.SetDefaultVendorOnUserFromEmailAndName(user.Email, user.UserName, namespacePrefixes);
+            _clientAppRepo.SetDefaultVendorOnUserFromEmailAndName(user.Email, user.Name);
         }
 
         public void EnsureMinimalTemplateEducationOrganizationsExist()
@@ -115,7 +114,7 @@ namespace EdFi.Ods.Admin.Initialization
                 Log.Fatal(ex);
             }
         }
-
+        
         public void CreateSandboxes()
         {
             if (!_settings.Enabled)

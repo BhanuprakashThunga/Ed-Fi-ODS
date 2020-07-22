@@ -16,14 +16,14 @@ using log4net;
 
 namespace EdFi.LoadTools
 {
-    public class ApiLoaderApplication : IApiLoaderApplication
+    public class ApiLoaderApplication
     {
         private static readonly ILog _log = LogManager.GetLogger(nameof(ApiLoaderApplication));
 
         private readonly IApiConfiguration _apiConfiguration;
         private readonly FileImportPipeline _fileImportPipeline;
         private readonly ResourcePipeline _resourcePipeline;
-        private readonly ISubmitResource _submitResourcesProcessor;
+        private readonly SubmitResource _submitResourcesProcessor;
         private readonly IXmlReferenceCacheFactory _xmlReferenceCacheFactory;
         private readonly IResourceHashCache _xmlResourceHashCache;
         private readonly DependenciesRetriever _dependenciesRetriever;
@@ -31,7 +31,7 @@ namespace EdFi.LoadTools
         public ApiLoaderApplication(
             FileImportPipeline fileImportPipeline,
             ResourcePipeline resourcePipeline,
-            ISubmitResource submitResourcesProcessor,
+            SubmitResource submitResourcesProcessor,
             IResourceHashCache xmlResourceHashCache,
             IXmlReferenceCacheFactory xmlReferenceCacheFactory,
             IApiConfiguration apiConfiguration,

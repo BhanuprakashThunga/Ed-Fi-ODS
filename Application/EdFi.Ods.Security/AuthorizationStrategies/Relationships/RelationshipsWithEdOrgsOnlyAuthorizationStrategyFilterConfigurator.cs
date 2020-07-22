@@ -23,8 +23,8 @@ namespace EdFi.Ods.Security.AuthorizationStrategies.Relationships
                               RelationshipsAuthorizationFilters.EducationOrganizationIdToLocalEducationAgencyId,
                               RelationshipsAuthorizationFilters.EducationOrganizationIdToSchoolId,
                               RelationshipsAuthorizationFilters.LocalEducationAgencyIdToSchoolId,
-                              RelationshipsAuthorizationFilters.CommunityOrganizationIdToEducationOrganizationId,
-                              RelationshipsAuthorizationFilters.CommunityProviderIdToEducationOrganizationId,
+                              RelationshipsAuthorizationFilters.EducationOrganizationIdToCommunityOrganizationId,
+                              RelationshipsAuthorizationFilters.EducationOrganizationIdToCommunityProviderId,
                               RelationshipsAuthorizationFilters.CommunityOrganizationIdToCommunityProviderId,
                               RelationshipsAuthorizationFilters.EducationOrganizationIdToPostSecondaryInstitutionId,
 

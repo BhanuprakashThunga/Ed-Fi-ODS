@@ -812,7 +812,7 @@ namespace EdFi.Ods.WebService.Tests.Profiles
             var comparer = new CompareLogic(
                 new ComparisonConfig
                 {
-                    MaxDifferences = 150
+                    MaxDifferences = 100
                 });
 
             var compareResult = comparer.Compare(originalEntity, persistedEntity);
