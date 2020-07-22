@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using EdFi.Ods.Api.Common.Attributes;
 using EdFi.Ods.Common;
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AbsenceEventCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AbsenceEventCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AbsenceEventCategoryDescriptorGetByExample
     {
@@ -33,15 +32,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AbsenceEventCategoryDescriptors.Ed
 
     [ExcludeFromCodeCoverage]
     public class AbsenceEventCategoryDescriptorPut : Resources.AbsenceEventCategoryDescriptor.EdFi.AbsenceEventCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AbsenceEventCategoryDescriptorDelete : IHasIdentifier
+    public class AbsenceEventCategoryDescriptorDelete : IHasIdentifier 
     {
         public AbsenceEventCategoryDescriptorDelete() { }
 
-        public AbsenceEventCategoryDescriptorDelete(Guid id)
+        public AbsenceEventCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -50,9 +49,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AbsenceEventCategoryDescriptors.Ed
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AcademicHonorCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AcademicHonorCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AcademicHonorCategoryDescriptorGetByExample
     {
@@ -79,15 +78,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AcademicHonorCategoryDescriptors.E
 
     [ExcludeFromCodeCoverage]
     public class AcademicHonorCategoryDescriptorPut : Resources.AcademicHonorCategoryDescriptor.EdFi.AcademicHonorCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AcademicHonorCategoryDescriptorDelete : IHasIdentifier
+    public class AcademicHonorCategoryDescriptorDelete : IHasIdentifier 
     {
         public AcademicHonorCategoryDescriptorDelete() { }
 
-        public AcademicHonorCategoryDescriptorDelete(Guid id)
+        public AcademicHonorCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -96,9 +95,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AcademicHonorCategoryDescriptors.E
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AcademicSubjectDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AcademicSubjectDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AcademicSubjectDescriptorGetByExample
     {
@@ -125,15 +124,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AcademicSubjectDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class AcademicSubjectDescriptorPut : Resources.AcademicSubjectDescriptor.EdFi.AcademicSubjectDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AcademicSubjectDescriptorDelete : IHasIdentifier
+    public class AcademicSubjectDescriptorDelete : IHasIdentifier 
     {
         public AcademicSubjectDescriptorDelete() { }
 
-        public AcademicSubjectDescriptorDelete(Guid id)
+        public AcademicSubjectDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -142,9 +141,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AcademicSubjectDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AcademicWeeks.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AcademicWeeks.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AcademicWeekGetByExample
     {
@@ -176,15 +175,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AcademicWeeks.EdFi
 
     [ExcludeFromCodeCoverage]
     public class AcademicWeekPut : Resources.AcademicWeek.EdFi.AcademicWeek
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AcademicWeekDelete : IHasIdentifier
+    public class AcademicWeekDelete : IHasIdentifier 
     {
         public AcademicWeekDelete() { }
 
-        public AcademicWeekDelete(Guid id)
+        public AcademicWeekDelete(Guid id) 
         {
             Id = id;
         }
@@ -193,9 +192,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AcademicWeeks.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AccommodationDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AccommodationDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AccommodationDescriptorGetByExample
     {
@@ -222,15 +221,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AccommodationDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class AccommodationDescriptorPut : Resources.AccommodationDescriptor.EdFi.AccommodationDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AccommodationDescriptorDelete : IHasIdentifier
+    public class AccommodationDescriptorDelete : IHasIdentifier 
     {
         public AccommodationDescriptorDelete() { }
 
-        public AccommodationDescriptorDelete(Guid id)
+        public AccommodationDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -239,9 +238,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AccommodationDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Accounts.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Accounts.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AccountGetByExample
     {
@@ -272,15 +271,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Accounts.EdFi
 
     [ExcludeFromCodeCoverage]
     public class AccountPut : Resources.Account.EdFi.Account
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AccountDelete : IHasIdentifier
+    public class AccountDelete : IHasIdentifier 
     {
         public AccountDelete() { }
 
-        public AccountDelete(Guid id)
+        public AccountDelete(Guid id) 
         {
             Id = id;
         }
@@ -289,9 +288,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Accounts.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AccountabilityRatings.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AccountabilityRatings.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AccountabilityRatingGetByExample
     {
@@ -325,15 +324,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AccountabilityRatings.EdFi
 
     [ExcludeFromCodeCoverage]
     public class AccountabilityRatingPut : Resources.AccountabilityRating.EdFi.AccountabilityRating
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AccountabilityRatingDelete : IHasIdentifier
+    public class AccountabilityRatingDelete : IHasIdentifier 
     {
         public AccountabilityRatingDelete() { }
 
-        public AccountabilityRatingDelete(Guid id)
+        public AccountabilityRatingDelete(Guid id) 
         {
             Id = id;
         }
@@ -342,9 +341,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AccountabilityRatings.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AccountClassificationDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AccountClassificationDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AccountClassificationDescriptorGetByExample
     {
@@ -371,15 +370,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AccountClassificationDescriptors.E
 
     [ExcludeFromCodeCoverage]
     public class AccountClassificationDescriptorPut : Resources.AccountClassificationDescriptor.EdFi.AccountClassificationDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AccountClassificationDescriptorDelete : IHasIdentifier
+    public class AccountClassificationDescriptorDelete : IHasIdentifier 
     {
         public AccountClassificationDescriptorDelete() { }
 
-        public AccountClassificationDescriptorDelete(Guid id)
+        public AccountClassificationDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -388,9 +387,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AccountClassificationDescriptors.E
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AccountCodes.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AccountCodes.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AccountCodeGetByExample
     {
@@ -422,15 +421,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AccountCodes.EdFi
 
     [ExcludeFromCodeCoverage]
     public class AccountCodePut : Resources.AccountCode.EdFi.AccountCode
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AccountCodeDelete : IHasIdentifier
+    public class AccountCodeDelete : IHasIdentifier 
     {
         public AccountCodeDelete() { }
 
-        public AccountCodeDelete(Guid id)
+        public AccountCodeDelete(Guid id) 
         {
             Id = id;
         }
@@ -439,9 +438,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AccountCodes.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AchievementCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AchievementCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AchievementCategoryDescriptorGetByExample
     {
@@ -468,15 +467,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AchievementCategoryDescriptors.EdF
 
     [ExcludeFromCodeCoverage]
     public class AchievementCategoryDescriptorPut : Resources.AchievementCategoryDescriptor.EdFi.AchievementCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AchievementCategoryDescriptorDelete : IHasIdentifier
+    public class AchievementCategoryDescriptorDelete : IHasIdentifier 
     {
         public AchievementCategoryDescriptorDelete() { }
 
-        public AchievementCategoryDescriptorDelete(Guid id)
+        public AchievementCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -485,9 +484,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AchievementCategoryDescriptors.EdF
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Actuals.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Actuals.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ActualGetByExample
     {
@@ -519,15 +518,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Actuals.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ActualPut : Resources.Actual.EdFi.Actual
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ActualDelete : IHasIdentifier
+    public class ActualDelete : IHasIdentifier 
     {
         public ActualDelete() { }
 
-        public ActualDelete(Guid id)
+        public ActualDelete(Guid id) 
         {
             Id = id;
         }
@@ -536,9 +535,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Actuals.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AdditionalCreditTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AdditionalCreditTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AdditionalCreditTypeDescriptorGetByExample
     {
@@ -565,15 +564,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AdditionalCreditTypeDescriptors.Ed
 
     [ExcludeFromCodeCoverage]
     public class AdditionalCreditTypeDescriptorPut : Resources.AdditionalCreditTypeDescriptor.EdFi.AdditionalCreditTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AdditionalCreditTypeDescriptorDelete : IHasIdentifier
+    public class AdditionalCreditTypeDescriptorDelete : IHasIdentifier 
     {
         public AdditionalCreditTypeDescriptorDelete() { }
 
-        public AdditionalCreditTypeDescriptorDelete(Guid id)
+        public AdditionalCreditTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -582,9 +581,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AdditionalCreditTypeDescriptors.Ed
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AddressTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AddressTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AddressTypeDescriptorGetByExample
     {
@@ -611,15 +610,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AddressTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class AddressTypeDescriptorPut : Resources.AddressTypeDescriptor.EdFi.AddressTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AddressTypeDescriptorDelete : IHasIdentifier
+    public class AddressTypeDescriptorDelete : IHasIdentifier 
     {
         public AddressTypeDescriptorDelete() { }
 
-        public AddressTypeDescriptorDelete(Guid id)
+        public AddressTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -628,9 +627,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AddressTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AdministrationEnvironmentDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AdministrationEnvironmentDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AdministrationEnvironmentDescriptorGetByExample
     {
@@ -657,15 +656,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AdministrationEnvironmentDescripto
 
     [ExcludeFromCodeCoverage]
     public class AdministrationEnvironmentDescriptorPut : Resources.AdministrationEnvironmentDescriptor.EdFi.AdministrationEnvironmentDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AdministrationEnvironmentDescriptorDelete : IHasIdentifier
+    public class AdministrationEnvironmentDescriptorDelete : IHasIdentifier 
     {
         public AdministrationEnvironmentDescriptorDelete() { }
 
-        public AdministrationEnvironmentDescriptorDelete(Guid id)
+        public AdministrationEnvironmentDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -674,9 +673,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AdministrationEnvironmentDescripto
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AdministrativeFundingControlDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AdministrativeFundingControlDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AdministrativeFundingControlDescriptorGetByExample
     {
@@ -703,15 +702,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AdministrativeFundingControlDescri
 
     [ExcludeFromCodeCoverage]
     public class AdministrativeFundingControlDescriptorPut : Resources.AdministrativeFundingControlDescriptor.EdFi.AdministrativeFundingControlDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AdministrativeFundingControlDescriptorDelete : IHasIdentifier
+    public class AdministrativeFundingControlDescriptorDelete : IHasIdentifier 
     {
         public AdministrativeFundingControlDescriptorDelete() { }
 
-        public AdministrativeFundingControlDescriptorDelete(Guid id)
+        public AdministrativeFundingControlDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -720,9 +719,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AdministrativeFundingControlDescri
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Assessments.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Assessments.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AssessmentGetByExample
     {
@@ -761,15 +760,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Assessments.EdFi
 
     [ExcludeFromCodeCoverage]
     public class AssessmentPut : Resources.Assessment.EdFi.Assessment
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AssessmentDelete : IHasIdentifier
+    public class AssessmentDelete : IHasIdentifier 
     {
         public AssessmentDelete() { }
 
-        public AssessmentDelete(Guid id)
+        public AssessmentDelete(Guid id) 
         {
             Id = id;
         }
@@ -778,9 +777,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Assessments.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AssessmentCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AssessmentCategoryDescriptorGetByExample
     {
@@ -807,15 +806,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentCategoryDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class AssessmentCategoryDescriptorPut : Resources.AssessmentCategoryDescriptor.EdFi.AssessmentCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AssessmentCategoryDescriptorDelete : IHasIdentifier
+    public class AssessmentCategoryDescriptorDelete : IHasIdentifier 
     {
         public AssessmentCategoryDescriptorDelete() { }
 
-        public AssessmentCategoryDescriptorDelete(Guid id)
+        public AssessmentCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -824,9 +823,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentCategoryDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentIdentificationSystemDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AssessmentIdentificationSystemDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AssessmentIdentificationSystemDescriptorGetByExample
     {
@@ -853,15 +852,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentIdentificationSystemDesc
 
     [ExcludeFromCodeCoverage]
     public class AssessmentIdentificationSystemDescriptorPut : Resources.AssessmentIdentificationSystemDescriptor.EdFi.AssessmentIdentificationSystemDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AssessmentIdentificationSystemDescriptorDelete : IHasIdentifier
+    public class AssessmentIdentificationSystemDescriptorDelete : IHasIdentifier 
     {
         public AssessmentIdentificationSystemDescriptorDelete() { }
 
-        public AssessmentIdentificationSystemDescriptorDelete(Guid id)
+        public AssessmentIdentificationSystemDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -870,9 +869,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentIdentificationSystemDesc
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentItems.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AssessmentItems.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AssessmentItemGetByExample
     {
@@ -909,15 +908,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentItems.EdFi
 
     [ExcludeFromCodeCoverage]
     public class AssessmentItemPut : Resources.AssessmentItem.EdFi.AssessmentItem
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AssessmentItemDelete : IHasIdentifier
+    public class AssessmentItemDelete : IHasIdentifier 
     {
         public AssessmentItemDelete() { }
 
-        public AssessmentItemDelete(Guid id)
+        public AssessmentItemDelete(Guid id) 
         {
             Id = id;
         }
@@ -926,9 +925,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentItems.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentItemCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AssessmentItemCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AssessmentItemCategoryDescriptorGetByExample
     {
@@ -955,15 +954,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentItemCategoryDescriptors.
 
     [ExcludeFromCodeCoverage]
     public class AssessmentItemCategoryDescriptorPut : Resources.AssessmentItemCategoryDescriptor.EdFi.AssessmentItemCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AssessmentItemCategoryDescriptorDelete : IHasIdentifier
+    public class AssessmentItemCategoryDescriptorDelete : IHasIdentifier 
     {
         public AssessmentItemCategoryDescriptorDelete() { }
 
-        public AssessmentItemCategoryDescriptorDelete(Guid id)
+        public AssessmentItemCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -972,9 +971,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentItemCategoryDescriptors.
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentItemResultDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AssessmentItemResultDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AssessmentItemResultDescriptorGetByExample
     {
@@ -1001,15 +1000,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentItemResultDescriptors.Ed
 
     [ExcludeFromCodeCoverage]
     public class AssessmentItemResultDescriptorPut : Resources.AssessmentItemResultDescriptor.EdFi.AssessmentItemResultDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AssessmentItemResultDescriptorDelete : IHasIdentifier
+    public class AssessmentItemResultDescriptorDelete : IHasIdentifier 
     {
         public AssessmentItemResultDescriptorDelete() { }
 
-        public AssessmentItemResultDescriptorDelete(Guid id)
+        public AssessmentItemResultDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1018,9 +1017,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentItemResultDescriptors.Ed
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentPeriodDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AssessmentPeriodDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AssessmentPeriodDescriptorGetByExample
     {
@@ -1047,15 +1046,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentPeriodDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class AssessmentPeriodDescriptorPut : Resources.AssessmentPeriodDescriptor.EdFi.AssessmentPeriodDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AssessmentPeriodDescriptorDelete : IHasIdentifier
+    public class AssessmentPeriodDescriptorDelete : IHasIdentifier 
     {
         public AssessmentPeriodDescriptorDelete() { }
 
-        public AssessmentPeriodDescriptorDelete(Guid id)
+        public AssessmentPeriodDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1064,9 +1063,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentPeriodDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentReportingMethodDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AssessmentReportingMethodDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AssessmentReportingMethodDescriptorGetByExample
     {
@@ -1093,15 +1092,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentReportingMethodDescripto
 
     [ExcludeFromCodeCoverage]
     public class AssessmentReportingMethodDescriptorPut : Resources.AssessmentReportingMethodDescriptor.EdFi.AssessmentReportingMethodDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AssessmentReportingMethodDescriptorDelete : IHasIdentifier
+    public class AssessmentReportingMethodDescriptorDelete : IHasIdentifier 
     {
         public AssessmentReportingMethodDescriptorDelete() { }
 
-        public AssessmentReportingMethodDescriptorDelete(Guid id)
+        public AssessmentReportingMethodDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1110,9 +1109,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AssessmentReportingMethodDescripto
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AttemptStatusDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AttemptStatusDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AttemptStatusDescriptorGetByExample
     {
@@ -1139,15 +1138,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AttemptStatusDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class AttemptStatusDescriptorPut : Resources.AttemptStatusDescriptor.EdFi.AttemptStatusDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AttemptStatusDescriptorDelete : IHasIdentifier
+    public class AttemptStatusDescriptorDelete : IHasIdentifier 
     {
         public AttemptStatusDescriptorDelete() { }
 
-        public AttemptStatusDescriptorDelete(Guid id)
+        public AttemptStatusDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1156,9 +1155,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AttemptStatusDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.AttendanceEventCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.AttendanceEventCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class AttendanceEventCategoryDescriptorGetByExample
     {
@@ -1185,15 +1184,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AttendanceEventCategoryDescriptors
 
     [ExcludeFromCodeCoverage]
     public class AttendanceEventCategoryDescriptorPut : Resources.AttendanceEventCategoryDescriptor.EdFi.AttendanceEventCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class AttendanceEventCategoryDescriptorDelete : IHasIdentifier
+    public class AttendanceEventCategoryDescriptorDelete : IHasIdentifier 
     {
         public AttendanceEventCategoryDescriptorDelete() { }
 
-        public AttendanceEventCategoryDescriptorDelete(Guid id)
+        public AttendanceEventCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1202,9 +1201,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.AttendanceEventCategoryDescriptors
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.BehaviorDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.BehaviorDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class BehaviorDescriptorGetByExample
     {
@@ -1231,15 +1230,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.BehaviorDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class BehaviorDescriptorPut : Resources.BehaviorDescriptor.EdFi.BehaviorDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class BehaviorDescriptorDelete : IHasIdentifier
+    public class BehaviorDescriptorDelete : IHasIdentifier 
     {
         public BehaviorDescriptorDelete() { }
 
-        public BehaviorDescriptorDelete(Guid id)
+        public BehaviorDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1248,9 +1247,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.BehaviorDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.BellSchedules.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.BellSchedules.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class BellScheduleGetByExample
     {
@@ -1283,15 +1282,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.BellSchedules.EdFi
 
     [ExcludeFromCodeCoverage]
     public class BellSchedulePut : Resources.BellSchedule.EdFi.BellSchedule
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class BellScheduleDelete : IHasIdentifier
+    public class BellScheduleDelete : IHasIdentifier 
     {
         public BellScheduleDelete() { }
 
-        public BellScheduleDelete(Guid id)
+        public BellScheduleDelete(Guid id) 
         {
             Id = id;
         }
@@ -1300,9 +1299,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.BellSchedules.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Budgets.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Budgets.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class BudgetGetByExample
     {
@@ -1334,15 +1333,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Budgets.EdFi
 
     [ExcludeFromCodeCoverage]
     public class BudgetPut : Resources.Budget.EdFi.Budget
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class BudgetDelete : IHasIdentifier
+    public class BudgetDelete : IHasIdentifier 
     {
         public BudgetDelete() { }
 
-        public BudgetDelete(Guid id)
+        public BudgetDelete(Guid id) 
         {
             Id = id;
         }
@@ -1351,9 +1350,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Budgets.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Calendars.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Calendars.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CalendarGetByExample
     {
@@ -1384,15 +1383,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Calendars.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CalendarPut : Resources.Calendar.EdFi.Calendar
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CalendarDelete : IHasIdentifier
+    public class CalendarDelete : IHasIdentifier 
     {
         public CalendarDelete() { }
 
-        public CalendarDelete(Guid id)
+        public CalendarDelete(Guid id) 
         {
             Id = id;
         }
@@ -1401,9 +1400,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Calendars.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CalendarDates.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CalendarDates.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CalendarDateGetByExample
     {
@@ -1434,15 +1433,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CalendarDates.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CalendarDatePut : Resources.CalendarDate.EdFi.CalendarDate
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CalendarDateDelete : IHasIdentifier
+    public class CalendarDateDelete : IHasIdentifier 
     {
         public CalendarDateDelete() { }
 
-        public CalendarDateDelete(Guid id)
+        public CalendarDateDelete(Guid id) 
         {
             Id = id;
         }
@@ -1451,9 +1450,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CalendarDates.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CalendarEventDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CalendarEventDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CalendarEventDescriptorGetByExample
     {
@@ -1480,15 +1479,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CalendarEventDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CalendarEventDescriptorPut : Resources.CalendarEventDescriptor.EdFi.CalendarEventDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CalendarEventDescriptorDelete : IHasIdentifier
+    public class CalendarEventDescriptorDelete : IHasIdentifier 
     {
         public CalendarEventDescriptorDelete() { }
 
-        public CalendarEventDescriptorDelete(Guid id)
+        public CalendarEventDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1497,9 +1496,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CalendarEventDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CalendarTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CalendarTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CalendarTypeDescriptorGetByExample
     {
@@ -1526,15 +1525,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CalendarTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CalendarTypeDescriptorPut : Resources.CalendarTypeDescriptor.EdFi.CalendarTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CalendarTypeDescriptorDelete : IHasIdentifier
+    public class CalendarTypeDescriptorDelete : IHasIdentifier 
     {
         public CalendarTypeDescriptorDelete() { }
 
-        public CalendarTypeDescriptorDelete(Guid id)
+        public CalendarTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1543,9 +1542,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CalendarTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CareerPathwayDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CareerPathwayDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CareerPathwayDescriptorGetByExample
     {
@@ -1572,15 +1571,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CareerPathwayDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CareerPathwayDescriptorPut : Resources.CareerPathwayDescriptor.EdFi.CareerPathwayDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CareerPathwayDescriptorDelete : IHasIdentifier
+    public class CareerPathwayDescriptorDelete : IHasIdentifier 
     {
         public CareerPathwayDescriptorDelete() { }
 
-        public CareerPathwayDescriptorDelete(Guid id)
+        public CareerPathwayDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1589,9 +1588,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CareerPathwayDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CharterApprovalAgencyTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CharterApprovalAgencyTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CharterApprovalAgencyTypeDescriptorGetByExample
     {
@@ -1618,15 +1617,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CharterApprovalAgencyTypeDescripto
 
     [ExcludeFromCodeCoverage]
     public class CharterApprovalAgencyTypeDescriptorPut : Resources.CharterApprovalAgencyTypeDescriptor.EdFi.CharterApprovalAgencyTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CharterApprovalAgencyTypeDescriptorDelete : IHasIdentifier
+    public class CharterApprovalAgencyTypeDescriptorDelete : IHasIdentifier 
     {
         public CharterApprovalAgencyTypeDescriptorDelete() { }
 
-        public CharterApprovalAgencyTypeDescriptorDelete(Guid id)
+        public CharterApprovalAgencyTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1635,9 +1634,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CharterApprovalAgencyTypeDescripto
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CharterStatusDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CharterStatusDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CharterStatusDescriptorGetByExample
     {
@@ -1664,15 +1663,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CharterStatusDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CharterStatusDescriptorPut : Resources.CharterStatusDescriptor.EdFi.CharterStatusDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CharterStatusDescriptorDelete : IHasIdentifier
+    public class CharterStatusDescriptorDelete : IHasIdentifier 
     {
         public CharterStatusDescriptorDelete() { }
 
-        public CharterStatusDescriptorDelete(Guid id)
+        public CharterStatusDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1681,9 +1680,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CharterStatusDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CitizenshipStatusDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CitizenshipStatusDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CitizenshipStatusDescriptorGetByExample
     {
@@ -1710,15 +1709,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CitizenshipStatusDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CitizenshipStatusDescriptorPut : Resources.CitizenshipStatusDescriptor.EdFi.CitizenshipStatusDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CitizenshipStatusDescriptorDelete : IHasIdentifier
+    public class CitizenshipStatusDescriptorDelete : IHasIdentifier 
     {
         public CitizenshipStatusDescriptorDelete() { }
 
-        public CitizenshipStatusDescriptorDelete(Guid id)
+        public CitizenshipStatusDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1727,9 +1726,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CitizenshipStatusDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ClassPeriods.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ClassPeriods.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ClassPeriodGetByExample
     {
@@ -1759,15 +1758,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ClassPeriods.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ClassPeriodPut : Resources.ClassPeriod.EdFi.ClassPeriod
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ClassPeriodDelete : IHasIdentifier
+    public class ClassPeriodDelete : IHasIdentifier 
     {
         public ClassPeriodDelete() { }
 
-        public ClassPeriodDelete(Guid id)
+        public ClassPeriodDelete(Guid id) 
         {
             Id = id;
         }
@@ -1776,9 +1775,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ClassPeriods.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ClassroomPositionDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ClassroomPositionDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ClassroomPositionDescriptorGetByExample
     {
@@ -1805,15 +1804,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ClassroomPositionDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ClassroomPositionDescriptorPut : Resources.ClassroomPositionDescriptor.EdFi.ClassroomPositionDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ClassroomPositionDescriptorDelete : IHasIdentifier
+    public class ClassroomPositionDescriptorDelete : IHasIdentifier 
     {
         public ClassroomPositionDescriptorDelete() { }
 
-        public ClassroomPositionDescriptorDelete(Guid id)
+        public ClassroomPositionDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1822,9 +1821,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ClassroomPositionDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Cohorts.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Cohorts.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CohortGetByExample
     {
@@ -1857,15 +1856,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Cohorts.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CohortPut : Resources.Cohort.EdFi.Cohort
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CohortDelete : IHasIdentifier
+    public class CohortDelete : IHasIdentifier 
     {
         public CohortDelete() { }
 
-        public CohortDelete(Guid id)
+        public CohortDelete(Guid id) 
         {
             Id = id;
         }
@@ -1874,9 +1873,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Cohorts.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CohortScopeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CohortScopeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CohortScopeDescriptorGetByExample
     {
@@ -1903,15 +1902,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CohortScopeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CohortScopeDescriptorPut : Resources.CohortScopeDescriptor.EdFi.CohortScopeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CohortScopeDescriptorDelete : IHasIdentifier
+    public class CohortScopeDescriptorDelete : IHasIdentifier 
     {
         public CohortScopeDescriptorDelete() { }
 
-        public CohortScopeDescriptorDelete(Guid id)
+        public CohortScopeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1920,9 +1919,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CohortScopeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CohortTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CohortTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CohortTypeDescriptorGetByExample
     {
@@ -1949,15 +1948,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CohortTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CohortTypeDescriptorPut : Resources.CohortTypeDescriptor.EdFi.CohortTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CohortTypeDescriptorDelete : IHasIdentifier
+    public class CohortTypeDescriptorDelete : IHasIdentifier 
     {
         public CohortTypeDescriptorDelete() { }
 
-        public CohortTypeDescriptorDelete(Guid id)
+        public CohortTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -1966,9 +1965,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CohortTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CohortYearTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CohortYearTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CohortYearTypeDescriptorGetByExample
     {
@@ -1995,15 +1994,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CohortYearTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CohortYearTypeDescriptorPut : Resources.CohortYearTypeDescriptor.EdFi.CohortYearTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CohortYearTypeDescriptorDelete : IHasIdentifier
+    public class CohortYearTypeDescriptorDelete : IHasIdentifier 
     {
         public CohortYearTypeDescriptorDelete() { }
 
-        public CohortYearTypeDescriptorDelete(Guid id)
+        public CohortYearTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -2012,9 +2011,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CohortYearTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CommunityOrganizations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CommunityOrganizations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CommunityOrganizationGetByExample
     {
@@ -2041,15 +2040,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CommunityOrganizations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CommunityOrganizationPut : Resources.CommunityOrganization.EdFi.CommunityOrganization
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CommunityOrganizationDelete : IHasIdentifier
+    public class CommunityOrganizationDelete : IHasIdentifier 
     {
         public CommunityOrganizationDelete() { }
 
-        public CommunityOrganizationDelete(Guid id)
+        public CommunityOrganizationDelete(Guid id) 
         {
             Id = id;
         }
@@ -2058,9 +2057,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CommunityOrganizations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CommunityProviders.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CommunityProviders.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CommunityProviderGetByExample
     {
@@ -2093,15 +2092,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CommunityProviders.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CommunityProviderPut : Resources.CommunityProvider.EdFi.CommunityProvider
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CommunityProviderDelete : IHasIdentifier
+    public class CommunityProviderDelete : IHasIdentifier 
     {
         public CommunityProviderDelete() { }
 
-        public CommunityProviderDelete(Guid id)
+        public CommunityProviderDelete(Guid id) 
         {
             Id = id;
         }
@@ -2110,9 +2109,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CommunityProviders.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CommunityProviderLicenses.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CommunityProviderLicenses.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CommunityProviderLicenseGetByExample
     {
@@ -2150,15 +2149,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CommunityProviderLicenses.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CommunityProviderLicensePut : Resources.CommunityProviderLicense.EdFi.CommunityProviderLicense
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CommunityProviderLicenseDelete : IHasIdentifier
+    public class CommunityProviderLicenseDelete : IHasIdentifier 
     {
         public CommunityProviderLicenseDelete() { }
 
-        public CommunityProviderLicenseDelete(Guid id)
+        public CommunityProviderLicenseDelete(Guid id) 
         {
             Id = id;
         }
@@ -2167,9 +2166,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CommunityProviderLicenses.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CompetencyLevelDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CompetencyLevelDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CompetencyLevelDescriptorGetByExample
     {
@@ -2196,15 +2195,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CompetencyLevelDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CompetencyLevelDescriptorPut : Resources.CompetencyLevelDescriptor.EdFi.CompetencyLevelDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CompetencyLevelDescriptorDelete : IHasIdentifier
+    public class CompetencyLevelDescriptorDelete : IHasIdentifier 
     {
         public CompetencyLevelDescriptorDelete() { }
 
-        public CompetencyLevelDescriptorDelete(Guid id)
+        public CompetencyLevelDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -2213,9 +2212,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CompetencyLevelDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CompetencyObjectives.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CompetencyObjectives.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CompetencyObjectiveGetByExample
     {
@@ -2248,15 +2247,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CompetencyObjectives.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CompetencyObjectivePut : Resources.CompetencyObjective.EdFi.CompetencyObjective
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CompetencyObjectiveDelete : IHasIdentifier
+    public class CompetencyObjectiveDelete : IHasIdentifier 
     {
         public CompetencyObjectiveDelete() { }
 
-        public CompetencyObjectiveDelete(Guid id)
+        public CompetencyObjectiveDelete(Guid id) 
         {
             Id = id;
         }
@@ -2265,9 +2264,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CompetencyObjectives.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ContactTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ContactTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ContactTypeDescriptorGetByExample
     {
@@ -2294,15 +2293,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ContactTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ContactTypeDescriptorPut : Resources.ContactTypeDescriptor.EdFi.ContactTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ContactTypeDescriptorDelete : IHasIdentifier
+    public class ContactTypeDescriptorDelete : IHasIdentifier 
     {
         public ContactTypeDescriptorDelete() { }
 
-        public ContactTypeDescriptorDelete(Guid id)
+        public ContactTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -2311,9 +2310,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ContactTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ContentClassDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ContentClassDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ContentClassDescriptorGetByExample
     {
@@ -2340,15 +2339,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ContentClassDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ContentClassDescriptorPut : Resources.ContentClassDescriptor.EdFi.ContentClassDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ContentClassDescriptorDelete : IHasIdentifier
+    public class ContentClassDescriptorDelete : IHasIdentifier 
     {
         public ContentClassDescriptorDelete() { }
 
-        public ContentClassDescriptorDelete(Guid id)
+        public ContentClassDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -2357,9 +2356,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ContentClassDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ContinuationOfServicesReasonDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ContinuationOfServicesReasonDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ContinuationOfServicesReasonDescriptorGetByExample
     {
@@ -2386,15 +2385,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ContinuationOfServicesReasonDescri
 
     [ExcludeFromCodeCoverage]
     public class ContinuationOfServicesReasonDescriptorPut : Resources.ContinuationOfServicesReasonDescriptor.EdFi.ContinuationOfServicesReasonDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ContinuationOfServicesReasonDescriptorDelete : IHasIdentifier
+    public class ContinuationOfServicesReasonDescriptorDelete : IHasIdentifier 
     {
         public ContinuationOfServicesReasonDescriptorDelete() { }
 
-        public ContinuationOfServicesReasonDescriptorDelete(Guid id)
+        public ContinuationOfServicesReasonDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -2403,9 +2402,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ContinuationOfServicesReasonDescri
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ContractedStaffs.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ContractedStaffs.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ContractedStaffGetByExample
     {
@@ -2438,15 +2437,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ContractedStaffs.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ContractedStaffPut : Resources.ContractedStaff.EdFi.ContractedStaff
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ContractedStaffDelete : IHasIdentifier
+    public class ContractedStaffDelete : IHasIdentifier 
     {
         public ContractedStaffDelete() { }
 
-        public ContractedStaffDelete(Guid id)
+        public ContractedStaffDelete(Guid id) 
         {
             Id = id;
         }
@@ -2455,9 +2454,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ContractedStaffs.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CostRateDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CostRateDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CostRateDescriptorGetByExample
     {
@@ -2484,15 +2483,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CostRateDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CostRateDescriptorPut : Resources.CostRateDescriptor.EdFi.CostRateDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CostRateDescriptorDelete : IHasIdentifier
+    public class CostRateDescriptorDelete : IHasIdentifier 
     {
         public CostRateDescriptorDelete() { }
 
-        public CostRateDescriptorDelete(Guid id)
+        public CostRateDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -2501,9 +2500,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CostRateDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CountryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CountryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CountryDescriptorGetByExample
     {
@@ -2530,15 +2529,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CountryDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CountryDescriptorPut : Resources.CountryDescriptor.EdFi.CountryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CountryDescriptorDelete : IHasIdentifier
+    public class CountryDescriptorDelete : IHasIdentifier 
     {
         public CountryDescriptorDelete() { }
 
-        public CountryDescriptorDelete(Guid id)
+        public CountryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -2547,9 +2546,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CountryDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Courses.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Courses.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CourseGetByExample
     {
@@ -2595,15 +2594,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Courses.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CoursePut : Resources.Course.EdFi.Course
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CourseDelete : IHasIdentifier
+    public class CourseDelete : IHasIdentifier 
     {
         public CourseDelete() { }
 
-        public CourseDelete(Guid id)
+        public CourseDelete(Guid id) 
         {
             Id = id;
         }
@@ -2612,9 +2611,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Courses.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CourseAttemptResultDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CourseAttemptResultDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CourseAttemptResultDescriptorGetByExample
     {
@@ -2641,15 +2640,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseAttemptResultDescriptors.EdF
 
     [ExcludeFromCodeCoverage]
     public class CourseAttemptResultDescriptorPut : Resources.CourseAttemptResultDescriptor.EdFi.CourseAttemptResultDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CourseAttemptResultDescriptorDelete : IHasIdentifier
+    public class CourseAttemptResultDescriptorDelete : IHasIdentifier 
     {
         public CourseAttemptResultDescriptorDelete() { }
 
-        public CourseAttemptResultDescriptorDelete(Guid id)
+        public CourseAttemptResultDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -2658,9 +2657,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseAttemptResultDescriptors.EdF
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CourseDefinedByDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CourseDefinedByDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CourseDefinedByDescriptorGetByExample
     {
@@ -2687,15 +2686,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseDefinedByDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CourseDefinedByDescriptorPut : Resources.CourseDefinedByDescriptor.EdFi.CourseDefinedByDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CourseDefinedByDescriptorDelete : IHasIdentifier
+    public class CourseDefinedByDescriptorDelete : IHasIdentifier 
     {
         public CourseDefinedByDescriptorDelete() { }
 
-        public CourseDefinedByDescriptorDelete(Guid id)
+        public CourseDefinedByDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -2704,9 +2703,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseDefinedByDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CourseGPAApplicabilityDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CourseGPAApplicabilityDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CourseGPAApplicabilityDescriptorGetByExample
     {
@@ -2733,15 +2732,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseGPAApplicabilityDescriptors.
 
     [ExcludeFromCodeCoverage]
     public class CourseGPAApplicabilityDescriptorPut : Resources.CourseGPAApplicabilityDescriptor.EdFi.CourseGPAApplicabilityDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CourseGPAApplicabilityDescriptorDelete : IHasIdentifier
+    public class CourseGPAApplicabilityDescriptorDelete : IHasIdentifier 
     {
         public CourseGPAApplicabilityDescriptorDelete() { }
 
-        public CourseGPAApplicabilityDescriptorDelete(Guid id)
+        public CourseGPAApplicabilityDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -2750,9 +2749,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseGPAApplicabilityDescriptors.
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CourseIdentificationSystemDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CourseIdentificationSystemDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CourseIdentificationSystemDescriptorGetByExample
     {
@@ -2779,15 +2778,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseIdentificationSystemDescript
 
     [ExcludeFromCodeCoverage]
     public class CourseIdentificationSystemDescriptorPut : Resources.CourseIdentificationSystemDescriptor.EdFi.CourseIdentificationSystemDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CourseIdentificationSystemDescriptorDelete : IHasIdentifier
+    public class CourseIdentificationSystemDescriptorDelete : IHasIdentifier 
     {
         public CourseIdentificationSystemDescriptorDelete() { }
 
-        public CourseIdentificationSystemDescriptorDelete(Guid id)
+        public CourseIdentificationSystemDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -2796,9 +2795,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseIdentificationSystemDescript
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CourseLevelCharacteristicDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CourseLevelCharacteristicDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CourseLevelCharacteristicDescriptorGetByExample
     {
@@ -2825,15 +2824,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseLevelCharacteristicDescripto
 
     [ExcludeFromCodeCoverage]
     public class CourseLevelCharacteristicDescriptorPut : Resources.CourseLevelCharacteristicDescriptor.EdFi.CourseLevelCharacteristicDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CourseLevelCharacteristicDescriptorDelete : IHasIdentifier
+    public class CourseLevelCharacteristicDescriptorDelete : IHasIdentifier 
     {
         public CourseLevelCharacteristicDescriptorDelete() { }
 
-        public CourseLevelCharacteristicDescriptorDelete(Guid id)
+        public CourseLevelCharacteristicDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -2842,9 +2841,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseLevelCharacteristicDescripto
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CourseOfferings.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CourseOfferings.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CourseOfferingGetByExample
     {
@@ -2879,15 +2878,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseOfferings.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CourseOfferingPut : Resources.CourseOffering.EdFi.CourseOffering
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CourseOfferingDelete : IHasIdentifier
+    public class CourseOfferingDelete : IHasIdentifier 
     {
         public CourseOfferingDelete() { }
 
-        public CourseOfferingDelete(Guid id)
+        public CourseOfferingDelete(Guid id) 
         {
             Id = id;
         }
@@ -2896,9 +2895,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseOfferings.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CourseRepeatCodeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CourseRepeatCodeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CourseRepeatCodeDescriptorGetByExample
     {
@@ -2925,15 +2924,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseRepeatCodeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CourseRepeatCodeDescriptorPut : Resources.CourseRepeatCodeDescriptor.EdFi.CourseRepeatCodeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CourseRepeatCodeDescriptorDelete : IHasIdentifier
+    public class CourseRepeatCodeDescriptorDelete : IHasIdentifier 
     {
         public CourseRepeatCodeDescriptorDelete() { }
 
-        public CourseRepeatCodeDescriptorDelete(Guid id)
+        public CourseRepeatCodeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -2942,9 +2941,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseRepeatCodeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CourseTranscripts.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CourseTranscripts.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CourseTranscriptGetByExample
     {
@@ -2995,15 +2994,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseTranscripts.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CourseTranscriptPut : Resources.CourseTranscript.EdFi.CourseTranscript
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CourseTranscriptDelete : IHasIdentifier
+    public class CourseTranscriptDelete : IHasIdentifier 
     {
         public CourseTranscriptDelete() { }
 
-        public CourseTranscriptDelete(Guid id)
+        public CourseTranscriptDelete(Guid id) 
         {
             Id = id;
         }
@@ -3012,9 +3011,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CourseTranscripts.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Credentials.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Credentials.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CredentialGetByExample
     {
@@ -3051,15 +3050,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Credentials.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CredentialPut : Resources.Credential.EdFi.Credential
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CredentialDelete : IHasIdentifier
+    public class CredentialDelete : IHasIdentifier 
     {
         public CredentialDelete() { }
 
-        public CredentialDelete(Guid id)
+        public CredentialDelete(Guid id) 
         {
             Id = id;
         }
@@ -3068,9 +3067,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Credentials.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CredentialFieldDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CredentialFieldDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CredentialFieldDescriptorGetByExample
     {
@@ -3097,15 +3096,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CredentialFieldDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CredentialFieldDescriptorPut : Resources.CredentialFieldDescriptor.EdFi.CredentialFieldDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CredentialFieldDescriptorDelete : IHasIdentifier
+    public class CredentialFieldDescriptorDelete : IHasIdentifier 
     {
         public CredentialFieldDescriptorDelete() { }
 
-        public CredentialFieldDescriptorDelete(Guid id)
+        public CredentialFieldDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3114,9 +3113,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CredentialFieldDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CredentialTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CredentialTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CredentialTypeDescriptorGetByExample
     {
@@ -3143,15 +3142,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CredentialTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CredentialTypeDescriptorPut : Resources.CredentialTypeDescriptor.EdFi.CredentialTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CredentialTypeDescriptorDelete : IHasIdentifier
+    public class CredentialTypeDescriptorDelete : IHasIdentifier 
     {
         public CredentialTypeDescriptorDelete() { }
 
-        public CredentialTypeDescriptorDelete(Guid id)
+        public CredentialTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3160,9 +3159,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CredentialTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CreditCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CreditCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CreditCategoryDescriptorGetByExample
     {
@@ -3189,15 +3188,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CreditCategoryDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CreditCategoryDescriptorPut : Resources.CreditCategoryDescriptor.EdFi.CreditCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CreditCategoryDescriptorDelete : IHasIdentifier
+    public class CreditCategoryDescriptorDelete : IHasIdentifier 
     {
         public CreditCategoryDescriptorDelete() { }
 
-        public CreditCategoryDescriptorDelete(Guid id)
+        public CreditCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3206,9 +3205,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CreditCategoryDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CreditTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CreditTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CreditTypeDescriptorGetByExample
     {
@@ -3235,15 +3234,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CreditTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CreditTypeDescriptorPut : Resources.CreditTypeDescriptor.EdFi.CreditTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CreditTypeDescriptorDelete : IHasIdentifier
+    public class CreditTypeDescriptorDelete : IHasIdentifier 
     {
         public CreditTypeDescriptorDelete() { }
 
-        public CreditTypeDescriptorDelete(Guid id)
+        public CreditTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3252,9 +3251,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CreditTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CTEProgramServiceDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CTEProgramServiceDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CTEProgramServiceDescriptorGetByExample
     {
@@ -3281,15 +3280,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CTEProgramServiceDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CTEProgramServiceDescriptorPut : Resources.CTEProgramServiceDescriptor.EdFi.CTEProgramServiceDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CTEProgramServiceDescriptorDelete : IHasIdentifier
+    public class CTEProgramServiceDescriptorDelete : IHasIdentifier 
     {
         public CTEProgramServiceDescriptorDelete() { }
 
-        public CTEProgramServiceDescriptorDelete(Guid id)
+        public CTEProgramServiceDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3298,9 +3297,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CTEProgramServiceDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.CurriculumUsedDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.CurriculumUsedDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class CurriculumUsedDescriptorGetByExample
     {
@@ -3327,15 +3326,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CurriculumUsedDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class CurriculumUsedDescriptorPut : Resources.CurriculumUsedDescriptor.EdFi.CurriculumUsedDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class CurriculumUsedDescriptorDelete : IHasIdentifier
+    public class CurriculumUsedDescriptorDelete : IHasIdentifier 
     {
         public CurriculumUsedDescriptorDelete() { }
 
-        public CurriculumUsedDescriptorDelete(Guid id)
+        public CurriculumUsedDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3344,9 +3343,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.CurriculumUsedDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.DeliveryMethodDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.DeliveryMethodDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class DeliveryMethodDescriptorGetByExample
     {
@@ -3373,15 +3372,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DeliveryMethodDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class DeliveryMethodDescriptorPut : Resources.DeliveryMethodDescriptor.EdFi.DeliveryMethodDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class DeliveryMethodDescriptorDelete : IHasIdentifier
+    public class DeliveryMethodDescriptorDelete : IHasIdentifier 
     {
         public DeliveryMethodDescriptorDelete() { }
 
-        public DeliveryMethodDescriptorDelete(Guid id)
+        public DeliveryMethodDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3390,9 +3389,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DeliveryMethodDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.DiagnosisDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.DiagnosisDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class DiagnosisDescriptorGetByExample
     {
@@ -3419,15 +3418,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DiagnosisDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class DiagnosisDescriptorPut : Resources.DiagnosisDescriptor.EdFi.DiagnosisDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class DiagnosisDescriptorDelete : IHasIdentifier
+    public class DiagnosisDescriptorDelete : IHasIdentifier 
     {
         public DiagnosisDescriptorDelete() { }
 
-        public DiagnosisDescriptorDelete(Guid id)
+        public DiagnosisDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3436,9 +3435,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DiagnosisDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.DiplomaLevelDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.DiplomaLevelDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class DiplomaLevelDescriptorGetByExample
     {
@@ -3465,15 +3464,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DiplomaLevelDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class DiplomaLevelDescriptorPut : Resources.DiplomaLevelDescriptor.EdFi.DiplomaLevelDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class DiplomaLevelDescriptorDelete : IHasIdentifier
+    public class DiplomaLevelDescriptorDelete : IHasIdentifier 
     {
         public DiplomaLevelDescriptorDelete() { }
 
-        public DiplomaLevelDescriptorDelete(Guid id)
+        public DiplomaLevelDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3482,9 +3481,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DiplomaLevelDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.DiplomaTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.DiplomaTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class DiplomaTypeDescriptorGetByExample
     {
@@ -3511,15 +3510,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DiplomaTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class DiplomaTypeDescriptorPut : Resources.DiplomaTypeDescriptor.EdFi.DiplomaTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class DiplomaTypeDescriptorDelete : IHasIdentifier
+    public class DiplomaTypeDescriptorDelete : IHasIdentifier 
     {
         public DiplomaTypeDescriptorDelete() { }
 
-        public DiplomaTypeDescriptorDelete(Guid id)
+        public DiplomaTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3528,9 +3527,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DiplomaTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.DisabilityDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.DisabilityDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class DisabilityDescriptorGetByExample
     {
@@ -3557,15 +3556,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisabilityDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class DisabilityDescriptorPut : Resources.DisabilityDescriptor.EdFi.DisabilityDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class DisabilityDescriptorDelete : IHasIdentifier
+    public class DisabilityDescriptorDelete : IHasIdentifier 
     {
         public DisabilityDescriptorDelete() { }
 
-        public DisabilityDescriptorDelete(Guid id)
+        public DisabilityDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3574,9 +3573,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisabilityDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.DisabilityDesignationDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.DisabilityDesignationDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class DisabilityDesignationDescriptorGetByExample
     {
@@ -3603,15 +3602,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisabilityDesignationDescriptors.E
 
     [ExcludeFromCodeCoverage]
     public class DisabilityDesignationDescriptorPut : Resources.DisabilityDesignationDescriptor.EdFi.DisabilityDesignationDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class DisabilityDesignationDescriptorDelete : IHasIdentifier
+    public class DisabilityDesignationDescriptorDelete : IHasIdentifier 
     {
         public DisabilityDesignationDescriptorDelete() { }
 
-        public DisabilityDesignationDescriptorDelete(Guid id)
+        public DisabilityDesignationDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3620,9 +3619,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisabilityDesignationDescriptors.E
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.DisabilityDeterminationSourceTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.DisabilityDeterminationSourceTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class DisabilityDeterminationSourceTypeDescriptorGetByExample
     {
@@ -3649,15 +3648,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisabilityDeterminationSourceTypeD
 
     [ExcludeFromCodeCoverage]
     public class DisabilityDeterminationSourceTypeDescriptorPut : Resources.DisabilityDeterminationSourceTypeDescriptor.EdFi.DisabilityDeterminationSourceTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class DisabilityDeterminationSourceTypeDescriptorDelete : IHasIdentifier
+    public class DisabilityDeterminationSourceTypeDescriptorDelete : IHasIdentifier 
     {
         public DisabilityDeterminationSourceTypeDescriptorDelete() { }
 
-        public DisabilityDeterminationSourceTypeDescriptorDelete(Guid id)
+        public DisabilityDeterminationSourceTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3666,9 +3665,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisabilityDeterminationSourceTypeD
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineActions.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.DisciplineActions.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class DisciplineActionGetByExample
     {
@@ -3706,15 +3705,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineActions.EdFi
 
     [ExcludeFromCodeCoverage]
     public class DisciplineActionPut : Resources.DisciplineAction.EdFi.DisciplineAction
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class DisciplineActionDelete : IHasIdentifier
+    public class DisciplineActionDelete : IHasIdentifier 
     {
         public DisciplineActionDelete() { }
 
-        public DisciplineActionDelete(Guid id)
+        public DisciplineActionDelete(Guid id) 
         {
             Id = id;
         }
@@ -3723,9 +3722,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineActions.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineActionLengthDifferenceReasonDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.DisciplineActionLengthDifferenceReasonDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class DisciplineActionLengthDifferenceReasonDescriptorGetByExample
     {
@@ -3752,15 +3751,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineActionLengthDifferenceRe
 
     [ExcludeFromCodeCoverage]
     public class DisciplineActionLengthDifferenceReasonDescriptorPut : Resources.DisciplineActionLengthDifferenceReasonDescriptor.EdFi.DisciplineActionLengthDifferenceReasonDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class DisciplineActionLengthDifferenceReasonDescriptorDelete : IHasIdentifier
+    public class DisciplineActionLengthDifferenceReasonDescriptorDelete : IHasIdentifier 
     {
         public DisciplineActionLengthDifferenceReasonDescriptorDelete() { }
 
-        public DisciplineActionLengthDifferenceReasonDescriptorDelete(Guid id)
+        public DisciplineActionLengthDifferenceReasonDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3769,9 +3768,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineActionLengthDifferenceRe
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.DisciplineDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class DisciplineDescriptorGetByExample
     {
@@ -3798,15 +3797,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class DisciplineDescriptorPut : Resources.DisciplineDescriptor.EdFi.DisciplineDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class DisciplineDescriptorDelete : IHasIdentifier
+    public class DisciplineDescriptorDelete : IHasIdentifier 
     {
         public DisciplineDescriptorDelete() { }
 
-        public DisciplineDescriptorDelete(Guid id)
+        public DisciplineDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3815,9 +3814,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineIncidents.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.DisciplineIncidents.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class DisciplineIncidentGetByExample
     {
@@ -3856,15 +3855,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineIncidents.EdFi
 
     [ExcludeFromCodeCoverage]
     public class DisciplineIncidentPut : Resources.DisciplineIncident.EdFi.DisciplineIncident
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class DisciplineIncidentDelete : IHasIdentifier
+    public class DisciplineIncidentDelete : IHasIdentifier 
     {
         public DisciplineIncidentDelete() { }
 
-        public DisciplineIncidentDelete(Guid id)
+        public DisciplineIncidentDelete(Guid id) 
         {
             Id = id;
         }
@@ -3873,9 +3872,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineIncidents.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineIncidentParticipationCodeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.DisciplineIncidentParticipationCodeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class DisciplineIncidentParticipationCodeDescriptorGetByExample
     {
@@ -3902,15 +3901,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineIncidentParticipationCod
 
     [ExcludeFromCodeCoverage]
     public class DisciplineIncidentParticipationCodeDescriptorPut : Resources.DisciplineIncidentParticipationCodeDescriptor.EdFi.DisciplineIncidentParticipationCodeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class DisciplineIncidentParticipationCodeDescriptorDelete : IHasIdentifier
+    public class DisciplineIncidentParticipationCodeDescriptorDelete : IHasIdentifier 
     {
         public DisciplineIncidentParticipationCodeDescriptorDelete() { }
 
-        public DisciplineIncidentParticipationCodeDescriptorDelete(Guid id)
+        public DisciplineIncidentParticipationCodeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3919,9 +3918,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.DisciplineIncidentParticipationCod
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EducationalEnvironmentDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EducationalEnvironmentDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EducationalEnvironmentDescriptorGetByExample
     {
@@ -3948,15 +3947,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationalEnvironmentDescriptors.
 
     [ExcludeFromCodeCoverage]
     public class EducationalEnvironmentDescriptorPut : Resources.EducationalEnvironmentDescriptor.EdFi.EducationalEnvironmentDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EducationalEnvironmentDescriptorDelete : IHasIdentifier
+    public class EducationalEnvironmentDescriptorDelete : IHasIdentifier 
     {
         public EducationalEnvironmentDescriptorDelete() { }
 
-        public EducationalEnvironmentDescriptorDelete(Guid id)
+        public EducationalEnvironmentDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -3965,9 +3964,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationalEnvironmentDescriptors.
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EducationContents.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EducationContents.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EducationContentGetByExample
     {
@@ -4011,15 +4010,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationContents.EdFi
 
     [ExcludeFromCodeCoverage]
     public class EducationContentPut : Resources.EducationContent.EdFi.EducationContent
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EducationContentDelete : IHasIdentifier
+    public class EducationContentDelete : IHasIdentifier 
     {
         public EducationContentDelete() { }
 
-        public EducationContentDelete(Guid id)
+        public EducationContentDelete(Guid id) 
         {
             Id = id;
         }
@@ -4028,9 +4027,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationContents.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EducationOrganizationCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EducationOrganizationCategoryDescriptorGetByExample
     {
@@ -4057,15 +4056,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationCategoryDescr
 
     [ExcludeFromCodeCoverage]
     public class EducationOrganizationCategoryDescriptorPut : Resources.EducationOrganizationCategoryDescriptor.EdFi.EducationOrganizationCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EducationOrganizationCategoryDescriptorDelete : IHasIdentifier
+    public class EducationOrganizationCategoryDescriptorDelete : IHasIdentifier 
     {
         public EducationOrganizationCategoryDescriptorDelete() { }
 
-        public EducationOrganizationCategoryDescriptorDelete(Guid id)
+        public EducationOrganizationCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -4074,9 +4073,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationCategoryDescr
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationIdentificationSystemDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EducationOrganizationIdentificationSystemDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EducationOrganizationIdentificationSystemDescriptorGetByExample
     {
@@ -4103,15 +4102,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationIdentificatio
 
     [ExcludeFromCodeCoverage]
     public class EducationOrganizationIdentificationSystemDescriptorPut : Resources.EducationOrganizationIdentificationSystemDescriptor.EdFi.EducationOrganizationIdentificationSystemDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EducationOrganizationIdentificationSystemDescriptorDelete : IHasIdentifier
+    public class EducationOrganizationIdentificationSystemDescriptorDelete : IHasIdentifier 
     {
         public EducationOrganizationIdentificationSystemDescriptorDelete() { }
 
-        public EducationOrganizationIdentificationSystemDescriptorDelete(Guid id)
+        public EducationOrganizationIdentificationSystemDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -4120,9 +4119,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationIdentificatio
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationInterventionPrescriptionAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EducationOrganizationInterventionPrescriptionAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EducationOrganizationInterventionPrescriptionAssociationGetByExample
     {
@@ -4154,15 +4153,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationInterventionP
 
     [ExcludeFromCodeCoverage]
     public class EducationOrganizationInterventionPrescriptionAssociationPut : Resources.EducationOrganizationInterventionPrescriptionAssociation.EdFi.EducationOrganizationInterventionPrescriptionAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EducationOrganizationInterventionPrescriptionAssociationDelete : IHasIdentifier
+    public class EducationOrganizationInterventionPrescriptionAssociationDelete : IHasIdentifier 
     {
         public EducationOrganizationInterventionPrescriptionAssociationDelete() { }
 
-        public EducationOrganizationInterventionPrescriptionAssociationDelete(Guid id)
+        public EducationOrganizationInterventionPrescriptionAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -4171,9 +4170,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationInterventionP
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationNetworks.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EducationOrganizationNetworks.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EducationOrganizationNetworkGetByExample
     {
@@ -4201,15 +4200,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationNetworks.EdFi
 
     [ExcludeFromCodeCoverage]
     public class EducationOrganizationNetworkPut : Resources.EducationOrganizationNetwork.EdFi.EducationOrganizationNetwork
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EducationOrganizationNetworkDelete : IHasIdentifier
+    public class EducationOrganizationNetworkDelete : IHasIdentifier 
     {
         public EducationOrganizationNetworkDelete() { }
 
-        public EducationOrganizationNetworkDelete(Guid id)
+        public EducationOrganizationNetworkDelete(Guid id) 
         {
             Id = id;
         }
@@ -4218,9 +4217,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationNetworks.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationNetworkAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EducationOrganizationNetworkAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EducationOrganizationNetworkAssociationGetByExample
     {
@@ -4251,15 +4250,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationNetworkAssoci
 
     [ExcludeFromCodeCoverage]
     public class EducationOrganizationNetworkAssociationPut : Resources.EducationOrganizationNetworkAssociation.EdFi.EducationOrganizationNetworkAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EducationOrganizationNetworkAssociationDelete : IHasIdentifier
+    public class EducationOrganizationNetworkAssociationDelete : IHasIdentifier 
     {
         public EducationOrganizationNetworkAssociationDelete() { }
 
-        public EducationOrganizationNetworkAssociationDelete(Guid id)
+        public EducationOrganizationNetworkAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -4268,9 +4267,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationNetworkAssoci
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationPeerAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EducationOrganizationPeerAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EducationOrganizationPeerAssociationGetByExample
     {
@@ -4299,15 +4298,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationPeerAssociati
 
     [ExcludeFromCodeCoverage]
     public class EducationOrganizationPeerAssociationPut : Resources.EducationOrganizationPeerAssociation.EdFi.EducationOrganizationPeerAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EducationOrganizationPeerAssociationDelete : IHasIdentifier
+    public class EducationOrganizationPeerAssociationDelete : IHasIdentifier 
     {
         public EducationOrganizationPeerAssociationDelete() { }
 
-        public EducationOrganizationPeerAssociationDelete(Guid id)
+        public EducationOrganizationPeerAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -4316,9 +4315,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationOrganizationPeerAssociati
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EducationPlanDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EducationPlanDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EducationPlanDescriptorGetByExample
     {
@@ -4345,15 +4344,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationPlanDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class EducationPlanDescriptorPut : Resources.EducationPlanDescriptor.EdFi.EducationPlanDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EducationPlanDescriptorDelete : IHasIdentifier
+    public class EducationPlanDescriptorDelete : IHasIdentifier 
     {
         public EducationPlanDescriptorDelete() { }
 
-        public EducationPlanDescriptorDelete(Guid id)
+        public EducationPlanDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -4362,9 +4361,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationPlanDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EducationServiceCenters.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EducationServiceCenters.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EducationServiceCenterGetByExample
     {
@@ -4392,15 +4391,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationServiceCenters.EdFi
 
     [ExcludeFromCodeCoverage]
     public class EducationServiceCenterPut : Resources.EducationServiceCenter.EdFi.EducationServiceCenter
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EducationServiceCenterDelete : IHasIdentifier
+    public class EducationServiceCenterDelete : IHasIdentifier 
     {
         public EducationServiceCenterDelete() { }
 
-        public EducationServiceCenterDelete(Guid id)
+        public EducationServiceCenterDelete(Guid id) 
         {
             Id = id;
         }
@@ -4409,9 +4408,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EducationServiceCenters.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ElectronicMailTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ElectronicMailTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ElectronicMailTypeDescriptorGetByExample
     {
@@ -4438,15 +4437,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ElectronicMailTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ElectronicMailTypeDescriptorPut : Resources.ElectronicMailTypeDescriptor.EdFi.ElectronicMailTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ElectronicMailTypeDescriptorDelete : IHasIdentifier
+    public class ElectronicMailTypeDescriptorDelete : IHasIdentifier 
     {
         public ElectronicMailTypeDescriptorDelete() { }
 
-        public ElectronicMailTypeDescriptorDelete(Guid id)
+        public ElectronicMailTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -4455,9 +4454,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ElectronicMailTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EmploymentStatusDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EmploymentStatusDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EmploymentStatusDescriptorGetByExample
     {
@@ -4484,15 +4483,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EmploymentStatusDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class EmploymentStatusDescriptorPut : Resources.EmploymentStatusDescriptor.EdFi.EmploymentStatusDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EmploymentStatusDescriptorDelete : IHasIdentifier
+    public class EmploymentStatusDescriptorDelete : IHasIdentifier 
     {
         public EmploymentStatusDescriptorDelete() { }
 
-        public EmploymentStatusDescriptorDelete(Guid id)
+        public EmploymentStatusDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -4501,9 +4500,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EmploymentStatusDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EntryGradeLevelReasonDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EntryGradeLevelReasonDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EntryGradeLevelReasonDescriptorGetByExample
     {
@@ -4530,15 +4529,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EntryGradeLevelReasonDescriptors.E
 
     [ExcludeFromCodeCoverage]
     public class EntryGradeLevelReasonDescriptorPut : Resources.EntryGradeLevelReasonDescriptor.EdFi.EntryGradeLevelReasonDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EntryGradeLevelReasonDescriptorDelete : IHasIdentifier
+    public class EntryGradeLevelReasonDescriptorDelete : IHasIdentifier 
     {
         public EntryGradeLevelReasonDescriptorDelete() { }
 
-        public EntryGradeLevelReasonDescriptorDelete(Guid id)
+        public EntryGradeLevelReasonDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -4547,9 +4546,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EntryGradeLevelReasonDescriptors.E
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EntryTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EntryTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EntryTypeDescriptorGetByExample
     {
@@ -4576,15 +4575,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EntryTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class EntryTypeDescriptorPut : Resources.EntryTypeDescriptor.EdFi.EntryTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EntryTypeDescriptorDelete : IHasIdentifier
+    public class EntryTypeDescriptorDelete : IHasIdentifier 
     {
         public EntryTypeDescriptorDelete() { }
 
-        public EntryTypeDescriptorDelete(Guid id)
+        public EntryTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -4593,9 +4592,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EntryTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.EventCircumstanceDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.EventCircumstanceDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class EventCircumstanceDescriptorGetByExample
     {
@@ -4622,15 +4621,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EventCircumstanceDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class EventCircumstanceDescriptorPut : Resources.EventCircumstanceDescriptor.EdFi.EventCircumstanceDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class EventCircumstanceDescriptorDelete : IHasIdentifier
+    public class EventCircumstanceDescriptorDelete : IHasIdentifier 
     {
         public EventCircumstanceDescriptorDelete() { }
 
-        public EventCircumstanceDescriptorDelete(Guid id)
+        public EventCircumstanceDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -4639,9 +4638,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.EventCircumstanceDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ExitWithdrawTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ExitWithdrawTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ExitWithdrawTypeDescriptorGetByExample
     {
@@ -4668,15 +4667,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ExitWithdrawTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ExitWithdrawTypeDescriptorPut : Resources.ExitWithdrawTypeDescriptor.EdFi.ExitWithdrawTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ExitWithdrawTypeDescriptorDelete : IHasIdentifier
+    public class ExitWithdrawTypeDescriptorDelete : IHasIdentifier 
     {
         public ExitWithdrawTypeDescriptorDelete() { }
 
-        public ExitWithdrawTypeDescriptorDelete(Guid id)
+        public ExitWithdrawTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -4685,9 +4684,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ExitWithdrawTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.FeederSchoolAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.FeederSchoolAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class FeederSchoolAssociationGetByExample
     {
@@ -4719,15 +4718,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.FeederSchoolAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class FeederSchoolAssociationPut : Resources.FeederSchoolAssociation.EdFi.FeederSchoolAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class FeederSchoolAssociationDelete : IHasIdentifier
+    public class FeederSchoolAssociationDelete : IHasIdentifier 
     {
         public FeederSchoolAssociationDelete() { }
 
-        public FeederSchoolAssociationDelete(Guid id)
+        public FeederSchoolAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -4736,9 +4735,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.FeederSchoolAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Grades.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Grades.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class GradeGetByExample
     {
@@ -4780,15 +4779,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Grades.EdFi
 
     [ExcludeFromCodeCoverage]
     public class GradePut : Resources.Grade.EdFi.Grade
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class GradeDelete : IHasIdentifier
+    public class GradeDelete : IHasIdentifier 
     {
         public GradeDelete() { }
 
-        public GradeDelete(Guid id)
+        public GradeDelete(Guid id) 
         {
             Id = id;
         }
@@ -4797,9 +4796,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Grades.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.GradebookEntries.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.GradebookEntries.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class GradebookEntryGetByExample
     {
@@ -4838,15 +4837,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradebookEntries.EdFi
 
     [ExcludeFromCodeCoverage]
     public class GradebookEntryPut : Resources.GradebookEntry.EdFi.GradebookEntry
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class GradebookEntryDelete : IHasIdentifier
+    public class GradebookEntryDelete : IHasIdentifier 
     {
         public GradebookEntryDelete() { }
 
-        public GradebookEntryDelete(Guid id)
+        public GradebookEntryDelete(Guid id) 
         {
             Id = id;
         }
@@ -4855,9 +4854,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradebookEntries.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.GradebookEntryTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.GradebookEntryTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class GradebookEntryTypeDescriptorGetByExample
     {
@@ -4884,15 +4883,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradebookEntryTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class GradebookEntryTypeDescriptorPut : Resources.GradebookEntryTypeDescriptor.EdFi.GradebookEntryTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class GradebookEntryTypeDescriptorDelete : IHasIdentifier
+    public class GradebookEntryTypeDescriptorDelete : IHasIdentifier 
     {
         public GradebookEntryTypeDescriptorDelete() { }
 
-        public GradebookEntryTypeDescriptorDelete(Guid id)
+        public GradebookEntryTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -4901,9 +4900,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradebookEntryTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.GradeLevelDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.GradeLevelDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class GradeLevelDescriptorGetByExample
     {
@@ -4930,15 +4929,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradeLevelDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class GradeLevelDescriptorPut : Resources.GradeLevelDescriptor.EdFi.GradeLevelDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class GradeLevelDescriptorDelete : IHasIdentifier
+    public class GradeLevelDescriptorDelete : IHasIdentifier 
     {
         public GradeLevelDescriptorDelete() { }
 
-        public GradeLevelDescriptorDelete(Guid id)
+        public GradeLevelDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -4947,9 +4946,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradeLevelDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.GradePointAverageTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.GradePointAverageTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class GradePointAverageTypeDescriptorGetByExample
     {
@@ -4976,15 +4975,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradePointAverageTypeDescriptors.E
 
     [ExcludeFromCodeCoverage]
     public class GradePointAverageTypeDescriptorPut : Resources.GradePointAverageTypeDescriptor.EdFi.GradePointAverageTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class GradePointAverageTypeDescriptorDelete : IHasIdentifier
+    public class GradePointAverageTypeDescriptorDelete : IHasIdentifier 
     {
         public GradePointAverageTypeDescriptorDelete() { }
 
-        public GradePointAverageTypeDescriptorDelete(Guid id)
+        public GradePointAverageTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -4993,9 +4992,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradePointAverageTypeDescriptors.E
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.GradeTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.GradeTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class GradeTypeDescriptorGetByExample
     {
@@ -5022,15 +5021,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradeTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class GradeTypeDescriptorPut : Resources.GradeTypeDescriptor.EdFi.GradeTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class GradeTypeDescriptorDelete : IHasIdentifier
+    public class GradeTypeDescriptorDelete : IHasIdentifier 
     {
         public GradeTypeDescriptorDelete() { }
 
-        public GradeTypeDescriptorDelete(Guid id)
+        public GradeTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5039,9 +5038,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradeTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.GradingPeriods.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.GradingPeriods.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class GradingPeriodGetByExample
     {
@@ -5075,15 +5074,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradingPeriods.EdFi
 
     [ExcludeFromCodeCoverage]
     public class GradingPeriodPut : Resources.GradingPeriod.EdFi.GradingPeriod
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class GradingPeriodDelete : IHasIdentifier
+    public class GradingPeriodDelete : IHasIdentifier 
     {
         public GradingPeriodDelete() { }
 
-        public GradingPeriodDelete(Guid id)
+        public GradingPeriodDelete(Guid id) 
         {
             Id = id;
         }
@@ -5092,9 +5091,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradingPeriods.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.GradingPeriodDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.GradingPeriodDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class GradingPeriodDescriptorGetByExample
     {
@@ -5121,15 +5120,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradingPeriodDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class GradingPeriodDescriptorPut : Resources.GradingPeriodDescriptor.EdFi.GradingPeriodDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class GradingPeriodDescriptorDelete : IHasIdentifier
+    public class GradingPeriodDescriptorDelete : IHasIdentifier 
     {
         public GradingPeriodDescriptorDelete() { }
 
-        public GradingPeriodDescriptorDelete(Guid id)
+        public GradingPeriodDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5138,9 +5137,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GradingPeriodDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.GraduationPlans.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.GraduationPlans.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class GraduationPlanGetByExample
     {
@@ -5174,15 +5173,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GraduationPlans.EdFi
 
     [ExcludeFromCodeCoverage]
     public class GraduationPlanPut : Resources.GraduationPlan.EdFi.GraduationPlan
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class GraduationPlanDelete : IHasIdentifier
+    public class GraduationPlanDelete : IHasIdentifier 
     {
         public GraduationPlanDelete() { }
 
-        public GraduationPlanDelete(Guid id)
+        public GraduationPlanDelete(Guid id) 
         {
             Id = id;
         }
@@ -5191,9 +5190,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GraduationPlans.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.GraduationPlanTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.GraduationPlanTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class GraduationPlanTypeDescriptorGetByExample
     {
@@ -5220,15 +5219,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GraduationPlanTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class GraduationPlanTypeDescriptorPut : Resources.GraduationPlanTypeDescriptor.EdFi.GraduationPlanTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class GraduationPlanTypeDescriptorDelete : IHasIdentifier
+    public class GraduationPlanTypeDescriptorDelete : IHasIdentifier 
     {
         public GraduationPlanTypeDescriptorDelete() { }
 
-        public GraduationPlanTypeDescriptorDelete(Guid id)
+        public GraduationPlanTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5237,9 +5236,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GraduationPlanTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.GunFreeSchoolsActReportingStatusDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.GunFreeSchoolsActReportingStatusDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class GunFreeSchoolsActReportingStatusDescriptorGetByExample
     {
@@ -5266,15 +5265,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GunFreeSchoolsActReportingStatusDe
 
     [ExcludeFromCodeCoverage]
     public class GunFreeSchoolsActReportingStatusDescriptorPut : Resources.GunFreeSchoolsActReportingStatusDescriptor.EdFi.GunFreeSchoolsActReportingStatusDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class GunFreeSchoolsActReportingStatusDescriptorDelete : IHasIdentifier
+    public class GunFreeSchoolsActReportingStatusDescriptorDelete : IHasIdentifier 
     {
         public GunFreeSchoolsActReportingStatusDescriptorDelete() { }
 
-        public GunFreeSchoolsActReportingStatusDescriptorDelete(Guid id)
+        public GunFreeSchoolsActReportingStatusDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5283,9 +5282,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.GunFreeSchoolsActReportingStatusDe
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.HomelessPrimaryNighttimeResidenceDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.HomelessPrimaryNighttimeResidenceDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class HomelessPrimaryNighttimeResidenceDescriptorGetByExample
     {
@@ -5312,15 +5311,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.HomelessPrimaryNighttimeResidenceD
 
     [ExcludeFromCodeCoverage]
     public class HomelessPrimaryNighttimeResidenceDescriptorPut : Resources.HomelessPrimaryNighttimeResidenceDescriptor.EdFi.HomelessPrimaryNighttimeResidenceDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class HomelessPrimaryNighttimeResidenceDescriptorDelete : IHasIdentifier
+    public class HomelessPrimaryNighttimeResidenceDescriptorDelete : IHasIdentifier 
     {
         public HomelessPrimaryNighttimeResidenceDescriptorDelete() { }
 
-        public HomelessPrimaryNighttimeResidenceDescriptorDelete(Guid id)
+        public HomelessPrimaryNighttimeResidenceDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5329,9 +5328,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.HomelessPrimaryNighttimeResidenceD
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.HomelessProgramServiceDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.HomelessProgramServiceDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class HomelessProgramServiceDescriptorGetByExample
     {
@@ -5358,15 +5357,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.HomelessProgramServiceDescriptors.
 
     [ExcludeFromCodeCoverage]
     public class HomelessProgramServiceDescriptorPut : Resources.HomelessProgramServiceDescriptor.EdFi.HomelessProgramServiceDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class HomelessProgramServiceDescriptorDelete : IHasIdentifier
+    public class HomelessProgramServiceDescriptorDelete : IHasIdentifier 
     {
         public HomelessProgramServiceDescriptorDelete() { }
 
-        public HomelessProgramServiceDescriptorDelete(Guid id)
+        public HomelessProgramServiceDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5375,9 +5374,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.HomelessProgramServiceDescriptors.
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.IdentificationDocumentUseDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.IdentificationDocumentUseDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class IdentificationDocumentUseDescriptorGetByExample
     {
@@ -5404,15 +5403,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.IdentificationDocumentUseDescripto
 
     [ExcludeFromCodeCoverage]
     public class IdentificationDocumentUseDescriptorPut : Resources.IdentificationDocumentUseDescriptor.EdFi.IdentificationDocumentUseDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class IdentificationDocumentUseDescriptorDelete : IHasIdentifier
+    public class IdentificationDocumentUseDescriptorDelete : IHasIdentifier 
     {
         public IdentificationDocumentUseDescriptorDelete() { }
 
-        public IdentificationDocumentUseDescriptorDelete(Guid id)
+        public IdentificationDocumentUseDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5421,9 +5420,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.IdentificationDocumentUseDescripto
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.IncidentLocationDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.IncidentLocationDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class IncidentLocationDescriptorGetByExample
     {
@@ -5450,15 +5449,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.IncidentLocationDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class IncidentLocationDescriptorPut : Resources.IncidentLocationDescriptor.EdFi.IncidentLocationDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class IncidentLocationDescriptorDelete : IHasIdentifier
+    public class IncidentLocationDescriptorDelete : IHasIdentifier 
     {
         public IncidentLocationDescriptorDelete() { }
 
-        public IncidentLocationDescriptorDelete(Guid id)
+        public IncidentLocationDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5467,9 +5466,147 @@ namespace EdFi.Ods.Api.Common.Models.Requests.IncidentLocationDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.InstitutionTelephoneNumberTypeDescriptors.EdFi
-{
+namespace EdFi.Ods.Api.Models.Requests.IndicatorDescriptors.EdFi
+{ 
+   
+    [ExcludeFromCodeCoverage]
+    public class IndicatorDescriptorGetByExample
+    {
+        public int IndicatorDescriptorId { get; set; }
+    }
 
+    [ExcludeFromCodeCoverage]
+    public class IndicatorDescriptorGetByIds : IHasIdentifiers<Guid>
+    {
+        public IndicatorDescriptorGetByIds() { }
+
+        public IndicatorDescriptorGetByIds(params Guid[] ids)
+        {
+            Ids = new List<Guid>(ids);
+        }
+
+        public List<Guid> Ids { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public class IndicatorDescriptorPost : Resources.IndicatorDescriptor.EdFi.IndicatorDescriptor
+    {
+    }
+
+    [ExcludeFromCodeCoverage]
+    public class IndicatorDescriptorPut : Resources.IndicatorDescriptor.EdFi.IndicatorDescriptor
+    { 
+    }
+
+    [ExcludeFromCodeCoverage]
+    public class IndicatorDescriptorDelete : IHasIdentifier 
+    {
+        public IndicatorDescriptorDelete() { }
+
+        public IndicatorDescriptorDelete(Guid id) 
+        {
+            Id = id;
+        }
+
+        public Guid Id { get; set; }
+    }
+}
+
+namespace EdFi.Ods.Api.Models.Requests.IndicatorGroupDescriptors.EdFi
+{ 
+   
+    [ExcludeFromCodeCoverage]
+    public class IndicatorGroupDescriptorGetByExample
+    {
+        public int IndicatorGroupDescriptorId { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public class IndicatorGroupDescriptorGetByIds : IHasIdentifiers<Guid>
+    {
+        public IndicatorGroupDescriptorGetByIds() { }
+
+        public IndicatorGroupDescriptorGetByIds(params Guid[] ids)
+        {
+            Ids = new List<Guid>(ids);
+        }
+
+        public List<Guid> Ids { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public class IndicatorGroupDescriptorPost : Resources.IndicatorGroupDescriptor.EdFi.IndicatorGroupDescriptor
+    {
+    }
+
+    [ExcludeFromCodeCoverage]
+    public class IndicatorGroupDescriptorPut : Resources.IndicatorGroupDescriptor.EdFi.IndicatorGroupDescriptor
+    { 
+    }
+
+    [ExcludeFromCodeCoverage]
+    public class IndicatorGroupDescriptorDelete : IHasIdentifier 
+    {
+        public IndicatorGroupDescriptorDelete() { }
+
+        public IndicatorGroupDescriptorDelete(Guid id) 
+        {
+            Id = id;
+        }
+
+        public Guid Id { get; set; }
+    }
+}
+
+namespace EdFi.Ods.Api.Models.Requests.IndicatorLevelDescriptors.EdFi
+{ 
+   
+    [ExcludeFromCodeCoverage]
+    public class IndicatorLevelDescriptorGetByExample
+    {
+        public int IndicatorLevelDescriptorId { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public class IndicatorLevelDescriptorGetByIds : IHasIdentifiers<Guid>
+    {
+        public IndicatorLevelDescriptorGetByIds() { }
+
+        public IndicatorLevelDescriptorGetByIds(params Guid[] ids)
+        {
+            Ids = new List<Guid>(ids);
+        }
+
+        public List<Guid> Ids { get; set; }
+    }
+
+    [ExcludeFromCodeCoverage]
+    public class IndicatorLevelDescriptorPost : Resources.IndicatorLevelDescriptor.EdFi.IndicatorLevelDescriptor
+    {
+    }
+
+    [ExcludeFromCodeCoverage]
+    public class IndicatorLevelDescriptorPut : Resources.IndicatorLevelDescriptor.EdFi.IndicatorLevelDescriptor
+    { 
+    }
+
+    [ExcludeFromCodeCoverage]
+    public class IndicatorLevelDescriptorDelete : IHasIdentifier 
+    {
+        public IndicatorLevelDescriptorDelete() { }
+
+        public IndicatorLevelDescriptorDelete(Guid id) 
+        {
+            Id = id;
+        }
+
+        public Guid Id { get; set; }
+    }
+}
+
+namespace EdFi.Ods.Api.Models.Requests.InstitutionTelephoneNumberTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class InstitutionTelephoneNumberTypeDescriptorGetByExample
     {
@@ -5496,15 +5633,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InstitutionTelephoneNumberTypeDesc
 
     [ExcludeFromCodeCoverage]
     public class InstitutionTelephoneNumberTypeDescriptorPut : Resources.InstitutionTelephoneNumberTypeDescriptor.EdFi.InstitutionTelephoneNumberTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class InstitutionTelephoneNumberTypeDescriptorDelete : IHasIdentifier
+    public class InstitutionTelephoneNumberTypeDescriptorDelete : IHasIdentifier 
     {
         public InstitutionTelephoneNumberTypeDescriptorDelete() { }
 
-        public InstitutionTelephoneNumberTypeDescriptorDelete(Guid id)
+        public InstitutionTelephoneNumberTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5513,9 +5650,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InstitutionTelephoneNumberTypeDesc
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.InteractivityStyleDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.InteractivityStyleDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class InteractivityStyleDescriptorGetByExample
     {
@@ -5542,15 +5679,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InteractivityStyleDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class InteractivityStyleDescriptorPut : Resources.InteractivityStyleDescriptor.EdFi.InteractivityStyleDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class InteractivityStyleDescriptorDelete : IHasIdentifier
+    public class InteractivityStyleDescriptorDelete : IHasIdentifier 
     {
         public InteractivityStyleDescriptorDelete() { }
 
-        public InteractivityStyleDescriptorDelete(Guid id)
+        public InteractivityStyleDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5559,9 +5696,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InteractivityStyleDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.InternetAccessDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.InternetAccessDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class InternetAccessDescriptorGetByExample
     {
@@ -5588,15 +5725,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InternetAccessDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class InternetAccessDescriptorPut : Resources.InternetAccessDescriptor.EdFi.InternetAccessDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class InternetAccessDescriptorDelete : IHasIdentifier
+    public class InternetAccessDescriptorDelete : IHasIdentifier 
     {
         public InternetAccessDescriptorDelete() { }
 
-        public InternetAccessDescriptorDelete(Guid id)
+        public InternetAccessDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5605,9 +5742,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InternetAccessDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Interventions.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Interventions.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class InterventionGetByExample
     {
@@ -5642,15 +5779,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Interventions.EdFi
 
     [ExcludeFromCodeCoverage]
     public class InterventionPut : Resources.Intervention.EdFi.Intervention
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class InterventionDelete : IHasIdentifier
+    public class InterventionDelete : IHasIdentifier 
     {
         public InterventionDelete() { }
 
-        public InterventionDelete(Guid id)
+        public InterventionDelete(Guid id) 
         {
             Id = id;
         }
@@ -5659,9 +5796,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Interventions.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.InterventionClassDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.InterventionClassDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class InterventionClassDescriptorGetByExample
     {
@@ -5688,15 +5825,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InterventionClassDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class InterventionClassDescriptorPut : Resources.InterventionClassDescriptor.EdFi.InterventionClassDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class InterventionClassDescriptorDelete : IHasIdentifier
+    public class InterventionClassDescriptorDelete : IHasIdentifier 
     {
         public InterventionClassDescriptorDelete() { }
 
-        public InterventionClassDescriptorDelete(Guid id)
+        public InterventionClassDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5705,9 +5842,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InterventionClassDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.InterventionEffectivenessRatingDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.InterventionEffectivenessRatingDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class InterventionEffectivenessRatingDescriptorGetByExample
     {
@@ -5734,15 +5871,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InterventionEffectivenessRatingDes
 
     [ExcludeFromCodeCoverage]
     public class InterventionEffectivenessRatingDescriptorPut : Resources.InterventionEffectivenessRatingDescriptor.EdFi.InterventionEffectivenessRatingDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class InterventionEffectivenessRatingDescriptorDelete : IHasIdentifier
+    public class InterventionEffectivenessRatingDescriptorDelete : IHasIdentifier 
     {
         public InterventionEffectivenessRatingDescriptorDelete() { }
 
-        public InterventionEffectivenessRatingDescriptorDelete(Guid id)
+        public InterventionEffectivenessRatingDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5751,9 +5888,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InterventionEffectivenessRatingDes
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.InterventionPrescriptions.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.InterventionPrescriptions.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class InterventionPrescriptionGetByExample
     {
@@ -5786,15 +5923,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InterventionPrescriptions.EdFi
 
     [ExcludeFromCodeCoverage]
     public class InterventionPrescriptionPut : Resources.InterventionPrescription.EdFi.InterventionPrescription
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class InterventionPrescriptionDelete : IHasIdentifier
+    public class InterventionPrescriptionDelete : IHasIdentifier 
     {
         public InterventionPrescriptionDelete() { }
 
-        public InterventionPrescriptionDelete(Guid id)
+        public InterventionPrescriptionDelete(Guid id) 
         {
             Id = id;
         }
@@ -5803,9 +5940,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InterventionPrescriptions.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.InterventionStudies.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.InterventionStudies.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class InterventionStudyGetByExample
     {
@@ -5839,15 +5976,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InterventionStudies.EdFi
 
     [ExcludeFromCodeCoverage]
     public class InterventionStudyPut : Resources.InterventionStudy.EdFi.InterventionStudy
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class InterventionStudyDelete : IHasIdentifier
+    public class InterventionStudyDelete : IHasIdentifier 
     {
         public InterventionStudyDelete() { }
 
-        public InterventionStudyDelete(Guid id)
+        public InterventionStudyDelete(Guid id) 
         {
             Id = id;
         }
@@ -5856,9 +5993,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.InterventionStudies.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LanguageDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LanguageDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LanguageDescriptorGetByExample
     {
@@ -5885,15 +6022,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LanguageDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class LanguageDescriptorPut : Resources.LanguageDescriptor.EdFi.LanguageDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LanguageDescriptorDelete : IHasIdentifier
+    public class LanguageDescriptorDelete : IHasIdentifier 
     {
         public LanguageDescriptorDelete() { }
 
-        public LanguageDescriptorDelete(Guid id)
+        public LanguageDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5902,9 +6039,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LanguageDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LanguageInstructionProgramServiceDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LanguageInstructionProgramServiceDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LanguageInstructionProgramServiceDescriptorGetByExample
     {
@@ -5931,15 +6068,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LanguageInstructionProgramServiceD
 
     [ExcludeFromCodeCoverage]
     public class LanguageInstructionProgramServiceDescriptorPut : Resources.LanguageInstructionProgramServiceDescriptor.EdFi.LanguageInstructionProgramServiceDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LanguageInstructionProgramServiceDescriptorDelete : IHasIdentifier
+    public class LanguageInstructionProgramServiceDescriptorDelete : IHasIdentifier 
     {
         public LanguageInstructionProgramServiceDescriptorDelete() { }
 
-        public LanguageInstructionProgramServiceDescriptorDelete(Guid id)
+        public LanguageInstructionProgramServiceDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5948,9 +6085,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LanguageInstructionProgramServiceD
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LanguageUseDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LanguageUseDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LanguageUseDescriptorGetByExample
     {
@@ -5977,15 +6114,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LanguageUseDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class LanguageUseDescriptorPut : Resources.LanguageUseDescriptor.EdFi.LanguageUseDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LanguageUseDescriptorDelete : IHasIdentifier
+    public class LanguageUseDescriptorDelete : IHasIdentifier 
     {
         public LanguageUseDescriptorDelete() { }
 
-        public LanguageUseDescriptorDelete(Guid id)
+        public LanguageUseDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -5994,9 +6131,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LanguageUseDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LearningObjectives.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LearningObjectives.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LearningObjectiveGetByExample
     {
@@ -6031,15 +6168,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LearningObjectives.EdFi
 
     [ExcludeFromCodeCoverage]
     public class LearningObjectivePut : Resources.LearningObjective.EdFi.LearningObjective
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LearningObjectiveDelete : IHasIdentifier
+    public class LearningObjectiveDelete : IHasIdentifier 
     {
         public LearningObjectiveDelete() { }
 
-        public LearningObjectiveDelete(Guid id)
+        public LearningObjectiveDelete(Guid id) 
         {
             Id = id;
         }
@@ -6048,9 +6185,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LearningObjectives.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandards.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LearningStandards.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LearningStandardGetByExample
     {
@@ -6087,15 +6224,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandards.EdFi
 
     [ExcludeFromCodeCoverage]
     public class LearningStandardPut : Resources.LearningStandard.EdFi.LearningStandard
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LearningStandardDelete : IHasIdentifier
+    public class LearningStandardDelete : IHasIdentifier 
     {
         public LearningStandardDelete() { }
 
-        public LearningStandardDelete(Guid id)
+        public LearningStandardDelete(Guid id) 
         {
             Id = id;
         }
@@ -6104,9 +6241,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandards.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandardCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LearningStandardCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LearningStandardCategoryDescriptorGetByExample
     {
@@ -6133,15 +6270,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandardCategoryDescriptor
 
     [ExcludeFromCodeCoverage]
     public class LearningStandardCategoryDescriptorPut : Resources.LearningStandardCategoryDescriptor.EdFi.LearningStandardCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LearningStandardCategoryDescriptorDelete : IHasIdentifier
+    public class LearningStandardCategoryDescriptorDelete : IHasIdentifier 
     {
         public LearningStandardCategoryDescriptorDelete() { }
 
-        public LearningStandardCategoryDescriptorDelete(Guid id)
+        public LearningStandardCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6150,9 +6287,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandardCategoryDescriptor
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandardEquivalenceAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LearningStandardEquivalenceAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LearningStandardEquivalenceAssociationGetByExample
     {
@@ -6185,15 +6322,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandardEquivalenceAssocia
 
     [ExcludeFromCodeCoverage]
     public class LearningStandardEquivalenceAssociationPut : Resources.LearningStandardEquivalenceAssociation.EdFi.LearningStandardEquivalenceAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LearningStandardEquivalenceAssociationDelete : IHasIdentifier
+    public class LearningStandardEquivalenceAssociationDelete : IHasIdentifier 
     {
         public LearningStandardEquivalenceAssociationDelete() { }
 
-        public LearningStandardEquivalenceAssociationDelete(Guid id)
+        public LearningStandardEquivalenceAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -6202,9 +6339,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandardEquivalenceAssocia
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandardEquivalenceStrengthDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LearningStandardEquivalenceStrengthDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LearningStandardEquivalenceStrengthDescriptorGetByExample
     {
@@ -6231,15 +6368,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandardEquivalenceStrengt
 
     [ExcludeFromCodeCoverage]
     public class LearningStandardEquivalenceStrengthDescriptorPut : Resources.LearningStandardEquivalenceStrengthDescriptor.EdFi.LearningStandardEquivalenceStrengthDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LearningStandardEquivalenceStrengthDescriptorDelete : IHasIdentifier
+    public class LearningStandardEquivalenceStrengthDescriptorDelete : IHasIdentifier 
     {
         public LearningStandardEquivalenceStrengthDescriptorDelete() { }
 
-        public LearningStandardEquivalenceStrengthDescriptorDelete(Guid id)
+        public LearningStandardEquivalenceStrengthDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6248,9 +6385,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandardEquivalenceStrengt
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandardScopeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LearningStandardScopeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LearningStandardScopeDescriptorGetByExample
     {
@@ -6277,15 +6414,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandardScopeDescriptors.E
 
     [ExcludeFromCodeCoverage]
     public class LearningStandardScopeDescriptorPut : Resources.LearningStandardScopeDescriptor.EdFi.LearningStandardScopeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LearningStandardScopeDescriptorDelete : IHasIdentifier
+    public class LearningStandardScopeDescriptorDelete : IHasIdentifier 
     {
         public LearningStandardScopeDescriptorDelete() { }
 
-        public LearningStandardScopeDescriptorDelete(Guid id)
+        public LearningStandardScopeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6294,9 +6431,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LearningStandardScopeDescriptors.E
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LevelOfEducationDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LevelOfEducationDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LevelOfEducationDescriptorGetByExample
     {
@@ -6323,15 +6460,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LevelOfEducationDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class LevelOfEducationDescriptorPut : Resources.LevelOfEducationDescriptor.EdFi.LevelOfEducationDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LevelOfEducationDescriptorDelete : IHasIdentifier
+    public class LevelOfEducationDescriptorDelete : IHasIdentifier 
     {
         public LevelOfEducationDescriptorDelete() { }
 
-        public LevelOfEducationDescriptorDelete(Guid id)
+        public LevelOfEducationDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6340,9 +6477,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LevelOfEducationDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LicenseStatusDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LicenseStatusDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LicenseStatusDescriptorGetByExample
     {
@@ -6369,15 +6506,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LicenseStatusDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class LicenseStatusDescriptorPut : Resources.LicenseStatusDescriptor.EdFi.LicenseStatusDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LicenseStatusDescriptorDelete : IHasIdentifier
+    public class LicenseStatusDescriptorDelete : IHasIdentifier 
     {
         public LicenseStatusDescriptorDelete() { }
 
-        public LicenseStatusDescriptorDelete(Guid id)
+        public LicenseStatusDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6386,9 +6523,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LicenseStatusDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LicenseTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LicenseTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LicenseTypeDescriptorGetByExample
     {
@@ -6415,15 +6552,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LicenseTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class LicenseTypeDescriptorPut : Resources.LicenseTypeDescriptor.EdFi.LicenseTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LicenseTypeDescriptorDelete : IHasIdentifier
+    public class LicenseTypeDescriptorDelete : IHasIdentifier 
     {
         public LicenseTypeDescriptorDelete() { }
 
-        public LicenseTypeDescriptorDelete(Guid id)
+        public LicenseTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6432,9 +6569,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LicenseTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LimitedEnglishProficiencyDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LimitedEnglishProficiencyDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LimitedEnglishProficiencyDescriptorGetByExample
     {
@@ -6461,15 +6598,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LimitedEnglishProficiencyDescripto
 
     [ExcludeFromCodeCoverage]
     public class LimitedEnglishProficiencyDescriptorPut : Resources.LimitedEnglishProficiencyDescriptor.EdFi.LimitedEnglishProficiencyDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LimitedEnglishProficiencyDescriptorDelete : IHasIdentifier
+    public class LimitedEnglishProficiencyDescriptorDelete : IHasIdentifier 
     {
         public LimitedEnglishProficiencyDescriptorDelete() { }
 
-        public LimitedEnglishProficiencyDescriptorDelete(Guid id)
+        public LimitedEnglishProficiencyDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6478,9 +6615,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LimitedEnglishProficiencyDescripto
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LocaleDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LocaleDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LocaleDescriptorGetByExample
     {
@@ -6507,15 +6644,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LocaleDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class LocaleDescriptorPut : Resources.LocaleDescriptor.EdFi.LocaleDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LocaleDescriptorDelete : IHasIdentifier
+    public class LocaleDescriptorDelete : IHasIdentifier 
     {
         public LocaleDescriptorDelete() { }
 
-        public LocaleDescriptorDelete(Guid id)
+        public LocaleDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6524,9 +6661,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LocaleDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LocalEducationAgencies.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LocalEducationAgencies.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LocalEducationAgencyGetByExample
     {
@@ -6558,15 +6695,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LocalEducationAgencies.EdFi
 
     [ExcludeFromCodeCoverage]
     public class LocalEducationAgencyPut : Resources.LocalEducationAgency.EdFi.LocalEducationAgency
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LocalEducationAgencyDelete : IHasIdentifier
+    public class LocalEducationAgencyDelete : IHasIdentifier 
     {
         public LocalEducationAgencyDelete() { }
 
-        public LocalEducationAgencyDelete(Guid id)
+        public LocalEducationAgencyDelete(Guid id) 
         {
             Id = id;
         }
@@ -6575,9 +6712,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LocalEducationAgencies.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.LocalEducationAgencyCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.LocalEducationAgencyCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LocalEducationAgencyCategoryDescriptorGetByExample
     {
@@ -6604,15 +6741,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LocalEducationAgencyCategoryDescri
 
     [ExcludeFromCodeCoverage]
     public class LocalEducationAgencyCategoryDescriptorPut : Resources.LocalEducationAgencyCategoryDescriptor.EdFi.LocalEducationAgencyCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LocalEducationAgencyCategoryDescriptorDelete : IHasIdentifier
+    public class LocalEducationAgencyCategoryDescriptorDelete : IHasIdentifier 
     {
         public LocalEducationAgencyCategoryDescriptorDelete() { }
 
-        public LocalEducationAgencyCategoryDescriptorDelete(Guid id)
+        public LocalEducationAgencyCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6621,9 +6758,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.LocalEducationAgencyCategoryDescri
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Locations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Locations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class LocationGetByExample
     {
@@ -6654,15 +6791,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Locations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class LocationPut : Resources.Location.EdFi.Location
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class LocationDelete : IHasIdentifier
+    public class LocationDelete : IHasIdentifier 
     {
         public LocationDelete() { }
 
-        public LocationDelete(Guid id)
+        public LocationDelete(Guid id) 
         {
             Id = id;
         }
@@ -6671,9 +6808,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Locations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.MagnetSpecialProgramEmphasisSchoolDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.MagnetSpecialProgramEmphasisSchoolDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class MagnetSpecialProgramEmphasisSchoolDescriptorGetByExample
     {
@@ -6700,15 +6837,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.MagnetSpecialProgramEmphasisSchool
 
     [ExcludeFromCodeCoverage]
     public class MagnetSpecialProgramEmphasisSchoolDescriptorPut : Resources.MagnetSpecialProgramEmphasisSchoolDescriptor.EdFi.MagnetSpecialProgramEmphasisSchoolDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class MagnetSpecialProgramEmphasisSchoolDescriptorDelete : IHasIdentifier
+    public class MagnetSpecialProgramEmphasisSchoolDescriptorDelete : IHasIdentifier 
     {
         public MagnetSpecialProgramEmphasisSchoolDescriptorDelete() { }
 
-        public MagnetSpecialProgramEmphasisSchoolDescriptorDelete(Guid id)
+        public MagnetSpecialProgramEmphasisSchoolDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6717,9 +6854,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.MagnetSpecialProgramEmphasisSchool
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.MediumOfInstructionDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.MediumOfInstructionDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class MediumOfInstructionDescriptorGetByExample
     {
@@ -6746,15 +6883,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.MediumOfInstructionDescriptors.EdF
 
     [ExcludeFromCodeCoverage]
     public class MediumOfInstructionDescriptorPut : Resources.MediumOfInstructionDescriptor.EdFi.MediumOfInstructionDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class MediumOfInstructionDescriptorDelete : IHasIdentifier
+    public class MediumOfInstructionDescriptorDelete : IHasIdentifier 
     {
         public MediumOfInstructionDescriptorDelete() { }
 
-        public MediumOfInstructionDescriptorDelete(Guid id)
+        public MediumOfInstructionDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6763,9 +6900,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.MediumOfInstructionDescriptors.EdF
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.MethodCreditEarnedDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.MethodCreditEarnedDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class MethodCreditEarnedDescriptorGetByExample
     {
@@ -6792,15 +6929,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.MethodCreditEarnedDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class MethodCreditEarnedDescriptorPut : Resources.MethodCreditEarnedDescriptor.EdFi.MethodCreditEarnedDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class MethodCreditEarnedDescriptorDelete : IHasIdentifier
+    public class MethodCreditEarnedDescriptorDelete : IHasIdentifier 
     {
         public MethodCreditEarnedDescriptorDelete() { }
 
-        public MethodCreditEarnedDescriptorDelete(Guid id)
+        public MethodCreditEarnedDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6809,9 +6946,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.MethodCreditEarnedDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.MigrantEducationProgramServiceDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.MigrantEducationProgramServiceDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class MigrantEducationProgramServiceDescriptorGetByExample
     {
@@ -6838,15 +6975,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.MigrantEducationProgramServiceDesc
 
     [ExcludeFromCodeCoverage]
     public class MigrantEducationProgramServiceDescriptorPut : Resources.MigrantEducationProgramServiceDescriptor.EdFi.MigrantEducationProgramServiceDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class MigrantEducationProgramServiceDescriptorDelete : IHasIdentifier
+    public class MigrantEducationProgramServiceDescriptorDelete : IHasIdentifier 
     {
         public MigrantEducationProgramServiceDescriptorDelete() { }
 
-        public MigrantEducationProgramServiceDescriptorDelete(Guid id)
+        public MigrantEducationProgramServiceDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6855,9 +6992,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.MigrantEducationProgramServiceDesc
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.MonitoredDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.MonitoredDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class MonitoredDescriptorGetByExample
     {
@@ -6884,15 +7021,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.MonitoredDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class MonitoredDescriptorPut : Resources.MonitoredDescriptor.EdFi.MonitoredDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class MonitoredDescriptorDelete : IHasIdentifier
+    public class MonitoredDescriptorDelete : IHasIdentifier 
     {
         public MonitoredDescriptorDelete() { }
 
-        public MonitoredDescriptorDelete(Guid id)
+        public MonitoredDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6901,9 +7038,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.MonitoredDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.NeglectedOrDelinquentProgramDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.NeglectedOrDelinquentProgramDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class NeglectedOrDelinquentProgramDescriptorGetByExample
     {
@@ -6930,15 +7067,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.NeglectedOrDelinquentProgramDescri
 
     [ExcludeFromCodeCoverage]
     public class NeglectedOrDelinquentProgramDescriptorPut : Resources.NeglectedOrDelinquentProgramDescriptor.EdFi.NeglectedOrDelinquentProgramDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class NeglectedOrDelinquentProgramDescriptorDelete : IHasIdentifier
+    public class NeglectedOrDelinquentProgramDescriptorDelete : IHasIdentifier 
     {
         public NeglectedOrDelinquentProgramDescriptorDelete() { }
 
-        public NeglectedOrDelinquentProgramDescriptorDelete(Guid id)
+        public NeglectedOrDelinquentProgramDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6947,9 +7084,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.NeglectedOrDelinquentProgramDescri
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.NeglectedOrDelinquentProgramServiceDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.NeglectedOrDelinquentProgramServiceDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class NeglectedOrDelinquentProgramServiceDescriptorGetByExample
     {
@@ -6976,15 +7113,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.NeglectedOrDelinquentProgramServic
 
     [ExcludeFromCodeCoverage]
     public class NeglectedOrDelinquentProgramServiceDescriptorPut : Resources.NeglectedOrDelinquentProgramServiceDescriptor.EdFi.NeglectedOrDelinquentProgramServiceDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class NeglectedOrDelinquentProgramServiceDescriptorDelete : IHasIdentifier
+    public class NeglectedOrDelinquentProgramServiceDescriptorDelete : IHasIdentifier 
     {
         public NeglectedOrDelinquentProgramServiceDescriptorDelete() { }
 
-        public NeglectedOrDelinquentProgramServiceDescriptorDelete(Guid id)
+        public NeglectedOrDelinquentProgramServiceDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -6993,9 +7130,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.NeglectedOrDelinquentProgramServic
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.NetworkPurposeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.NetworkPurposeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class NetworkPurposeDescriptorGetByExample
     {
@@ -7022,15 +7159,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.NetworkPurposeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class NetworkPurposeDescriptorPut : Resources.NetworkPurposeDescriptor.EdFi.NetworkPurposeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class NetworkPurposeDescriptorDelete : IHasIdentifier
+    public class NetworkPurposeDescriptorDelete : IHasIdentifier 
     {
         public NetworkPurposeDescriptorDelete() { }
 
-        public NetworkPurposeDescriptorDelete(Guid id)
+        public NetworkPurposeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -7039,9 +7176,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.NetworkPurposeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ObjectiveAssessments.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ObjectiveAssessments.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ObjectiveAssessmentGetByExample
     {
@@ -7077,15 +7214,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ObjectiveAssessments.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ObjectiveAssessmentPut : Resources.ObjectiveAssessment.EdFi.ObjectiveAssessment
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ObjectiveAssessmentDelete : IHasIdentifier
+    public class ObjectiveAssessmentDelete : IHasIdentifier 
     {
         public ObjectiveAssessmentDelete() { }
 
-        public ObjectiveAssessmentDelete(Guid id)
+        public ObjectiveAssessmentDelete(Guid id) 
         {
             Id = id;
         }
@@ -7094,9 +7231,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ObjectiveAssessments.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.OldEthnicityDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.OldEthnicityDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class OldEthnicityDescriptorGetByExample
     {
@@ -7123,15 +7260,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.OldEthnicityDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class OldEthnicityDescriptorPut : Resources.OldEthnicityDescriptor.EdFi.OldEthnicityDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class OldEthnicityDescriptorDelete : IHasIdentifier
+    public class OldEthnicityDescriptorDelete : IHasIdentifier 
     {
         public OldEthnicityDescriptorDelete() { }
 
-        public OldEthnicityDescriptorDelete(Guid id)
+        public OldEthnicityDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -7140,9 +7277,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.OldEthnicityDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.OpenStaffPositions.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.OpenStaffPositions.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class OpenStaffPositionGetByExample
     {
@@ -7178,15 +7315,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.OpenStaffPositions.EdFi
 
     [ExcludeFromCodeCoverage]
     public class OpenStaffPositionPut : Resources.OpenStaffPosition.EdFi.OpenStaffPosition
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class OpenStaffPositionDelete : IHasIdentifier
+    public class OpenStaffPositionDelete : IHasIdentifier 
     {
         public OpenStaffPositionDelete() { }
 
-        public OpenStaffPositionDelete(Guid id)
+        public OpenStaffPositionDelete(Guid id) 
         {
             Id = id;
         }
@@ -7195,9 +7332,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.OpenStaffPositions.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.OperationalStatusDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.OperationalStatusDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class OperationalStatusDescriptorGetByExample
     {
@@ -7224,15 +7361,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.OperationalStatusDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class OperationalStatusDescriptorPut : Resources.OperationalStatusDescriptor.EdFi.OperationalStatusDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class OperationalStatusDescriptorDelete : IHasIdentifier
+    public class OperationalStatusDescriptorDelete : IHasIdentifier 
     {
         public OperationalStatusDescriptorDelete() { }
 
-        public OperationalStatusDescriptorDelete(Guid id)
+        public OperationalStatusDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -7241,9 +7378,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.OperationalStatusDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.OtherNameTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.OtherNameTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class OtherNameTypeDescriptorGetByExample
     {
@@ -7270,15 +7407,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.OtherNameTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class OtherNameTypeDescriptorPut : Resources.OtherNameTypeDescriptor.EdFi.OtherNameTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class OtherNameTypeDescriptorDelete : IHasIdentifier
+    public class OtherNameTypeDescriptorDelete : IHasIdentifier 
     {
         public OtherNameTypeDescriptorDelete() { }
 
-        public OtherNameTypeDescriptorDelete(Guid id)
+        public OtherNameTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -7287,9 +7424,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.OtherNameTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Parents.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Parents.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ParentGetByExample
     {
@@ -7327,15 +7464,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Parents.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ParentPut : Resources.Parent.EdFi.Parent
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ParentDelete : IHasIdentifier
+    public class ParentDelete : IHasIdentifier 
     {
         public ParentDelete() { }
 
-        public ParentDelete(Guid id)
+        public ParentDelete(Guid id) 
         {
             Id = id;
         }
@@ -7344,9 +7481,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Parents.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ParticipationDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ParticipationDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ParticipationDescriptorGetByExample
     {
@@ -7373,15 +7510,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ParticipationDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ParticipationDescriptorPut : Resources.ParticipationDescriptor.EdFi.ParticipationDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ParticipationDescriptorDelete : IHasIdentifier
+    public class ParticipationDescriptorDelete : IHasIdentifier 
     {
         public ParticipationDescriptorDelete() { }
 
-        public ParticipationDescriptorDelete(Guid id)
+        public ParticipationDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -7390,9 +7527,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ParticipationDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ParticipationStatusDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ParticipationStatusDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ParticipationStatusDescriptorGetByExample
     {
@@ -7419,15 +7556,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ParticipationStatusDescriptors.EdF
 
     [ExcludeFromCodeCoverage]
     public class ParticipationStatusDescriptorPut : Resources.ParticipationStatusDescriptor.EdFi.ParticipationStatusDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ParticipationStatusDescriptorDelete : IHasIdentifier
+    public class ParticipationStatusDescriptorDelete : IHasIdentifier 
     {
         public ParticipationStatusDescriptorDelete() { }
 
-        public ParticipationStatusDescriptorDelete(Guid id)
+        public ParticipationStatusDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -7436,9 +7573,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ParticipationStatusDescriptors.EdF
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Payrolls.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Payrolls.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class PayrollGetByExample
     {
@@ -7471,15 +7608,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Payrolls.EdFi
 
     [ExcludeFromCodeCoverage]
     public class PayrollPut : Resources.Payroll.EdFi.Payroll
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class PayrollDelete : IHasIdentifier
+    public class PayrollDelete : IHasIdentifier 
     {
         public PayrollDelete() { }
 
-        public PayrollDelete(Guid id)
+        public PayrollDelete(Guid id) 
         {
             Id = id;
         }
@@ -7488,9 +7625,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Payrolls.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.PerformanceBaseConversionDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.PerformanceBaseConversionDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class PerformanceBaseConversionDescriptorGetByExample
     {
@@ -7517,15 +7654,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PerformanceBaseConversionDescripto
 
     [ExcludeFromCodeCoverage]
     public class PerformanceBaseConversionDescriptorPut : Resources.PerformanceBaseConversionDescriptor.EdFi.PerformanceBaseConversionDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class PerformanceBaseConversionDescriptorDelete : IHasIdentifier
+    public class PerformanceBaseConversionDescriptorDelete : IHasIdentifier 
     {
         public PerformanceBaseConversionDescriptorDelete() { }
 
-        public PerformanceBaseConversionDescriptorDelete(Guid id)
+        public PerformanceBaseConversionDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -7534,9 +7671,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PerformanceBaseConversionDescripto
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.PerformanceLevelDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.PerformanceLevelDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class PerformanceLevelDescriptorGetByExample
     {
@@ -7563,15 +7700,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PerformanceLevelDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class PerformanceLevelDescriptorPut : Resources.PerformanceLevelDescriptor.EdFi.PerformanceLevelDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class PerformanceLevelDescriptorDelete : IHasIdentifier
+    public class PerformanceLevelDescriptorDelete : IHasIdentifier 
     {
         public PerformanceLevelDescriptorDelete() { }
 
-        public PerformanceLevelDescriptorDelete(Guid id)
+        public PerformanceLevelDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -7580,9 +7717,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PerformanceLevelDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.People.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.People.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class PersonGetByExample
     {
@@ -7611,15 +7748,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.People.EdFi
 
     [ExcludeFromCodeCoverage]
     public class PersonPut : Resources.Person.EdFi.Person
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class PersonDelete : IHasIdentifier
+    public class PersonDelete : IHasIdentifier 
     {
         public PersonDelete() { }
 
-        public PersonDelete(Guid id)
+        public PersonDelete(Guid id) 
         {
             Id = id;
         }
@@ -7628,9 +7765,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.People.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.PersonalInformationVerificationDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.PersonalInformationVerificationDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class PersonalInformationVerificationDescriptorGetByExample
     {
@@ -7657,15 +7794,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PersonalInformationVerificationDes
 
     [ExcludeFromCodeCoverage]
     public class PersonalInformationVerificationDescriptorPut : Resources.PersonalInformationVerificationDescriptor.EdFi.PersonalInformationVerificationDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class PersonalInformationVerificationDescriptorDelete : IHasIdentifier
+    public class PersonalInformationVerificationDescriptorDelete : IHasIdentifier 
     {
         public PersonalInformationVerificationDescriptorDelete() { }
 
-        public PersonalInformationVerificationDescriptorDelete(Guid id)
+        public PersonalInformationVerificationDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -7674,9 +7811,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PersonalInformationVerificationDes
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.PlatformTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.PlatformTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class PlatformTypeDescriptorGetByExample
     {
@@ -7703,15 +7840,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PlatformTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class PlatformTypeDescriptorPut : Resources.PlatformTypeDescriptor.EdFi.PlatformTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class PlatformTypeDescriptorDelete : IHasIdentifier
+    public class PlatformTypeDescriptorDelete : IHasIdentifier 
     {
         public PlatformTypeDescriptorDelete() { }
 
-        public PlatformTypeDescriptorDelete(Guid id)
+        public PlatformTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -7720,9 +7857,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PlatformTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.PopulationServedDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.PopulationServedDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class PopulationServedDescriptorGetByExample
     {
@@ -7749,15 +7886,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PopulationServedDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class PopulationServedDescriptorPut : Resources.PopulationServedDescriptor.EdFi.PopulationServedDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class PopulationServedDescriptorDelete : IHasIdentifier
+    public class PopulationServedDescriptorDelete : IHasIdentifier 
     {
         public PopulationServedDescriptorDelete() { }
 
-        public PopulationServedDescriptorDelete(Guid id)
+        public PopulationServedDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -7766,9 +7903,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PopulationServedDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.PostingResultDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.PostingResultDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class PostingResultDescriptorGetByExample
     {
@@ -7795,15 +7932,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PostingResultDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class PostingResultDescriptorPut : Resources.PostingResultDescriptor.EdFi.PostingResultDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class PostingResultDescriptorDelete : IHasIdentifier
+    public class PostingResultDescriptorDelete : IHasIdentifier 
     {
         public PostingResultDescriptorDelete() { }
 
-        public PostingResultDescriptorDelete(Guid id)
+        public PostingResultDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -7812,9 +7949,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PostingResultDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.PostSecondaryEvents.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.PostSecondaryEvents.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class PostSecondaryEventGetByExample
     {
@@ -7845,15 +7982,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PostSecondaryEvents.EdFi
 
     [ExcludeFromCodeCoverage]
     public class PostSecondaryEventPut : Resources.PostSecondaryEvent.EdFi.PostSecondaryEvent
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class PostSecondaryEventDelete : IHasIdentifier
+    public class PostSecondaryEventDelete : IHasIdentifier 
     {
         public PostSecondaryEventDelete() { }
 
-        public PostSecondaryEventDelete(Guid id)
+        public PostSecondaryEventDelete(Guid id) 
         {
             Id = id;
         }
@@ -7862,9 +7999,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PostSecondaryEvents.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.PostSecondaryEventCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.PostSecondaryEventCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class PostSecondaryEventCategoryDescriptorGetByExample
     {
@@ -7891,15 +8028,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PostSecondaryEventCategoryDescript
 
     [ExcludeFromCodeCoverage]
     public class PostSecondaryEventCategoryDescriptorPut : Resources.PostSecondaryEventCategoryDescriptor.EdFi.PostSecondaryEventCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class PostSecondaryEventCategoryDescriptorDelete : IHasIdentifier
+    public class PostSecondaryEventCategoryDescriptorDelete : IHasIdentifier 
     {
         public PostSecondaryEventCategoryDescriptorDelete() { }
 
-        public PostSecondaryEventCategoryDescriptorDelete(Guid id)
+        public PostSecondaryEventCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -7908,9 +8045,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PostSecondaryEventCategoryDescript
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.PostSecondaryInstitutions.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.PostSecondaryInstitutions.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class PostSecondaryInstitutionGetByExample
     {
@@ -7939,15 +8076,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PostSecondaryInstitutions.EdFi
 
     [ExcludeFromCodeCoverage]
     public class PostSecondaryInstitutionPut : Resources.PostSecondaryInstitution.EdFi.PostSecondaryInstitution
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class PostSecondaryInstitutionDelete : IHasIdentifier
+    public class PostSecondaryInstitutionDelete : IHasIdentifier 
     {
         public PostSecondaryInstitutionDelete() { }
 
-        public PostSecondaryInstitutionDelete(Guid id)
+        public PostSecondaryInstitutionDelete(Guid id) 
         {
             Id = id;
         }
@@ -7956,9 +8093,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PostSecondaryInstitutions.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.PostSecondaryInstitutionLevelDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.PostSecondaryInstitutionLevelDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class PostSecondaryInstitutionLevelDescriptorGetByExample
     {
@@ -7985,15 +8122,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PostSecondaryInstitutionLevelDescr
 
     [ExcludeFromCodeCoverage]
     public class PostSecondaryInstitutionLevelDescriptorPut : Resources.PostSecondaryInstitutionLevelDescriptor.EdFi.PostSecondaryInstitutionLevelDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class PostSecondaryInstitutionLevelDescriptorDelete : IHasIdentifier
+    public class PostSecondaryInstitutionLevelDescriptorDelete : IHasIdentifier 
     {
         public PostSecondaryInstitutionLevelDescriptorDelete() { }
 
-        public PostSecondaryInstitutionLevelDescriptorDelete(Guid id)
+        public PostSecondaryInstitutionLevelDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8002,9 +8139,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PostSecondaryInstitutionLevelDescr
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ProficiencyDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ProficiencyDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ProficiencyDescriptorGetByExample
     {
@@ -8031,15 +8168,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProficiencyDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ProficiencyDescriptorPut : Resources.ProficiencyDescriptor.EdFi.ProficiencyDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ProficiencyDescriptorDelete : IHasIdentifier
+    public class ProficiencyDescriptorDelete : IHasIdentifier 
     {
         public ProficiencyDescriptorDelete() { }
 
-        public ProficiencyDescriptorDelete(Guid id)
+        public ProficiencyDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8048,9 +8185,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProficiencyDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Programs.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Programs.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ProgramGetByExample
     {
@@ -8081,15 +8218,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Programs.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ProgramPut : Resources.Program.EdFi.Program
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ProgramDelete : IHasIdentifier
+    public class ProgramDelete : IHasIdentifier 
     {
         public ProgramDelete() { }
 
-        public ProgramDelete(Guid id)
+        public ProgramDelete(Guid id) 
         {
             Id = id;
         }
@@ -8098,9 +8235,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Programs.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ProgramAssignmentDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ProgramAssignmentDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ProgramAssignmentDescriptorGetByExample
     {
@@ -8127,15 +8264,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProgramAssignmentDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ProgramAssignmentDescriptorPut : Resources.ProgramAssignmentDescriptor.EdFi.ProgramAssignmentDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ProgramAssignmentDescriptorDelete : IHasIdentifier
+    public class ProgramAssignmentDescriptorDelete : IHasIdentifier 
     {
         public ProgramAssignmentDescriptorDelete() { }
 
-        public ProgramAssignmentDescriptorDelete(Guid id)
+        public ProgramAssignmentDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8144,9 +8281,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProgramAssignmentDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ProgramCharacteristicDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ProgramCharacteristicDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ProgramCharacteristicDescriptorGetByExample
     {
@@ -8173,15 +8310,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProgramCharacteristicDescriptors.E
 
     [ExcludeFromCodeCoverage]
     public class ProgramCharacteristicDescriptorPut : Resources.ProgramCharacteristicDescriptor.EdFi.ProgramCharacteristicDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ProgramCharacteristicDescriptorDelete : IHasIdentifier
+    public class ProgramCharacteristicDescriptorDelete : IHasIdentifier 
     {
         public ProgramCharacteristicDescriptorDelete() { }
 
-        public ProgramCharacteristicDescriptorDelete(Guid id)
+        public ProgramCharacteristicDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8190,9 +8327,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProgramCharacteristicDescriptors.E
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ProgramSponsorDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ProgramSponsorDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ProgramSponsorDescriptorGetByExample
     {
@@ -8219,15 +8356,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProgramSponsorDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ProgramSponsorDescriptorPut : Resources.ProgramSponsorDescriptor.EdFi.ProgramSponsorDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ProgramSponsorDescriptorDelete : IHasIdentifier
+    public class ProgramSponsorDescriptorDelete : IHasIdentifier 
     {
         public ProgramSponsorDescriptorDelete() { }
 
-        public ProgramSponsorDescriptorDelete(Guid id)
+        public ProgramSponsorDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8236,9 +8373,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProgramSponsorDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ProgramTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ProgramTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ProgramTypeDescriptorGetByExample
     {
@@ -8265,15 +8402,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProgramTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ProgramTypeDescriptorPut : Resources.ProgramTypeDescriptor.EdFi.ProgramTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ProgramTypeDescriptorDelete : IHasIdentifier
+    public class ProgramTypeDescriptorDelete : IHasIdentifier 
     {
         public ProgramTypeDescriptorDelete() { }
 
-        public ProgramTypeDescriptorDelete(Guid id)
+        public ProgramTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8282,9 +8419,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProgramTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ProgressDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ProgressDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ProgressDescriptorGetByExample
     {
@@ -8311,15 +8448,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProgressDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ProgressDescriptorPut : Resources.ProgressDescriptor.EdFi.ProgressDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ProgressDescriptorDelete : IHasIdentifier
+    public class ProgressDescriptorDelete : IHasIdentifier 
     {
         public ProgressDescriptorDelete() { }
 
-        public ProgressDescriptorDelete(Guid id)
+        public ProgressDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8328,9 +8465,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProgressDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ProgressLevelDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ProgressLevelDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ProgressLevelDescriptorGetByExample
     {
@@ -8357,15 +8494,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProgressLevelDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ProgressLevelDescriptorPut : Resources.ProgressLevelDescriptor.EdFi.ProgressLevelDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ProgressLevelDescriptorDelete : IHasIdentifier
+    public class ProgressLevelDescriptorDelete : IHasIdentifier 
     {
         public ProgressLevelDescriptorDelete() { }
 
-        public ProgressLevelDescriptorDelete(Guid id)
+        public ProgressLevelDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8374,9 +8511,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProgressLevelDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ProviderCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ProviderCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ProviderCategoryDescriptorGetByExample
     {
@@ -8403,15 +8540,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProviderCategoryDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ProviderCategoryDescriptorPut : Resources.ProviderCategoryDescriptor.EdFi.ProviderCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ProviderCategoryDescriptorDelete : IHasIdentifier
+    public class ProviderCategoryDescriptorDelete : IHasIdentifier 
     {
         public ProviderCategoryDescriptorDelete() { }
 
-        public ProviderCategoryDescriptorDelete(Guid id)
+        public ProviderCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8420,9 +8557,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProviderCategoryDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ProviderProfitabilityDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ProviderProfitabilityDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ProviderProfitabilityDescriptorGetByExample
     {
@@ -8449,15 +8586,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProviderProfitabilityDescriptors.E
 
     [ExcludeFromCodeCoverage]
     public class ProviderProfitabilityDescriptorPut : Resources.ProviderProfitabilityDescriptor.EdFi.ProviderProfitabilityDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ProviderProfitabilityDescriptorDelete : IHasIdentifier
+    public class ProviderProfitabilityDescriptorDelete : IHasIdentifier 
     {
         public ProviderProfitabilityDescriptorDelete() { }
 
-        public ProviderProfitabilityDescriptorDelete(Guid id)
+        public ProviderProfitabilityDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8466,9 +8603,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProviderProfitabilityDescriptors.E
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ProviderStatusDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ProviderStatusDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ProviderStatusDescriptorGetByExample
     {
@@ -8495,15 +8632,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProviderStatusDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ProviderStatusDescriptorPut : Resources.ProviderStatusDescriptor.EdFi.ProviderStatusDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ProviderStatusDescriptorDelete : IHasIdentifier
+    public class ProviderStatusDescriptorDelete : IHasIdentifier 
     {
         public ProviderStatusDescriptorDelete() { }
 
-        public ProviderStatusDescriptorDelete(Guid id)
+        public ProviderStatusDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8512,9 +8649,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ProviderStatusDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.PublicationStatusDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.PublicationStatusDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class PublicationStatusDescriptorGetByExample
     {
@@ -8541,15 +8678,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PublicationStatusDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class PublicationStatusDescriptorPut : Resources.PublicationStatusDescriptor.EdFi.PublicationStatusDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class PublicationStatusDescriptorDelete : IHasIdentifier
+    public class PublicationStatusDescriptorDelete : IHasIdentifier 
     {
         public PublicationStatusDescriptorDelete() { }
 
-        public PublicationStatusDescriptorDelete(Guid id)
+        public PublicationStatusDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8558,9 +8695,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.PublicationStatusDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.QuestionFormDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.QuestionFormDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class QuestionFormDescriptorGetByExample
     {
@@ -8587,15 +8724,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.QuestionFormDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class QuestionFormDescriptorPut : Resources.QuestionFormDescriptor.EdFi.QuestionFormDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class QuestionFormDescriptorDelete : IHasIdentifier
+    public class QuestionFormDescriptorDelete : IHasIdentifier 
     {
         public QuestionFormDescriptorDelete() { }
 
-        public QuestionFormDescriptorDelete(Guid id)
+        public QuestionFormDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8604,9 +8741,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.QuestionFormDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.RaceDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.RaceDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class RaceDescriptorGetByExample
     {
@@ -8633,15 +8770,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RaceDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class RaceDescriptorPut : Resources.RaceDescriptor.EdFi.RaceDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class RaceDescriptorDelete : IHasIdentifier
+    public class RaceDescriptorDelete : IHasIdentifier 
     {
         public RaceDescriptorDelete() { }
 
-        public RaceDescriptorDelete(Guid id)
+        public RaceDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8650,9 +8787,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RaceDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ReasonExitedDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ReasonExitedDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ReasonExitedDescriptorGetByExample
     {
@@ -8679,15 +8816,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ReasonExitedDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ReasonExitedDescriptorPut : Resources.ReasonExitedDescriptor.EdFi.ReasonExitedDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ReasonExitedDescriptorDelete : IHasIdentifier
+    public class ReasonExitedDescriptorDelete : IHasIdentifier 
     {
         public ReasonExitedDescriptorDelete() { }
 
-        public ReasonExitedDescriptorDelete(Guid id)
+        public ReasonExitedDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8696,9 +8833,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ReasonExitedDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ReasonNotTestedDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ReasonNotTestedDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ReasonNotTestedDescriptorGetByExample
     {
@@ -8725,15 +8862,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ReasonNotTestedDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ReasonNotTestedDescriptorPut : Resources.ReasonNotTestedDescriptor.EdFi.ReasonNotTestedDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ReasonNotTestedDescriptorDelete : IHasIdentifier
+    public class ReasonNotTestedDescriptorDelete : IHasIdentifier 
     {
         public ReasonNotTestedDescriptorDelete() { }
 
-        public ReasonNotTestedDescriptorDelete(Guid id)
+        public ReasonNotTestedDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8742,9 +8879,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ReasonNotTestedDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.RecognitionTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.RecognitionTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class RecognitionTypeDescriptorGetByExample
     {
@@ -8771,15 +8908,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RecognitionTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class RecognitionTypeDescriptorPut : Resources.RecognitionTypeDescriptor.EdFi.RecognitionTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class RecognitionTypeDescriptorDelete : IHasIdentifier
+    public class RecognitionTypeDescriptorDelete : IHasIdentifier 
     {
         public RecognitionTypeDescriptorDelete() { }
 
-        public RecognitionTypeDescriptorDelete(Guid id)
+        public RecognitionTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8788,9 +8925,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RecognitionTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.RelationDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.RelationDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class RelationDescriptorGetByExample
     {
@@ -8817,15 +8954,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RelationDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class RelationDescriptorPut : Resources.RelationDescriptor.EdFi.RelationDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class RelationDescriptorDelete : IHasIdentifier
+    public class RelationDescriptorDelete : IHasIdentifier 
     {
         public RelationDescriptorDelete() { }
 
-        public RelationDescriptorDelete(Guid id)
+        public RelationDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8834,9 +8971,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RelationDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.RepeatIdentifierDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.RepeatIdentifierDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class RepeatIdentifierDescriptorGetByExample
     {
@@ -8863,15 +9000,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RepeatIdentifierDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class RepeatIdentifierDescriptorPut : Resources.RepeatIdentifierDescriptor.EdFi.RepeatIdentifierDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class RepeatIdentifierDescriptorDelete : IHasIdentifier
+    public class RepeatIdentifierDescriptorDelete : IHasIdentifier 
     {
         public RepeatIdentifierDescriptorDelete() { }
 
-        public RepeatIdentifierDescriptorDelete(Guid id)
+        public RepeatIdentifierDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8880,9 +9017,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RepeatIdentifierDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ReportCards.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ReportCards.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ReportCardGetByExample
     {
@@ -8920,15 +9057,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ReportCards.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ReportCardPut : Resources.ReportCard.EdFi.ReportCard
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ReportCardDelete : IHasIdentifier
+    public class ReportCardDelete : IHasIdentifier 
     {
         public ReportCardDelete() { }
 
-        public ReportCardDelete(Guid id)
+        public ReportCardDelete(Guid id) 
         {
             Id = id;
         }
@@ -8937,9 +9074,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ReportCards.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ReporterDescriptionDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ReporterDescriptionDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ReporterDescriptionDescriptorGetByExample
     {
@@ -8966,15 +9103,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ReporterDescriptionDescriptors.EdF
 
     [ExcludeFromCodeCoverage]
     public class ReporterDescriptionDescriptorPut : Resources.ReporterDescriptionDescriptor.EdFi.ReporterDescriptionDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ReporterDescriptionDescriptorDelete : IHasIdentifier
+    public class ReporterDescriptionDescriptorDelete : IHasIdentifier 
     {
         public ReporterDescriptionDescriptorDelete() { }
 
-        public ReporterDescriptionDescriptorDelete(Guid id)
+        public ReporterDescriptionDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -8983,9 +9120,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ReporterDescriptionDescriptors.EdF
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ResidencyStatusDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ResidencyStatusDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ResidencyStatusDescriptorGetByExample
     {
@@ -9012,15 +9149,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ResidencyStatusDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ResidencyStatusDescriptorPut : Resources.ResidencyStatusDescriptor.EdFi.ResidencyStatusDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ResidencyStatusDescriptorDelete : IHasIdentifier
+    public class ResidencyStatusDescriptorDelete : IHasIdentifier 
     {
         public ResidencyStatusDescriptorDelete() { }
 
-        public ResidencyStatusDescriptorDelete(Guid id)
+        public ResidencyStatusDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9029,9 +9166,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ResidencyStatusDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ResponseIndicatorDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ResponseIndicatorDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ResponseIndicatorDescriptorGetByExample
     {
@@ -9058,15 +9195,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ResponseIndicatorDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ResponseIndicatorDescriptorPut : Resources.ResponseIndicatorDescriptor.EdFi.ResponseIndicatorDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ResponseIndicatorDescriptorDelete : IHasIdentifier
+    public class ResponseIndicatorDescriptorDelete : IHasIdentifier 
     {
         public ResponseIndicatorDescriptorDelete() { }
 
-        public ResponseIndicatorDescriptorDelete(Guid id)
+        public ResponseIndicatorDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9075,9 +9212,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ResponseIndicatorDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ResponsibilityDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ResponsibilityDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ResponsibilityDescriptorGetByExample
     {
@@ -9104,15 +9241,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ResponsibilityDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ResponsibilityDescriptorPut : Resources.ResponsibilityDescriptor.EdFi.ResponsibilityDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ResponsibilityDescriptorDelete : IHasIdentifier
+    public class ResponsibilityDescriptorDelete : IHasIdentifier 
     {
         public ResponsibilityDescriptorDelete() { }
 
-        public ResponsibilityDescriptorDelete(Guid id)
+        public ResponsibilityDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9121,9 +9258,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ResponsibilityDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.RestraintEvents.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.RestraintEvents.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class RestraintEventGetByExample
     {
@@ -9155,15 +9292,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RestraintEvents.EdFi
 
     [ExcludeFromCodeCoverage]
     public class RestraintEventPut : Resources.RestraintEvent.EdFi.RestraintEvent
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class RestraintEventDelete : IHasIdentifier
+    public class RestraintEventDelete : IHasIdentifier 
     {
         public RestraintEventDelete() { }
 
-        public RestraintEventDelete(Guid id)
+        public RestraintEventDelete(Guid id) 
         {
             Id = id;
         }
@@ -9172,9 +9309,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RestraintEvents.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.RestraintEventReasonDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.RestraintEventReasonDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class RestraintEventReasonDescriptorGetByExample
     {
@@ -9201,15 +9338,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RestraintEventReasonDescriptors.Ed
 
     [ExcludeFromCodeCoverage]
     public class RestraintEventReasonDescriptorPut : Resources.RestraintEventReasonDescriptor.EdFi.RestraintEventReasonDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class RestraintEventReasonDescriptorDelete : IHasIdentifier
+    public class RestraintEventReasonDescriptorDelete : IHasIdentifier 
     {
         public RestraintEventReasonDescriptorDelete() { }
 
-        public RestraintEventReasonDescriptorDelete(Guid id)
+        public RestraintEventReasonDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9218,9 +9355,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RestraintEventReasonDescriptors.Ed
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ResultDatatypeTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ResultDatatypeTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ResultDatatypeTypeDescriptorGetByExample
     {
@@ -9247,15 +9384,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ResultDatatypeTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ResultDatatypeTypeDescriptorPut : Resources.ResultDatatypeTypeDescriptor.EdFi.ResultDatatypeTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ResultDatatypeTypeDescriptorDelete : IHasIdentifier
+    public class ResultDatatypeTypeDescriptorDelete : IHasIdentifier 
     {
         public ResultDatatypeTypeDescriptorDelete() { }
 
-        public ResultDatatypeTypeDescriptorDelete(Guid id)
+        public ResultDatatypeTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9264,9 +9401,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ResultDatatypeTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.RetestIndicatorDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.RetestIndicatorDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class RetestIndicatorDescriptorGetByExample
     {
@@ -9293,15 +9430,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RetestIndicatorDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class RetestIndicatorDescriptorPut : Resources.RetestIndicatorDescriptor.EdFi.RetestIndicatorDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class RetestIndicatorDescriptorDelete : IHasIdentifier
+    public class RetestIndicatorDescriptorDelete : IHasIdentifier 
     {
         public RetestIndicatorDescriptorDelete() { }
 
-        public RetestIndicatorDescriptorDelete(Guid id)
+        public RetestIndicatorDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9310,9 +9447,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.RetestIndicatorDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Schools.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Schools.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SchoolGetByExample
     {
@@ -9348,15 +9485,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Schools.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SchoolPut : Resources.School.EdFi.School
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SchoolDelete : IHasIdentifier
+    public class SchoolDelete : IHasIdentifier 
     {
         public SchoolDelete() { }
 
-        public SchoolDelete(Guid id)
+        public SchoolDelete(Guid id) 
         {
             Id = id;
         }
@@ -9365,9 +9502,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Schools.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SchoolCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SchoolCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SchoolCategoryDescriptorGetByExample
     {
@@ -9394,15 +9531,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SchoolCategoryDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SchoolCategoryDescriptorPut : Resources.SchoolCategoryDescriptor.EdFi.SchoolCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SchoolCategoryDescriptorDelete : IHasIdentifier
+    public class SchoolCategoryDescriptorDelete : IHasIdentifier 
     {
         public SchoolCategoryDescriptorDelete() { }
 
-        public SchoolCategoryDescriptorDelete(Guid id)
+        public SchoolCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9411,9 +9548,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SchoolCategoryDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SchoolChoiceImplementStatusDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SchoolChoiceImplementStatusDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SchoolChoiceImplementStatusDescriptorGetByExample
     {
@@ -9440,15 +9577,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SchoolChoiceImplementStatusDescrip
 
     [ExcludeFromCodeCoverage]
     public class SchoolChoiceImplementStatusDescriptorPut : Resources.SchoolChoiceImplementStatusDescriptor.EdFi.SchoolChoiceImplementStatusDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SchoolChoiceImplementStatusDescriptorDelete : IHasIdentifier
+    public class SchoolChoiceImplementStatusDescriptorDelete : IHasIdentifier 
     {
         public SchoolChoiceImplementStatusDescriptorDelete() { }
 
-        public SchoolChoiceImplementStatusDescriptorDelete(Guid id)
+        public SchoolChoiceImplementStatusDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9457,9 +9594,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SchoolChoiceImplementStatusDescrip
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SchoolFoodServiceProgramServiceDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SchoolFoodServiceProgramServiceDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SchoolFoodServiceProgramServiceDescriptorGetByExample
     {
@@ -9486,15 +9623,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SchoolFoodServiceProgramServiceDes
 
     [ExcludeFromCodeCoverage]
     public class SchoolFoodServiceProgramServiceDescriptorPut : Resources.SchoolFoodServiceProgramServiceDescriptor.EdFi.SchoolFoodServiceProgramServiceDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SchoolFoodServiceProgramServiceDescriptorDelete : IHasIdentifier
+    public class SchoolFoodServiceProgramServiceDescriptorDelete : IHasIdentifier 
     {
         public SchoolFoodServiceProgramServiceDescriptorDelete() { }
 
-        public SchoolFoodServiceProgramServiceDescriptorDelete(Guid id)
+        public SchoolFoodServiceProgramServiceDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9503,9 +9640,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SchoolFoodServiceProgramServiceDes
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SchoolTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SchoolTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SchoolTypeDescriptorGetByExample
     {
@@ -9532,15 +9669,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SchoolTypeDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SchoolTypeDescriptorPut : Resources.SchoolTypeDescriptor.EdFi.SchoolTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SchoolTypeDescriptorDelete : IHasIdentifier
+    public class SchoolTypeDescriptorDelete : IHasIdentifier 
     {
         public SchoolTypeDescriptorDelete() { }
 
-        public SchoolTypeDescriptorDelete(Guid id)
+        public SchoolTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9549,9 +9686,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SchoolTypeDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SchoolYearTypes.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SchoolYearTypes.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SchoolYearTypeGetByExample
     {
@@ -9581,15 +9718,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SchoolYearTypes.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SchoolYearTypePut : Resources.SchoolYearType.EdFi.SchoolYearType
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SchoolYearTypeDelete : IHasIdentifier
+    public class SchoolYearTypeDelete : IHasIdentifier 
     {
         public SchoolYearTypeDelete() { }
 
-        public SchoolYearTypeDelete(Guid id)
+        public SchoolYearTypeDelete(Guid id) 
         {
             Id = id;
         }
@@ -9598,9 +9735,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SchoolYearTypes.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Sections.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Sections.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SectionGetByExample
     {
@@ -9644,15 +9781,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Sections.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SectionPut : Resources.Section.EdFi.Section
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SectionDelete : IHasIdentifier
+    public class SectionDelete : IHasIdentifier 
     {
         public SectionDelete() { }
 
-        public SectionDelete(Guid id)
+        public SectionDelete(Guid id) 
         {
             Id = id;
         }
@@ -9661,9 +9798,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Sections.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SectionAttendanceTakenEvents.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SectionAttendanceTakenEvents.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SectionAttendanceTakenEventGetByExample
     {
@@ -9699,15 +9836,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SectionAttendanceTakenEvents.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SectionAttendanceTakenEventPut : Resources.SectionAttendanceTakenEvent.EdFi.SectionAttendanceTakenEvent
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SectionAttendanceTakenEventDelete : IHasIdentifier
+    public class SectionAttendanceTakenEventDelete : IHasIdentifier 
     {
         public SectionAttendanceTakenEventDelete() { }
 
-        public SectionAttendanceTakenEventDelete(Guid id)
+        public SectionAttendanceTakenEventDelete(Guid id) 
         {
             Id = id;
         }
@@ -9716,9 +9853,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SectionAttendanceTakenEvents.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SectionCharacteristicDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SectionCharacteristicDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SectionCharacteristicDescriptorGetByExample
     {
@@ -9745,15 +9882,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SectionCharacteristicDescriptors.E
 
     [ExcludeFromCodeCoverage]
     public class SectionCharacteristicDescriptorPut : Resources.SectionCharacteristicDescriptor.EdFi.SectionCharacteristicDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SectionCharacteristicDescriptorDelete : IHasIdentifier
+    public class SectionCharacteristicDescriptorDelete : IHasIdentifier 
     {
         public SectionCharacteristicDescriptorDelete() { }
 
-        public SectionCharacteristicDescriptorDelete(Guid id)
+        public SectionCharacteristicDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9762,9 +9899,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SectionCharacteristicDescriptors.E
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SeparationDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SeparationDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SeparationDescriptorGetByExample
     {
@@ -9791,15 +9928,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SeparationDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SeparationDescriptorPut : Resources.SeparationDescriptor.EdFi.SeparationDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SeparationDescriptorDelete : IHasIdentifier
+    public class SeparationDescriptorDelete : IHasIdentifier 
     {
         public SeparationDescriptorDelete() { }
 
-        public SeparationDescriptorDelete(Guid id)
+        public SeparationDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9808,9 +9945,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SeparationDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SeparationReasonDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SeparationReasonDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SeparationReasonDescriptorGetByExample
     {
@@ -9837,15 +9974,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SeparationReasonDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SeparationReasonDescriptorPut : Resources.SeparationReasonDescriptor.EdFi.SeparationReasonDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SeparationReasonDescriptorDelete : IHasIdentifier
+    public class SeparationReasonDescriptorDelete : IHasIdentifier 
     {
         public SeparationReasonDescriptorDelete() { }
 
-        public SeparationReasonDescriptorDelete(Guid id)
+        public SeparationReasonDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9854,9 +9991,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SeparationReasonDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.ServiceDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.ServiceDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class ServiceDescriptorGetByExample
     {
@@ -9883,15 +10020,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ServiceDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class ServiceDescriptorPut : Resources.ServiceDescriptor.EdFi.ServiceDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class ServiceDescriptorDelete : IHasIdentifier
+    public class ServiceDescriptorDelete : IHasIdentifier 
     {
         public ServiceDescriptorDelete() { }
 
-        public ServiceDescriptorDelete(Guid id)
+        public ServiceDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9900,9 +10037,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.ServiceDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Sessions.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Sessions.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SessionGetByExample
     {
@@ -9936,15 +10073,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Sessions.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SessionPut : Resources.Session.EdFi.Session
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SessionDelete : IHasIdentifier
+    public class SessionDelete : IHasIdentifier 
     {
         public SessionDelete() { }
 
-        public SessionDelete(Guid id)
+        public SessionDelete(Guid id) 
         {
             Id = id;
         }
@@ -9953,9 +10090,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Sessions.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SexDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SexDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SexDescriptorGetByExample
     {
@@ -9982,15 +10119,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SexDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SexDescriptorPut : Resources.SexDescriptor.EdFi.SexDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SexDescriptorDelete : IHasIdentifier
+    public class SexDescriptorDelete : IHasIdentifier 
     {
         public SexDescriptorDelete() { }
 
-        public SexDescriptorDelete(Guid id)
+        public SexDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -9999,9 +10136,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SexDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SourceSystemDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SourceSystemDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SourceSystemDescriptorGetByExample
     {
@@ -10028,15 +10165,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SourceSystemDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SourceSystemDescriptorPut : Resources.SourceSystemDescriptor.EdFi.SourceSystemDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SourceSystemDescriptorDelete : IHasIdentifier
+    public class SourceSystemDescriptorDelete : IHasIdentifier 
     {
         public SourceSystemDescriptorDelete() { }
 
-        public SourceSystemDescriptorDelete(Guid id)
+        public SourceSystemDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -10045,9 +10182,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SourceSystemDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SpecialEducationProgramServiceDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SpecialEducationProgramServiceDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SpecialEducationProgramServiceDescriptorGetByExample
     {
@@ -10074,15 +10211,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SpecialEducationProgramServiceDesc
 
     [ExcludeFromCodeCoverage]
     public class SpecialEducationProgramServiceDescriptorPut : Resources.SpecialEducationProgramServiceDescriptor.EdFi.SpecialEducationProgramServiceDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SpecialEducationProgramServiceDescriptorDelete : IHasIdentifier
+    public class SpecialEducationProgramServiceDescriptorDelete : IHasIdentifier 
     {
         public SpecialEducationProgramServiceDescriptorDelete() { }
 
-        public SpecialEducationProgramServiceDescriptorDelete(Guid id)
+        public SpecialEducationProgramServiceDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -10091,9 +10228,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SpecialEducationProgramServiceDesc
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SpecialEducationSettingDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SpecialEducationSettingDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SpecialEducationSettingDescriptorGetByExample
     {
@@ -10120,15 +10257,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SpecialEducationSettingDescriptors
 
     [ExcludeFromCodeCoverage]
     public class SpecialEducationSettingDescriptorPut : Resources.SpecialEducationSettingDescriptor.EdFi.SpecialEducationSettingDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SpecialEducationSettingDescriptorDelete : IHasIdentifier
+    public class SpecialEducationSettingDescriptorDelete : IHasIdentifier 
     {
         public SpecialEducationSettingDescriptorDelete() { }
 
-        public SpecialEducationSettingDescriptorDelete(Guid id)
+        public SpecialEducationSettingDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -10137,9 +10274,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SpecialEducationSettingDescriptors
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Staffs.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Staffs.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffGetByExample
     {
@@ -10185,15 +10322,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Staffs.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StaffPut : Resources.Staff.EdFi.Staff
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffDelete : IHasIdentifier
+    public class StaffDelete : IHasIdentifier 
     {
         public StaffDelete() { }
 
-        public StaffDelete(Guid id)
+        public StaffDelete(Guid id) 
         {
             Id = id;
         }
@@ -10202,9 +10339,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Staffs.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StaffAbsenceEvents.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StaffAbsenceEvents.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffAbsenceEventGetByExample
     {
@@ -10236,15 +10373,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffAbsenceEvents.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StaffAbsenceEventPut : Resources.StaffAbsenceEvent.EdFi.StaffAbsenceEvent
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffAbsenceEventDelete : IHasIdentifier
+    public class StaffAbsenceEventDelete : IHasIdentifier 
     {
         public StaffAbsenceEventDelete() { }
 
-        public StaffAbsenceEventDelete(Guid id)
+        public StaffAbsenceEventDelete(Guid id) 
         {
             Id = id;
         }
@@ -10253,9 +10390,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffAbsenceEvents.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StaffClassificationDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StaffClassificationDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffClassificationDescriptorGetByExample
     {
@@ -10282,15 +10419,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffClassificationDescriptors.EdF
 
     [ExcludeFromCodeCoverage]
     public class StaffClassificationDescriptorPut : Resources.StaffClassificationDescriptor.EdFi.StaffClassificationDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffClassificationDescriptorDelete : IHasIdentifier
+    public class StaffClassificationDescriptorDelete : IHasIdentifier 
     {
         public StaffClassificationDescriptorDelete() { }
 
-        public StaffClassificationDescriptorDelete(Guid id)
+        public StaffClassificationDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -10299,9 +10436,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffClassificationDescriptors.EdF
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StaffCohortAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StaffCohortAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffCohortAssociationGetByExample
     {
@@ -10334,15 +10471,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffCohortAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StaffCohortAssociationPut : Resources.StaffCohortAssociation.EdFi.StaffCohortAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffCohortAssociationDelete : IHasIdentifier
+    public class StaffCohortAssociationDelete : IHasIdentifier 
     {
         public StaffCohortAssociationDelete() { }
 
-        public StaffCohortAssociationDelete(Guid id)
+        public StaffCohortAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -10351,9 +10488,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffCohortAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StaffDisciplineIncidentAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StaffDisciplineIncidentAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffDisciplineIncidentAssociationGetByExample
     {
@@ -10383,15 +10520,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffDisciplineIncidentAssociation
 
     [ExcludeFromCodeCoverage]
     public class StaffDisciplineIncidentAssociationPut : Resources.StaffDisciplineIncidentAssociation.EdFi.StaffDisciplineIncidentAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffDisciplineIncidentAssociationDelete : IHasIdentifier
+    public class StaffDisciplineIncidentAssociationDelete : IHasIdentifier 
     {
         public StaffDisciplineIncidentAssociationDelete() { }
 
-        public StaffDisciplineIncidentAssociationDelete(Guid id)
+        public StaffDisciplineIncidentAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -10400,9 +10537,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffDisciplineIncidentAssociation
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StaffEducationOrganizationAssignmentAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StaffEducationOrganizationAssignmentAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffEducationOrganizationAssignmentAssociationGetByExample
     {
@@ -10441,15 +10578,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffEducationOrganizationAssignme
 
     [ExcludeFromCodeCoverage]
     public class StaffEducationOrganizationAssignmentAssociationPut : Resources.StaffEducationOrganizationAssignmentAssociation.EdFi.StaffEducationOrganizationAssignmentAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffEducationOrganizationAssignmentAssociationDelete : IHasIdentifier
+    public class StaffEducationOrganizationAssignmentAssociationDelete : IHasIdentifier 
     {
         public StaffEducationOrganizationAssignmentAssociationDelete() { }
 
-        public StaffEducationOrganizationAssignmentAssociationDelete(Guid id)
+        public StaffEducationOrganizationAssignmentAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -10458,9 +10595,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffEducationOrganizationAssignme
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StaffEducationOrganizationContactAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StaffEducationOrganizationContactAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffEducationOrganizationContactAssociationGetByExample
     {
@@ -10492,15 +10629,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffEducationOrganizationContactA
 
     [ExcludeFromCodeCoverage]
     public class StaffEducationOrganizationContactAssociationPut : Resources.StaffEducationOrganizationContactAssociation.EdFi.StaffEducationOrganizationContactAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffEducationOrganizationContactAssociationDelete : IHasIdentifier
+    public class StaffEducationOrganizationContactAssociationDelete : IHasIdentifier 
     {
         public StaffEducationOrganizationContactAssociationDelete() { }
 
-        public StaffEducationOrganizationContactAssociationDelete(Guid id)
+        public StaffEducationOrganizationContactAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -10509,9 +10646,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffEducationOrganizationContactA
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StaffEducationOrganizationEmploymentAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StaffEducationOrganizationEmploymentAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffEducationOrganizationEmploymentAssociationGetByExample
     {
@@ -10551,15 +10688,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffEducationOrganizationEmployme
 
     [ExcludeFromCodeCoverage]
     public class StaffEducationOrganizationEmploymentAssociationPut : Resources.StaffEducationOrganizationEmploymentAssociation.EdFi.StaffEducationOrganizationEmploymentAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffEducationOrganizationEmploymentAssociationDelete : IHasIdentifier
+    public class StaffEducationOrganizationEmploymentAssociationDelete : IHasIdentifier 
     {
         public StaffEducationOrganizationEmploymentAssociationDelete() { }
 
-        public StaffEducationOrganizationEmploymentAssociationDelete(Guid id)
+        public StaffEducationOrganizationEmploymentAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -10568,9 +10705,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffEducationOrganizationEmployme
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StaffIdentificationSystemDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StaffIdentificationSystemDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffIdentificationSystemDescriptorGetByExample
     {
@@ -10597,15 +10734,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffIdentificationSystemDescripto
 
     [ExcludeFromCodeCoverage]
     public class StaffIdentificationSystemDescriptorPut : Resources.StaffIdentificationSystemDescriptor.EdFi.StaffIdentificationSystemDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffIdentificationSystemDescriptorDelete : IHasIdentifier
+    public class StaffIdentificationSystemDescriptorDelete : IHasIdentifier 
     {
         public StaffIdentificationSystemDescriptorDelete() { }
 
-        public StaffIdentificationSystemDescriptorDelete(Guid id)
+        public StaffIdentificationSystemDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -10614,9 +10751,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffIdentificationSystemDescripto
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StaffLeaves.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StaffLeaves.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffLeaveGetByExample
     {
@@ -10649,15 +10786,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffLeaves.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StaffLeavePut : Resources.StaffLeave.EdFi.StaffLeave
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffLeaveDelete : IHasIdentifier
+    public class StaffLeaveDelete : IHasIdentifier 
     {
         public StaffLeaveDelete() { }
 
-        public StaffLeaveDelete(Guid id)
+        public StaffLeaveDelete(Guid id) 
         {
             Id = id;
         }
@@ -10666,9 +10803,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffLeaves.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StaffLeaveEventCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StaffLeaveEventCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffLeaveEventCategoryDescriptorGetByExample
     {
@@ -10695,15 +10832,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffLeaveEventCategoryDescriptors
 
     [ExcludeFromCodeCoverage]
     public class StaffLeaveEventCategoryDescriptorPut : Resources.StaffLeaveEventCategoryDescriptor.EdFi.StaffLeaveEventCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffLeaveEventCategoryDescriptorDelete : IHasIdentifier
+    public class StaffLeaveEventCategoryDescriptorDelete : IHasIdentifier 
     {
         public StaffLeaveEventCategoryDescriptorDelete() { }
 
-        public StaffLeaveEventCategoryDescriptorDelete(Guid id)
+        public StaffLeaveEventCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -10712,9 +10849,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffLeaveEventCategoryDescriptors
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StaffProgramAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StaffProgramAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffProgramAssociationGetByExample
     {
@@ -10748,15 +10885,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffProgramAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StaffProgramAssociationPut : Resources.StaffProgramAssociation.EdFi.StaffProgramAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffProgramAssociationDelete : IHasIdentifier
+    public class StaffProgramAssociationDelete : IHasIdentifier 
     {
         public StaffProgramAssociationDelete() { }
 
-        public StaffProgramAssociationDelete(Guid id)
+        public StaffProgramAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -10765,9 +10902,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffProgramAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StaffSchoolAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StaffSchoolAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffSchoolAssociationGetByExample
     {
@@ -10799,15 +10936,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffSchoolAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StaffSchoolAssociationPut : Resources.StaffSchoolAssociation.EdFi.StaffSchoolAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffSchoolAssociationDelete : IHasIdentifier
+    public class StaffSchoolAssociationDelete : IHasIdentifier 
     {
         public StaffSchoolAssociationDelete() { }
 
-        public StaffSchoolAssociationDelete(Guid id)
+        public StaffSchoolAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -10816,9 +10953,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffSchoolAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StaffSectionAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StaffSectionAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StaffSectionAssociationGetByExample
     {
@@ -10857,15 +10994,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffSectionAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StaffSectionAssociationPut : Resources.StaffSectionAssociation.EdFi.StaffSectionAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StaffSectionAssociationDelete : IHasIdentifier
+    public class StaffSectionAssociationDelete : IHasIdentifier 
     {
         public StaffSectionAssociationDelete() { }
 
-        public StaffSectionAssociationDelete(Guid id)
+        public StaffSectionAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -10874,9 +11011,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StaffSectionAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StateAbbreviationDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StateAbbreviationDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StateAbbreviationDescriptorGetByExample
     {
@@ -10903,15 +11040,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StateAbbreviationDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StateAbbreviationDescriptorPut : Resources.StateAbbreviationDescriptor.EdFi.StateAbbreviationDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StateAbbreviationDescriptorDelete : IHasIdentifier
+    public class StateAbbreviationDescriptorDelete : IHasIdentifier 
     {
         public StateAbbreviationDescriptorDelete() { }
 
-        public StateAbbreviationDescriptorDelete(Guid id)
+        public StateAbbreviationDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -10920,9 +11057,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StateAbbreviationDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StateEducationAgencies.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StateEducationAgencies.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StateEducationAgencyGetByExample
     {
@@ -10949,15 +11086,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StateEducationAgencies.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StateEducationAgencyPut : Resources.StateEducationAgency.EdFi.StateEducationAgency
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StateEducationAgencyDelete : IHasIdentifier
+    public class StateEducationAgencyDelete : IHasIdentifier 
     {
         public StateEducationAgencyDelete() { }
 
-        public StateEducationAgencyDelete(Guid id)
+        public StateEducationAgencyDelete(Guid id) 
         {
             Id = id;
         }
@@ -10966,9 +11103,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StateEducationAgencies.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Students.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Students.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentGetByExample
     {
@@ -11013,15 +11150,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Students.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StudentPut : Resources.Student.EdFi.Student
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentDelete : IHasIdentifier
+    public class StudentDelete : IHasIdentifier 
     {
         public StudentDelete() { }
 
-        public StudentDelete(Guid id)
+        public StudentDelete(Guid id) 
         {
             Id = id;
         }
@@ -11030,9 +11167,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Students.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentAcademicRecords.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentAcademicRecords.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentAcademicRecordGetByExample
     {
@@ -11081,15 +11218,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentAcademicRecords.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StudentAcademicRecordPut : Resources.StudentAcademicRecord.EdFi.StudentAcademicRecord
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentAcademicRecordDelete : IHasIdentifier
+    public class StudentAcademicRecordDelete : IHasIdentifier 
     {
         public StudentAcademicRecordDelete() { }
 
-        public StudentAcademicRecordDelete(Guid id)
+        public StudentAcademicRecordDelete(Guid id) 
         {
             Id = id;
         }
@@ -11098,9 +11235,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentAcademicRecords.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentAssessments.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentAssessments.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentAssessmentGetByExample
     {
@@ -11143,15 +11280,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentAssessments.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StudentAssessmentPut : Resources.StudentAssessment.EdFi.StudentAssessment
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentAssessmentDelete : IHasIdentifier
+    public class StudentAssessmentDelete : IHasIdentifier 
     {
         public StudentAssessmentDelete() { }
 
-        public StudentAssessmentDelete(Guid id)
+        public StudentAssessmentDelete(Guid id) 
         {
             Id = id;
         }
@@ -11160,9 +11297,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentAssessments.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentCharacteristicDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentCharacteristicDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentCharacteristicDescriptorGetByExample
     {
@@ -11189,15 +11326,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentCharacteristicDescriptors.E
 
     [ExcludeFromCodeCoverage]
     public class StudentCharacteristicDescriptorPut : Resources.StudentCharacteristicDescriptor.EdFi.StudentCharacteristicDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentCharacteristicDescriptorDelete : IHasIdentifier
+    public class StudentCharacteristicDescriptorDelete : IHasIdentifier 
     {
         public StudentCharacteristicDescriptorDelete() { }
 
-        public StudentCharacteristicDescriptorDelete(Guid id)
+        public StudentCharacteristicDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -11206,9 +11343,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentCharacteristicDescriptors.E
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentCohortAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentCohortAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentCohortAssociationGetByExample
     {
@@ -11240,15 +11377,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentCohortAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StudentCohortAssociationPut : Resources.StudentCohortAssociation.EdFi.StudentCohortAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentCohortAssociationDelete : IHasIdentifier
+    public class StudentCohortAssociationDelete : IHasIdentifier 
     {
         public StudentCohortAssociationDelete() { }
 
-        public StudentCohortAssociationDelete(Guid id)
+        public StudentCohortAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -11257,9 +11394,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentCohortAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentCompetencyObjectives.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentCompetencyObjectives.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentCompetencyObjectiveGetByExample
     {
@@ -11296,15 +11433,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentCompetencyObjectives.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StudentCompetencyObjectivePut : Resources.StudentCompetencyObjective.EdFi.StudentCompetencyObjective
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentCompetencyObjectiveDelete : IHasIdentifier
+    public class StudentCompetencyObjectiveDelete : IHasIdentifier 
     {
         public StudentCompetencyObjectiveDelete() { }
 
-        public StudentCompetencyObjectiveDelete(Guid id)
+        public StudentCompetencyObjectiveDelete(Guid id) 
         {
             Id = id;
         }
@@ -11313,9 +11450,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentCompetencyObjectives.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentCTEProgramAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentCTEProgramAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentCTEProgramAssociationGetByExample
     {
@@ -11350,15 +11487,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentCTEProgramAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StudentCTEProgramAssociationPut : Resources.StudentCTEProgramAssociation.EdFi.StudentCTEProgramAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentCTEProgramAssociationDelete : IHasIdentifier
+    public class StudentCTEProgramAssociationDelete : IHasIdentifier 
     {
         public StudentCTEProgramAssociationDelete() { }
 
-        public StudentCTEProgramAssociationDelete(Guid id)
+        public StudentCTEProgramAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -11367,9 +11504,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentCTEProgramAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentDisciplineIncidentAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentDisciplineIncidentAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentDisciplineIncidentAssociationGetByExample
     {
@@ -11400,15 +11537,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentDisciplineIncidentAssociati
 
     [ExcludeFromCodeCoverage]
     public class StudentDisciplineIncidentAssociationPut : Resources.StudentDisciplineIncidentAssociation.EdFi.StudentDisciplineIncidentAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentDisciplineIncidentAssociationDelete : IHasIdentifier
+    public class StudentDisciplineIncidentAssociationDelete : IHasIdentifier 
     {
         public StudentDisciplineIncidentAssociationDelete() { }
 
-        public StudentDisciplineIncidentAssociationDelete(Guid id)
+        public StudentDisciplineIncidentAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -11417,9 +11554,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentDisciplineIncidentAssociati
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentEducationOrganizationAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentEducationOrganizationAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentEducationOrganizationAssociationGetByExample
     {
@@ -11454,15 +11591,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentEducationOrganizationAssoci
 
     [ExcludeFromCodeCoverage]
     public class StudentEducationOrganizationAssociationPut : Resources.StudentEducationOrganizationAssociation.EdFi.StudentEducationOrganizationAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentEducationOrganizationAssociationDelete : IHasIdentifier
+    public class StudentEducationOrganizationAssociationDelete : IHasIdentifier 
     {
         public StudentEducationOrganizationAssociationDelete() { }
 
-        public StudentEducationOrganizationAssociationDelete(Guid id)
+        public StudentEducationOrganizationAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -11471,9 +11608,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentEducationOrganizationAssoci
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentEducationOrganizationResponsibilityAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentEducationOrganizationResponsibilityAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentEducationOrganizationResponsibilityAssociationGetByExample
     {
@@ -11505,15 +11642,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentEducationOrganizationRespon
 
     [ExcludeFromCodeCoverage]
     public class StudentEducationOrganizationResponsibilityAssociationPut : Resources.StudentEducationOrganizationResponsibilityAssociation.EdFi.StudentEducationOrganizationResponsibilityAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentEducationOrganizationResponsibilityAssociationDelete : IHasIdentifier
+    public class StudentEducationOrganizationResponsibilityAssociationDelete : IHasIdentifier 
     {
         public StudentEducationOrganizationResponsibilityAssociationDelete() { }
 
-        public StudentEducationOrganizationResponsibilityAssociationDelete(Guid id)
+        public StudentEducationOrganizationResponsibilityAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -11522,9 +11659,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentEducationOrganizationRespon
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentGradebookEntries.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentGradebookEntries.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentGradebookEntryGetByExample
     {
@@ -11565,15 +11702,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentGradebookEntries.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StudentGradebookEntryPut : Resources.StudentGradebookEntry.EdFi.StudentGradebookEntry
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentGradebookEntryDelete : IHasIdentifier
+    public class StudentGradebookEntryDelete : IHasIdentifier 
     {
         public StudentGradebookEntryDelete() { }
 
-        public StudentGradebookEntryDelete(Guid id)
+        public StudentGradebookEntryDelete(Guid id) 
         {
             Id = id;
         }
@@ -11582,9 +11719,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentGradebookEntries.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentHomelessProgramAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentHomelessProgramAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentHomelessProgramAssociationGetByExample
     {
@@ -11619,15 +11756,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentHomelessProgramAssociations
 
     [ExcludeFromCodeCoverage]
     public class StudentHomelessProgramAssociationPut : Resources.StudentHomelessProgramAssociation.EdFi.StudentHomelessProgramAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentHomelessProgramAssociationDelete : IHasIdentifier
+    public class StudentHomelessProgramAssociationDelete : IHasIdentifier 
     {
         public StudentHomelessProgramAssociationDelete() { }
 
-        public StudentHomelessProgramAssociationDelete(Guid id)
+        public StudentHomelessProgramAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -11636,9 +11773,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentHomelessProgramAssociations
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentIdentificationSystemDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentIdentificationSystemDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentIdentificationSystemDescriptorGetByExample
     {
@@ -11665,15 +11802,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentIdentificationSystemDescrip
 
     [ExcludeFromCodeCoverage]
     public class StudentIdentificationSystemDescriptorPut : Resources.StudentIdentificationSystemDescriptor.EdFi.StudentIdentificationSystemDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentIdentificationSystemDescriptorDelete : IHasIdentifier
+    public class StudentIdentificationSystemDescriptorDelete : IHasIdentifier 
     {
         public StudentIdentificationSystemDescriptorDelete() { }
 
-        public StudentIdentificationSystemDescriptorDelete(Guid id)
+        public StudentIdentificationSystemDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -11682,9 +11819,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentIdentificationSystemDescrip
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentInterventionAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentInterventionAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentInterventionAssociationGetByExample
     {
@@ -11718,15 +11855,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentInterventionAssociations.Ed
 
     [ExcludeFromCodeCoverage]
     public class StudentInterventionAssociationPut : Resources.StudentInterventionAssociation.EdFi.StudentInterventionAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentInterventionAssociationDelete : IHasIdentifier
+    public class StudentInterventionAssociationDelete : IHasIdentifier 
     {
         public StudentInterventionAssociationDelete() { }
 
-        public StudentInterventionAssociationDelete(Guid id)
+        public StudentInterventionAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -11735,9 +11872,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentInterventionAssociations.Ed
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentInterventionAttendanceEvents.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentInterventionAttendanceEvents.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentInterventionAttendanceEventGetByExample
     {
@@ -11773,15 +11910,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentInterventionAttendanceEvent
 
     [ExcludeFromCodeCoverage]
     public class StudentInterventionAttendanceEventPut : Resources.StudentInterventionAttendanceEvent.EdFi.StudentInterventionAttendanceEvent
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentInterventionAttendanceEventDelete : IHasIdentifier
+    public class StudentInterventionAttendanceEventDelete : IHasIdentifier 
     {
         public StudentInterventionAttendanceEventDelete() { }
 
-        public StudentInterventionAttendanceEventDelete(Guid id)
+        public StudentInterventionAttendanceEventDelete(Guid id) 
         {
             Id = id;
         }
@@ -11790,9 +11927,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentInterventionAttendanceEvent
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentLanguageInstructionProgramAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentLanguageInstructionProgramAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentLanguageInstructionProgramAssociationGetByExample
     {
@@ -11826,15 +11963,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentLanguageInstructionProgramA
 
     [ExcludeFromCodeCoverage]
     public class StudentLanguageInstructionProgramAssociationPut : Resources.StudentLanguageInstructionProgramAssociation.EdFi.StudentLanguageInstructionProgramAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentLanguageInstructionProgramAssociationDelete : IHasIdentifier
+    public class StudentLanguageInstructionProgramAssociationDelete : IHasIdentifier 
     {
         public StudentLanguageInstructionProgramAssociationDelete() { }
 
-        public StudentLanguageInstructionProgramAssociationDelete(Guid id)
+        public StudentLanguageInstructionProgramAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -11843,9 +11980,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentLanguageInstructionProgramA
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentLearningObjectives.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentLearningObjectives.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentLearningObjectiveGetByExample
     {
@@ -11881,15 +12018,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentLearningObjectives.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StudentLearningObjectivePut : Resources.StudentLearningObjective.EdFi.StudentLearningObjective
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentLearningObjectiveDelete : IHasIdentifier
+    public class StudentLearningObjectiveDelete : IHasIdentifier 
     {
         public StudentLearningObjectiveDelete() { }
 
-        public StudentLearningObjectiveDelete(Guid id)
+        public StudentLearningObjectiveDelete(Guid id) 
         {
             Id = id;
         }
@@ -11898,9 +12035,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentLearningObjectives.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentMigrantEducationProgramAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentMigrantEducationProgramAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentMigrantEducationProgramAssociationGetByExample
     {
@@ -11941,15 +12078,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentMigrantEducationProgramAsso
 
     [ExcludeFromCodeCoverage]
     public class StudentMigrantEducationProgramAssociationPut : Resources.StudentMigrantEducationProgramAssociation.EdFi.StudentMigrantEducationProgramAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentMigrantEducationProgramAssociationDelete : IHasIdentifier
+    public class StudentMigrantEducationProgramAssociationDelete : IHasIdentifier 
     {
         public StudentMigrantEducationProgramAssociationDelete() { }
 
-        public StudentMigrantEducationProgramAssociationDelete(Guid id)
+        public StudentMigrantEducationProgramAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -11958,9 +12095,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentMigrantEducationProgramAsso
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentNeglectedOrDelinquentProgramAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentNeglectedOrDelinquentProgramAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentNeglectedOrDelinquentProgramAssociationGetByExample
     {
@@ -11995,15 +12132,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentNeglectedOrDelinquentProgra
 
     [ExcludeFromCodeCoverage]
     public class StudentNeglectedOrDelinquentProgramAssociationPut : Resources.StudentNeglectedOrDelinquentProgramAssociation.EdFi.StudentNeglectedOrDelinquentProgramAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentNeglectedOrDelinquentProgramAssociationDelete : IHasIdentifier
+    public class StudentNeglectedOrDelinquentProgramAssociationDelete : IHasIdentifier 
     {
         public StudentNeglectedOrDelinquentProgramAssociationDelete() { }
 
-        public StudentNeglectedOrDelinquentProgramAssociationDelete(Guid id)
+        public StudentNeglectedOrDelinquentProgramAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -12012,9 +12149,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentNeglectedOrDelinquentProgra
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentParentAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentParentAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentParentAssociationGetByExample
     {
@@ -12049,15 +12186,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentParentAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StudentParentAssociationPut : Resources.StudentParentAssociation.EdFi.StudentParentAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentParentAssociationDelete : IHasIdentifier
+    public class StudentParentAssociationDelete : IHasIdentifier 
     {
         public StudentParentAssociationDelete() { }
 
-        public StudentParentAssociationDelete(Guid id)
+        public StudentParentAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -12066,9 +12203,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentParentAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentParticipationCodeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentParticipationCodeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentParticipationCodeDescriptorGetByExample
     {
@@ -12095,15 +12232,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentParticipationCodeDescriptor
 
     [ExcludeFromCodeCoverage]
     public class StudentParticipationCodeDescriptorPut : Resources.StudentParticipationCodeDescriptor.EdFi.StudentParticipationCodeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentParticipationCodeDescriptorDelete : IHasIdentifier
+    public class StudentParticipationCodeDescriptorDelete : IHasIdentifier 
     {
         public StudentParticipationCodeDescriptorDelete() { }
 
-        public StudentParticipationCodeDescriptorDelete(Guid id)
+        public StudentParticipationCodeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -12112,9 +12249,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentParticipationCodeDescriptor
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentProgramAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentProgramAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentProgramAssociationGetByExample
     {
@@ -12146,15 +12283,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentProgramAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StudentProgramAssociationPut : Resources.StudentProgramAssociation.EdFi.StudentProgramAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentProgramAssociationDelete : IHasIdentifier
+    public class StudentProgramAssociationDelete : IHasIdentifier 
     {
         public StudentProgramAssociationDelete() { }
 
-        public StudentProgramAssociationDelete(Guid id)
+        public StudentProgramAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -12163,9 +12300,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentProgramAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentProgramAttendanceEvents.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentProgramAttendanceEvents.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentProgramAttendanceEventGetByExample
     {
@@ -12203,15 +12340,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentProgramAttendanceEvents.EdF
 
     [ExcludeFromCodeCoverage]
     public class StudentProgramAttendanceEventPut : Resources.StudentProgramAttendanceEvent.EdFi.StudentProgramAttendanceEvent
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentProgramAttendanceEventDelete : IHasIdentifier
+    public class StudentProgramAttendanceEventDelete : IHasIdentifier 
     {
         public StudentProgramAttendanceEventDelete() { }
 
-        public StudentProgramAttendanceEventDelete(Guid id)
+        public StudentProgramAttendanceEventDelete(Guid id) 
         {
             Id = id;
         }
@@ -12220,9 +12357,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentProgramAttendanceEvents.EdF
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentSchoolAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentSchoolAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentSchoolAssociationGetByExample
     {
@@ -12270,15 +12407,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentSchoolAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StudentSchoolAssociationPut : Resources.StudentSchoolAssociation.EdFi.StudentSchoolAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentSchoolAssociationDelete : IHasIdentifier
+    public class StudentSchoolAssociationDelete : IHasIdentifier 
     {
         public StudentSchoolAssociationDelete() { }
 
-        public StudentSchoolAssociationDelete(Guid id)
+        public StudentSchoolAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -12287,9 +12424,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentSchoolAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentSchoolAttendanceEvents.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentSchoolAttendanceEvents.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentSchoolAttendanceEventGetByExample
     {
@@ -12328,15 +12465,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentSchoolAttendanceEvents.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StudentSchoolAttendanceEventPut : Resources.StudentSchoolAttendanceEvent.EdFi.StudentSchoolAttendanceEvent
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentSchoolAttendanceEventDelete : IHasIdentifier
+    public class StudentSchoolAttendanceEventDelete : IHasIdentifier 
     {
         public StudentSchoolAttendanceEventDelete() { }
 
-        public StudentSchoolAttendanceEventDelete(Guid id)
+        public StudentSchoolAttendanceEventDelete(Guid id) 
         {
             Id = id;
         }
@@ -12345,9 +12482,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentSchoolAttendanceEvents.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentSchoolFoodServiceProgramAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentSchoolFoodServiceProgramAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentSchoolFoodServiceProgramAssociationGetByExample
     {
@@ -12380,15 +12517,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentSchoolFoodServiceProgramAss
 
     [ExcludeFromCodeCoverage]
     public class StudentSchoolFoodServiceProgramAssociationPut : Resources.StudentSchoolFoodServiceProgramAssociation.EdFi.StudentSchoolFoodServiceProgramAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentSchoolFoodServiceProgramAssociationDelete : IHasIdentifier
+    public class StudentSchoolFoodServiceProgramAssociationDelete : IHasIdentifier 
     {
         public StudentSchoolFoodServiceProgramAssociationDelete() { }
 
-        public StudentSchoolFoodServiceProgramAssociationDelete(Guid id)
+        public StudentSchoolFoodServiceProgramAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -12397,9 +12534,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentSchoolFoodServiceProgramAss
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentSectionAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentSectionAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentSectionAssociationGetByExample
     {
@@ -12438,15 +12575,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentSectionAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class StudentSectionAssociationPut : Resources.StudentSectionAssociation.EdFi.StudentSectionAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentSectionAssociationDelete : IHasIdentifier
+    public class StudentSectionAssociationDelete : IHasIdentifier 
     {
         public StudentSectionAssociationDelete() { }
 
-        public StudentSectionAssociationDelete(Guid id)
+        public StudentSectionAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -12455,9 +12592,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentSectionAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentSectionAttendanceEvents.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentSectionAttendanceEvents.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentSectionAttendanceEventGetByExample
     {
@@ -12498,15 +12635,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentSectionAttendanceEvents.EdF
 
     [ExcludeFromCodeCoverage]
     public class StudentSectionAttendanceEventPut : Resources.StudentSectionAttendanceEvent.EdFi.StudentSectionAttendanceEvent
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentSectionAttendanceEventDelete : IHasIdentifier
+    public class StudentSectionAttendanceEventDelete : IHasIdentifier 
     {
         public StudentSectionAttendanceEventDelete() { }
 
-        public StudentSectionAttendanceEventDelete(Guid id)
+        public StudentSectionAttendanceEventDelete(Guid id) 
         {
             Id = id;
         }
@@ -12515,9 +12652,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentSectionAttendanceEvents.EdF
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentSpecialEducationProgramAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentSpecialEducationProgramAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentSpecialEducationProgramAssociationGetByExample
     {
@@ -12559,15 +12696,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentSpecialEducationProgramAsso
 
     [ExcludeFromCodeCoverage]
     public class StudentSpecialEducationProgramAssociationPut : Resources.StudentSpecialEducationProgramAssociation.EdFi.StudentSpecialEducationProgramAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentSpecialEducationProgramAssociationDelete : IHasIdentifier
+    public class StudentSpecialEducationProgramAssociationDelete : IHasIdentifier 
     {
         public StudentSpecialEducationProgramAssociationDelete() { }
 
-        public StudentSpecialEducationProgramAssociationDelete(Guid id)
+        public StudentSpecialEducationProgramAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -12576,9 +12713,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentSpecialEducationProgramAsso
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.StudentTitleIPartAProgramAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.StudentTitleIPartAProgramAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class StudentTitleIPartAProgramAssociationGetByExample
     {
@@ -12611,15 +12748,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentTitleIPartAProgramAssociati
 
     [ExcludeFromCodeCoverage]
     public class StudentTitleIPartAProgramAssociationPut : Resources.StudentTitleIPartAProgramAssociation.EdFi.StudentTitleIPartAProgramAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class StudentTitleIPartAProgramAssociationDelete : IHasIdentifier
+    public class StudentTitleIPartAProgramAssociationDelete : IHasIdentifier 
     {
         public StudentTitleIPartAProgramAssociationDelete() { }
 
-        public StudentTitleIPartAProgramAssociationDelete(Guid id)
+        public StudentTitleIPartAProgramAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -12628,9 +12765,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.StudentTitleIPartAProgramAssociati
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.Surveys.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.Surveys.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveyGetByExample
     {
@@ -12666,15 +12803,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Surveys.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SurveyPut : Resources.Survey.EdFi.Survey
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveyDelete : IHasIdentifier
+    public class SurveyDelete : IHasIdentifier 
     {
         public SurveyDelete() { }
 
-        public SurveyDelete(Guid id)
+        public SurveyDelete(Guid id) 
         {
             Id = id;
         }
@@ -12683,9 +12820,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.Surveys.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveyCategoryDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveyCategoryDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveyCategoryDescriptorGetByExample
     {
@@ -12712,15 +12849,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyCategoryDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SurveyCategoryDescriptorPut : Resources.SurveyCategoryDescriptor.EdFi.SurveyCategoryDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveyCategoryDescriptorDelete : IHasIdentifier
+    public class SurveyCategoryDescriptorDelete : IHasIdentifier 
     {
         public SurveyCategoryDescriptorDelete() { }
 
-        public SurveyCategoryDescriptorDelete(Guid id)
+        public SurveyCategoryDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -12729,9 +12866,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyCategoryDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveyCourseAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveyCourseAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveyCourseAssociationGetByExample
     {
@@ -12762,15 +12899,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyCourseAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SurveyCourseAssociationPut : Resources.SurveyCourseAssociation.EdFi.SurveyCourseAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveyCourseAssociationDelete : IHasIdentifier
+    public class SurveyCourseAssociationDelete : IHasIdentifier 
     {
         public SurveyCourseAssociationDelete() { }
 
-        public SurveyCourseAssociationDelete(Guid id)
+        public SurveyCourseAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -12779,9 +12916,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyCourseAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveyLevelDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveyLevelDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveyLevelDescriptorGetByExample
     {
@@ -12808,15 +12945,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyLevelDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SurveyLevelDescriptorPut : Resources.SurveyLevelDescriptor.EdFi.SurveyLevelDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveyLevelDescriptorDelete : IHasIdentifier
+    public class SurveyLevelDescriptorDelete : IHasIdentifier 
     {
         public SurveyLevelDescriptorDelete() { }
 
-        public SurveyLevelDescriptorDelete(Guid id)
+        public SurveyLevelDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -12825,9 +12962,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyLevelDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveyProgramAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveyProgramAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveyProgramAssociationGetByExample
     {
@@ -12859,15 +12996,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyProgramAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SurveyProgramAssociationPut : Resources.SurveyProgramAssociation.EdFi.SurveyProgramAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveyProgramAssociationDelete : IHasIdentifier
+    public class SurveyProgramAssociationDelete : IHasIdentifier 
     {
         public SurveyProgramAssociationDelete() { }
 
-        public SurveyProgramAssociationDelete(Guid id)
+        public SurveyProgramAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -12876,9 +13013,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyProgramAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveyQuestions.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveyQuestions.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveyQuestionGetByExample
     {
@@ -12911,15 +13048,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyQuestions.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SurveyQuestionPut : Resources.SurveyQuestion.EdFi.SurveyQuestion
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveyQuestionDelete : IHasIdentifier
+    public class SurveyQuestionDelete : IHasIdentifier 
     {
         public SurveyQuestionDelete() { }
 
-        public SurveyQuestionDelete(Guid id)
+        public SurveyQuestionDelete(Guid id) 
         {
             Id = id;
         }
@@ -12928,9 +13065,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyQuestions.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveyQuestionResponses.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveyQuestionResponses.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveyQuestionResponseGetByExample
     {
@@ -12963,15 +13100,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyQuestionResponses.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SurveyQuestionResponsePut : Resources.SurveyQuestionResponse.EdFi.SurveyQuestionResponse
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveyQuestionResponseDelete : IHasIdentifier
+    public class SurveyQuestionResponseDelete : IHasIdentifier 
     {
         public SurveyQuestionResponseDelete() { }
 
-        public SurveyQuestionResponseDelete(Guid id)
+        public SurveyQuestionResponseDelete(Guid id) 
         {
             Id = id;
         }
@@ -12980,9 +13117,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyQuestionResponses.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveyResponses.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveyResponses.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveyResponseGetByExample
     {
@@ -13020,15 +13157,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyResponses.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SurveyResponsePut : Resources.SurveyResponse.EdFi.SurveyResponse
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveyResponseDelete : IHasIdentifier
+    public class SurveyResponseDelete : IHasIdentifier 
     {
         public SurveyResponseDelete() { }
 
-        public SurveyResponseDelete(Guid id)
+        public SurveyResponseDelete(Guid id) 
         {
             Id = id;
         }
@@ -13037,9 +13174,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyResponses.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveyResponseEducationOrganizationTargetAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveyResponseEducationOrganizationTargetAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveyResponseEducationOrganizationTargetAssociationGetByExample
     {
@@ -13070,15 +13207,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyResponseEducationOrganizatio
 
     [ExcludeFromCodeCoverage]
     public class SurveyResponseEducationOrganizationTargetAssociationPut : Resources.SurveyResponseEducationOrganizationTargetAssociation.EdFi.SurveyResponseEducationOrganizationTargetAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveyResponseEducationOrganizationTargetAssociationDelete : IHasIdentifier
+    public class SurveyResponseEducationOrganizationTargetAssociationDelete : IHasIdentifier 
     {
         public SurveyResponseEducationOrganizationTargetAssociationDelete() { }
 
-        public SurveyResponseEducationOrganizationTargetAssociationDelete(Guid id)
+        public SurveyResponseEducationOrganizationTargetAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -13087,9 +13224,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyResponseEducationOrganizatio
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveyResponseStaffTargetAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveyResponseStaffTargetAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveyResponseStaffTargetAssociationGetByExample
     {
@@ -13120,15 +13257,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyResponseStaffTargetAssociati
 
     [ExcludeFromCodeCoverage]
     public class SurveyResponseStaffTargetAssociationPut : Resources.SurveyResponseStaffTargetAssociation.EdFi.SurveyResponseStaffTargetAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveyResponseStaffTargetAssociationDelete : IHasIdentifier
+    public class SurveyResponseStaffTargetAssociationDelete : IHasIdentifier 
     {
         public SurveyResponseStaffTargetAssociationDelete() { }
 
-        public SurveyResponseStaffTargetAssociationDelete(Guid id)
+        public SurveyResponseStaffTargetAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -13137,9 +13274,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveyResponseStaffTargetAssociati
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveySections.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveySections.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveySectionGetByExample
     {
@@ -13169,15 +13306,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveySections.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SurveySectionPut : Resources.SurveySection.EdFi.SurveySection
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveySectionDelete : IHasIdentifier
+    public class SurveySectionDelete : IHasIdentifier 
     {
         public SurveySectionDelete() { }
 
-        public SurveySectionDelete(Guid id)
+        public SurveySectionDelete(Guid id) 
         {
             Id = id;
         }
@@ -13186,9 +13323,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveySections.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveySectionAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveySectionAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveySectionAssociationGetByExample
     {
@@ -13222,15 +13359,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveySectionAssociations.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SurveySectionAssociationPut : Resources.SurveySectionAssociation.EdFi.SurveySectionAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveySectionAssociationDelete : IHasIdentifier
+    public class SurveySectionAssociationDelete : IHasIdentifier 
     {
         public SurveySectionAssociationDelete() { }
 
-        public SurveySectionAssociationDelete(Guid id)
+        public SurveySectionAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -13239,9 +13376,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveySectionAssociations.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveySectionResponses.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveySectionResponses.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveySectionResponseGetByExample
     {
@@ -13273,15 +13410,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveySectionResponses.EdFi
 
     [ExcludeFromCodeCoverage]
     public class SurveySectionResponsePut : Resources.SurveySectionResponse.EdFi.SurveySectionResponse
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveySectionResponseDelete : IHasIdentifier
+    public class SurveySectionResponseDelete : IHasIdentifier 
     {
         public SurveySectionResponseDelete() { }
 
-        public SurveySectionResponseDelete(Guid id)
+        public SurveySectionResponseDelete(Guid id) 
         {
             Id = id;
         }
@@ -13290,9 +13427,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveySectionResponses.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveySectionResponseEducationOrganizationTargetAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveySectionResponseEducationOrganizationTargetAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveySectionResponseEducationOrganizationTargetAssociationGetByExample
     {
@@ -13324,15 +13461,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveySectionResponseEducationOrga
 
     [ExcludeFromCodeCoverage]
     public class SurveySectionResponseEducationOrganizationTargetAssociationPut : Resources.SurveySectionResponseEducationOrganizationTargetAssociation.EdFi.SurveySectionResponseEducationOrganizationTargetAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveySectionResponseEducationOrganizationTargetAssociationDelete : IHasIdentifier
+    public class SurveySectionResponseEducationOrganizationTargetAssociationDelete : IHasIdentifier 
     {
         public SurveySectionResponseEducationOrganizationTargetAssociationDelete() { }
 
-        public SurveySectionResponseEducationOrganizationTargetAssociationDelete(Guid id)
+        public SurveySectionResponseEducationOrganizationTargetAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -13341,9 +13478,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveySectionResponseEducationOrga
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.SurveySectionResponseStaffTargetAssociations.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.SurveySectionResponseStaffTargetAssociations.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class SurveySectionResponseStaffTargetAssociationGetByExample
     {
@@ -13375,15 +13512,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveySectionResponseStaffTargetAs
 
     [ExcludeFromCodeCoverage]
     public class SurveySectionResponseStaffTargetAssociationPut : Resources.SurveySectionResponseStaffTargetAssociation.EdFi.SurveySectionResponseStaffTargetAssociation
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class SurveySectionResponseStaffTargetAssociationDelete : IHasIdentifier
+    public class SurveySectionResponseStaffTargetAssociationDelete : IHasIdentifier 
     {
         public SurveySectionResponseStaffTargetAssociationDelete() { }
 
-        public SurveySectionResponseStaffTargetAssociationDelete(Guid id)
+        public SurveySectionResponseStaffTargetAssociationDelete(Guid id) 
         {
             Id = id;
         }
@@ -13392,9 +13529,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.SurveySectionResponseStaffTargetAs
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.TeachingCredentialBasisDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.TeachingCredentialBasisDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class TeachingCredentialBasisDescriptorGetByExample
     {
@@ -13421,15 +13558,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TeachingCredentialBasisDescriptors
 
     [ExcludeFromCodeCoverage]
     public class TeachingCredentialBasisDescriptorPut : Resources.TeachingCredentialBasisDescriptor.EdFi.TeachingCredentialBasisDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class TeachingCredentialBasisDescriptorDelete : IHasIdentifier
+    public class TeachingCredentialBasisDescriptorDelete : IHasIdentifier 
     {
         public TeachingCredentialBasisDescriptorDelete() { }
 
-        public TeachingCredentialBasisDescriptorDelete(Guid id)
+        public TeachingCredentialBasisDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -13438,9 +13575,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TeachingCredentialBasisDescriptors
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.TeachingCredentialDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.TeachingCredentialDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class TeachingCredentialDescriptorGetByExample
     {
@@ -13467,15 +13604,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TeachingCredentialDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class TeachingCredentialDescriptorPut : Resources.TeachingCredentialDescriptor.EdFi.TeachingCredentialDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class TeachingCredentialDescriptorDelete : IHasIdentifier
+    public class TeachingCredentialDescriptorDelete : IHasIdentifier 
     {
         public TeachingCredentialDescriptorDelete() { }
 
-        public TeachingCredentialDescriptorDelete(Guid id)
+        public TeachingCredentialDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -13484,9 +13621,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TeachingCredentialDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.TechnicalSkillsAssessmentDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.TechnicalSkillsAssessmentDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class TechnicalSkillsAssessmentDescriptorGetByExample
     {
@@ -13513,15 +13650,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TechnicalSkillsAssessmentDescripto
 
     [ExcludeFromCodeCoverage]
     public class TechnicalSkillsAssessmentDescriptorPut : Resources.TechnicalSkillsAssessmentDescriptor.EdFi.TechnicalSkillsAssessmentDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class TechnicalSkillsAssessmentDescriptorDelete : IHasIdentifier
+    public class TechnicalSkillsAssessmentDescriptorDelete : IHasIdentifier 
     {
         public TechnicalSkillsAssessmentDescriptorDelete() { }
 
-        public TechnicalSkillsAssessmentDescriptorDelete(Guid id)
+        public TechnicalSkillsAssessmentDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -13530,9 +13667,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TechnicalSkillsAssessmentDescripto
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.TelephoneNumberTypeDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.TelephoneNumberTypeDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class TelephoneNumberTypeDescriptorGetByExample
     {
@@ -13559,15 +13696,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TelephoneNumberTypeDescriptors.EdF
 
     [ExcludeFromCodeCoverage]
     public class TelephoneNumberTypeDescriptorPut : Resources.TelephoneNumberTypeDescriptor.EdFi.TelephoneNumberTypeDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class TelephoneNumberTypeDescriptorDelete : IHasIdentifier
+    public class TelephoneNumberTypeDescriptorDelete : IHasIdentifier 
     {
         public TelephoneNumberTypeDescriptorDelete() { }
 
-        public TelephoneNumberTypeDescriptorDelete(Guid id)
+        public TelephoneNumberTypeDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -13576,9 +13713,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TelephoneNumberTypeDescriptors.EdF
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.TermDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.TermDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class TermDescriptorGetByExample
     {
@@ -13605,15 +13742,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TermDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class TermDescriptorPut : Resources.TermDescriptor.EdFi.TermDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class TermDescriptorDelete : IHasIdentifier
+    public class TermDescriptorDelete : IHasIdentifier 
     {
         public TermDescriptorDelete() { }
 
-        public TermDescriptorDelete(Guid id)
+        public TermDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -13622,9 +13759,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TermDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.TitleIPartAParticipantDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.TitleIPartAParticipantDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class TitleIPartAParticipantDescriptorGetByExample
     {
@@ -13651,15 +13788,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TitleIPartAParticipantDescriptors.
 
     [ExcludeFromCodeCoverage]
     public class TitleIPartAParticipantDescriptorPut : Resources.TitleIPartAParticipantDescriptor.EdFi.TitleIPartAParticipantDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class TitleIPartAParticipantDescriptorDelete : IHasIdentifier
+    public class TitleIPartAParticipantDescriptorDelete : IHasIdentifier 
     {
         public TitleIPartAParticipantDescriptorDelete() { }
 
-        public TitleIPartAParticipantDescriptorDelete(Guid id)
+        public TitleIPartAParticipantDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -13668,9 +13805,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TitleIPartAParticipantDescriptors.
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.TitleIPartAProgramServiceDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.TitleIPartAProgramServiceDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class TitleIPartAProgramServiceDescriptorGetByExample
     {
@@ -13697,15 +13834,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TitleIPartAProgramServiceDescripto
 
     [ExcludeFromCodeCoverage]
     public class TitleIPartAProgramServiceDescriptorPut : Resources.TitleIPartAProgramServiceDescriptor.EdFi.TitleIPartAProgramServiceDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class TitleIPartAProgramServiceDescriptorDelete : IHasIdentifier
+    public class TitleIPartAProgramServiceDescriptorDelete : IHasIdentifier 
     {
         public TitleIPartAProgramServiceDescriptorDelete() { }
 
-        public TitleIPartAProgramServiceDescriptorDelete(Guid id)
+        public TitleIPartAProgramServiceDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -13714,9 +13851,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TitleIPartAProgramServiceDescripto
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.TitleIPartASchoolDesignationDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.TitleIPartASchoolDesignationDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class TitleIPartASchoolDesignationDescriptorGetByExample
     {
@@ -13743,15 +13880,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TitleIPartASchoolDesignationDescri
 
     [ExcludeFromCodeCoverage]
     public class TitleIPartASchoolDesignationDescriptorPut : Resources.TitleIPartASchoolDesignationDescriptor.EdFi.TitleIPartASchoolDesignationDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class TitleIPartASchoolDesignationDescriptorDelete : IHasIdentifier
+    public class TitleIPartASchoolDesignationDescriptorDelete : IHasIdentifier 
     {
         public TitleIPartASchoolDesignationDescriptorDelete() { }
 
-        public TitleIPartASchoolDesignationDescriptorDelete(Guid id)
+        public TitleIPartASchoolDesignationDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -13760,9 +13897,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TitleIPartASchoolDesignationDescri
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.TribalAffiliationDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.TribalAffiliationDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class TribalAffiliationDescriptorGetByExample
     {
@@ -13789,15 +13926,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TribalAffiliationDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class TribalAffiliationDescriptorPut : Resources.TribalAffiliationDescriptor.EdFi.TribalAffiliationDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class TribalAffiliationDescriptorDelete : IHasIdentifier
+    public class TribalAffiliationDescriptorDelete : IHasIdentifier 
     {
         public TribalAffiliationDescriptorDelete() { }
 
-        public TribalAffiliationDescriptorDelete(Guid id)
+        public TribalAffiliationDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -13806,9 +13943,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.TribalAffiliationDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.VisaDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.VisaDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class VisaDescriptorGetByExample
     {
@@ -13835,15 +13972,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.VisaDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class VisaDescriptorPut : Resources.VisaDescriptor.EdFi.VisaDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class VisaDescriptorDelete : IHasIdentifier
+    public class VisaDescriptorDelete : IHasIdentifier 
     {
         public VisaDescriptorDelete() { }
 
-        public VisaDescriptorDelete(Guid id)
+        public VisaDescriptorDelete(Guid id) 
         {
             Id = id;
         }
@@ -13852,9 +13989,9 @@ namespace EdFi.Ods.Api.Common.Models.Requests.VisaDescriptors.EdFi
     }
 }
 
-namespace EdFi.Ods.Api.Common.Models.Requests.WeaponDescriptors.EdFi
-{
-
+namespace EdFi.Ods.Api.Models.Requests.WeaponDescriptors.EdFi
+{ 
+   
     [ExcludeFromCodeCoverage]
     public class WeaponDescriptorGetByExample
     {
@@ -13881,15 +14018,15 @@ namespace EdFi.Ods.Api.Common.Models.Requests.WeaponDescriptors.EdFi
 
     [ExcludeFromCodeCoverage]
     public class WeaponDescriptorPut : Resources.WeaponDescriptor.EdFi.WeaponDescriptor
-    {
+    { 
     }
 
     [ExcludeFromCodeCoverage]
-    public class WeaponDescriptorDelete : IHasIdentifier
+    public class WeaponDescriptorDelete : IHasIdentifier 
     {
         public WeaponDescriptorDelete() { }
 
-        public WeaponDescriptorDelete(Guid id)
+        public WeaponDescriptorDelete(Guid id) 
         {
             Id = id;
         }

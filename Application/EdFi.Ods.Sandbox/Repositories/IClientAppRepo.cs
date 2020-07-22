@@ -3,6 +3,7 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EdFi.Admin.DataAccess;
@@ -31,8 +32,6 @@ namespace EdFi.Ods.Sandbox.Repositories
 
         ApiClient GetClient(string key);
 
-        Task<ApiClient> GetClientAsync(string key);
-
         ApiClient GetClient(string key, string secret);
 
         ApiClient UpdateClient(ApiClient client);
@@ -40,8 +39,6 @@ namespace EdFi.Ods.Sandbox.Repositories
         void DeleteClient(string key);
 
         ClientAccessToken AddClientAccessToken(int apiClientId, string tokenRequestScope = null);
-
-        Task<ClientAccessToken> AddClientAccessTokenAsync(int apiClientId, string tokenRequestScope = null);
 
         void SetDefaultVendorOnUserFromEmailAndName(string userEmail, string userName);
 
@@ -53,7 +50,7 @@ namespace EdFi.Ods.Sandbox.Repositories
 
         void SetupKeySecret(string name, SandboxType sandboxType, string key, string secret, int userId, int applicationId);
 
-        Vendor CreateOrGetVendor(string userEmail, string userName);
+        Vendor CreateOrGetVendor(string userEmail, string userName, IEnumerable<string> namespacePrefixes);
 
         Application CreateApplicationForVendor(int vendorId, string applicationName, string claimSetName);
 
@@ -62,5 +59,7 @@ namespace EdFi.Ods.Sandbox.Repositories
         void AddLeaIdsToApiClient(int userId, int apiClientId, IList<int> leaIds, int applicationId);
 
         void Reset();
+
+        void SetDefaultVendorOnUserFromEmailAndName(string userEmail, string userName, IEnumerable<string> namespacePrefixes);
     }
 }

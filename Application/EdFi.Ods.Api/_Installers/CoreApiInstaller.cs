@@ -2,7 +2,8 @@
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
- 
+
+using System;
 using System.Linq;
 using System.Reflection;
 using System.Web.Http;
@@ -11,51 +12,56 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using EdFi.Ods.Sandbox.Security;
 using EdFi.Ods.Api.Caching;
-using EdFi.Ods.Api.Common;
-using EdFi.Ods.Api.Common.Authentication;
-using EdFi.Ods.Api.Common.Caching;
-using EdFi.Ods.Api.Common.ExceptionHandling;
-using EdFi.Ods.Api.Common.IdentityValueMappers;
-using EdFi.Ods.Api.Common.Infrastructure.Pipelines;
-using EdFi.Ods.Api.Common.Infrastructure.Pipelines.CreateOrUpdate;
-using EdFi.Ods.Api.Common.Infrastructure.Pipelines.Factories;
-using EdFi.Ods.Api.Common.Providers;
-using EdFi.Ods.Api.Common.Validation;
-using EdFi.Ods.Api.Context;
 using EdFi.Ods.Api.ETag;
+using EdFi.Ods.Api.ExceptionHandling;
+using EdFi.Ods.Api.IdentityValueMappers;
+using EdFi.Ods.Api.NHibernate.Architecture;
+using EdFi.Ods.Api.Pipelines.Factories;
 using EdFi.Ods.Api.Services.Authentication;
 using EdFi.Ods.Api.Services.Authentication.ClientCredentials;
 using EdFi.Ods.Api.Services.Authorization;
 using EdFi.Ods.Api.Services.Providers;
+using EdFi.Ods.Api.Validation;
 using EdFi.Ods.Common;
 using EdFi.Ods.Common.Caching;
 using EdFi.Ods.Common.Configuration;
 using EdFi.Ods.Common.Context;
 using EdFi.Ods.Common.Conventions;
 using EdFi.Ods.Common.Extensions;
+using EdFi.Ods.Common.Http.Context;
 using EdFi.Ods.Common.Metadata;
 using EdFi.Ods.Common.Models;
 using EdFi.Ods.Common.Models.Domain;
 using EdFi.Ods.Common.Models.Graphs;
 using EdFi.Ods.Common.Models.Resource;
 using EdFi.Ods.Common.Security;
+using EdFi.Ods.Common.Security.Claims;
 using EdFi.Ods.Common.Validation;
+using EdFi.Ods.Pipelines;
+using EdFi.Ods.Pipelines.Common;
+using EdFi.Ods.Pipelines.Factories;
 using EdFi.Ods.Sandbox.Provisioners;
+using EdFi.Ods.Security.Claims;
 using FluentValidation;
 
-namespace EdFi.Ods.Api._Installers
+namespace EdFi.Ods.Api.Startup.Features.Installers
 {
     public class CoreApiInstaller : IWindsorInstaller
     {
+        private const string DescriptorCacheAbsoluteExpirationSecondsKey = "caching:descriptors:absoluteExpirationSeconds";
+        private const string PersonCacheAbsoluteExpirationSecondsKey = "caching:personUniqueIdToUsi:absoluteExpirationSeconds";
+        private const string PersonCacheSlidingExpirationSecondsKey = "caching:personUniqueIdToUsi:slidingExpirationSeconds";
+        
+        private readonly IConfigValueProvider _configValueProvider;
         private readonly Assembly _apiAssembly;
         private readonly IApiConfigurationProvider _apiConfigurationProvider;
         private readonly Assembly _standardAssembly;
-        private Assembly _apiCommonAssembly;
 
-        public CoreApiInstaller(IAssembliesProvider assembliesProvider, IApiConfigurationProvider apiConfigurationProvider)
+        public CoreApiInstaller(IAssembliesProvider assembliesProvider, IApiConfigurationProvider apiConfigurationProvider, IConfigValueProvider configValueProvider)
         {
             Preconditions.ThrowIfNull(assembliesProvider, nameof(assembliesProvider));
             _apiConfigurationProvider = Preconditions.ThrowIfNull(apiConfigurationProvider, nameof(apiConfigurationProvider));
+            _configValueProvider = Preconditions.ThrowIfNull(configValueProvider, nameof(configValueProvider));
 
             var installedAssemblies = assembliesProvider.GetAssemblies().ToList();
 
@@ -63,7 +69,6 @@ namespace EdFi.Ods.Api._Installers
 
             // TODO JSM - remove the calls using this once we move to the api assembly in ODS-2152. This makes it easy to find the specific locations in the file for now
             _apiAssembly = installedAssemblies.SingleOrDefault(x => x.GetName().Name.Equals("EdFi.Ods.Api"));
-            _apiCommonAssembly = installedAssemblies.SingleOrDefault(x => x.GetName().Name.Equals("EdFi.Ods.Api.Common"));
         }
 
         public void Install(IWindsorContainer container, IConfigurationStore store)
@@ -77,6 +82,7 @@ namespace EdFi.Ods.Api._Installers
             RegisterDatabaseMetadataProvider(container);
             RegisterEdFiDescriptorReflectionProvider(container);
             RegisterOAuthTokenValidator(container);
+            RegisterClaims(container);
             RegisterEdFiOdsInstanceIdentificationProvider(container);
             RegisterETagProvider(container);
             RegisterUniqueIdToUsiValueMapper(container);
@@ -213,6 +219,11 @@ namespace EdFi.Ods.Api._Installers
                 Classes.FromAssembly(_apiAssembly).BasedOn<ApiController>().LifestyleScoped());
         }
 
+        private void RegisterClaims(IWindsorContainer container)
+        {
+            container.Register(Component.For<IClaimsIdentityProvider>().ImplementedBy<ClaimsIdentityProvider>());
+        }
+
         private void RegisterEdFiOdsInstanceIdentificationProvider(IWindsorContainer container)
         {
             container.Register(
@@ -231,22 +242,26 @@ namespace EdFi.Ods.Api._Installers
 
         private void RegisterPersonUniqueIdToUsiCache(IWindsorContainer container)
         {
-            container.Register(
-                Component
-                    .For<IPersonUniqueIdToUsiCache>()
-                    .ImplementedBy<PersonUniqueIdToUsiCache>()
-                    .DependsOn(Dependency.OnValue("synchronousInitialization", false)));
+            container.Register(Component.For<IPersonUniqueIdToUsiCache>()
+                .ImplementedBy<PersonUniqueIdToUsiCache>()
+                .DependsOn(Dependency.OnValue("slidingExpiration",
+                    TimeSpan.FromSeconds(Convert.ToInt32(_configValueProvider.GetValue(PersonCacheSlidingExpirationSecondsKey) ?? "14400"))))
+                .DependsOn(Dependency.OnValue("absoluteExpirationPeriod", 
+                    TimeSpan.FromSeconds(Convert.ToInt32(_configValueProvider.GetValue(PersonCacheAbsoluteExpirationSecondsKey) ?? "86400"))))
+                .DependsOn(Dependency.OnValue("synchronousInitialization", false))); 
         }
 
         private void RegisterDescriptorCache(IWindsorContainer container)
         {
-            container.Register(Component.For<ConcurrentDictionaryCacheProvider>());
+            var absoluteExpirationPeriod = TimeSpan.FromSeconds( 
+                Convert.ToInt32(_configValueProvider.GetValue(DescriptorCacheAbsoluteExpirationSecondsKey) ?? "60"));
+
+            var cacheProvider = new ExpiringConcurrentDictionaryCacheProvider(absoluteExpirationPeriod);
 
             container.Register(
                 Component.For<IDescriptorsCache>()
-                    .ImplementedBy<DescriptorsCache>()
-                    .DependsOn(Dependency.OnComponent<ICacheProvider, ConcurrentDictionaryCacheProvider>())
-                    .LifestyleSingleton());
+                .ImplementedBy<DescriptorsCache>()
+                .DependsOn(Dependency.OnValue<ICacheProvider>(cacheProvider)));
         }
 
         private void RegisterAuthenticationProvider(IWindsorContainer container)
@@ -280,7 +295,7 @@ namespace EdFi.Ods.Api._Installers
         {
             container.Register(
                 Component.For<IRESTErrorProvider>().ImplementedBy<RESTErrorProvider>(),
-                Classes.FromAssemblyContaining<Marker_EdFi_Ods_Api_Common>().BasedOn<IExceptionTranslator>()
+                Classes.FromAssemblyContaining<Marker_EdFi_Ods_Api>().BasedOn<IExceptionTranslator>()
                     .WithService.Base());
         }
 
@@ -321,14 +336,14 @@ namespace EdFi.Ods.Api._Installers
                     .BasedOn(typeof(ICreateOrUpdatePipeline<,>))
                     .WithService.AllInterfaces(),
                 Classes
-                    .FromAssembly(_apiCommonAssembly)
+                    .FromAssembly(_apiAssembly)
                     .BasedOn(typeof(IStep<,>))
                     .WithService
                     .Self(),
 
                 // Register the providers of the core pipeline steps
                 Classes
-                    .FromAssembly(_apiCommonAssembly)
+                    .FromAssembly(_apiAssembly)
                     .BasedOn<IPipelineStepsProvider>()
                     .WithServiceFirstInterface());
         }
