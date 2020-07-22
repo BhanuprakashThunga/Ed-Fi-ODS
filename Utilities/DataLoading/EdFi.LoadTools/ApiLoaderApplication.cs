@@ -12,6 +12,7 @@ using EdFi.LoadTools.ApiClient;
 using EdFi.LoadTools.Engine;
 using EdFi.LoadTools.Engine.FileImportPipeline;
 using EdFi.LoadTools.Engine.ResourcePipeline;
+using EdFi.Ods.Common.Utils.Extensions;
 using log4net;
 
 namespace EdFi.LoadTools
@@ -27,6 +28,8 @@ namespace EdFi.LoadTools
         private readonly IXmlReferenceCacheFactory _xmlReferenceCacheFactory;
         private readonly IResourceHashCache _xmlResourceHashCache;
         private readonly DependenciesRetriever _dependenciesRetriever;
+
+        private static int _exitCode;
 
         public ApiLoaderApplication(
             FileImportPipeline fileImportPipeline,
@@ -92,7 +95,15 @@ namespace EdFi.LoadTools
                _log.Warn("No interchange files found for import");
             }
 
-            return 0;
+            return _exitCode;
+        }
+
+        private static void SetNonZeroExitCode(ApiLoaderWorkItem resource)
+        {
+            if (resource.Responses.All(r => !r.IsSuccess))
+            {
+                _exitCode = 1;
+            }
         }
 
         private static void LogResource(ApiLoaderWorkItem resource)
@@ -164,6 +175,7 @@ namespace EdFi.LoadTools
                     else
                     {
                         LogResource(x);
+                        SetNonZeroExitCode(x);
                     }
                 },
                 new ExecutionDataflowBlockOptions
@@ -232,6 +244,7 @@ namespace EdFi.LoadTools
                 delegate(ApiLoaderWorkItem resource)
                 {
                     LogResource(resource);
+                    SetNonZeroExitCode(resource);
                     return resource;
                 });
 
